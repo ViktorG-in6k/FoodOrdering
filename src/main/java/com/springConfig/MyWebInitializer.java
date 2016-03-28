@@ -21,5 +21,4 @@ public class MyWebInitializer extends
     protected Class<?>[] getRootConfigClasses() {
         return null;
     }
-
 }

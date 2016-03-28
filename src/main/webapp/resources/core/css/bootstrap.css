@@ -1,0 +1,14 @@
+hr {
+    height: 1px;
+    background-color: black;
+    border: none;
+    text-align: center;
+}
+hr::before {
+    content: "Текст";
+    position: relative;
+    top: -10px;
+    background-color: white;
+    padding: 2px 5px;
+    color: black;
+}

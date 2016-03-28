@@ -5,13 +5,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
@@ -43,7 +39,6 @@ public class DBConfig {
         sessionFactory.setPackagesToScan("com.model");
         sessionFactory.setHibernateProperties(this.hibernateProperties());
         return sessionFactory;
-
     }
     @Bean
     public  Properties hibernateProperties() {
@@ -52,7 +47,7 @@ public class DBConfig {
                 setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
                 //setProperty("hibernate.chach.provider_class", "org.hibernate.cache.NoCacheProvider");
                 setProperty("hibernate.show_sql", "true");
-                setProperty("hibernate.hbm2ddl.auto", "create");
+                setProperty("hibernate.hbm2ddl.auto", "update");
                // setProperty("hibernate.hbm2ddl.auto", "create-drop");
             }
         };

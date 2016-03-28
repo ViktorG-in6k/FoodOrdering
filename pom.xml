@@ -9,58 +9,51 @@
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
-    <repositories>
-        <repository>
-            <id>JBoss repository</id>
-            <url>http://repository.jboss.com/maven2/</url>
-        </repository>
-    </repositories>
-
     <properties>
         <spring.version>4.2.1.RELEASE</spring.version>
         <hibernate.version>5.0.7.Final</hibernate.version>
     </properties>
-<!--    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
+    <!--    <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.6</version>
+                    <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                    </configuration>
+                </plugin>
 
 
-        </plugins>
+            </plugins>
 
-    </build>-->
+        </build>-->
     <build>
-     <!--   <plugins>
-        <plugin>
-            <groupId>org.apache.tomcat.maven</groupId>
-            <artifactId>tomcat7-maven-plugin</artifactId>
-            <configuration>
-                <port>8081</port>
-                <path>/wf</path>
-                <systemProperties>
-                    <com.sun.management.jmxremote.port>4000</com.sun.management.jmxremote.port>
-                    <spring.profiles.active>local</spring.profiles.active>
-                </systemProperties>
-            </configuration>
-        </plugin>
+        <!--   <plugins>
+           <plugin>
+               <groupId>org.apache.tomcat.maven</groupId>
+               <artifactId>tomcat7-maven-plugin</artifactId>
+               <configuration>
+                   <port>8081</port>
+                   <path>/wf</path>
+                   <systemProperties>
+                       <com.sun.management.jmxremote.port>4000</com.sun.management.jmxremote.port>
+                       <spring.profiles.active>local</spring.profiles.active>
+                   </systemProperties>
+               </configuration>
+           </plugin>
 
-        </plugins>-->
-     <!--   <plugins>
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <path>myProject</path>
-                </configuration>
-            </plugin>
-        </plugins>-->
+           </plugins>-->
+        <!--   <plugins>
+               <plugin>
+                   <groupId>org.apache.tomcat.maven</groupId>
+                   <artifactId>tomcat7-maven-plugin</artifactId>
+                   <version>2.2</version>
+                   <configuration>
+                       <path>myProject</path>
+                   </configuration>
+               </plugin>
+           </plugins>-->
     </build>
 
     <dependencies>
@@ -87,11 +80,6 @@
             <version>5.1.9</version>
         </dependency>
 
-        <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>persistence-api</artifactId>
-            <version>1.0.2</version>
-        </dependency>
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.1-api</artifactId>
@@ -153,11 +141,11 @@
             <version>${spring.version}</version>
         </dependency>
 
-            <dependency>
-                <groupId>org.springframework.data</groupId>
-                <artifactId>spring-data-jpa</artifactId>
-                <version>1.9.2.RELEASE</version>
-            </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>1.9.2.RELEASE</version>
+        </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>

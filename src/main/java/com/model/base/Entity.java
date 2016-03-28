@@ -7,7 +7,7 @@ public abstract class Entity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "nID")
+    @Column
     private Long id;
 
     public Long getId() {
