@@ -3,8 +3,8 @@ package com.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-@Entity
-public class user extends com.model.base.Entity {
+@Entity(name = "user")
+public class User extends com.model.base.Entity {
 
     @Column
     private String name;
@@ -12,14 +12,14 @@ public class user extends com.model.base.Entity {
     @Column
     private String email;
 
-    public user(String name) {
+    public User(String name) {
         this.name = name;
     }
 
-    public user() {
+    public User() {
     }
 
-    public user(String name, String email) {
+    public User(String name, String email) {
         this.name = name;
         this.email = email;
     }

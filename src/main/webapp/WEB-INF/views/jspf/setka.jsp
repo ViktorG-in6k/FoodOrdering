@@ -1,4 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: employee
@@ -8,121 +9,71 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--<div class="container">--%>
-    <%--<div class="row">--%>
+<%--<div class="row">--%>
 
-<spring:url value="/resources/core/css/hello.css" var="coreCss" />
-<spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss" />
-
-
-        <div class="jumbotron well col-md-9">
+<spring:url value="/resources/core/css/hello.css" var="coreCss"/>
+<spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss"/>
 
 
+<div class="jumbotron well col-md-9 pull-left">
+
+
+    <div class="col-md-12">
+        <c:forEach items="${allEvents}" var="events">
             <div class="col-md-12">
-                <img src="http://placehold.it/200x150" class="img-thumbnail pull-left">
-
+                <img src="${events.getImageURL()}" class="img-thumbnail pull-left">
                 <h2>
                     <label class="col-md-3">
-                        Halloween
+                            ${events.getName()}
                     </label>
                 </h2>
 
                 <label class="pull-right">
-                    Date: 31.10.2016
+                        ${events.getDate()}
                 </label>
-
                 <p>
                     <label class="col-md-6">
-                        Halloween - celebration observed in a number of countries
+                            ${events.getDescription()}
                     </label>
                 </p>
 
                 <p>
-                    <a class="btn btn-primary btn-large  pull-right" href="#">Participate</a>
+                    <a class="btn btn-primary btn-large  pull-right" href="/${events.getId()}">Participate</a>
                 </p>
+
+            </div>
+        </c:forEach>
+    </div>
+
 
 </div>
-            <hr>
-            <div class="col-md-12">
-                <img src="http://placehold.it/200x150" class="img-thumbnail pull-left">
 
-                <h2>
-                    <label class="col-md-3">
-                        Halloween
-                    </label>
-                </h2>
+<form role="form" action="/new_event" class="col-md-3 pull-right">
+    <fieldset>
+        <legend>NEW EVENT</legend>
 
-                <label class="pull-right">
-                    Date: 31.10.2016
-                </label>
-
-                <p>
-                    <label class="col-md-7">
-                        Halloween - celebration observed in a number of countries
-                    </label>
-                </p>
-
-                <p>
-                    <a class="btn btn-primary btn-large  pull-right" href="#">Participate</a>
-                </p>
-
-            </div>
-            <hr>
-            <div class="col-md-12">
-                <img src="http://placehold.it/200x150" class="img-thumbnail pull-left">
-
-                <h2>
-                    <label class="col-md-3">
-                        Halloween
-                    </label>
-                </h2>
-
-                <label class="pull-right">
-                    Date: 31.10.2016
-                </label>
-
-                <p>
-                    <label class="col-md-7">
-                        Halloween - celebration observed in a number of countries
-                    </label>
-                </p>
-
-                <p>
-                    <a class="btn btn-primary btn-large  pull-right" href="#">Participate</a>
-                </p>
-
-            </div>
-
+        <div class="form-group">
+            <label for="name">Event name:</label>
+            <input type="text" class="form-control" id="name" name="name">
         </div>
 
+        <div class="form-group">
+            <label for="discript">Discription:</label>
+            <input type="password" class="form-control" id="discript" name="discript">
+        </div>
 
-        <div class="col-sm-3"><div class="jumbotron well">
+        <div class="form-group">
+            <label for="image">URL-image:</label>
+            <input type="password" class="form-control" id="image" name="image">
+        </div>
 
+        <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" class="form-control" id="date" name="date">
+        </div>
 
-
-            <h2>
-                <label class="col-md-3">
-                    new event
-                </label>
-            </h2>
-
-            <label class="col-md-offset-3">
-                Date:
-            </label>
-
-            <p>
-                <label class="col-md-offset-1">
-                    Description
-                </label>
-            </p>
-
-            <p>
-                <a class="btn btn-primary btn-large col-md-offset-5" href="#">Add</a>
-            </p>
-
-        </div></div>
+        <button type="submit" class="btn btn-default pull-right">Add</button>
+    </fieldset>
+</form>
 
 
-
-
-    <%--</div>--%>
-<%--</div>--%>

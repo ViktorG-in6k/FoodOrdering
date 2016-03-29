@@ -1,7 +1,7 @@
 package com.dataLayer.Implementations;
 
 import com.dataLayer.DAO.UserDAO;
-import com.model.user;
+import com.model.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,20 +15,20 @@ public class UserDAOImpl implements UserDAO {
     @Autowired
     SessionFactory sessionFactory ;
 
-    public void save(user person){
+    public void save(User person){
         Session session = sessionFactory.getCurrentSession();
         session.save(person);
     }
 
-    public user getUser(long id) {
+    public User getUser(long id) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from user where id = :id");
-        return (user) query.setLong("id",id).uniqueResult();
+        return (User) query.setLong("id",id).uniqueResult();
     }
 
-    public user getUserByEmail(String email) {
+    public User getUserByEmail(String email) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from user where email = :email");
-        return (user) query.setString("email",email).uniqueResult();
+        return (User) query.setString("email",email).uniqueResult();
     }
 }

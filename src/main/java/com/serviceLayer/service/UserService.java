@@ -1,13 +1,14 @@
-package com.dataLayer.DAO;
+package com.serviceLayer.service;
 
 import com.model.User;
 
 
-public interface UserDAO {
+public interface UserService {
 
-    public void save(User person);
+    public void saveUser(User person);
 
     public User getUser(long id);
 
     public User getUserByEmail(String email);
+
 }
