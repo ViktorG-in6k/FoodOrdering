@@ -48,7 +48,8 @@ public class MainController {
 
         if(userService.getUserByEmail(email)==null){
             userService.saveUser(person);
-            ла
+            String ref  = req.getHeader("Referer");
+            return "redirect:"+ref;
         }
         else {
             session.setAttribute("userMail",email);
