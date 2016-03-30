@@ -2,7 +2,6 @@ package com.dataLayer.DAO;
 
 import com.model.User;
 
-
 public interface UserDAO {
 
     public void save(User person);

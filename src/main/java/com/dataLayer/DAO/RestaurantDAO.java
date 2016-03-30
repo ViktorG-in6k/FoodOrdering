@@ -4,9 +4,6 @@ import com.model.Restaurant;
 
 import java.util.List;
 
-/**
- * Created by employee on 3/29/16.
- */
 public interface RestaurantDAO {
 
     public void save(Restaurant restaurant);

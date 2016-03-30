@@ -13,24 +13,14 @@
 </head>
 
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true" />
-
-<div class="container">
-  <jsp:include page="/WEB-INF/views/jspf/setka.jsp" flush="true" />
-</div>
- </div>
-
-  <footer>
-  </footer>
+<jsp:include page="/WEB-INF/views/jspf/singin.jsp" flush="true" />
 
 <spring:url value="/resources/core/js/bootstrap.js" var="coreJs" />
 <spring:url value="/resources/core/js/bootstrap.min.js" var="bootstrapJs" />
 <spring:url value="/resources/core/js/bootstrap.min.js" var="jQuery"/>
 
-
 <script src="${jQuery}"></script>
 <script src="${coreJs}"></script>
 <script src="${bootstrapJs}"></script>
-
-
 
 </html>

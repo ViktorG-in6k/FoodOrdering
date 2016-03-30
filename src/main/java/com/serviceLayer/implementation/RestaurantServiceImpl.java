@@ -8,9 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by employee on 3/30/16.
- */
 @Service
 public class RestaurantServiceImpl implements RestaurantService{
     @Autowired

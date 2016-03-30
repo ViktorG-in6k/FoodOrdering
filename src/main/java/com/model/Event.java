@@ -22,15 +22,16 @@ public class Event extends com.model.base.Entity {
     private LocalDateTime date;
 
     public Event(String name, LocalDateTime date) {
-
         this.name = name;
         this.date = date;
     }
+
     public Event(String name, String description, LocalDateTime date) {
         this.name = name;
         this.description = description;
         this.date = date;
     }
+
     public Event(String name, String description, String imageURL, LocalDateTime date) {
 
         this.name = name;

@@ -81,7 +81,7 @@
                     <%--<h1 class="free">For Free</h1>--%>
                 <%--</hgroup>--%>
                 <div class="well">
-                    <form action="/sing_in">
+                    <form action="/events">
                         <div class="input-group">
                             <input class="btn btn-lg" name="email" id="email" type="email" placeholder="Your Email" required>
                             <button class="btn btn-success  btn-lg" type="submit">Sing in</button>

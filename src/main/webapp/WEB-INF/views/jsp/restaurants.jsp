@@ -15,22 +15,15 @@
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true" />
 
 <div class="container">
-    <jsp:include page="/WEB-INF/views/jspf/rest.jsp" flush="true" />
+    <jsp:include page="/WEB-INF/views/jspf/restaurantList.jsp" flush="true" />
 </div>
-</div>
-
-<footer>
-</footer>
 
 <spring:url value="/resources/core/js/bootstrap.js" var="coreJs" />
 <spring:url value="/resources/core/js/bootstrap.min.js" var="bootstrapJs" />
 <spring:url value="/resources/core/js/bootstrap.min.js" var="jQuery"/>
 
-
 <script src="${jQuery}"></script>
 <script src="${coreJs}"></script>
 <script src="${bootstrapJs}"></script>
-
-
 
 </html>

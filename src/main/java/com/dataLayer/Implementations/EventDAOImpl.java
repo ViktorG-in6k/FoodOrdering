@@ -28,14 +28,12 @@ public class EventDAOImpl implements EventDAO {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from event");
         return (List<Event>) query.list();
-
     }
 
     public List<Event> getListOfEvents(String eventName) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from event where name = :eventName");
         return (List<Event>) query.setString("eventName",eventName).list();
-
     }
 
     public List<Event> getListOfEventsByDate(LocalDate eventDate) {
@@ -59,6 +57,4 @@ public class EventDAOImpl implements EventDAO {
                 .setDate("firstDate",java.sql.Date.valueOf(firstDate))
                 .setDate("lastDate",java.sql.Date.valueOf(lastDate)).list();
     }
-
-
 }

@@ -18,19 +18,16 @@ public class Restaurant extends com.model.base.Entity {
     @Column
     private String imageURL;
 
-
-
     public Restaurant(String name, LocalDateTime date) {
         this.name = name;
-
     }
+
     public Restaurant(String name, String description) {
         this.name = name;
         this.description = description;
-
     }
-    public Restaurant(String name, String description, String imageURL) {
 
+    public Restaurant(String name, String description, String imageURL) {
         this.name = name;
         this.description = description;
         this.imageURL = imageURL;

@@ -11,9 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created by employee on 3/30/16.
- */
 @SuppressWarnings("unchecked")
 @Repository
 @Transactional

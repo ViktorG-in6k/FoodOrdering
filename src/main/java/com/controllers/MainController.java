@@ -27,32 +27,29 @@ public class MainController {
 
     @RequestMapping(value = "/")
     public String getMain(Model model) {
-        return "hello";
-    }
-
-    @RequestMapping(value = "/sing_in")
-    public String sing_in(HttpServletRequest req, HttpSession session) {
-        String email = req.getParameter("email");
-        User person = new User("User", email);
-
-        if (userService.getUserByEmail(email) == null) {
-            userService.saveUser(person);
-        }
-
-        session.setAttribute("userMail", email);
-        session.setAttribute("allEvents", eventService.getListOfAllEvents());
         return "main";
     }
 
+    @RequestMapping(value = "/events")
+    public String events(HttpServletRequest req, HttpSession session) {
+        String email = req.getParameter("email");
+
+        userService.saveUser(email);
+
+        session.setAttribute("userMail", email);
+        session.setAttribute("allEvents", eventService.getListOfAllEvents());
+
+        return "events";
+    }
 
     @RequestMapping(value = "/sing_out")
     public String sing_out(HttpSession session) {
         session.setAttribute("userMail", null);
-        return "hello";
+        return "main";
     }
 
     @RequestMapping(value = "/new_event", method = RequestMethod.POST)
-    public String new_Event(HttpServletRequest req, HttpSession session) {
+    public String new_Event(HttpServletRequest req) {
 
         String name = req.getParameter("name");
         String description = req.getParameter("discript");
