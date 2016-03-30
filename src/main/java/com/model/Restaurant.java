@@ -5,8 +5,8 @@ import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
 
-@Entity(name = "event")
-public class Event extends com.model.base.Entity {
+@Entity(name = "restaurant")
+public class Restaurant extends com.model.base.Entity {
 
 
     @Column
@@ -18,28 +18,26 @@ public class Event extends com.model.base.Entity {
     @Column
     private String imageURL;
 
-    @Column
-    private LocalDateTime date;
 
-    public Event(String name, LocalDateTime date) {
 
+    public Restaurant(String name, LocalDateTime date) {
         this.name = name;
-        this.date = date;
+
     }
-    public Event(String name, String description, LocalDateTime date) {
+    public Restaurant(String name, String description) {
         this.name = name;
         this.description = description;
-        this.date = date;
+
     }
-    public Event(String name, String description, String imageURL, LocalDateTime date) {
+    public Restaurant(String name, String description, String imageURL) {
 
         this.name = name;
         this.description = description;
         this.imageURL = imageURL;
-        this.date = date;
+
     }
 
-    public Event() {
+    public Restaurant() {
     }
 
     public String getName() {
@@ -68,11 +66,5 @@ public class Event extends com.model.base.Entity {
         this.imageURL = imageURL;
     }
 
-    public LocalDateTime getDate() {
-        return date;
-    }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
 }

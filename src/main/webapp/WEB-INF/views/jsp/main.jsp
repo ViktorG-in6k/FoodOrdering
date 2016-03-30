@@ -18,7 +18,7 @@
   <jsp:include page="/WEB-INF/views/jspf/setka.jsp" flush="true" />
 </div>
  </div>
-  <hr>
+
   <footer>
   </footer>
 
