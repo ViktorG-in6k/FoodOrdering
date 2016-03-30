@@ -4,7 +4,6 @@ import javax.persistence.*;
 
 @MappedSuperclass
 public abstract class Entity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column

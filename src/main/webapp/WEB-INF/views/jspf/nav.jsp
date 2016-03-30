@@ -2,12 +2,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="navbar navbar-default top-banner-title-font">
     <div class="container-fluid">
-
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Food ordering</a>
         </div>
-
-
         <form role="form">
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -24,6 +21,5 @@
                 </li>
             </ul>
         </form>
-
     </div>
 </nav>

@@ -25,9 +25,7 @@ public class DBConfig {
             @Value("${jdbc.username}") String username,
             @Value("${jdbc.password}") String password
     ) throws SQLException {
-        DriverManagerDataSource source = new DriverManagerDataSource(
-                url, username, password
-        );
+        DriverManagerDataSource source = new DriverManagerDataSource(url, username, password);
         source.setDriverClassName("com.mysql.jdbc.Driver");
         return source;
     }

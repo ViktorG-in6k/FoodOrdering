@@ -4,6 +4,7 @@ hr {
     border: none;
     text-align: center;
 }
+
 hr::before {
     content: "Текст";
     position: relative;
