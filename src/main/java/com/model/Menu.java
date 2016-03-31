@@ -17,7 +17,9 @@ public class Menu extends com.model.base.Entity {
     @Column
     private BigDecimal price;
 
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    private Restaurant restaurant;
 
     public Menu(String name, String description, String URLimage, BigDecimal price){
         this.name=name;
@@ -81,9 +83,7 @@ public class Menu extends com.model.base.Entity {
         this.price = price;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "restaurant_id", nullable = false)
-    private Restaurant restaurant;
+
 
     public Restaurant getRestaurant() {
         return restaurant;

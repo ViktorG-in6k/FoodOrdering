@@ -46,9 +46,4 @@ public class RestaurantDAOImpl implements RestaurantDAO{
         return (List<Menu>) query.setInteger("id",id).list();
     }
 
-//    public Restaurant addToMenu(Menu item) {
-//        Session session = sessionFactory.getCurrentSession();
-//        Query query = session.createQuery("from restaurant where id = :id");
-//        return (Restaurant) query.setInteger("id",id).uniqueResult();
-//    }
 }

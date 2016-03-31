@@ -1,13 +1,11 @@
 package com.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.time.LocalDateTime;
-
+import java.util.Set;
 
 @Entity(name = "event")
 public class Event extends com.model.base.Entity {
-
 
     @Column
     private String name;
@@ -20,6 +18,12 @@ public class Event extends com.model.base.Entity {
 
     @Column
     private LocalDateTime date;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "order_list",
+            joinColumns = { @JoinColumn(name = "event_id") },
+            inverseJoinColumns = { @JoinColumn(name = "item_id") })
+    private Set<Menu> itemsList;
 
     public Event(String name, LocalDateTime date) {
         this.name = name;
@@ -77,5 +81,13 @@ public class Event extends com.model.base.Entity {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public Set<Menu> getItemsList() {
+        return itemsList;
+    }
+
+    public void setItemsList(Set<Menu> itemsList) {
+        this.itemsList = itemsList;
     }
 }

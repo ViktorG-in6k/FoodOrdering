@@ -2,11 +2,9 @@ package com.controllers;
 
 import com.model.Event;
 import com.model.Menu;
+import com.model.Order;
 import com.model.Restaurant;
-import com.serviceLayer.service.EventService;
-import com.serviceLayer.service.MenuService;
-import com.serviceLayer.service.RestaurantService;
-import com.serviceLayer.service.UserService;
+import com.serviceLayer.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +28,8 @@ public class MainController {
     RestaurantService restaurantService;
     @Autowired
     MenuService menuService;
+    @Autowired
+    OrderService orderService;
 
     @RequestMapping(value = "/")
     public String getMain(Model model) {
@@ -71,11 +71,11 @@ public class MainController {
         BigDecimal price = new BigDecimal(req.getParameter("price"));
 
         Restaurant restaurant =(Restaurant)session.getAttribute("restaurant");
-        System.out.println(restaurant.getName());
+
         Menu item = new Menu(restaurant, name, description, URLimage, price);
 
         menuService.save(item);
-        //session.setAttribute("menu", restaurantService.getRestaurantById(restaurant.getId()).getMenu());
+
         String ref = req.getHeader("Referer");
         return "redirect:" + ref;
     }
@@ -87,7 +87,9 @@ public class MainController {
         String description = req.getParameter("discript");
         String URLimage = req.getParameter("image");
         LocalDateTime date = LocalDateTime.parse(req.getParameter("date"));
+
         Event event = new Event(name, description, URLimage, date);
+
         eventService.save(event);
         String ref = req.getHeader("Referer");
         return "redirect:" + ref;
@@ -105,6 +107,19 @@ public class MainController {
         return "redirect:" + ref;
     }
 
+    @RequestMapping(value = "/add_to_order", method = RequestMethod.POST)
+    public String addToOrder(HttpServletRequest req, HttpSession session) {
+
+        int item_id = Integer.parseInt(req.getParameter("item_id"));
+        int event_id = Integer.parseInt(req.getParameter("event_id"));
+
+        Order order = new Order(item_id,event_id);
+
+        orderService.save(order);
+        String ref = req.getHeader("Referer");
+        return "redirect:" + ref;
+    }
+
     @RequestMapping(value = "/events/event_{id}")
     public String get_restaurants(HttpSession session, @PathVariable("id") String id) {
         session.setAttribute("eventId", id);
@@ -116,12 +131,6 @@ public class MainController {
     @RequestMapping(value = "/events/event_{event}/restaurant_{id}")
     public String get_menu(HttpSession session,@PathVariable("event") int event, @PathVariable("id") int id) {
         session.setAttribute("restaurant",restaurantService.getRestaurantById(id));
-        System.out.println(restaurantService.getRestaurantById(id).getName());
-        System.out.println(restaurantService.getRestaurantById(id).getMenu().size());
-        for (Menu item: restaurantService.getRestaurantById(id).getMenu()) {
-            System.out.println(item.getName());
-            System.out.println(item.getPrice());
-        }
         session.setAttribute("Menu", restaurantService.getRestaurantById(id).getMenu());
         session.setAttribute("backPage","/events/event_"+event);
         return "menu";

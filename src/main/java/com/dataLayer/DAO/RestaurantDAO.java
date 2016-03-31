@@ -13,5 +13,4 @@ public interface RestaurantDAO {
     public Restaurant getRestaurantById(int id);
     public List<Menu> getRestaurantMenuById(int id);
 
-
 }

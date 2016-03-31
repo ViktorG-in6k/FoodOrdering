@@ -6,5 +6,4 @@ public interface MenuDAO {
 
     public void save(Menu item);
 
-
 }

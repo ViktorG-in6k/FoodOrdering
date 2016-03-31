@@ -1,9 +1,6 @@
 package com.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
@@ -11,7 +8,6 @@ import java.util.Set;
 
 @Entity(name = "restaurant")
 public class Restaurant extends com.model.base.Entity {
-
 
     @Column
     private String name;
@@ -35,7 +31,6 @@ public class Restaurant extends com.model.base.Entity {
         this.name = name;
         this.description = description;
         this.imageURL = imageURL;
-
     }
 
     public Restaurant() {
@@ -81,4 +76,6 @@ public class Restaurant extends com.model.base.Entity {
     public void addToMenu(Menu item) {
         this.menu.add(item);
     }
+
+
 }
