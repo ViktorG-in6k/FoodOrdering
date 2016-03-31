@@ -6,21 +6,25 @@
 <spring:url value="/resources/core/css/hello.css" var="coreCss"/>
 <spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss"/>
 
-<c:forEach items="${allRestaurants}" var="events">
+<c:forEach items="${allRestaurants}" var="restaurant">
     <div class="well col-md-9 pull-left">
-        <form action="/events/${events.getId()}">
-            <c:if test="${not empty events.getImageURL()}">
-                <img src="${events.getImageURL()}" class="img-thumbnail pull-left" width="200" height="100">
-                <div class="text-info "><h2> ${events.getName()}</h2></div>
+        <form action="/events/${restaurant.getId()}">
+            <c:if test="${not empty restaurant.getImageURL()}">
+                <img src="${restaurant.getImageURL()}" class="img-thumbnail pull-left" width="200" height="100">
+                <div class="text-info "><h2> ${restaurant.getName()}</h2></div>
                 <div class="col-md-7 text-left">
-                        ${events.getDescription()}
+                        ${restaurant.getDescription()}
                 </div>
+                <a class="btn btn-primary pull-right" href="/events/event_${eventId}/restaurant_${restaurant.getId()}">Participate</a>
+
             </c:if>
-            <c:if test="${empty events.getImageURL()}">
-                <div class="text-info "><h2> ${events.getName()}</h2></div>
+            <c:if test="${empty restaurant.getImageURL()}">
+                <div class="text-info "><h2> ${restaurant.getName()}</h2></div>
                 <div class="col-md-10 text-left">
-                        ${events.getDescription()}
+                        ${restaurant.getDescription()}
                 </div>
+                <a class="btn btn-primary col-md-offset-10 pull-right" href="/events/event_${eventId}/restaurant_${restaurant.getId()}">Participate</a>
+
             </c:if>
         </form>
     </div>

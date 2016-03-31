@@ -13,48 +13,6 @@
         <spring.version>4.2.1.RELEASE</spring.version>
         <hibernate.version>5.0.7.Final</hibernate.version>
     </properties>
-    <!--    <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>2.6</version>
-                    <configuration>
-                        <failOnMissingWebXml>false</failOnMissingWebXml>
-                    </configuration>
-                </plugin>
-
-
-            </plugins>
-
-        </build>-->
-    <build>
-        <!--   <plugins>
-           <plugin>
-               <groupId>org.apache.tomcat.maven</groupId>
-               <artifactId>tomcat7-maven-plugin</artifactId>
-               <configuration>
-                   <port>8081</port>
-                   <path>/wf</path>
-                   <systemProperties>
-                       <com.sun.management.jmxremote.port>4000</com.sun.management.jmxremote.port>
-                       <spring.profiles.active>local</spring.profiles.active>
-                   </systemProperties>
-               </configuration>
-           </plugin>
-
-           </plugins>-->
-        <!--   <plugins>
-               <plugin>
-                   <groupId>org.apache.tomcat.maven</groupId>
-                   <artifactId>tomcat7-maven-plugin</artifactId>
-                   <version>2.2</version>
-                   <configuration>
-                       <path>myProject</path>
-                   </configuration>
-               </plugin>
-           </plugins>-->
-    </build>
 
     <dependencies>
         <!-- begin test tool -->

@@ -2,7 +2,11 @@ package com.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity(name = "restaurant")
@@ -63,5 +67,18 @@ public class Restaurant extends com.model.base.Entity {
         this.imageURL = imageURL;
     }
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "restaurant")
+    private List<Menu> menu;
 
+    public List<Menu> getMenu() {
+        return menu;
+    }
+
+    public void setMenu(List<Menu> menu) {
+        this.menu = menu;
+    }
+
+    public void addToMenu(Menu item) {
+        this.menu.add(item);
+    }
 }

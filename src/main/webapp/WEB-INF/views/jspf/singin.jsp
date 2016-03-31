@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-5 col-md-offset-4">
             <div class="well">
-                <form action="/events">
+                <form action="/events" method="post">
                     <div class="input-group">
                         <input class="btn btn-lg" name="email" id="email" type="email" placeholder="Your Email"
                                required>

@@ -3,7 +3,13 @@
 <nav class="navbar navbar-default top-banner-title-font">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Food ordering</a>
+            <c:if test="${not empty userMail}">
+                <a class="navbar-brand" href="/events">Food ordering</a>
+                <a class="navbar-brand" href="${backPage}">Back</a>
+            </c:if>
+            <c:if test="${empty userMail}">
+                <a class="navbar-brand" href="/sing_out">Food ordering</a>
+            </c:if>
         </div>
         <form role="form">
             <ul class="nav navbar-nav navbar-right">

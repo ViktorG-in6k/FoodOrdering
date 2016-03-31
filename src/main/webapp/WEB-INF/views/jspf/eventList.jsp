@@ -14,7 +14,7 @@
                 <div class="col-md-7 text-left">
                         ${events.getDescription()}
                 </div>
-                <a class="btn btn-primary pull-right" href="/events/${events.getId()}">Participate</a>
+                <a class="btn btn-primary pull-right" href="/events/event_${events.getId()}">Participate</a>
 
             </c:if>
             <c:if test="${empty events.getImageURL()}">
@@ -25,7 +25,7 @@
                 <div class="col-md-10 text-left">
                         ${events.getDescription()}
                 </div>
-                <a class="btn btn-primary col-md-offset-10 pull-right" href="/events/${events.getId()}">Participate</a>
+                <a class="btn btn-primary col-md-offset-10 pull-right" href="/events/event_${events.getId()}">Participate</a>
             </c:if>
         </form>
     </div>

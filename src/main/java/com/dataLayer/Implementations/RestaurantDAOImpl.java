@@ -1,6 +1,7 @@
 package com.dataLayer.Implementations;
 
 import com.dataLayer.DAO.RestaurantDAO;
+import com.model.Menu;
 import com.model.Restaurant;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -32,4 +33,22 @@ public class RestaurantDAOImpl implements RestaurantDAO{
     public Restaurant getRestaurantByName(String restaurantName) {
         return null;
     }
+
+    public Restaurant getRestaurantById(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from restaurant where id = :id");
+        return (Restaurant) query.setInteger("id",id).uniqueResult();
+    }
+
+    public List<Menu> getRestaurantMenuById(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from restaurant where id = :id");
+        return (List<Menu>) query.setInteger("id",id).list();
+    }
+
+//    public Restaurant addToMenu(Menu item) {
+//        Session session = sessionFactory.getCurrentSession();
+//        Query query = session.createQuery("from restaurant where id = :id");
+//        return (Restaurant) query.setInteger("id",id).uniqueResult();
+//    }
 }

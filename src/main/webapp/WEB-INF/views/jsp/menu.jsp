@@ -15,8 +15,8 @@
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true" />
 
 <div class="container">
-    <jsp:include page="/WEB-INF/views/jspf/creatorOfRestaurant.jsp" flush="true" />
-    <jsp:include page="/WEB-INF/views/jspf/restaurantList.jsp" flush="true" />
+    <jsp:include page="/WEB-INF/views/jspf/creatorOfItemInMenu.jsp" flush="true" />
+    <jsp:include page="/WEB-INF/views/jspf/itemsList.jsp" flush="true" />
 </div>
 
 <spring:url value="/resources/core/js/bootstrap.js" var="coreJs" />

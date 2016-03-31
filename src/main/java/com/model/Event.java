@@ -36,7 +36,9 @@ public class Event extends com.model.base.Entity {
 
         this.name = name;
         this.description = description;
+
         this.imageURL = imageURL;
+
         this.date = date;
     }
 

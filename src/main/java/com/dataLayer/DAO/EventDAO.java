@@ -5,9 +5,7 @@ import com.model.Event;
 import java.time.LocalDate;
 import java.util.List;
 
-/**
- * Created by employee on 3/29/16.
- */
+
 public interface EventDAO {
 
     public void save(Event e);
