@@ -8,13 +8,19 @@
             <div class="text-info "><h2> ${events.getName()}</h2></div>
 
             <label class=" col-lg-offset-1 pull-right">
-                    ${events.getDate()}
+                time
+                    ${events.getDate().getHour()}:<c:if test="${events.getDate().getMinute()<10}">0</c:if>${events.getDate().getMinute()}
+
             </label>
             <div class="col-md-7 text-left">
                     ${events.getDescription()}
             </div>
+            <div class="col-md-offset-12">
             <a class="btn btn-primary pull-right" href="/events/event_${events.getId()}/order_list">Get order</a>
-            <a class="btn btn-primary pull-right" href="/events/event_${events.getId()}">Participate</a>
+            </div>
+            <div class="col-md-offset-12">
+                <a class="btn btn-primary pull-right" href="/events/event_${events.getId()}">Participate</a>
+            </div>
         </form>
     </div>
 </c:forEach>

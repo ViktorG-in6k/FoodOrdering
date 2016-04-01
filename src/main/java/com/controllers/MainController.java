@@ -157,8 +157,13 @@ public class MainController {
 //            System.out.print(" "+data.getCount()+" ");
 //            System.out.println(data.getCost());
 //        }
-
-        session.setAttribute("orderList", allList);
+        List<AllList>orderL = new ArrayList<AllList>();
+        for (AllList l: allList) {
+            if(l.getOrderList().size()!=0){
+                orderL.add(l);
+            }
+        }
+        session.setAttribute("orderList", orderL);
         session.setAttribute("backPage","/events/event_"+event);
         return "order";
     }
