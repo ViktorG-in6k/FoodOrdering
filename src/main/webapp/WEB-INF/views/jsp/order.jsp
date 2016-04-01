@@ -15,36 +15,7 @@
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true"/>
 
 <div class="container">
-    ${orderList.size()}
-    <%--<jsp:include page="/WEB-INF/views/jspf/orderList.jsp" flush="true" />--%>
-    <div class="well col-md-9 pull-left">
-
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Item Name</th>
-                <th>Price</th>
-                <th>Count</th>
-                <th>Cost</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${orderList}" var="check">
-
-                <tr>
-                    <td>${check.getItem.getName()}</td>
-                    <td>${check.getItem.getPrice()}</td>
-                    <td>${check.getCount()}</td>
-                    <td>${check.getCost()}</td>
-                </tr>
-
-            </c:forEach>
-            </tbody>
-
-        </table>
-    </div>
-
-
+    <jsp:include page="/WEB-INF/views/jspf/orderList.jsp" flush="true" />
 </div>
 
 <spring:url value="/resources/core/js/bootstrap.js" var="coreJs"/>

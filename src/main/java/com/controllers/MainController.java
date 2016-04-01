@@ -1,5 +1,6 @@
 package com.controllers;
 
+import com.Classes.AllList;
 import com.Classes.DataForOrder;
 import com.Classes.OrderList;
 import com.model.Event;
@@ -142,39 +143,43 @@ public class MainController {
 
     @RequestMapping(value = "/events/event_{event}/order_list")
     public String get_order(HttpSession session,@PathVariable("event") int event) {
-        OrderList orderLists = new OrderList(eventService.getEventById(event).getItemsList());
-
-        List<DataForOrder> orderList = order(eventService.getEventById(event).getItemsList());
-
-
-        for (DataForOrder data: orderList) {
-            System.out.print(data.getItem().getName());
-            System.out.print(" "+data.getItem().getPrice());
-            System.out.print(" "+data.getCount()+" ");
-            System.out.println(data.getCost());
+        OrderList orderList = new OrderList(eventService.getEventById(event).getItemsList());
+        List<AllList> allList = new ArrayList<AllList>();
+        for (Restaurant rest: restaurantService.getListOfAllRestaurant()) {
+            allList.add(new AllList(rest, new OrderList(eventService.getEventById(event).getItemsList())));
         }
-        session.setAttribute("orderList", orderList);
+//        List<DataForOrder> orderList = order(eventService.getEventById(event).getItemsList());
+//        restaurantService.getListOfAllRestaurant();
+//
+//        for (DataForOrder data: orderList) {
+//            System.out.print(data.getItem().getName());
+//            System.out.print(" "+data.getItem().getPrice());
+//            System.out.print(" "+data.getCount()+" ");
+//            System.out.println(data.getCost());
+//        }
+
+        session.setAttribute("orderList", allList);
         session.setAttribute("backPage","/events/event_"+event);
         return "order";
     }
 
-    public List<DataForOrder> order(List<Menu> orders){
-        List<DataForOrder> orderList = new ArrayList<DataForOrder>();
-        boolean cond;
-        for (Menu item: orders) {
-            cond = false;
-            for (DataForOrder data: orderList) {
-                if(item==data.getItem()){
-                    data.setCount(data.getCount()+1);
-                    data.setCost(data.getCost().add(data.getItem().getPrice()));
-                    cond=true;
-                    break;
-                }
-            }
-            if(!cond){
-                orderList.add(new DataForOrder(item,1));
-            }
-        }
-        return orderList;
-    }
+//    public List<DataForOrder> order(List<Menu> orders){
+//        List<DataForOrder> orderList = new ArrayList<DataForOrder>();
+//        boolean cond;
+//        for (Menu item: orders) {
+//            cond = false;
+//            for (DataForOrder data: orderList) {
+//                if(item==data.getItem()){
+//                    data.setCount(data.getCount()+1);
+//                    data.setCost(data.getCost().add(data.getItem().getPrice()));
+//                    cond=true;
+//                    break;
+//                }
+//            }
+//            if(!cond){
+//                orderList.add(new DataForOrder(item,1));
+//            }
+//        }
+//        return orderList;
+//    }
 }
