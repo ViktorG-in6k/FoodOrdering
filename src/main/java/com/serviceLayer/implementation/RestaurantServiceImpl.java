@@ -14,6 +14,9 @@ public class RestaurantServiceImpl implements RestaurantService{
     @Autowired
     RestaurantDAO restaurantDAO;
     public void save(Restaurant restaurant) {
+        if(restaurant.getImageURL().equals("")) {
+            restaurant.setImageURL("/resources/image/restaurant.jpg");
+        }
         restaurantDAO.save(restaurant);
     }
 

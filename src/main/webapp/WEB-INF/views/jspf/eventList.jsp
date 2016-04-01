@@ -13,6 +13,7 @@
             <div class="col-md-7 text-left">
                     ${events.getDescription()}
             </div>
+            <a class="btn btn-primary pull-right" href="/events/event_${events.getId()}/order_list">Get order</a>
             <a class="btn btn-primary pull-right" href="/events/event_${events.getId()}">Participate</a>
         </form>
     </div>

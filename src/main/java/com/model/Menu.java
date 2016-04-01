@@ -36,12 +36,14 @@ public class Menu extends com.model.base.Entity {
         this.name=name;
         this.price=price;
     }
+
     public Menu(Restaurant restaurant, String name,String description, BigDecimal price){
         this.restaurant=restaurant;
         this.description=description;
         this.name=name;
         this.price=price;
     }
+
     public Menu(Restaurant restaurant, String name,String description,String imageURL, BigDecimal price){
         this.restaurant=restaurant;
         this.description=description;
@@ -49,7 +51,6 @@ public class Menu extends com.model.base.Entity {
         this.name=name;
         this.price=price;
     }
-
 
     public String getName() {
         return name;
@@ -83,8 +84,6 @@ public class Menu extends com.model.base.Entity {
         this.price = price;
     }
 
-
-
     public Restaurant getRestaurant() {
         return restaurant;
     }
@@ -92,6 +91,4 @@ public class Menu extends com.model.base.Entity {
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
-
-
 }

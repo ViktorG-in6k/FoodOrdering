@@ -19,7 +19,25 @@ public class EventServiceImpl implements EventService {
     EventDAO eventDAO;
 
     public void save(Event e) {
+
+        if(e.getImageURL().equals("")) {
+            if (e.getDate().getHour() >12 && e.getDate().getHour() < 16) {
+                e.setImageURL("/resources/image/lanch.jpg");
+            }
+            else if(e.getDate().getHour() >16 || (e.getDate().getHour() > -1 && e.getDate().getHour() < 5)){
+                e.setImageURL("/resources/image/food.jpg");
+            }
+            else{
+                e.setImageURL("/resources/image/breakfast.jpg");
+            }
+        }
         eventDAO.save(e);
+    }
+
+
+
+    public Event getEventById(int id){
+        return eventDAO.getEventById(id);
     }
 
     public List<Event> getListOfAllEvents() {

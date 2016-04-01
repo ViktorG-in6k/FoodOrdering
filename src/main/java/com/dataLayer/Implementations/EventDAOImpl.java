@@ -24,6 +24,12 @@ public class EventDAOImpl implements EventDAO {
         session.save(e);
     }
 
+    public Event getEventById(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from event where id = :id");
+        return (Event) query.setInteger("id",id).uniqueResult();
+    }
+
     public List<Event> getListOfAllEvents() {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from event");

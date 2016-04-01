@@ -9,6 +9,7 @@ import java.util.List;
 public interface EventDAO {
 
     public void save(Event e);
+    public Event getEventById(int id);
     public List<Event> getListOfAllEvents();
     public List<Event> getListOfEvents(String eventName);
     public List<Event> getListOfEventsByDate(LocalDate eventDate);

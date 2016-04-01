@@ -14,7 +14,7 @@
             <div class="col-md-7 text-left">
                     ${restaurant.getDescription()}
             </div>
-            <a class="btn btn-primary pull-right" href="/events/event_${eventId}/restaurant_${restaurant.getId()}">Participate</a>
+            <a class="btn btn-primary pull-right" href="/events/event_${eventId}/restaurant_${restaurant.getId()}">Go to menu</a>
         </form>
     </div>
 </c:forEach>

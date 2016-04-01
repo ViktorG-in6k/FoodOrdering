@@ -23,4 +23,19 @@ public class Order extends com.model.base.Entity{
         this.event_id=event_id;
     }
 
+    public int getEvent_id() {
+        return event_id;
+    }
+
+    public void setEvent_id(int event_id) {
+        this.event_id = event_id;
+    }
+
+    public int getItem_id() {
+        return item_id;
+    }
+
+    public void setItem_id(int item_id) {
+        this.item_id = item_id;
+    }
 }

@@ -8,7 +8,7 @@
         </div>
         <div class="form-group">
             <label for="discript">Discription:</label>
-            <input type="text" class="form-control" id="discript" name="discript">
+            <textarea  class="form-control text-area" rows="10"  id="discript" name="discript" style="resize: vertical"></textarea>
         </div>
         <div class="form-group">
             <label for="image">URL-image:</label>

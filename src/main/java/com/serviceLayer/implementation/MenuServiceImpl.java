@@ -13,6 +13,10 @@ public class MenuServiceImpl implements MenuService{
     MenuDAO menuDAO;
 
     public void save(Menu item) {
+        if(item.getImageURL().equals("")) {
+            item.setImageURL("/resources/image/shief.jpg");
+        }
         menuDAO.save(item);
     }
+
 }

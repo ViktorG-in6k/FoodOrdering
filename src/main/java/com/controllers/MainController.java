@@ -1,5 +1,7 @@
 package com.controllers;
 
+import com.Classes.DataForOrder;
+import com.Classes.OrderList;
 import com.model.Event;
 import com.model.Menu;
 import com.model.Order;
@@ -16,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class MainController {
@@ -134,5 +138,43 @@ public class MainController {
         session.setAttribute("Menu", restaurantService.getRestaurantById(id).getMenu());
         session.setAttribute("backPage","/events/event_"+event);
         return "menu";
+    }
+
+    @RequestMapping(value = "/events/event_{event}/order_list")
+    public String get_order(HttpSession session,@PathVariable("event") int event) {
+        OrderList orderLists = new OrderList(eventService.getEventById(event).getItemsList());
+
+        List<DataForOrder> orderList = order(eventService.getEventById(event).getItemsList());
+
+
+        for (DataForOrder data: orderList) {
+            System.out.print(data.getItem().getName());
+            System.out.print(" "+data.getItem().getPrice());
+            System.out.print(" "+data.getCount()+" ");
+            System.out.println(data.getCost());
+        }
+        session.setAttribute("orderList", orderList);
+        session.setAttribute("backPage","/events/event_"+event);
+        return "order";
+    }
+
+    public List<DataForOrder> order(List<Menu> orders){
+        List<DataForOrder> orderList = new ArrayList<DataForOrder>();
+        boolean cond;
+        for (Menu item: orders) {
+            cond = false;
+            for (DataForOrder data: orderList) {
+                if(item==data.getItem()){
+                    data.setCount(data.getCount()+1);
+                    data.setCost(data.getCost().add(data.getItem().getPrice()));
+                    cond=true;
+                    break;
+                }
+            }
+            if(!cond){
+                orderList.add(new DataForOrder(item,1));
+            }
+        }
+        return orderList;
     }
 }
