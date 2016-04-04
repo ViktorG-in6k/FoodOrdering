@@ -9,8 +9,9 @@
             <div class=" col-md-3 ">
                 <img src="${item.getImageURL()}" class="img-thumbnail" width="200" height="100">
             </div>
+            <label class="text-info col-md-7"
+                   style="font-size: 19px; color: #000000;">${item.getName()}</label>
 
-            <div class="text-info"><h2>${item.getName()}</h2></div>
 
             <div class="col-md-7 text-left">
 

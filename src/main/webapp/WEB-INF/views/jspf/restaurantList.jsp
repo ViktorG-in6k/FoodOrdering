@@ -10,7 +10,9 @@
     <div class="well col-md-9 pull-left">
         <form action="/events/${restaurant.getId()}">
             <img src="${restaurant.getImageURL()}" class="img-thumbnail pull-left" width="200" height="100">
-            <div class="text-info "><h2> ${restaurant.getName()}</h2></div>
+            <label class="text-info col-md-7"
+                   style="font-size: 19px; color: #000000;">${restaurant.getName()}</label>
+
             <div class="col-md-7 text-left">
                     ${restaurant.getDescription()}
             </div>
