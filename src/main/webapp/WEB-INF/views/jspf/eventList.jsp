@@ -17,15 +17,15 @@
 
             </label>
             <div class="col-md-9 ">
-                <div class="col-md-10 ">
+
                         ${events.getDescription()}
-                </div>
+
             </div>
             <a class="btn btn-primary col-md-offset-7 col-md-2 " href="/events/event_${events.getId()}/order_list">Get
                 order</a>
 
-
-            <a class="btn btn-primary col-md-offset-7 col-md-2   "
+            
+            <a class="btn btn-primary col-md-offset-10 col-md-2   "
                href="/events/event_${events.getId()}">Participate</a>
 
         </form>

@@ -41,6 +41,11 @@ public class MainController {
         return "main";
     }
 
+    @RequestMapping(value = "/test")
+    public String getTest(Model model) {
+        return "test";
+    }
+
     @RequestMapping(value = "/events", method = RequestMethod.POST)
     public String events(HttpServletRequest req, HttpSession session) {
         String email = req.getParameter("email");
