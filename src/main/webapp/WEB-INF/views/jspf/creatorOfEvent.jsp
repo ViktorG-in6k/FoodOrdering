@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<form role="form" action="/new_event" method="post" class="col-md-3  pull-right">
+<form role="form" action="/app/new_event" method="post" class="col-md-3  pull-right">
     <fieldset>
         <legend>NEW EVENT</legend>
         <div class="form-group">

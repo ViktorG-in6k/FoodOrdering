@@ -2,11 +2,16 @@ package com.springConfig;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return new Class[] { AppConfig.class };
+    }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[] { ConfigurationClass.class };
+        return null;
     }
 
     @Override
@@ -14,8 +19,4 @@ public class MyWebInitializer extends AbstractAnnotationConfigDispatcherServletI
         return new String[] { "/" };
     }
 
-    @Override
-    protected Class<?>[] getRootConfigClasses() {
-        return null;
-    }
 }

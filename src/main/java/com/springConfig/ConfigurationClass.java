@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @EnableWebMvc
 @Configuration
-@Import(DBConfig.class)
+@Import(AppConfig.class)
 @ComponentScan(basePackages =  {"com", "com.dataLayer.Implementations", "com.serviceLayer.service"})
 public class ConfigurationClass{
     @Bean

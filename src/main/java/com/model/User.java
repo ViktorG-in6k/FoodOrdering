@@ -1,75 +1,67 @@
 package com.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "user")
-public class User extends com.model.base.Entity {
-
-    @Column
-    private String name;
-
-
-//    @Column(unique=true)
-//    private String username;
-//    private String password;
-//    @OneToOne(mappedBy="user", cascade={CascadeType.ALL})
-//    private Role role;
-
-
-
-    @Column
+public class User extends com.model.base.Entity{
+    @Column(name = "email")
     private String email;
-
-    public User(String name) {
-        this.name = name;
-    }
+    @Column(name = "password")
+    private String password;
+    @Column(name = "enabled", nullable = false)
+    private boolean enabled;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private Set<UserRole> userRole = new HashSet<UserRole>(0);
 
     public User() {
     }
 
-    public User(String name, String email) {
-        this.name = name;
+    public User(String email, String password, boolean enabled) {
         this.email = email;
+        this.password = "aaa";
+        this.enabled = enabled;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public User(String email, String password,  boolean enabled, Set<UserRole> userRole) {
+        this.email = email;
+        this.password = "aaa";
+        this.enabled = enabled;
+        this.userRole = userRole;
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String username) {
+        this.email = username;
     }
 
-//    public Role getRole() {
-//        return role;
-//    }
-//
-//    public void setRole(Role role) {
-//        this.role = role;
-//    }
-//
-//    public String getUsername() {
-//        return username;
-//    }
-//
-//    public void setUsername(String username) {
-//        this.username = username;
-//    }
-//
-//    public String getPassword() {
-//        return password;
-//    }
-//
-//    public void setPassword(String password) {
-//        this.password = password;
-//    }
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isEnabled() {
+        return this.enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Set<UserRole> getUserRole() {
+        return this.userRole;
+    }
+
+    public void setUserRole(Set<UserRole> userRole) {
+        this.userRole = userRole;
+    }
 }

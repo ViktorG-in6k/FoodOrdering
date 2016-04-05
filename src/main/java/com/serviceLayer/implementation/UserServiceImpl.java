@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService{
     }
 
     public void saveUser(String email){
-        User user = new User("user",email);
+        User user = new User(email,"user",true);
         if(getUserByEmail(user.getEmail())==null) {
             userDAO.save(user);
         }
