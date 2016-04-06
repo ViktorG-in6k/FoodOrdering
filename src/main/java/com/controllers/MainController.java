@@ -2,10 +2,7 @@ package com.controllers;
 
 import com.Classes.AllList;
 import com.Classes.OrderList;
-import com.model.Event;
-import com.model.Menu;
-import com.model.Order;
-import com.model.Restaurant;
+import com.model.*;
 import com.serviceLayer.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -49,25 +46,28 @@ public class MainController {
 
     @RequestMapping(value = "/")
     public String getMain() {
-        return "main";
+        return "angular";
     }
 
     @RequestMapping(value = "/app", method = RequestMethod.POST)
-    public String getMain(HttpServletRequest request,HttpSession session) {
+    public ModelAndView getMain(HttpServletRequest request, HttpSession session, @RequestParam(value = "error", required = false) String error,
+                          @RequestParam(value = "logout", required = false) String logout) {
 
-        if (!userDetailsService.loadUserByUsername(request.getParameter("email")).isEnabled()) {
-            session.setAttribute("userMail", request.getParameter("username"));
-            session.setAttribute("allEvents", eventService.getListOfAllEvents());
-            String email = request.getParameter("email");
-            session.setAttribute("backPage", "/");
-            userService.saveUser(email);
 
-            session.setAttribute("userMail", email);
-            session.setAttribute("allEvents", eventService.getListOfAllEvents());
-            return "events";
+        ModelAndView model = new ModelAndView();
+        if (error != null) {
+            model.addObject("error", getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION"));
         }
-        return "main";
+
+        if (logout != null) {
+            model.addObject("msg", "You've been logged out successfully.");
+        }
+        model.setViewName("events");
+
+        return model;
+
     }
+
 
 
     @RequestMapping(value = "/test")

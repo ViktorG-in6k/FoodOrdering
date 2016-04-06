@@ -1,14 +1,16 @@
 package com.springConfig;
 
+import com.serviceLayer.implementation.MyUserDetailsService;
+import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -17,10 +19,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 import javax.sql.DataSource;
-import java.sql.SQLException;
 import java.util.Properties;
-
-
 
 @EnableWebMvc
 @Configuration
@@ -30,10 +29,10 @@ import java.util.Properties;
 public class AppConfig extends WebMvcConfigurerAdapter {
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory(DataSource dataSource){
+    public LocalSessionFactoryBean sessionFactory(){
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource);
-        sessionFactory.setPackagesToScan("com.model");
+        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setPackagesToScan("com.dataLayer");
         sessionFactory.setHibernateProperties(this.hibernateProperties());
         return sessionFactory;
     }
@@ -56,20 +55,17 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 
-
     @Bean
-    public DataSource dataSource(
-            @Value("jdbc:mysql://localhost:3306/food_order_db") String url,
-            @Value("root") String username,
-            @Value("YWgaMaZpf2") String password
-    ) throws SQLException {
-        DriverManagerDataSource source = new DriverManagerDataSource(url, username, password);
-        source.setDriverClassName("com.mysql.jdbc.Driver");
-        return source;
+    public DataSource dataSource() {
+        BasicDataSource ds = new BasicDataSource();
+        ds.setDriverClassName("com.mysql.jdbc.Driver");
+        ds.setUrl("jdbc:mysql://localhost:3306/food_order_db");
+        ds.setUsername("root");
+        ds.setPassword("YWgaMaZpf2");
+        return ds;
     }
 
-    //Create a transaction manager
-    @Bean
+    @Bean(name = "transactionManager")
     public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
         HibernateTransactionManager txManager = new HibernateTransactionManager();
         txManager.setSessionFactory(sessionFactory);
@@ -86,4 +82,13 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         return viewResolver;
     }
 
+    @Bean
+    public UserDetailsService getUserDetailsService(){
+        return new MyUserDetailsService();
+    }
+
+    @Bean
+    public PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
 }
