@@ -46,7 +46,7 @@ public class MainController {
 
     @RequestMapping(value = "/")
     public String getMain() {
-        return "angular";
+        return "main";
     }
 
     @RequestMapping(value = "/app", method = RequestMethod.POST)
@@ -200,50 +200,9 @@ public class MainController {
 
     }
 
-    @RequestMapping(value = "/admin**", method = RequestMethod.GET)
-    public ModelAndView adminPage() {
-
-        ModelAndView model = new ModelAndView();
-        model.addObject("title", "Spring Security + Hibernate Example");
-        model.addObject("message", "This page is for ROLE_ADMIN only!");
-        model.setViewName("admin");
-
-        return model;
-
-    }
 
 
-//    @RequestMapping(value = "/go", method = RequestMethod.POST)
-//    public String loging(HttpServletRequest request) {
-//
-//        if (userDetailsService.loadUserByUsername(request.getParameter("username")).isEnabled()) {
-//            return "main";
-//        } else {
-//            return "events";
-//        }
-//
-//    }
 
-
-//    @RequestMapping(value = "/login", method = RequestMethod.GET)
-//    public ModelAndView login(@RequestParam(value = "error", required = false) String error,
-//                              @RequestParam(value = "logout", required = false) String logout, HttpServletRequest request) {
-//
-//        ModelAndView model = new ModelAndView();
-////        if (error != null) {
-////            model.addObject("error", getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION"));
-////        }
-//
-//        if (logout != null) {
-//            model.addObject("msg", "You've been logged out successfully.");
-//        }
-//        model.setViewName("login");
-//
-//        return model;
-//
-//    }
-
-    // customize the error message
     private String getErrorMessage(HttpServletRequest request, String key) {
 
         Exception exception = (Exception) request.getSession().getAttribute(key);
