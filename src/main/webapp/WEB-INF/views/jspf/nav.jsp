@@ -1,8 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="navbar navbar-default top-banner-title-font">
-    <div class="container-fluid">
-        <div class="navbar-header">
+    <div ng-app="FoodOrdering" class="container-fluid">
+        <div ng-controller="singin as todoList" class="navbar-header">
             <c:if test="${not empty userMail}">
                 <a class="navbar-brand" href="/events">Food ordering</a>
                 <a class="navbar-brand" href="${backPage}">Back</a>
@@ -14,12 +14,14 @@
         <form role="form">
             <ul class="nav navbar-nav navbar-right">
                 <li>
+                    <label class="navbar-brand" ng-model="todo.done">{{todoList.remaining()}}</label>
                     <a class="navbar-brand" href="/sing_out">
+
                         <c:if test="${not empty userMail}">
                             Hello  ${userMail}
                         </c:if>
                     </a>
-                    <label class="navbar-brand">
+                    <label class="navbar-brand" ng-model="todo.done">
                         <c:if test="${empty userMail}">
                             Welcome!
                         </c:if>

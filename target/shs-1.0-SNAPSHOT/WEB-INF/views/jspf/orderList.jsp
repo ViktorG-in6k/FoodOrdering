@@ -7,8 +7,8 @@
 <spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss"/>
 
 <c:forEach items="${orderList}" var="item">
-    <c:if test="${not empty userMail}">
-<div class="well col-md-offset-2 col-md-8 pull-left">
+
+<div  ng-controller="GroupsController as groups" class="well col-md-offset-2 col-md-8 pull-left">
     <table class="table">
         <thead>
             ${item.getRestaurant().getName()}
@@ -32,7 +32,7 @@
         </tbody>
     </table>
 </div>
-    </c:if>
+
 </c:forEach>
 
 

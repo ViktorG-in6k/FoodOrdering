@@ -5,7 +5,7 @@
 <c:forEach items="${Menu}" var="item">
 
     <div class="well col-md-9 pull-left">
-        <form role="form" action="/app/add_to_order" method="post">
+        <form role="form" action="/add_to_order" method="post">
             <div class=" col-md-3 ">
                 <img src="${item.getImageURL()}" class="img-thumbnail" width="200" height="100">
             </div>

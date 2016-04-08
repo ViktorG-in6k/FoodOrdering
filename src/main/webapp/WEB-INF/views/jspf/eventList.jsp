@@ -4,7 +4,7 @@
 <c:forEach items="${allEvents}" var="events">
     <div class="well col-md-9 pull-left">
 
-        <form action="/app/events/${events.getId()}">
+        <form action="/events/${events.getId()}">
 
             <img src="${events.getImageURL()}" class="img-thumbnail col-md-3 pull-left">
 
@@ -21,12 +21,12 @@
                         ${events.getDescription()}
 
             </div>
-            <a class="btn btn-primary col-md-offset-7 col-md-2 " href="/app/events/event_${events.getId()}/order_list">Get
+            <a class="btn btn-primary col-md-offset-7 col-md-2 " href="/events/event_${events.getId()}/order_list">Get
                 order</a>
 
             
             <a class="btn btn-primary col-md-offset-10 col-md-2   "
-               href="/app/events/event_${events.getId()}">Participate</a>
+               href="/events/event_${events.getId()}">Participate</a>
 
         </form>
     </div>

@@ -16,27 +16,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Service("userDetailsService")
+@Service
 public class MyUserDetailsService implements UserDetailsService {
 
     //get user from the database, via Hibernate
     @Autowired
     private UserService userService;
 
-//    @Transactional(readOnly=true)
-//    @Override
-//    public UserDetails loadUserByUsername(String username)
-//            throws UsernameNotFoundException {
-//
-//        com.model.User user = userService.getUserByEmail(username);
-//        List<GrantedAuthority> authorities = buildUserAuthority(user.getUserRole());
-//
-//        return buildUserForAuthentication(user, authorities);
-//
-//    }
-
-    // Converts com.mkyong.users.model.User user to
-    // org.springframework.security.core.userdetails.User
     private User buildUserForAuthentication(com.model.User user,List<GrantedAuthority> authorities) {
         return new User(user.getEmail(), user.getPassword(),user.isEnabled(), true, true, true, authorities);
     }
@@ -45,31 +31,21 @@ public class MyUserDetailsService implements UserDetailsService {
 
         Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
         for (UserRole userRole : userRoles) {
-            setAuths.add(new SimpleGrantedAuthority(userRole.getRole()));
+            setAuths.add(new SimpleGrantedAuthority(userRole.getRole().toString()));
         }
 
-        List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
-
-        return Result;
+        return  new ArrayList<GrantedAuthority>(setAuths);
     }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        // с помощью нашего сервиса UserService получаем User
+
         com.model.User  user = userService.getUserByEmail(email);
-        // указываем роли для этого пользователя
-        Set<GrantedAuthority> roles = new HashSet();
-        roles.add(new SimpleGrantedAuthority(UserRoleEnum.ADMIN.name()));
 
-        // на основании полученныйх даных формируем объект UserDetails
-        // который позволит проверить введеный пользователем логин и пароль
-        // и уже потом аутентифицировать пользователя
-        UserDetails userDetails =
-                new org.springframework.security.core.userdetails.User(user.getEmail(),
-                        user.getPassword(),
-                        roles);
+        Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();
+        roles.add(new SimpleGrantedAuthority(UserRoleEnum.USER.name()));
 
-        return userDetails;
+        return new User(user.getEmail(), user.getPassword(), roles);
     }
 
 }
