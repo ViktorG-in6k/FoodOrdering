@@ -5,27 +5,22 @@ import com.Classes.OrderList;
 import com.model.*;
 import com.serviceLayer.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.LockedException;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class MainController {
@@ -41,9 +36,22 @@ public class MainController {
     MenuService menuService;
     @Autowired
     OrderService orderService;
+    @Autowired
+    EventUserService eventUserService;
 
     @Autowired
     UserDetailsService userDetailsService;
+
+
+
+    @RequestMapping(value ="/my_order")
+    @ResponseBody
+    Set<EventResponse> response(HttpSession session) {
+        int user_id = (int) session.getAttribute("userId");
+        User user = userService.getUser(user_id);
+        return eventUserService.getAllEvents(user);
+    }
+
 
 
     @RequestMapping(value = "/")
@@ -60,6 +68,15 @@ public class MainController {
 
     @RequestMapping(value = "/events")
     public String events(HttpSession session) {
+        session.setAttribute("allEvents", eventService.getListOfAllEvents());
+        session.setAttribute("backPage", "/events");
+
+        return "events";
+    }
+
+    @RequestMapping(value = "/events",method = RequestMethod.POST)
+    public String events(HttpSession session, HttpServletRequest req) {
+        session.setAttribute("userId", userService.getUserByEmail(req.getParameter("email")).getId());
         session.setAttribute("allEvents", eventService.getListOfAllEvents());
         session.setAttribute("backPage", "/events");
 
@@ -96,7 +113,8 @@ public class MainController {
         String name = req.getParameter("name");
         String description = req.getParameter("discript");
         String URLimage = req.getParameter("image");
-        LocalDateTime date = LocalDateTime.parse(req.getParameter("date"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime date = LocalDateTime.parse(req.getParameter("date"),formatter);
 
         Event event = new Event(name, description, URLimage, date);
 
@@ -122,13 +140,45 @@ public class MainController {
 
         int item_id = Integer.parseInt(req.getParameter("item_id"));
         int event_id = Integer.parseInt(req.getParameter("event_id"));
+        int user_id = (int) session.getAttribute("userId");
 
         Order order = new Order(item_id, event_id);
+        EventUser eventUser = new EventUser(user_id,event_id);
 
+
+        eventUserService.save(eventUser);
         orderService.save(order);
+
+        User user = userService.getUser(user_id);
+        for (Event e: user.getEventsList()) {
+            System.out.println(e.getName());
+        }
+
         String ref = req.getHeader("Referer");
         return "redirect:" + ref;
     }
+
+//    @RequestMapping(value = "/add_to_order", method = RequestMethod.POST)
+//    public ResponseEntity<EventResponse> Order(HttpServletRequest req, HttpSession session) {
+//
+//        int item_id = Integer.parseInt(req.getParameter("item_id"));
+//        int event_id = Integer.parseInt(req.getParameter("event_id"));
+//        int user_id = (int) session.getAttribute("userId");
+//
+//        Order order = new Order(item_id, event_id);
+//        EventUser eventUser = new EventUser(user_id,event_id);
+//
+//
+//        eventUserService.save(eventUser);
+//        orderService.save(order);
+//
+//        User user = userService.getUser(user_id);
+//
+//        Set<EventResponse> set = eventUserService.setResp(user);
+//
+//
+//        return "redirect:" + ref;
+//    }
 
     @RequestMapping(value = "/events/event_{id}")
     public String get_restaurants(HttpSession session, @PathVariable("id") String id) {

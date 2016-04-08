@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity(name = "user")
@@ -14,8 +15,13 @@ public class User extends com.model.base.Entity{
     private String password;
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-//    private Set<UserRole> userRole = new HashSet<UserRole>();
+
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "event_list",
+        joinColumns = {@JoinColumn(name = "user_id")},
+        inverseJoinColumns = {@JoinColumn(name = "event_id")})
+    private Set<Event> eventsList = new HashSet<>();
 
     public User() {
     }
@@ -55,6 +61,14 @@ public class User extends com.model.base.Entity{
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Set<Event> getEventsList() {
+        return eventsList;
+    }
+
+    public void setEventsList(Set<Event> eventsList) {
+        this.eventsList = eventsList;
     }
 
 //    public Set<UserRole> getUserRole() {
