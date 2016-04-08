@@ -14,8 +14,8 @@ public class User extends com.model.base.Entity{
     private String password;
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private Set<UserRole> userRole = new HashSet<UserRole>(0);
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+//    private Set<UserRole> userRole = new HashSet<UserRole>();
 
     public User() {
     }
@@ -30,7 +30,7 @@ public class User extends com.model.base.Entity{
         this.email = email;
         this.password = "aaa";
         this.enabled = enabled;
-        this.userRole = userRole;
+       // this.userRole = userRole;
     }
 
     public String getEmail() {
@@ -57,11 +57,11 @@ public class User extends com.model.base.Entity{
         this.enabled = enabled;
     }
 
-    public Set<UserRole> getUserRole() {
-        return this.userRole;
-    }
-
-    public void setUserRole(Set<UserRole> userRole) {
-        this.userRole = userRole;
-    }
+//    public Set<UserRole> getUserRole() {
+//        return this.userRole;
+//    }
+//
+//    public void setUserRole(Set<UserRole> userRole) {
+//        this.userRole = userRole;
+//    }
 }

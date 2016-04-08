@@ -10,45 +10,20 @@ import static java.awt.font.TransformAttribute.IDENTITY;
 @Table(name = "user_roles")
 public class UserRole extends com.model.base.Entity {
 
-    @Column(name = "user_role_id")
-    private Integer userRoleId;
+    public enum Role {ROLE_ADMIN, ROLE_USER}
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
 
-    @Column(name = "role")
-    private String role;
+    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    public UserRole() {
+
+
+    public Role getRole() {
+        return role;
     }
 
-    public UserRole(User user, String role) {
-        this.user = user;
-        this.role = role;
-    }
-
-    public Integer getUserRoleId() {
-        return this.userRoleId;
-    }
-
-    public void setUserRoleId(Integer userRoleId) {
-        this.userRoleId = userRoleId;
-    }
-
-    public User getUser() {
-        return this.user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getRole() {
-        return this.role;
-    }
-
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 }
