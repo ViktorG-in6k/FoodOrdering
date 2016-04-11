@@ -14,7 +14,7 @@
         <form role="form">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <label class="navbar-brand" ng-model="todo.done">{{todoList.remaining()}}</label>
+
                     <a class="navbar-brand" href="/sing_out">
 
                         <c:if test="${not empty userMail}">

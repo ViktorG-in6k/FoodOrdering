@@ -2,13 +2,10 @@ package com.springConfig;
 
 
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
-import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -25,8 +22,8 @@ public class HibernateConfig {
 
     @Bean
     public DataSource dataSource(
-            @Value("jdbc:mysql://localhost:3306/food_order_db") String url,
-            @Value("root") String username,
+            @Value("jdbc:mysql://orion.beget.com:3306/tiposh_glazkov") String url,
+            @Value("tiposh_glazkov") String username,
             @Value("YWgaMaZpf2") String password
     ) throws SQLException {
         DriverManagerDataSource source = new DriverManagerDataSource(
