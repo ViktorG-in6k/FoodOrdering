@@ -12,12 +12,9 @@ public class UserRole extends com.model.base.Entity {
 
     public enum Role {ROLE_ADMIN, ROLE_USER}
 
-
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
-
-
 
     public Role getRole() {
         return role;

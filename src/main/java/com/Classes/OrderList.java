@@ -1,7 +1,7 @@
 package com.Classes;
 
 
-import com.model.Menu;
+import com.model.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +17,10 @@ public class OrderList {
         this.orderList = orderList;
     }
 
-    public OrderList(List<Menu> orders){
+    public OrderList(List<Item> orders){
         orderList = new ArrayList<DataForOrder>();
         boolean cond;
-        for (Menu item: orders) {
+        for (Item item: orders) {
             cond = false;
             for (DataForOrder data: orderList) {
                 if(item==data.getItem()){

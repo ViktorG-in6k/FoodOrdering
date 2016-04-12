@@ -1,7 +1,7 @@
 package com.serviceLayer.implementation;
 
 import com.dataLayer.DAO.RestaurantDAO;
-import com.model.Menu;
+import com.model.Item;
 import com.model.Restaurant;
 import com.serviceLayer.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class RestaurantServiceImpl implements RestaurantService{
     public Restaurant getRestaurantById(int id) {
         return restaurantDAO.getRestaurantById(id);
     }
-    public List<Menu> getRestaurantMenuById(int id){
+    public List<Item> getRestaurantMenuById(int id){
         return restaurantDAO.getRestaurantMenuById(id);
     }
 }

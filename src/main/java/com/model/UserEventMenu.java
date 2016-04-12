@@ -17,7 +17,7 @@ public class UserEventMenu {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "menu_id", nullable = false)
-    private Menu menu;
+    private Item item;
 
     public User getUser() {
         return user;
@@ -35,11 +35,11 @@ public class UserEventMenu {
         this.event = event;
     }
 
-    public Menu getMenu() {
-        return menu;
+    public Item getItem() {
+        return item;
     }
 
-    public void setMenu(Menu menu) {
-        this.menu = menu;
+    public void setItem(Item item) {
+        this.item = item;
     }
 }

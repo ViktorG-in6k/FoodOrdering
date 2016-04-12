@@ -1,9 +1,9 @@
 package com.dataLayer.DAO;
 
-import com.model.Menu;
+import com.model.Item;
 
 public interface MenuDAO {
 
-    public void save(Menu item);
+    public void save(Item item);
 
 }
