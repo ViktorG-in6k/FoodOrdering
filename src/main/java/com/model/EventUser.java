@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 @Entity(name = "event_list")
 public class EventUser extends com.model.base.Entity{
 
-
     @Column
     private  int user_id;
 
@@ -22,8 +21,6 @@ public class EventUser extends com.model.base.Entity{
         this.user_id=user_id;
         this.event_id=event_id;
     }
-
-
 
     public int getEvent_id() {
         return event_id;

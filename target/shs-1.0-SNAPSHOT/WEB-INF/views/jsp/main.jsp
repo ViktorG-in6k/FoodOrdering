@@ -15,7 +15,6 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true"/>
-
     <jsp:include page="/WEB-INF/views/jspf/singin.jsp" flush="true"/>
 
     <spring:url value="/resources/core/js/bootstrap;l.js" var="coreJs"/>

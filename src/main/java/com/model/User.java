@@ -16,7 +16,6 @@ public class User extends com.model.base.Entity{
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
 
-
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "event_list",
         joinColumns = {@JoinColumn(name = "user_id")},
@@ -36,7 +35,6 @@ public class User extends com.model.base.Entity{
         this.email = email;
         this.password = "aaa";
         this.enabled = enabled;
-       // this.userRole = userRole;
     }
 
     public String getEmail() {
@@ -70,12 +68,4 @@ public class User extends com.model.base.Entity{
     public void setEventsList(Set<Event> eventsList) {
         this.eventsList = eventsList;
     }
-
-//    public Set<UserRole> getUserRole() {
-//        return this.userRole;
-//    }
-//
-//    public void setUserRole(Set<UserRole> userRole) {
-//        this.userRole = userRole;
-//    }
 }

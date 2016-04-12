@@ -66,7 +66,6 @@ public class Event extends com.model.base.Entity {
         this.description = description;
     }
 
-
     public String getImageURL() {
         return imageURL;
     }

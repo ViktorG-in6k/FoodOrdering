@@ -17,6 +17,9 @@ public class Restaurant extends com.model.base.Entity {
     @Column
     private String imageURL;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "restaurant")
+    private List<Item> item;
+
     public Restaurant(String name, LocalDateTime date) {
         this.name = name;
     }
@@ -43,7 +46,6 @@ public class Restaurant extends com.model.base.Entity {
         this.name = name;
     }
 
-
     public String getDescription() {
         return description;
     }
@@ -52,7 +54,6 @@ public class Restaurant extends com.model.base.Entity {
         this.description = description;
     }
 
-
     public String getImageURL() {
         return imageURL;
     }
@@ -60,9 +61,6 @@ public class Restaurant extends com.model.base.Entity {
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "restaurant")
-    private List<Item> item;
 
     public List<Item> getItem() {
         return item;
