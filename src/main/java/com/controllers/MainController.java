@@ -49,6 +49,23 @@ public class MainController {
     }
 
 
+    @RequestMapping("/eventsJson/")
+    public @ResponseBody Set<Event> getEvent() {
+        Set<Event> es = eventService.getListOfAllEvents();
+        System.out.print(es.size());
+        return es;
+
+    }
+
+    @RequestMapping("/ev")
+    public @ResponseBody
+    void getEv() {
+        System.out.print(eventService.getListOfAllEvents().size());
+        for (Event e: eventService.getListOfAllEvents()) {
+            System.out.println(e.getName());
+        }
+    }
+
     @RequestMapping(value ="/my_order")
     @ResponseBody
     Set<EventResponse> response(HttpSession session) {
@@ -63,6 +80,7 @@ public class MainController {
     public String getMain() {
         return "main";
     }
+
 
 
     @RequestMapping(value = "/test")
@@ -81,9 +99,9 @@ public class MainController {
 
     @RequestMapping(value = "/events",method = RequestMethod.POST)
     public String events(HttpSession session, HttpServletRequest req) {
-        session.setAttribute("userId", userService.getUserByEmail(req.getParameter("email")).getId());
+        /*session.setAttribute("userId", userService.getUserByEmail(req.getParameter("email")).getId());
         session.setAttribute("allEvents", eventService.getListOfAllEvents());
-        session.setAttribute("backPage", "/events");
+        session.setAttribute("backPage", "/events");*/
 
         return "events";
     }

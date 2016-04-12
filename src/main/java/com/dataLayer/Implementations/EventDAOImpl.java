@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.*;
 
 @SuppressWarnings("unchecked")
 @Repository
@@ -31,10 +31,12 @@ public class EventDAOImpl implements EventDAO {
     }
 
 
-    public List<Event> getListOfAllEvents() {
+    public Set<Event> getListOfAllEvents() {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from event");
-        return (List<Event>) query.list();
+        Set<Event> myEvents = new HashSet<Event>(query.list());
+
+        return myEvents;
     }
 
     public List<Event> getListOfEvents(String eventName) {
@@ -57,11 +59,16 @@ public class EventDAOImpl implements EventDAO {
                 .setDate("eventDate",java.sql.Date.valueOf(eventDate)).list();
     }
 
+    @Override
     public List<Event> getListOfEventsBetweenTwoDates(LocalDate firstDate, LocalDate lastDate) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from event where date between convert(datetime,:firstDate) and convert(datetime,:lastDate)");
-        return (List<Event>) query
-                .setDate("firstDate",java.sql.Date.valueOf(firstDate))
-                .setDate("lastDate",java.sql.Date.valueOf(lastDate)).list();
+        return null;
     }
+
+//    public List<Event> getListOfEventsBetweenTwoDates(LocalDate firstDate, LocalDate lastDate) {
+//        Session session = sessionFactory.getCurrentSession();
+//        Query query = session.createQuery("from event where date between convert(datetime,:firstDate) and convert(datetime,:lastDate)");
+//        return (List<Event>) query
+//                .setDate("firstDate",java.sql.Date.valueOf(firstDate))
+//                .setDate("lastDate",java.sql.Date.valueOf(lastDate)).list();
+//    }
 }

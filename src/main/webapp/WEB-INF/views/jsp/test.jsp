@@ -64,7 +64,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js"></script>
-    <script src="/resources/js/test.js"></script>
+
 
     <spring:url value="/resources/css/test.css" var="coresCss"/>
     <link href="${coresCss}" rel="stylesheet"/>

@@ -1,33 +1,27 @@
 var app = angular.module('foodOrdering', ["ngRoute"]);
 
-
-
 app.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.when('/AllEvents', {
-            templateUrl: 'partials/eventList',
+            templateUrl: '/partials/eventList',
             controller: 'eventController'
-        }).when('/rooms/:roomId', {
-            templateUrl: 'partials/roomDescriptionPartials',
-            controller: 'roomDescriptionCntr'
         }).otherwise({
-            redirectTo: '/rooms'
+            redirectTo: '/AllEvents'
         });
     }]);
 
-
 app.factory('eventService',function($http){
-
-    var event = {'name':'lol','description':'kek'};
-    event.getEvents = function () {
-         $http.get('/eventJson/').success(function (data) {         
-            event = data;
+    var events = {};
+    events.getEvents = function () {
+         $http.get('/eventsJson/').success(function (data) {
+             return data;
          });
     };
-    return event;
+    return events;
 });
 
-app.controller('eventController',function ($scope,eventService) {
-    $scope.event = eventService;
-    console.log(eventService);
-})
+app.controller('eventController',function ($scope, eventService, $http) {
+    $http.get('/eventsJson/').success(function (data) {
+        $scope.events = data;
+    });
+});

@@ -15,7 +15,7 @@
 
 
 </head>
-<body ng-app="foodOrdering">
+<body>
 
 
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true"/>
