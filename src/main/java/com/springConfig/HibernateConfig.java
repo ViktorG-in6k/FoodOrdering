@@ -22,8 +22,8 @@ public class HibernateConfig {
 
     @Bean
     public DataSource dataSource(
-            @Value("jdbc:mysql://orion.beget.com:3306/tiposh_glazkov") String url,
-            @Value("tiposh_glazkov") String username,
+            @Value("jdbc:mysql://localhost:3306/food_order_db") String url,
+            @Value("root") String username,
             @Value("YWgaMaZpf2") String password
     ) throws SQLException {
         DriverManagerDataSource source = new DriverManagerDataSource(
