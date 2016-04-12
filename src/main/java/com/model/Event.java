@@ -3,7 +3,6 @@ package com.model;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Entity(name = "event")
 public class Event extends com.model.base.Entity {
@@ -24,7 +23,7 @@ public class Event extends com.model.base.Entity {
     @JoinTable(name = "order_list",
             joinColumns = { @JoinColumn(name = "event_id") },
             inverseJoinColumns = { @JoinColumn(name = "item_id") })
-    private List<Menu> itemsList;
+    private List<Item> itemsList;
 
     public Event(String name, LocalDateTime date) {
         this.name = name;
@@ -84,11 +83,11 @@ public class Event extends com.model.base.Entity {
         this.date = date;
     }
 
-    public List<Menu> getItemsList() {
+    public List<Item> getItemsList() {
         return itemsList;
     }
 
-    public void setItemsList(List<Menu> itemsList) {
+    public void setItemsList(List<Item> itemsList) {
         this.itemsList = itemsList;
     }
 }

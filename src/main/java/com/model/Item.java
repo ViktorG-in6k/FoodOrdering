@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity(name = "menu")
-public class Menu extends com.model.base.Entity {
+public class Item extends com.model.base.Entity {
     @Column
     private String name;
 
@@ -23,30 +23,30 @@ public class Menu extends com.model.base.Entity {
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 
-    public Menu(String name, String description, String URLimage, BigDecimal price){
+    public Item(String name, String description, String URLimage, BigDecimal price){
         this.name=name;
         this.description = description;
         this.imageURL=URLimage;
         this.price = price;
     }
 
-    public Menu(){
+    public Item(){
     }
 
-    public Menu(Restaurant restaurant, String name, BigDecimal price){
+    public Item(Restaurant restaurant, String name, BigDecimal price){
         this.restaurant=restaurant;
         this.name=name;
         this.price=price;
     }
 
-    public Menu(Restaurant restaurant, String name,String description, BigDecimal price){
+    public Item(Restaurant restaurant, String name, String description, BigDecimal price){
         this.restaurant=restaurant;
         this.description=description;
         this.name=name;
         this.price=price;
     }
 
-    public Menu(Restaurant restaurant, String name,String description,String imageURL, BigDecimal price){
+    public Item(Restaurant restaurant, String name, String description, String imageURL, BigDecimal price){
         this.restaurant=restaurant;
         this.description=description;
         this.imageURL=imageURL;

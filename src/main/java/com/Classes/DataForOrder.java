@@ -1,21 +1,21 @@
 package com.Classes;
 
 
-import com.model.Menu;
+import com.model.Item;
 
 import java.math.BigDecimal;
 
 public class DataForOrder {
 
-    private Menu item;
+    private Item item;
     private int count;
     private BigDecimal cost;
 
-    public Menu getItem() {
+    public Item getItem() {
         return item;
     }
 
-    public void setItem(Menu item) {
+    public void setItem(Item item) {
         this.item = item;
     }
 
@@ -27,7 +27,7 @@ public class DataForOrder {
         this.count = count;
     }
 
-    public DataForOrder(Menu item,  int count){
+    public DataForOrder(Item item, int count){
         this.item = item;
         this.count = count;
         cost = item.getPrice();

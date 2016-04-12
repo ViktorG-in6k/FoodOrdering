@@ -66,7 +66,7 @@
             <%--<div class="input-group"><input type="text" class="form-control" data-ng-model="data.dateDropDownInput"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>--%>
             <%--</div>--%>
             <%--</a>--%>
-            <%--<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">--%>
+            <%--<ul class="dropdown-item" role="item" aria-labelledby="dLabel">--%>
             <%--<datetimepicker data-ng-model="data.dateDropDownInput" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"/>--%>
             <%--</ul>--%>
             <%--</div>--%>

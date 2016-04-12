@@ -3,7 +3,6 @@ package com.model;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 
 @Entity(name = "restaurant")
@@ -63,18 +62,18 @@ public class Restaurant extends com.model.base.Entity {
     }
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "restaurant")
-    private List<Menu> menu;
+    private List<Item> item;
 
-    public List<Menu> getMenu() {
-        return menu;
+    public List<Item> getItem() {
+        return item;
     }
 
-    public void setMenu(List<Menu> menu) {
-        this.menu = menu;
+    public void setItem(List<Item> item) {
+        this.item = item;
     }
 
-    public void addToMenu(Menu item) {
-        this.menu.add(item);
+    public void addToMenu(Item item) {
+        this.item.add(item);
     }
 
 

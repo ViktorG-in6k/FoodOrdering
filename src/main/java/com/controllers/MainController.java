@@ -99,7 +99,7 @@ public class MainController {
 
         Restaurant restaurant = (Restaurant) session.getAttribute("restaurant");
 
-        Menu item = new Menu(restaurant, name, description, URLimage, price);
+        Item item = new Item(restaurant, name, description, URLimage, price);
 
         menuService.save(item);
 
@@ -191,7 +191,7 @@ public class MainController {
     @RequestMapping(value = "/events/event_{event}/restaurant_{id}")
     public String get_menu(HttpSession session, @PathVariable("event") int event, @PathVariable("id") int id) {
         session.setAttribute("restaurant", restaurantService.getRestaurantById(id));
-        session.setAttribute("Menu", restaurantService.getRestaurantById(id).getMenu());
+        session.setAttribute("Menu", restaurantService.getRestaurantById(id).getItem());
         session.setAttribute("backPage", "/events/event_" + event);
         return "menu";
     }
@@ -308,7 +308,7 @@ public class MainController {
 //
 //        Restaurant restaurant =(Restaurant)session.getAttribute("restaurant");
 //
-//        Menu item = new Menu(restaurant, name, description, URLimage, price);
+//        Item item = new Item(restaurant, name, description, URLimage, price);
 //
 //        menuService.save(item);
 //
@@ -367,7 +367,7 @@ public class MainController {
 //    @RequestMapping(value = "/events/event_{event}/restaurant_{id}")
 //    public String get_menu(HttpSession session,@PathVariable("event") int event, @PathVariable("id") int id) {
 //        session.setAttribute("restaurant",restaurantService.getRestaurantById(id));
-//        session.setAttribute("Menu", restaurantService.getRestaurantById(id).getMenu());
+//        session.setAttribute("Item", restaurantService.getRestaurantById(id).getItem());
 //        session.setAttribute("backPage","/events/event_"+event);
 //        return "menu";
 //    }

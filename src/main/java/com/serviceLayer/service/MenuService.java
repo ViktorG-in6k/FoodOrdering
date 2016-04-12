@@ -1,8 +1,8 @@
 package com.serviceLayer.service;
 
-import com.model.Menu;
+import com.model.Item;
 
 
 public interface MenuService {
-    public void save(Menu item);
+    public void save(Item item);
 }
