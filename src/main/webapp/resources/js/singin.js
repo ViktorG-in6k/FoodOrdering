@@ -1,16 +1,8 @@
 (function () {
     'use strict';
-
+    $rootScope.user = 'user';
     angular.module('FoodOrdering', [])
-        .controller('singin', function () {
-            var todoList = this;
-            todoList.t = 'hello';
-
-            todoList.addTodo = function () {
-
-                todoList.t = '';
-            };
-
-          
+        .controller('singin', function ($rootScope) {
+                     $rootScope.user = 'user';
         });
 })();

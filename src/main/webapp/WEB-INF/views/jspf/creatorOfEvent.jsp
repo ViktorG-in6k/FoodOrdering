@@ -74,7 +74,5 @@
         <button type="submit" class="btn btn-success pull-right">Add</button>
         </div>
     </fieldset>
-
-
 </form>
 
