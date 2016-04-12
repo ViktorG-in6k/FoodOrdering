@@ -25,12 +25,6 @@ public class User extends com.model.base.Entity{
     public User() {
     }
 
-    public User(String email, String password, boolean enabled) {
-        this.email = email;
-        this.password = "aaa";
-        this.enabled = enabled;
-    }
-
     public User(String email, String password,  boolean enabled, Set<UserRole> userRole) {
         this.email = email;
         this.password = "aaa";

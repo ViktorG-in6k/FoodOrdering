@@ -12,9 +12,7 @@ public class EventUser extends com.model.base.Entity{
     @Column
     private  int event_id;
 
-
     public EventUser(){
-
     }
 
     public EventUser(int user_id,int event_id){

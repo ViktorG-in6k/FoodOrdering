@@ -25,24 +25,10 @@ public class Event extends com.model.base.Entity {
             inverseJoinColumns = { @JoinColumn(name = "item_id") })
     private List<Item> itemsList;
 
-    public Event(String name, LocalDateTime date) {
-        this.name = name;
-        this.date = date;
-    }
-
-    public Event(String name, String description, LocalDateTime date) {
-        this.name = name;
-        this.description = description;
-        this.date = date;
-    }
-
     public Event(String name, String description, String imageURL, LocalDateTime date) {
-
         this.name = name;
         this.description = description;
-
         this.imageURL = imageURL;
-
         this.date = date;
     }
 

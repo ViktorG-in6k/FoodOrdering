@@ -31,19 +31,6 @@ public class Item extends com.model.base.Entity {
     public Item(){
     }
 
-    public Item(Restaurant restaurant, String name, BigDecimal price){
-        this.restaurant=restaurant;
-        this.name=name;
-        this.price=price;
-    }
-
-    public Item(Restaurant restaurant, String name, String description, BigDecimal price){
-        this.restaurant=restaurant;
-        this.description=description;
-        this.name=name;
-        this.price=price;
-    }
-
     public Item(Restaurant restaurant, String name, String description, String imageURL, BigDecimal price){
         this.restaurant=restaurant;
         this.description=description;
