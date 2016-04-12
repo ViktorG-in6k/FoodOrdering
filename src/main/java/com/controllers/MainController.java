@@ -43,6 +43,11 @@ public class MainController {
     UserDetailsService userDetailsService;
 
 
+    @RequestMapping(value = "/partials/{part}")
+    public String getPartialPage(@PathVariable("part") String part) {
+        return "partials/" + part;
+    }
+
 
     @RequestMapping(value ="/my_order")
     @ResponseBody
