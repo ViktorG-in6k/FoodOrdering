@@ -14,7 +14,7 @@
 <body ng-app="foodOrdering">
     <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true" />
 
-    <div class="container">
+    <div ng-app="foodOrdering" class="container">
         <jsp:include page="/WEB-INF/views/jspf/creatorOfEvent.jsp" flush="true" />
         <div ng-view></div>
     <%--<jsp:include page="/WEB-INF/views/jspf/eventList.jsp" flush="true" />--%>
