@@ -54,7 +54,6 @@ public class MainController {
         Set<Event> es = eventService.getListOfAllEvents();
         System.out.print(es.size());
         return es;
-
     }
 
     @RequestMapping("/ev")

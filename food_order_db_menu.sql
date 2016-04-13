@@ -1,0 +1,7 @@
+INSERT INTO food_order_db.menu (description, imageURL, name, price, restaurant_id, order_list_id) VALUES ('Fried potatoes', 'https://www.mcdonalds.ru/uploads/menu_item_image/a60d9affae05544ec991e209ca8f05b2.jpg', 'Fries', 12.80, 10, null);
+INSERT INTO food_order_db.menu (description, imageURL, name, price, restaurant_id, order_list_id) VALUES ('', 'http://www.wikitopbrand.com/wp-content/uploads/2014/01/coca-cola-logo.jpg', 'Coca-cola', 8.90, 10, null);
+INSERT INTO food_order_db.menu (description, imageURL, name, price, restaurant_id, order_list_id) VALUES ('Butter with meat. mmmmmm', 'http://hronika.info/uploads/posts/2013-04/thumbs/1366989930_vechnyj-gamburger.jpg', 'Hamburger', 11.35, 10, null);
+INSERT INTO food_order_db.menu (description, imageURL, name, price, restaurant_id, order_list_id) VALUES ('', '', 'sushi', 0.10, 11, null);
+INSERT INTO food_order_db.menu (description, imageURL, name, price, restaurant_id, order_list_id) VALUES ('', '', 'Philadelphia', 0.00, 11, null);
+INSERT INTO food_order_db.menu (description, imageURL, name, price, restaurant_id, order_list_id) VALUES ('Tomates, chicken meat, mushrooms, olives, cheese', 'http://v-i-p.org/uploads/posts/2016-01/medium/1452372833_421859-7056x4696.jpg', 'Pizza', 60.59, 15, null);
+INSERT INTO food_order_db.menu (description, imageURL, name, price, restaurant_id, order_list_id) VALUES ('&#1042;&#1082;&#1091;&#1089;&#1085;&#1103;&#1096;&#1082;&#1072; &#1085;&#1103;&#1084;&#1085;&#1103;&#1084;&#1085;&#1103;&#1084;', '', '&#1055;&#1080;&#1094;&#1094;&#1072;', 12.23, 39, null);
