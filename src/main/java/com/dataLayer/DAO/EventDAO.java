@@ -16,5 +16,6 @@ public interface EventDAO {
     public List<Event> getListOfEventsByDate(LocalDate eventDate);
     public List<Event> getListOfEventsByNameAndDate(String eventName, LocalDate eventDate);
     public List<Event> getListOfEventsBetweenTwoDates(LocalDate firstDate, LocalDate lastDate);
+    public void update(Event event);
 
 }
