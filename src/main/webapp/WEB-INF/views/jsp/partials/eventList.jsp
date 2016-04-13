@@ -17,7 +17,7 @@
                                 <button type="submit" class="btn btn-success pull-right">To take responsibility {{event.id}}</button> </b>
                         </div>
                         <div ng-if="event.user != null">
-                            <!-- code to render the regular video block -->
+                            {{event.user.email}}
                         </div>
 
                     </form>
