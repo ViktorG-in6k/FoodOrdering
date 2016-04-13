@@ -75,35 +75,6 @@
 
 <body>
 <div class="container">
-    <div class="row">
-        <div class="col-sm-3 col-md-3">
-            <div class="post">
-                <div class="post-img-content">
-                    <img class="col-md-12" src="http://www.bats.org.uk/data/images/halloween-bat-moon-clipart.jpg" class="img-responsive"/>
-                    <span class="post-title">
-                        <b>Halloween</b><br/>
-                        <b><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Date: 31.10.2016 20:00</b><br/>
-                        <b > <i class="fa fa-user" aria-hidden="true"></i> Partycipates: 20people</b>
-                    </span>
-                </div>
-                <br/>
-                <div class="content">
-                    <div class="author">
-                        By <b>Bhaumik</b> |
-                        <time datetime="2014-01-20">January 20th, 2014</time>
-                    </div>
-                    <div>
 
-                        Halloween is a celebration observed in a number of countries on 31 October, the eve of the Western Christian feast of All Hallows' Day. It begins the three-day observance of Allhallowtide, the time in the liturgical year dedicated to remembering the dead, including saints (hallows), martyrs, and all the faithful departed;
-                    </div>
-                    <div>
-                        <a href="http://www.jquery2dotnet.com/2014/01/jquery-highlight-table-row-and-column.html"
-                           class="btn btn-warning btn-sm">Read more</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
 </div>
 </body>
