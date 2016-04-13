@@ -2,7 +2,9 @@ package com.controllers;
 
 import com.Classes.AllList;
 import com.Classes.OrderList;
+import com.dataLayer.Implementations.EventUserDAOImpl;
 import com.model.*;
+import com.serviceLayer.implementation.EventUserServiceImpl;
 import com.serviceLayer.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -42,7 +44,6 @@ public class MainController {
     @Autowired
     UserDetailsService userDetailsService;
 
-
     @RequestMapping(value = "/partials/{part}")
     public String getPartialPage(@PathVariable("part") String part) {
         return "partials/" + part;
@@ -52,7 +53,6 @@ public class MainController {
     @RequestMapping("/eventsJson/")
     public @ResponseBody Set<Event> getEvent() {
         Set<Event> es = eventService.getListOfAllEvents();
-        System.out.print(es.size());
         return es;
 
     }
@@ -102,7 +102,7 @@ public class MainController {
         /*session.setAttribute("userId", userService.getUserByEmail(req.getParameter("email")).getId());
         session.setAttribute("allEvents", eventService.getListOfAllEvents());
         session.setAttribute("backPage", "/events");*/
-
+        session.setAttribute("userId", userService.getUserByEmail(req.getParameter("email")).getId());
         return "events";
     }
 
@@ -166,10 +166,12 @@ public class MainController {
         int user_id = (int) session.getAttribute("userId");
 
         Order order = new Order(item_id, event_id);
-        EventUser eventUser = new EventUser(user_id,event_id);
 
-
-        eventUserService.save(eventUser);
+        EventUser eventUserById = eventUserService.getEventUserById(user_id, event_id);
+        if(eventUserById == null){
+            EventUser eventUser = new EventUser(user_id,event_id);
+            eventUserService.save(eventUser);
+        }
         orderService.save(order);
 
         User user = userService.getUser(user_id);

@@ -50,7 +50,7 @@ public class HibernateConfig {
                 setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
                 //setProperty("hibernate.chach.provider_class", "org.hibernate.cache.NoCacheProvider");
                 setProperty("hibernate.show_sql", "true");
-                setProperty("hibernate.hbm2ddl.auto", "update");
+                //setProperty("hibernate.hbm2ddl.auto", "update");
                 //setProperty("hibernate.hbm2ddl.auto", "create");
                 // setProperty("hibernate.hbm2ddl.auto", "create-drop");
             }

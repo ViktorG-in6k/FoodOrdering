@@ -75,4 +75,15 @@ public class Event extends com.model.base.Entity {
     public void setItemsList(List<Item> itemsList) {
         this.itemsList = itemsList;
     }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", imageURL='" + imageURL + '\'' +
+                ", date=" + date +
+                ", itemsList=" + itemsList +
+                '}';
+    }
 }

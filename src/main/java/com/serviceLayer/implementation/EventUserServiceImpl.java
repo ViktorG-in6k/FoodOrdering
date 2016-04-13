@@ -29,4 +29,9 @@ public class EventUserServiceImpl implements EventUserService {
          }
          return result;
      }
+
+    public EventUser getEventUserById(int user_id, int event_id){
+        return eventUserDAO.getEventUserById(user_id,event_id);
+    };
+
 }
