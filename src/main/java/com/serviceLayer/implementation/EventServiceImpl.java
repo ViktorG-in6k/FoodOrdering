@@ -60,4 +60,8 @@ public class EventServiceImpl implements EventService {
     public List<Event> getListOfEventsBetweenTwoDates(LocalDate firstDate, LocalDate lastDate) {
         return eventDAO.getListOfEventsBetweenTwoDates(firstDate,lastDate);
     }
+
+    public void update(Event event) {
+        eventDAO.update(event);
+    }
 }

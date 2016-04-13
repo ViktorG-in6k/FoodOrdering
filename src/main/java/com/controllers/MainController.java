@@ -74,8 +74,6 @@ public class MainController {
         return eventUserService.getAllEvents(user);
     }
 
-
-
     @RequestMapping(value = "/")
     public String getMain() {
         return "main";

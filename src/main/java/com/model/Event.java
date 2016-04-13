@@ -19,6 +19,9 @@ public class Event extends com.model.base.Entity {
     @Column
     private LocalDateTime date;
 
+    @OneToOne
+    private User user;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "order_list",
             joinColumns = { @JoinColumn(name = "event_id") },
@@ -74,6 +77,14 @@ public class Event extends com.model.base.Entity {
 
     public void setItemsList(List<Item> itemsList) {
         this.itemsList = itemsList;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
