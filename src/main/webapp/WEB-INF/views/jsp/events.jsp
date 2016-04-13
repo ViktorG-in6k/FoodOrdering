@@ -7,14 +7,9 @@
 <script src="/resources/js/app.js"></script>
 <head>
     <title>Maven + Spring MVC + @JavaConfig</title>
-
-
     <spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss"/>
-
     <link href="${bootstrapCss}" rel="stylesheet"/>
     <link href="/resources/css/test.css" rel="stylesheet"/>
-
-
 </head>
 <body ng-app="foodOrdering">
     <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true" />
