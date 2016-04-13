@@ -10,5 +10,7 @@ import java.util.Set;
 public interface EventUserService {
     public void save(EventUser eventUser);
 
-     public Set<EventResponse> getAllEvents(User user);
+    public Set<EventResponse> getAllEvents(User user);
+
+    public EventUser getEventUserById(int user_id, int event_id);
 }

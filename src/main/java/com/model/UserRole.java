@@ -9,7 +9,6 @@ import static java.awt.font.TransformAttribute.IDENTITY;
 @Entity
 @Table(name = "user_roles")
 public class UserRole extends com.model.base.Entity {
-
     public enum Role {ROLE_ADMIN, ROLE_USER}
 
     @Column(name = "role", nullable = false)

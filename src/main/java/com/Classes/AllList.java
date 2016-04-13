@@ -1,8 +1,10 @@
 package com.Classes;
+
 import com.model.Restaurant;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
 public class AllList {
     private Restaurant restaurant;
     private List<DataForOrder> orderLists;

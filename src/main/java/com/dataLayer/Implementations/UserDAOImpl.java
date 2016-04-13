@@ -33,8 +33,6 @@ public class UserDAOImpl implements UserDAO {
         return (User) query.setString("email",email).uniqueResult();
     }
 
-
-    @SuppressWarnings("unchecked")
     public User findUsersByEmail(String email) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from user where email = :email");

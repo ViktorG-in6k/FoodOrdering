@@ -4,12 +4,10 @@
 package com.serviceLayer.implementation;
 
 public enum UserRoleEnum {
-
     ADMIN,
     USER,
     ANONYMOUS;
 
     UserRoleEnum() {
     }
-
 }

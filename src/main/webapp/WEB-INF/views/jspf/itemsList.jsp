@@ -18,7 +18,7 @@
                     ${item.getDescription()}
             </div>
             <div class="pull-right">
-                    ${item.getPrice()}
+                    {{${item.getPrice()} | currency}}
             </div>
             <input type="hidden" value="${eventId}" name="event_id">
             <input type="hidden" value="${item.getId()}" name="item_id">

@@ -13,12 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class OrderDAOImpl implements OrderDAO {
     @Autowired
-    SessionFactory sessionFactory ;
+    SessionFactory sessionFactory;
 
     public void save(Order order) {
         Session session = sessionFactory.getCurrentSession();
         session.save(order);
     }
-
-
 }

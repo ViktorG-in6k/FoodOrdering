@@ -45,5 +45,5 @@ public class RestaurantDAOImpl implements RestaurantDAO{
         Query query = session.createQuery("from restaurant where id = :id");
         return (List<Item>) query.setInteger("id",id).list();
     }
-
 }
+
