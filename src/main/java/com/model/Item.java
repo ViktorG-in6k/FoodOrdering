@@ -9,13 +9,10 @@ import java.math.BigDecimal;
 public class Item extends com.model.base.Entity {
     @Column
     private String name;
-
     @Column
     private String description;
-
     @Column
     private String imageURL;
-
     @Column
     private BigDecimal price;
 
@@ -24,22 +21,22 @@ public class Item extends com.model.base.Entity {
     @JsonIgnore
     private Restaurant restaurant;
 
-    public Item(String name, String description, String URLimage, BigDecimal price){
-        this.name=name;
+    public Item(String name, String description, String URLimage, BigDecimal price) {
+        this.name = name;
         this.description = description;
-        this.imageURL=URLimage;
+        this.imageURL = URLimage;
         this.price = price;
     }
 
-    public Item(){
+    public Item() {
     }
 
-    public Item(Restaurant restaurant, String name, String description, String imageURL, BigDecimal price){
-        this.restaurant=restaurant;
-        this.description=description;
-        this.imageURL=imageURL;
-        this.name=name;
-        this.price=price;
+    public Item(Restaurant restaurant, String name, String description, String imageURL, BigDecimal price) {
+        this.restaurant = restaurant;
+        this.description = description;
+        this.imageURL = imageURL;
+        this.name = name;
+        this.price = price;
     }
 
     public String getName() {

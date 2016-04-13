@@ -8,7 +8,6 @@ import java.util.Set;
 
 
 public interface EventDAO {
-
     public void save(Event e);
     public Event getEventById(int id);
     public Set<Event> getListOfAllEvents();
@@ -17,5 +16,4 @@ public interface EventDAO {
     public List<Event> getListOfEventsByNameAndDate(String eventName, LocalDate eventDate);
     public List<Event> getListOfEventsBetweenTwoDates(LocalDate firstDate, LocalDate lastDate);
     public void update(Event event);
-
 }

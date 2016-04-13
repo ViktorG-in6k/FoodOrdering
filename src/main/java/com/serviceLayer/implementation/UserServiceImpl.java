@@ -6,33 +6,29 @@ import com.serviceLayer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
-public class UserServiceImpl implements UserService{
-
+public class UserServiceImpl implements UserService {
     @Autowired
     UserDAO userDAO;
 
-    public void saveUser(User person){
-        if(getUserByEmail(person.getEmail())==null) {
+    public void saveUser(User person) {
+        if (getUserByEmail(person.getEmail()) == null) {
             userDAO.save(person);
         }
     }
 
-    public void saveUser(String email){
-        User user = new User(email,"user",true);
-        if(getUserByEmail(user.getEmail())==null) {
+    public void saveUser(String email) {
+        User user = new User(email, "user", true);
+        if (getUserByEmail(user.getEmail()) == null) {
             userDAO.save(user);
         }
     }
 
-    public User getUser(long id){
+    public User getUser(long id) {
         return userDAO.getUser(id);
     }
 
-    public User getUserByEmail(String email){
+    public User getUserByEmail(String email) {
         return userDAO.getUserByEmail(email);
     }
-
-
 }

@@ -6,19 +6,7 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="/events">Food ordering</a>
             <a class="navbar-brand" href="${backPage}">Back</a>
-
         </div>
-
-        <%--<form role="form" class="col-md-5">--%>
-
-            <%--<div>--%>
-                <%--<div>--%>
-                    <%--<br>--%>
-                    <%--<a href="#/AllEvents">AllEvents</a> |--%>
-                    <%--<a href="#/Book/Delete">Delete</a>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</form>--%>
 
         <div class="navbar-header pull-right" style=" right: 10px;">
                 <label class="navbar-brand" >

@@ -24,4 +24,5 @@ app.controller('eventController',function ($scope, eventService, $http) {
     $http.get('/eventsJson/').success(function (data) {
         $scope.events = data;
     });
+
 });

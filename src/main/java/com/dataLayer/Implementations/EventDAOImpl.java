@@ -68,12 +68,5 @@ public class EventDAOImpl implements EventDAO {
     public void update(Event event) {
         sessionFactory.getCurrentSession().update(event);
     }
-
-//    public List<Event> getListOfEventsBetweenTwoDates(LocalDate firstDate, LocalDate lastDate) {
-//        Session session = sessionFactory.getCurrentSession();
-//        Query query = session.createQuery("from event where date between convert(datetime,:firstDate) and convert(datetime,:lastDate)");
-//        return (List<Event>) query
-//                .setDate("firstDate",java.sql.Date.valueOf(firstDate))
-//                .setDate("lastDate",java.sql.Date.valueOf(lastDate)).list();
-//    }
 }
+
