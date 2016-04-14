@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity(name = "user")
-public class User extends com.model.base.Entity{
+public class User extends com.model.base.Entity {
     @Column(name = "email")
     private String email;
     @Column(name = "password")
@@ -18,8 +18,8 @@ public class User extends com.model.base.Entity{
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "event_list",
-        joinColumns = {@JoinColumn(name = "user_id")},
-        inverseJoinColumns = {@JoinColumn(name = "event_id")})
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "event_id")})
     private Set<Event> eventsList = new HashSet<>();
 
     public User() {
@@ -31,7 +31,7 @@ public class User extends com.model.base.Entity{
         this.enabled = enabled;
     }
 
-    public User(String email, String password,  boolean enabled, Set<UserRole> userRole) {
+    public User(String email, String password, boolean enabled, Set<UserRole> userRole) {
         this.email = email;
         this.password = "aaa";
         this.enabled = enabled;

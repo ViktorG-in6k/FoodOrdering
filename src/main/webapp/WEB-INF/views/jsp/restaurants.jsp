@@ -13,7 +13,7 @@
 </head>
 
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true" />
-
+<br/>
 <div class="container">
     <jsp:include page="/WEB-INF/views/jspf/creatorOfRestaurant.jsp" flush="true" />
     <jsp:include page="/WEB-INF/views/jspf/restaurantList.jsp" flush="true" />

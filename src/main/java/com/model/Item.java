@@ -1,5 +1,7 @@
 package com.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -7,36 +9,34 @@ import java.math.BigDecimal;
 public class Item extends com.model.base.Entity {
     @Column
     private String name;
-
     @Column
     private String description;
-
     @Column
     private String imageURL;
-
     @Column
     private BigDecimal price;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id", nullable = false)
+    @JsonIgnore
     private Restaurant restaurant;
 
-    public Item(String name, String description, String URLimage, BigDecimal price){
-        this.name=name;
+    public Item(String name, String description, String URLimage, BigDecimal price) {
+        this.name = name;
         this.description = description;
-        this.imageURL=URLimage;
+        this.imageURL = URLimage;
         this.price = price;
     }
 
-    public Item(){
+    public Item() {
     }
 
-    public Item(Restaurant restaurant, String name, String description, String imageURL, BigDecimal price){
-        this.restaurant=restaurant;
-        this.description=description;
-        this.imageURL=imageURL;
-        this.name=name;
-        this.price=price;
+    public Item(Restaurant restaurant, String name, String description, String imageURL, BigDecimal price) {
+        this.restaurant = restaurant;
+        this.description = description;
+        this.imageURL = imageURL;
+        this.name = name;
+        this.price = price;
     }
 
     public String getName() {
@@ -77,5 +77,16 @@ public class Item extends com.model.base.Entity {
 
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", imageURL='" + imageURL + '\'' +
+                ", price=" + price +
+                ", restaurant=" + restaurant +
+                '}';
     }
 }

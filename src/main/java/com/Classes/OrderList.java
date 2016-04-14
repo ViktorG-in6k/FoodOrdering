@@ -1,6 +1,5 @@
 package com.Classes;
 
-
 import com.model.Item;
 
 import java.util.ArrayList;
@@ -35,6 +34,5 @@ public class OrderList {
             }
         }
     }
-
-
 }
+

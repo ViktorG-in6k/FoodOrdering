@@ -2,6 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js"></script>
+<script src="/resources/js/app.js"></script>
 <head>
     <title>Maven + Spring MVC + @JavaConfig</title>
 
@@ -13,8 +16,8 @@
 </head>
 
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true" />
-
-<div class="container">
+<br/>
+<div class="container"  ng-app="">
     <jsp:include page="/WEB-INF/views/jspf/creatorOfItemInMenu.jsp" flush="true" />
     <jsp:include page="/WEB-INF/views/jspf/itemsList.jsp" flush="true" />
 </div>

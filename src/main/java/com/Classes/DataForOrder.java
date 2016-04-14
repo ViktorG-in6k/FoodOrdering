@@ -1,12 +1,10 @@
 package com.Classes;
 
-
 import com.model.Item;
 
 import java.math.BigDecimal;
 
 public class DataForOrder {
-
     private Item item;
     private int count;
     private BigDecimal cost;

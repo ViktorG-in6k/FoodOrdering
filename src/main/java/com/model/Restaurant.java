@@ -4,16 +4,12 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-
 @Entity(name = "restaurant")
 public class Restaurant extends com.model.base.Entity {
-
     @Column
     private String name;
-
     @Column
     private String description;
-
     @Column
     private String imageURL;
 
@@ -73,6 +69,4 @@ public class Restaurant extends com.model.base.Entity {
     public void addToMenu(Item item) {
         this.item.add(item);
     }
-
-
 }
