@@ -6,14 +6,9 @@
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js"></script>
 <script src="/resources/js/app.js"></script>
 <head>
-<title>Maven + Spring MVC + @JavaConfig</title>
-
-
+    <title>FoodOrdering</title>
     <spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss"/>
-
     <link href="${bootstrapCss}" rel="stylesheet"/>
-
-
 </head>
 <body>
 

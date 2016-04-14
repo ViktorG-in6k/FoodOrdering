@@ -68,4 +68,6 @@ public class User extends com.model.base.Entity {
     public void setEventsList(Set<Event> eventsList) {
         this.eventsList = eventsList;
     }
+
+
 }

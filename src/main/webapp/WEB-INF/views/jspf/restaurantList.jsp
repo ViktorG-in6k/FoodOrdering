@@ -16,7 +16,7 @@
             <div class="col-md-7 text-left">
                     ${restaurant.getDescription()}
             </div>
-            <a class="btn btn-primary pull-right" style=" background-image: linear-gradient(to bottom,#28B7FF,#3573D0)" href="/events/event_${eventId}/restaurant_${restaurant.getId()}">Go to item</a>
+            <a class="btn col-md-offset-10 btn-primary pull-right" style=" background-image: linear-gradient(to bottom,#28B7FF,#3573D0)" href="/events/event_${eventId}/restaurant_${restaurant.getId()}">Go to item</a>
         </form>
     </div>
 </c:forEach>

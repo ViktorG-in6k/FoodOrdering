@@ -12,17 +12,18 @@
             <label class="text-info col-md-7"
                    style="font-size: 19px; color: #000000;">${item.getName()}</label>
 
-
+            <label class="text-info  pull-right" style="font-size: 19px; color: #000000;">
+                {{${item.getPrice()} | currency}}
+            </label>
             <div class="col-md-7 text-left">
 
                     ${item.getDescription()}
             </div>
-            <div class="pull-right">
-                    {{${item.getPrice()} | currency}}
-            </div>
+
             <input type="hidden" value="${eventId}" name="event_id">
             <input type="hidden" value="${item.getId()}" name="item_id">
-            <button type="submit" class="btn btn-success pull-right">Add</button>
+
+            <button  type="submit" class="btn btn-success col-md-offset-10 pull-right">Add</button>
         </form>
     </div>
 </c:forEach>

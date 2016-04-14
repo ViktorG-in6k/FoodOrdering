@@ -1,36 +1,61 @@
 package com.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity(name = "order_list")
 public class Order extends com.model.base.Entity {
-    @Column
-    private int item_id;
-    @Column
-    private int event_id;
 
     public Order() {
     }
 
-    public Order(int item_id, int event_id) {
-        this.item_id = item_id;
-        this.event_id = event_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "item_id", nullable = false)
+    private Item item;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "event_id", nullable = false)
+    private Event event;
+
+    public Order(Item item, Event event) {
+        this.item = item;
+        this.event = event;
     }
 
-    public int getEvent_id() {
-        return event_id;
+    public Order(User user, Item item, Event event) {
+        this.user = user;
+        this.item = item;
+        this.event = event;
     }
 
-    public void setEvent_id(int event_id) {
-        this.event_id = event_id;
+    public Item getItem() {
+        return item;
     }
 
-    public int getItem_id() {
-        return item_id;
+    public void setItem(Item item) {
+        this.item = item;
     }
 
-    public void setItem_id(int item_id) {
-        this.item_id = item_id;
+    public User getUser() {
+        return user;
     }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+
 }

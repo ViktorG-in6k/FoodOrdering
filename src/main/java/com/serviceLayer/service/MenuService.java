@@ -10,4 +10,5 @@ public interface MenuService {
     public void save(Item item);
 
     public void saveByRequest(HttpServletRequest req, HttpSession session);
+    public Item getItemById(int id);
 }

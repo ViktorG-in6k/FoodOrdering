@@ -34,10 +34,10 @@
             <textarea  class="form-control text-area" rows="10"  id="discript" name="discript" style="resize: vertical"></textarea>
         </div>
 
-        <div class="form-group">
-            <label for="image">URL-image:</label>
-            <input type="url" class="form-control" id="image" name="image">
-        </div>
+        <%--<div class="form-group">--%>
+            <%--<label for="image">URL-image:</label>--%>
+            <%--<input type="url" class="form-control" id="image" name="image">--%>
+        <%--</div>--%>
 
             <div id="datetimepicker" class="form-group">
                 <label for="cal">Date:</label>

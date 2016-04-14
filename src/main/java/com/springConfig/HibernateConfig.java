@@ -40,7 +40,6 @@ public class HibernateConfig {
         sessionFactory.setPackagesToScan("com.model");
         sessionFactory.setHibernateProperties(this.hibernateProperties());
         return sessionFactory;
-
     }
 
     @Bean
@@ -63,5 +62,4 @@ public class HibernateConfig {
         txManager.setSessionFactory(sessionFactory);
         return txManager;
     }
-
 }

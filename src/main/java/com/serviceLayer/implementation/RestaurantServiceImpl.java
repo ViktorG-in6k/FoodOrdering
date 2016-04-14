@@ -27,6 +27,9 @@ public class RestaurantServiceImpl implements RestaurantService {
         String description = req.getParameter("discript");
         String URLimage = req.getParameter("image");
         Restaurant restaurant = new Restaurant(name, description, URLimage);
+        if (restaurant.getImageURL().equals("")) {
+            restaurant.setImageURL("/resources/image/restaurant.jpg");
+        }
         restaurantDAO.save(restaurant);
     }
 

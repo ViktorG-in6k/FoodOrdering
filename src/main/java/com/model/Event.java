@@ -1,5 +1,7 @@
 package com.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,9 +16,9 @@ public class Event extends com.model.base.Entity {
     private String imageURL;
     @Column
     private LocalDateTime date;
-
     @OneToOne
     private User user;
+
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "order_list",
@@ -83,14 +85,5 @@ public class Event extends com.model.base.Entity {
         this.user = user;
     }
 
-    @Override
-    public String toString() {
-        return "Event{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", imageURL='" + imageURL + '\'' +
-                ", date=" + date +
-                ", itemsList=" + itemsList +
-                '}';
-    }
+
 }

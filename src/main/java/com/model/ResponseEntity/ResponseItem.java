@@ -1,32 +1,24 @@
-package com.model;
+package com.model.ResponseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import com.model.Item;
+
 import java.math.BigDecimal;
 
-@Entity(name = "menu")
-public class Item extends com.model.base.Entity {
-    @Column
+public class ResponseItem {
+    private int id;
     private String name;
-    @Column
     private String description;
-    @Column
     private String imageURL;
-    @Column
     private BigDecimal price;
-    @OneToOne
-    private Restaurant restaurant;
+    private ResponseRestaurant responseRestaurant;
 
-    public Item() {
-    }
-
-    public Item(String name, String description, String imageURL, BigDecimal price, Restaurant restaurant) {
-        this.restaurant = restaurant;
-        this.description = description;
-        this.imageURL = imageURL;
-        this.name = name;
-        this.price = price;
+    public ResponseItem(Item item){
+        this.id = item.getId();
+        this.name = item.getName();
+        this.description = item.getDescription();
+        this.imageURL = item.getImageURL();
+        this.responseRestaurant = new ResponseRestaurant(item.getRestaurant());
+        this.price = item.getPrice();
     }
 
     public String getName() {
@@ -62,11 +54,12 @@ public class Item extends com.model.base.Entity {
     }
 
 
-    public Restaurant getRestaurant() {
-        return restaurant;
+
+    public int getId() {
+        return id;
     }
 
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
+    public void setId(int id) {
+        this.id = id;
     }
 }
