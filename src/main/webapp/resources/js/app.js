@@ -40,5 +40,4 @@ app.controller('orderController',function ($scope, orderService, $http) {
     $http.get('/ordersJson/*').success(function (data) {
         $scope.orders = data;
     });
-
 });

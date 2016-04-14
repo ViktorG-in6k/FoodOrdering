@@ -1,6 +1,5 @@
 package com.dataLayer.Implementations;
 
-
 import com.dataLayer.DAO.MenuDAO;
 import com.model.Item;
 import org.hibernate.Query;

@@ -1,6 +1,5 @@
 package com.serviceLayer.implementation;
 
-
 import com.dataLayer.DAO.EventDAO;
 import com.model.Event;
 import com.serviceLayer.service.EventService;
@@ -79,5 +78,4 @@ public class EventServiceImpl implements EventService {
         Event event = new Event(name, description, URLimage, date);
         eventDAO.save(event);
     }
-
 }

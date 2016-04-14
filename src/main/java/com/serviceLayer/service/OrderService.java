@@ -12,4 +12,6 @@ public interface OrderService {
     public void saveByRequest(HttpServletRequest req, HttpSession session);
 
     public List<Order> orderListOfUserByEvent(int userId, int eventId);
+
+    public List<Order> orderListOfEvent(int eventId);
 }

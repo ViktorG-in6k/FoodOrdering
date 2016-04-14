@@ -17,12 +17,12 @@
                                 <b style="text-decoration: underline; background-color: rgba(0, 0, 0, 0.58);" class="text-info col-md-6">{{event.name}}</b>
 
                             </a>
-                            <a href="/events"><b style="text-decoration: underline; background-color: rgba(0, 0, 0, 0.58);" class="text-info  pull-right col-md-5">MyOrder</b>
+                            <a href="/MyOrderJson_{{event.id}}"><b style="text-decoration: underline; background-color: rgba(0, 0, 0, 0.58);" class="text-info  pull-right col-md-5">MyOrder</b>
                                 <br/></a>
                             <b style="background-color: rgba(0, 0, 0, 0.58);"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i> {{event.date.dayOfWeek |
                                 limitTo: 3}} {{event.date.dayOfMonth}} {{event.date.month | limitTo: 3}}
                                 {{event.date.year}} </b>
-                            <a href="/events"><b style="text-decoration: underline; background-color: rgba(0, 0, 0, 0.58);" class="text-info  pull-right col-md-5">CommonOrder</b>
+                            <a href="/CommonOrderJson_{{event.id}}"><b style="text-decoration: underline; background-color: rgba(0, 0, 0, 0.58);" class="text-info  pull-right col-md-5">CommonOrder</b>
                                 <br/></a>
                             <b style="background-color: rgba(0, 0, 0, 0.58);"><i class="glyphicon glyphicon-time" aria-hidden="true"></i>
                                 {{event.date.hour}}:{{event.date.minute}}</b><br/>

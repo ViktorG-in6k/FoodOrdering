@@ -46,4 +46,3 @@ public class RestaurantDAOImpl implements RestaurantDAO{
         return (List<Item>) query.setInteger("id",id).list();
     }
 }
-

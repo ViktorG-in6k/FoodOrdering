@@ -32,4 +32,13 @@ public class OrderDAOImpl implements OrderDAO {
                 .setLong("eventId",eventId)
                 .list();
     }
+
+    @Override
+    public List<Order> orderListOfEvent(int eventId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from order_list where event_id=:eventId");
+        return (List<Order>) query
+                .setLong("eventId",eventId)
+                .list();
+    }
 }

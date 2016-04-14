@@ -1,7 +1,5 @@
 package com.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 @Entity(name = "order_list")
@@ -21,11 +19,6 @@ public class Order extends com.model.base.Entity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "event_id", nullable = false)
     private Event event;
-
-    public Order(Item item, Event event) {
-        this.item = item;
-        this.event = event;
-    }
 
     public Order(User user, Item item, Event event) {
         this.user = user;
@@ -56,6 +49,4 @@ public class Order extends com.model.base.Entity {
     public void setEvent(Event event) {
         this.event = event;
     }
-
-
 }

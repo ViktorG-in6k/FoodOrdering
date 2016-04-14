@@ -1,22 +1,14 @@
 package com.controllers;
 
-import com.model.Event;
-import com.model.ResponseEntity.ResponseEvent;
-import com.model.User;
 import com.serviceLayer.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashSet;
-import java.util.Set;
 
 @Controller
 public class MainController {
@@ -30,37 +22,10 @@ public class MainController {
     MenuService menuService;
     @Autowired
     OrderService orderService;
-    @Autowired
-    EventUserService eventUserService;
-    @Autowired
-    UserDetailsService userDetailsService;
 
     @RequestMapping(value = "/partials/{part}")
     public String getPartialPage(@PathVariable("part") String part) {
         return "partials/" + part;
-    }
-
-    @RequestMapping("/eventsJson/")
-    public @ResponseBody Set<ResponseEvent> getEvent() {
-
-        Set<ResponseEvent>responseEvents = new HashSet<>();
-        for (Event e: eventService.getListOfAllEvents()) {
-            responseEvents.add(new ResponseEvent(e));
-
-        }
-        for(ResponseEvent e: responseEvents){
-
-            System.out.println(e.getName());
-        }
-
-        return responseEvents;
-    }
-
-    @RequestMapping(value = "/my_order")
-    public @ResponseBody Set<ResponseEvent> response(HttpSession session) {
-        int user_id = (int) session.getAttribute("userId");
-        User user = userService.getUser(user_id);
-        return eventUserService.getAllEvents(user);
     }
 
     @RequestMapping(value = "/")

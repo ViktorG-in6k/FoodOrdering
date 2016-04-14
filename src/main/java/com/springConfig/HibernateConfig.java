@@ -1,6 +1,5 @@
 package com.springConfig;
 
-
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +18,6 @@ import java.util.Properties;
 @PropertySource("classpath:properties/database.properties")
 @EnableTransactionManagement
 public class HibernateConfig {
-
     @Bean
     public DataSource dataSource(
             @Value("jdbc:mysql://localhost:3306/food_order_db") String url,
@@ -47,11 +45,8 @@ public class HibernateConfig {
         return new Properties() {
             {
                 setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-                //setProperty("hibernate.chach.provider_class", "org.hibernate.cache.NoCacheProvider");
                 setProperty("hibernate.show_sql", "true");
                 setProperty("hibernate.hbm2ddl.auto", "update");
-                //setProperty("hibernate.hbm2ddl.auto", "create");
-                // setProperty("hibernate.hbm2ddl.auto", "create-drop");
             }
         };
     }

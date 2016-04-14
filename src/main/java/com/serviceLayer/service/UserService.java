@@ -2,7 +2,6 @@ package com.serviceLayer.service;
 
 import com.model.User;
 
-
 public interface UserService {
     public void saveUser(User person);
 
