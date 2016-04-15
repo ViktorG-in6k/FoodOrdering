@@ -1,7 +1,7 @@
 package com.serviceLayer.implementation;
 
 import com.dataLayer.DAO.EventDAO;
-import com.model.Event;
+import com.model.Entity.Event;
 import com.serviceLayer.service.EventService;
 import com.serviceLayer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

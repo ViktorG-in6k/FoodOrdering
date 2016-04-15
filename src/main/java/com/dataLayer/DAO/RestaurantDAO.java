@@ -1,7 +1,7 @@
 package com.dataLayer.DAO;
 
-import com.model.Item;
-import com.model.Restaurant;
+import com.model.Entity.Item;
+import com.model.Entity.Restaurant;
 
 import java.util.List;
 

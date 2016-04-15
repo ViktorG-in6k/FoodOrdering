@@ -1,19 +1,18 @@
-package com.model.ResponseEntity;
+package com.DTOLayer.DTOEntity;
 
-import com.model.Event;
-import com.model.User;
+import com.model.Entity.Event;
+import com.model.Entity.User;
 import java.time.LocalDateTime;
 
-public class ResponseEvent {
-    private int id;
-    private String name;
-    private String description;
-    private User user;
-    private String imageURL;
-    private LocalDateTime date;
+public class EventDTO {
+    protected int id;
+    protected String name;
+    protected String description;
+    protected User user;
+    protected String imageURL;
+    protected LocalDateTime date;
 
-
-    public ResponseEvent(Event event) {
+    public EventDTO(Event event) {
         this.id = event.getId();
         this.name = event.getName();
         this.description = event.getDescription();

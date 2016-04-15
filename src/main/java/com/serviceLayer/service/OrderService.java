@@ -1,6 +1,6 @@
 package com.serviceLayer.service;
 
-import com.model.Order;
+import com.model.Entity.Order;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

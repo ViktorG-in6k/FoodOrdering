@@ -1,7 +1,7 @@
 package com.dataLayer.Implementations;
 
 import com.dataLayer.DAO.OrderDAO;
-import com.model.Order;
+import com.model.Entity.Order;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

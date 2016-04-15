@@ -1,6 +1,6 @@
 package com.dataLayer.DAO;
 
-import com.model.Order;
+import com.model.Entity.Order;
 
 import java.util.List;
 

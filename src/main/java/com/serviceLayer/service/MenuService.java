@@ -1,6 +1,6 @@
 package com.serviceLayer.service;
 
-import com.model.Item;
+import com.model.Entity.Item;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

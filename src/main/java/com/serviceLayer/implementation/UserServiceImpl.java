@@ -1,7 +1,7 @@
 package com.serviceLayer.implementation;
 
 import com.dataLayer.DAO.UserDAO;
-import com.model.User;
+import com.model.Entity.User;
 import com.serviceLayer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

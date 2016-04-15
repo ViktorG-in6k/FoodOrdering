@@ -1,7 +1,7 @@
 package com.dataLayer.Implementations;
 
 import com.dataLayer.DAO.EventDAO;
-import com.model.Event;
+import com.model.Entity.Event;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

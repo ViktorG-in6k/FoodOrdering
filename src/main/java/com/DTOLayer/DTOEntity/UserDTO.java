@@ -1,12 +1,12 @@
-package com.model.ResponseEntity;
+package com.DTOLayer.DTOEntity;
 
-import com.model.User;
+import com.model.Entity.User;
 
-public class ResponseUser {
-    private int id;
-    private String email;
+public class UserDTO {
+    protected int id;
+    protected String email;
 
-    public ResponseUser(User user) {
+    public UserDTO(User user) {
         this.id = user.getId();
         this.email = user.getEmail();
     }

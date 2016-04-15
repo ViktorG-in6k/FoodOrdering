@@ -1,6 +1,6 @@
 package com.serviceLayer.service;
 
-import com.model.Event;
+import com.model.Entity.Event;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;

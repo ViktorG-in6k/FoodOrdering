@@ -1,7 +1,7 @@
 package com.serviceLayer.service;
 
-import com.model.Item;
-import com.model.Restaurant;
+import com.model.Entity.Item;
+import com.model.Entity.Restaurant;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;

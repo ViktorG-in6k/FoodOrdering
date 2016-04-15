@@ -1,7 +1,7 @@
 package com.dataLayer.Implementations;
 
 import com.dataLayer.DAO.MenuDAO;
-import com.model.Item;
+import com.model.Entity.Item;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
