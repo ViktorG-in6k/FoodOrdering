@@ -1,19 +1,19 @@
-package com.DTOLayer.DTOEntity;
+package com.DTOLayer.DTOEntity.orderDTO;
 
 import com.model.Entity.Order;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyOrderDTOList {
-    private List<MyOrderDTO> myOrderList;
+public class OrderDTOList {
+    private List<OrderDTOItemCount> myOrderList;
 
-    public MyOrderDTOList(List<Order>orderList){
+    public OrderDTOList(List<Order>orderList){
 
         myOrderList = new ArrayList<>();
         for(Order order: orderList){
             boolean k = false;
-            for (MyOrderDTO myOrder: myOrderList) {
+            for (OrderDTOItemCount myOrder: myOrderList) {
                 if(myOrder.getItem().getId()==order.getItem().getId()){
                     myOrder.setCount(myOrder.getCount()+1);
                     k=true;
@@ -21,16 +21,16 @@ public class MyOrderDTOList {
                 }
             }
             if(!k){
-                myOrderList.add(new MyOrderDTO(order.getItem()));
+                myOrderList.add(new OrderDTOItemCount(order.getItem()));
             }
         }
     }
 
-    public List<MyOrderDTO> getMyOrderList(){
+    public List<OrderDTOItemCount> getMyOrderList(){
         return myOrderList;
     }
 
-    public void setMyOrderList(List<MyOrderDTO> myOrderList){
+    public void setMyOrderList(List<OrderDTOItemCount> myOrderList){
         this.myOrderList = myOrderList;
     }
 }

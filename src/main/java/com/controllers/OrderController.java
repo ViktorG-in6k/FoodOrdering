@@ -1,7 +1,7 @@
 package com.controllers;
 
 import com.DTOLayer.DTOEntity.EventDTO;
-import com.DTOLayer.DTOEntity.MyOrderDTOList;
+import com.DTOLayer.DTOEntity.orderDTO.OrderDTOList;
 import com.DTOLayer.DTOEntity.OrderDTO;
 import com.model.Entity.Event;
 import com.model.Entity.Order;
@@ -31,30 +31,15 @@ public class OrderController {
 
     @RequestMapping("/MyOrderJson_{event}")
     public  @ResponseBody
-    MyOrderDTOList get_my_order_by_event(HttpSession session, @PathVariable("event") int eventId) {
+    OrderDTOList get_my_order_by_event(HttpSession session, @PathVariable("event") int eventId) {
         int userId = (int) session.getAttribute("userId");
-        List<OrderDTO> OrderDTOs = new ArrayList<OrderDTO>();
-        MyOrderDTOList myOrderDTOList = new MyOrderDTOList(orderService.orderListOfUserByEvent(userId,eventId));
-
-
-
-        for (Order order: orderService.orderListOfUserByEvent(userId,eventId)) {
-
-            OrderDTOs.add(new OrderDTO(order));
-        }
-
-        return myOrderDTOList;
+        return new OrderDTOList(orderService.orderListOfUserByEvent(userId,eventId));
     }
 
     @RequestMapping("/CommonOrderJson_{event}")
     public  @ResponseBody
-    List<OrderDTO> get_common_order_by_event(HttpSession session, @PathVariable("event") int eventId) {
-
-        List<OrderDTO> OrderDTOs = new ArrayList<OrderDTO>();
-        for (Order order: orderService.orderListOfEvent(eventId)) {
-            OrderDTOs.add(new OrderDTO(order));
-        }
-        return OrderDTOs;
+    OrderDTOList get_common_order_by_event(@PathVariable("event") int eventId) {
+        return new OrderDTOList(orderService.orderListOfEvent(eventId));
     }
 
     @RequestMapping("/eventsJson/")

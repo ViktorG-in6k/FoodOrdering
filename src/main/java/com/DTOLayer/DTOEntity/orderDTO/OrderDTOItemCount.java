@@ -1,8 +1,9 @@
-package com.DTOLayer.DTOEntity;
+package com.DTOLayer.DTOEntity.orderDTO;
 
+import com.DTOLayer.DTOEntity.ItemDTO;
 import com.model.Entity.Item;
 
-public class MyOrderDTO {
+class OrderDTOItemCount {
     private ItemDTO item;
     private int count;
 
@@ -22,7 +23,7 @@ public class MyOrderDTO {
         this.item = item;
     }
 
-    public MyOrderDTO(Item item){
+    public OrderDTOItemCount(Item item){
         this.item = new ItemDTO(item);
         count = 1;
     }

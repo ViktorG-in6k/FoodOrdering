@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
-
 public interface EventDAO {
     public void save(Event e);
     public Event getEventById(int id);
