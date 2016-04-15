@@ -1,9 +1,0 @@
-INSERT INTO food_order_db.user (id, email, name, enabled, password) VALUES (1, 'avatarion.com@gmail.com', 'User', false, null);
-INSERT INTO food_order_db.user (id, email, name, enabled, password) VALUES (4, null, 'User', false, null);
-INSERT INTO food_order_db.user (id, email, name, enabled, password) VALUES (5, null, 'User', false, 'aaa');
-INSERT INTO food_order_db.user (id, email, name, enabled, password) VALUES (9, 'ViktorG@interlink-ua.com', 'Victor', false, 'aaa');
-INSERT INTO food_order_db.user (id, email, name, enabled, password) VALUES (16, 'asas@asas', 'user', false, 'aaa');
-INSERT INTO food_order_db.user (id, email, name, enabled, password) VALUES (61, '', 'user', false, null);
-INSERT INTO food_order_db.user (id, email, name, enabled, password) VALUES (70, null, 'user', false, null);
-INSERT INTO food_order_db.user (id, email, name, enabled, password) VALUES (71, null, 'user', false, null);
-INSERT INTO food_order_db.user (id, email, name, enabled, password) VALUES (72, null, 'user', false, null);
