@@ -9,15 +9,18 @@
     <link href="${bootstrapCss}" rel="stylesheet" />
     <link href="${coreCss}" rel="stylesheet" />
     <script src="/resources/js/angular.min.js"></script>
+    <link href="/resources/css/font-awesome-4.6.1/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/resources/css/hover-min.css" rel="stylesheet"/>
+
 </head>
 
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true" />
 <br/>
 <div class="container">
-
+    <div class="row">
     <jsp:include page="/WEB-INF/views/jspf/creatorOfRestaurant.jsp" flush="true" />
     <jsp:include page="/WEB-INF/views/jspf/restaurantList.jsp" flush="true" />
-
+    </div>
 </div>
 
 <spring:url value="/resources/core/js/bootstrap.js" var="coreJs" />
