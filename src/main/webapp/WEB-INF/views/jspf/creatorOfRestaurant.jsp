@@ -2,7 +2,7 @@
 
 
 
-<form role="form" action="/new_restaurant" method="post" class="col-md-3  pull-right" style="position: fixed; right: 10px; ">
+<form role="form" action="/new_restaurant" method="post" class="col-md-3 pull-left" style="position: fixed; right: 10px; ">
     <fieldset>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
