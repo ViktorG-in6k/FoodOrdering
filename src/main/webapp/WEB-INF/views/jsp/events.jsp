@@ -17,7 +17,7 @@
     <div ng-app="foodOrdering" class="container">
         <jsp:include page="/WEB-INF/views/jspf/creatorOfEvent.jsp" flush="true" />
         <div ng-view></div>
-    <%--<jsp:include page="/WEB-INF/views/jspf/eventList.jsp" flush="true" />--%>
+
     </div>
 
     <spring:url value="/resources/core/js/bootstrap.js" var="coreJs" />
