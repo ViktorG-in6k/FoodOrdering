@@ -1,4 +1,0 @@
-INSERT INTO food_order_db.restaurant (id, description, imageURL, name) VALUES (10, '', 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Mcdonalds-90s-logo.svg/240px-Mcdonalds-90s-logo.svg.png', 'McDonald`s');
-INSERT INTO food_order_db.restaurant (id, description, imageURL, name) VALUES (11, 'Syshi restaurant', 'http://www.sushiya.ua/shared/site/images/logo.png', 'Sushiya');
-INSERT INTO food_order_db.restaurant (id, description, imageURL, name) VALUES (15, '', 'http://derestoran.com/images/700x525/1379410727_lkv3rz.jpg', 'Creshyatic');
-INSERT INTO food_order_db.restaurant (id, description, imageURL, name) VALUES (39, '', '', '&#1099;&#1099;');
