@@ -30,7 +30,6 @@ public class EventDAOImpl implements EventDAO {
         return (Event) query.setInteger("id",id).uniqueResult();
     }
 
-
     public Set<Event> getListOfAllEvents() {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from event");
