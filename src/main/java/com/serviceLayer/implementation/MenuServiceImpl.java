@@ -12,14 +12,15 @@ import java.math.BigDecimal;
 
 @Service
 public class MenuServiceImpl implements MenuService {
+
     @Autowired
-    MenuDAO menuDAO;
+    MenuDAO itemDAO;
 
     public void save(Item item) {
         if (item.getImageURL().equals("")) {
             item.setImageURL("/resources/image/shief.jpg");
         }
-        menuDAO.save(item);
+        itemDAO.save(item);
     }
 
     public void saveByRequest(HttpServletRequest req, HttpSession session) {
@@ -30,8 +31,14 @@ public class MenuServiceImpl implements MenuService {
 
         Restaurant restaurant = (Restaurant) session.getAttribute("restaurant");
 
-        Item item = new Item(restaurant, name, description, URLimage, price);
+        Item item = new Item( name, description, URLimage, price, restaurant);
+        if (item.getImageURL().equals("")) {
+            item.setImageURL("/resources/image/shief.jpg");
+        }
+        itemDAO.save(item);
+    }
 
-        menuDAO.save(item);
+    public Item getItemById(int id){
+        return itemDAO.getItemById(id);
     }
 }

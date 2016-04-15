@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @Configuration
 @Import(WebAppConfig.class)
-@ComponentScan(basePackages = {"com", "com.dataLayer.Implementations", "com.serviceLayer.service"})
+@ComponentScan(basePackages = {"com", "com.dataLayer.Implementations", "com.serviceLayer.service","com.dataLayer.DAO"})
 public class ConfigurationClass {
     @Bean
     public PropertySourcesPlaceholderConfigurer placeholderConfigurer() {

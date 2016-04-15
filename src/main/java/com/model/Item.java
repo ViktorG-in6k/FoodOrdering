@@ -1,8 +1,8 @@
 package com.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import java.math.BigDecimal;
 
 @Entity(name = "menu")
@@ -15,23 +15,13 @@ public class Item extends com.model.base.Entity {
     private String imageURL;
     @Column
     private BigDecimal price;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "restaurant_id", nullable = false)
-    @JsonIgnore
+    @OneToOne
     private Restaurant restaurant;
-
-    public Item(String name, String description, String URLimage, BigDecimal price) {
-        this.name = name;
-        this.description = description;
-        this.imageURL = URLimage;
-        this.price = price;
-    }
 
     public Item() {
     }
 
-    public Item(Restaurant restaurant, String name, String description, String imageURL, BigDecimal price) {
+    public Item(String name, String description, String imageURL, BigDecimal price, Restaurant restaurant) {
         this.restaurant = restaurant;
         this.description = description;
         this.imageURL = imageURL;
@@ -77,16 +67,5 @@ public class Item extends com.model.base.Entity {
 
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
-    }
-
-    @Override
-    public String toString() {
-        return "Item{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", imageURL='" + imageURL + '\'' +
-                ", price=" + price +
-                ", restaurant=" + restaurant +
-                '}';
     }
 }

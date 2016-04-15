@@ -69,4 +69,3 @@ public class EventDAOImpl implements EventDAO {
         sessionFactory.getCurrentSession().update(event);
     }
 }
-

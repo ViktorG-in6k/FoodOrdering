@@ -8,7 +8,7 @@
         <div class="navbar-header">
 
             <a class="navbar-brand" href="/events">Food ordering</a>
-            <a class="navbar-brand" href="${backPage}">Back</a>
+
         </div>
 
 

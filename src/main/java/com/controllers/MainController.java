@@ -1,22 +1,14 @@
 package com.controllers;
 
-import com.Classes.AllList;
-import com.Classes.OrderList;
-import com.model.*;
 import com.serviceLayer.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 @Controller
 public class MainController {
@@ -30,29 +22,10 @@ public class MainController {
     MenuService menuService;
     @Autowired
     OrderService orderService;
-    @Autowired
-    EventUserService eventUserService;
-    @Autowired
-    UserDetailsService userDetailsService;
 
     @RequestMapping(value = "/partials/{part}")
     public String getPartialPage(@PathVariable("part") String part) {
         return "partials/" + part;
-    }
-
-    @RequestMapping("/eventsJson/")
-    public  @ResponseBody
-    Set<Event> getEvent() {
-        Set<Event> events = eventService.getListOfAllEvents();
-        return events;
-    }
-
-    @RequestMapping(value = "/my_order")
-    @ResponseBody
-    Set<EventResponse> response(HttpSession session) {
-        int user_id = (int) session.getAttribute("userId");
-        User user = userService.getUser(user_id);
-        return eventUserService.getAllEvents(user);
     }
 
     @RequestMapping(value = "/")
@@ -127,22 +100,5 @@ public class MainController {
         session.setAttribute("backPage", "/events/event_" + event);
         return "menu";
     }
-
-    @RequestMapping(value = "/events/event_{event}/order_list")
-    public String get_order(HttpSession session, @PathVariable("event") int event) {
-        OrderList orderList = new OrderList(eventService.getEventById(event).getItemsList());
-        List<AllList> allList = new ArrayList<AllList>();
-        for (Restaurant rest : restaurantService.getListOfAllRestaurant()) {
-            allList.add(new AllList(rest, new OrderList(eventService.getEventById(event).getItemsList())));
-        }
-        List<AllList> orderL = new ArrayList<AllList>();
-        for (AllList l : allList) {
-            if (l.getOrderList().size() != 0) {
-                orderL.add(l);
-            }
-        }
-        session.setAttribute("orderList", orderL);
-        session.setAttribute("backPage", "/events/event_" + event);
-        return "order";
-    }
 }
+
