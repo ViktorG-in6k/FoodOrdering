@@ -2,7 +2,6 @@
     <div>
 
         <div ng-repeat="event in events | orderBy:['date.year','date.month','date.dayOfMonth']">
-
             <div class="col-sm-5 col-md-5 col-lg-4" style="margin-bottom: 30px">
                 <div class="post">
                     <div class="post-img-content"
@@ -10,7 +9,7 @@
                         <img class="pull-left col-md-12" src=""/>
 
                         <form class="post-title" role="form" action="/addResponsibleUser" method="post" >
-                            <a href="/events/event_{{event.id}}">
+                            <a href="/events/event_{{event.id}}#/{{event.id}}">
                                 <b style="text-decoration: underline; background-color: rgba(0, 0, 0, 0.58);" class="text-info col-md-6">{{event.name}}</b>
 
                             </a>
