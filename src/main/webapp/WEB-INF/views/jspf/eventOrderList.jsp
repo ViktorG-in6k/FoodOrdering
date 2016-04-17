@@ -1,5 +1,5 @@
 <div ng-controller="orderList">
-   <div ng-if="myOrders.myOrderList">
+   <div >
    <h3>Your order</h3>
    <table class="table">
       <tr>
@@ -7,12 +7,16 @@
          <th>price</th>
          <th>amount</th>
          <th>total</th>
+         <th>restaurant</th>
       </tr>
       <tr ng-repeat="item in myOrders.myOrderList">
          <td>{{item.item.name}}</td>
          <td>{{item.item.price|currency}}</td>
-         <td>{{item.count}}</td>
+         <td> <span>{{item.count}}</span> </td>
+
          <td>{{item.count * item.item.price}}</td>
+         <td>{{item.restaurant.name}}</td>
+
       </tr>
       <tr>
          <td></td>

@@ -1,6 +1,6 @@
 var services = angular.module('eventApp.services', []);
 
-services.factory("orderListService", function ($http, $rootScope) {
+services.factory("OrderListService", function ($http, $rootScope) {
     var orderListService = {};
 
     orderListService.addToOrder = function (eventId, ItemId) {
@@ -33,7 +33,12 @@ services.factory("orderListService", function ($http, $rootScope) {
     return orderListService;
 });
 
-services.factory("restaurantService", function ($http) {
+services.factory("RestaurantService", function ($http) {
     var restaurantService = {};
+/*    restaurantService.getRestaurants = function () {
+        return $resource('/restaurants', {
+            query: {method: 'GET', isObject: true}
+        });
+    };*/
     return restaurantService;
 });
