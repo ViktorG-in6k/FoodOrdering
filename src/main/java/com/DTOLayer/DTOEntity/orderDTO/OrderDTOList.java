@@ -1,5 +1,6 @@
 package com.DTOLayer.DTOEntity.orderDTO;
 
+import com.DTOLayer.DTOEntity.RestaurantDTO;
 import com.model.Entity.Order;
 
 import java.util.ArrayList;
