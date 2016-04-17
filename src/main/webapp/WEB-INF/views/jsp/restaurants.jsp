@@ -14,7 +14,7 @@
 <div class="container" >
     <div class="row">
         <div ng-view></div>
-        <jsp:include page="/WEB-INF/views/jspf/creatorOfRestaurant.jsp" flush="true" />
+
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -36,6 +36,7 @@
 <script src="/resources/js/angular-route.min.js"></script>
 <script src="/resources/js/eventDetailModule/controllers.js"></script>
 <script src="/resources/js/eventDetailModule/services.js"></script>
+<script src="/resources/js/eventDetailModule/directives.js"></script>
 <script src="/resources/js/eventDetailModule/app.js"></script>
 </body>
 

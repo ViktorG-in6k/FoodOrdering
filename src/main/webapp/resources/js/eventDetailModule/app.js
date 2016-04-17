@@ -1,6 +1,7 @@
 var app = angular.module('eventApp', [
     'eventApp.services',
     'eventApp.controllers',
+    'eventApp.directives',
     "ngRoute"
 ]);
 
