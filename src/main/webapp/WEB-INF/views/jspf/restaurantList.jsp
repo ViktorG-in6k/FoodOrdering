@@ -10,7 +10,6 @@
     <jsp:include page="/WEB-INF/views/jspf/eventDetails.jsp"/>
 
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-
             <div ng-repeat="restaurant in restaurants" class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingOne">
                     <h4 class="panel-title">
@@ -31,7 +30,7 @@
                 </div>
                 <div id="{{restaurant.id}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                     <div class="panel-body" >
-                            <div  ng-repeat="item in restaurant.itemList" class="well hvr-float-shadow ho hoverWell" style="width: 100%">
+                            <div  ng-repeat="item in restaurant.itemList" class="well .well-sm hvr-float-shadow ho hoverWell" style="width: 100%;padding: 0px">
                                 <a href="" ng-click="addToOrder(eventId,item.id)">
                                     <div class="row">
                                         <div class="col-lg-1"><h3></h3></div>
