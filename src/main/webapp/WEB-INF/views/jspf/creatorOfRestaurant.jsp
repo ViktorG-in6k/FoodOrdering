@@ -3,7 +3,7 @@
 
 <div class="col-md-4 col-lg-4" >
     <div style="position: fixed">
-        <div class="col-md-12">
+        <div class="col-md-9">
             <form role="form" action="/new_restaurant"  method="post">
                 <fieldset>
                     <legend class="button"  data-slide-toggle="#s" data-slide-toggle-duration="300"><a>New restaurant</a></legend>
@@ -26,7 +26,7 @@
                 </fieldset>
             </form>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-9">
             <div style="margin-top: 10px">
             <jsp:include page="/WEB-INF/views/jspf/eventOrderList.jsp" flush="true" />
             </div>

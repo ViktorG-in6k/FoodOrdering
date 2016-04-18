@@ -8,6 +8,9 @@ app.config(['$routeProvider',
         }).when('/Delete', {
             templateUrl: '/partials/eventList',
             controller: 'eventController'
+        }).when('/commonOrder/:eventId/', {
+            templateUrl: '/partials/commonOrder',
+            controller: 'commonOrderCtrl'
         }).otherwise({
             redirectTo: '/AllEvents'
         });
@@ -22,6 +25,16 @@ app.factory('eventService',function($http){
     };
     return events;
 });
+
+app.controller('commonOrderCtrl',function ($routeParams, $http, $rootScope, $scope) {
+    $rootScope.id = $routeParams.eventId;
+
+    $http.get('/CommonOrderJson_' + $routeParams.eventId ).success(function (data) {
+        $scope.eventOrderList = data;
+    });
+
+});
+
 
 app.controller('eventController',function ($scope, eventService, $http) {
     $http.get('/eventsJson/').success(function (data) {

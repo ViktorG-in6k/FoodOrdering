@@ -4,7 +4,7 @@
             <img class="media-object" width="160px" height="160px"  src="http://www.ekaterinawalter.com/wp-content/uploads/2016/01/image-2.jpg">
         </a>
         <div class="media-body">
-            <h4 class="media-heading">Party</h4>
+            <h4 class="media-heading">{{event.name}}</h4>
             <p class="text-right">Responsible for order : Super man</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
                 Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis

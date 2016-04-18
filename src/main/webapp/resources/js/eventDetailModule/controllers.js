@@ -4,13 +4,20 @@ controllers.controller("eventController", function ($http,$scope, $routeParams, 
     $rootScope.eventId = $routeParams.id;
     $scope.addToOrder = OrderListService.addToOrder;
     $scope.getTotal = OrderListService.getTotal;
+
     $http.get("/restaurants").success(function (data) {
         $scope.restaurants = data;
     });
-/*    $scope.restaurants = RestaurantService.getRestaurants();*/
+    
+        $scope.event = {"id":"2","name":"super event"};
+
+/*    $http.get().success(function (data) {
+        $scope.event = data;
+    })*/
 });
 
-controllers.controller("orderList", function (OrderListService) {
+controllers.controller("orderList", function (OrderListService, $scope) {
+    $scope.addToOrder = OrderListService.addToOrder;
    OrderListService.updateOrderList();
 });
 

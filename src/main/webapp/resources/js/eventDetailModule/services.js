@@ -16,17 +16,21 @@ services.factory("OrderListService", function ($http, $rootScope) {
         });
     };
 
+
     orderListService.updateOrderList = function () {
         $http.get("/MyOrderJson_" + $rootScope.eventId).success(function (data) {
             $rootScope.myOrders = data;
         })
     };
 
+
     orderListService.getTotal = function () {
-        var total =0;
-        for(var i =0 ;i<$rootScope.myOrders.myOrderList.length;i++){
-            total +=$rootScope.myOrders.myOrderList[i].count * $rootScope.myOrders.myOrderList[i].item.price;
-        }
+        var total = 0;
+        if ($rootScope.myOrders) {
+            for (var i = 0; i < $rootScope.myOrders.myOrderList.length; i++) {
+                total += $rootScope.myOrders.myOrderList[i].count * $rootScope.myOrders.myOrderList[i].item.price;
+            }
+        } else return 0;
         return total;
     };
 
@@ -35,10 +39,10 @@ services.factory("OrderListService", function ($http, $rootScope) {
 
 services.factory("RestaurantService", function ($http) {
     var restaurantService = {};
-/*    restaurantService.getRestaurants = function () {
-        return $resource('/restaurants', {
-            query: {method: 'GET', isObject: true}
-        });
-    };*/
+    /*    restaurantService.getRestaurants = function () {
+     return $resource('/restaurants', {
+     query: {method: 'GET', isObject: true}
+     });
+     };*/
     return restaurantService;
 });

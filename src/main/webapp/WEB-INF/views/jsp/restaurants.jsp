@@ -7,6 +7,7 @@
     <spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss" />
     <link href="${bootstrapCss}" rel="stylesheet" />
     <link href="/resources/css/eventDetails.css" rel="stylesheet">
+    <link href="/resources/css/bootstrapTheme.css" rel="stylesheet">
 </head>
 <body>
 <<jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true" />
