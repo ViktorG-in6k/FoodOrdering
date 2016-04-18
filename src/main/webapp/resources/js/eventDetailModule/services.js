@@ -24,7 +24,17 @@ services.factory("OrderListService", function ($http, $rootScope) {
             orderListService.updateOrderList();
         });
     };
+    
+    orderListService.removeOneItemFromOrder = function (eventId, itemId) {
+        $http({
+            method: 'GET',
+            url: '/remote_one_item_from_order'+itemId+"_"+eventId
+        }).then(function () {
+            orderListService.updateOrderList();
+        });
+    };
 
+    
     orderListService.updateOrderList = function () {
         $http.get("/MyOrderJson_" + $rootScope.eventId).success(function (data) {
             $rootScope.myOrders = data;
@@ -49,10 +59,5 @@ services.factory("OrderListService", function ($http, $rootScope) {
 
 services.factory("RestaurantService", function ($http) {
     var restaurantService = {};
-    /*    restaurantService.getRestaurants = function () {
-     return $resource('/restaurants', {
-     query: {method: 'GET', isObject: true}
-     });
-     };*/
     return restaurantService;
 });
