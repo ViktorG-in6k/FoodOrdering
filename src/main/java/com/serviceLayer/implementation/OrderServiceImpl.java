@@ -60,5 +60,8 @@ public class OrderServiceImpl implements OrderService {
         orderDAO.deleteItemFromOrder(userId, eventId, itemId);
     }
 
-
+    @Override
+    public void updateOrderedOfOrder(boolean ordered, int eventId, int itemId) {
+        orderDAO.updateOrderedOfOrder(ordered,eventId,itemId);
+    }
 }

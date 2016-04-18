@@ -1,6 +1,5 @@
 package com.DTOLayer.DTOEntity.orderDTO;
 
-import com.DTOLayer.DTOEntity.RestaurantDTO;
 import com.model.Entity.Order;
 
 import java.util.ArrayList;
@@ -10,7 +9,6 @@ public class OrderDTOList {
     private List<OrderDTOItemCount> myOrderList;
 
     public OrderDTOList(List<Order>orderList){
-
         myOrderList = new ArrayList<>();
         for(Order order: orderList){
             boolean k = false;
@@ -22,7 +20,8 @@ public class OrderDTOList {
                 }
             }
             if(!k){
-                myOrderList.add(new OrderDTOItemCount(order.getItem()));
+                myOrderList.add(new OrderDTOItemCount(order));
+
             }
         }
     }

@@ -3,11 +3,13 @@ package com.DTOLayer.DTOEntity;
 import com.model.Entity.Order;
 
 public class OrderDTO {
-    protected ItemDTO item;
+    private ItemDTO item;
 
-    protected UserDTO user;
+    private UserDTO user;
 
-    protected EventDTO event;
+    private EventDTO event;
+
+    private boolean ordered;
 
     public OrderDTO(Order order){
         this.item = new ItemDTO(order.getItem());
@@ -25,5 +27,13 @@ public class OrderDTO {
 
     public EventDTO getEvent() {
         return event;
+    }
+
+    public boolean isOrdered() {
+        return ordered;
+    }
+
+    public void setOrdered(boolean ordered) {
+        this.ordered = ordered;
     }
 }

@@ -20,10 +20,14 @@ public class Order extends com.model.base.Entity {
     @JoinColumn(name = "event_id", nullable = false)
     private Event event;
 
+    @Column
+    private boolean ordered;
+
     public Order(User user, Item item, Event event) {
         this.user = user;
         this.item = item;
         this.event = event;
+        this.ordered = false;
     }
 
     public Item getItem() {
@@ -48,5 +52,13 @@ public class Order extends com.model.base.Entity {
 
     public void setEvent(Event event) {
         this.event = event;
+    }
+
+    public boolean isOrdered() {
+        return ordered;
+    }
+
+    public void setOrdered(boolean ordered) {
+        this.ordered = ordered;
     }
 }

@@ -34,7 +34,14 @@ public class OrderController {
         return new OrderDTOList(orderService.orderListOfEvent(eventId));
     }
 
-
+    @RequestMapping("/update_ordered{event}_{item}_{ordered}")
+    public  @ResponseBody
+    OrderDTOList updateOrdered(HttpSession session,@PathVariable("event") int eventId, @PathVariable("item") int itemId,
+                               @PathVariable("ordered") boolean ordered) {
+        int userId = (int) session.getAttribute("userId");
+        orderService.updateOrderedOfOrder(ordered, eventId, itemId);
+        return new OrderDTOList(orderService.orderListOfUserByEvent(userId,eventId));
+    }
 
     @RequestMapping("/remote_from_order{item}_{event}")
     public  @ResponseBody

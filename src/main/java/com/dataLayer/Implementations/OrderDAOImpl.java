@@ -58,10 +58,22 @@ public class OrderDAOImpl implements OrderDAO {
         Session session = sessionFactory.getCurrentSession();
 
 
-        Query query = session.createQuery("delete from order_list where event_id=:eventId and user_id=:userId and item_id=:itemId  LIMIT 1");
+        Query query = session.createQuery("delete from order_list where event_id=:eventId and user_id=:userId and item_id=:itemId");
         query
                 .setInteger("eventId",eventId)
                 .setInteger("userId",userId)
+                .setInteger("itemId",itemId);
+        query.executeUpdate();
+    }
+
+    @Override
+    public void updateOrderedOfOrder(boolean ordered,int eventId,int itemId) {
+        Session session = sessionFactory.getCurrentSession();
+
+        Query query = session.createQuery("update order_list SET ordered=:ordered where event_id=:eventId and item_id=:itemId");
+        query
+                .setBoolean("ordered",ordered)
+                .setInteger("eventId",eventId)
                 .setInteger("itemId",itemId);
         query.executeUpdate();
     }
