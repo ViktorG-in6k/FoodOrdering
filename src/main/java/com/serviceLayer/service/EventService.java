@@ -25,5 +25,7 @@ public interface EventService {
 
     public List<Event> getListOfEventsBetweenTwoDates(LocalDate firstDate, LocalDate lastDate);
 
+    public void setResponsibleUser(int userId, int eventId);
+
     public void update(Event event);
 }

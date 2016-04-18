@@ -1,10 +1,6 @@
 package com.controllers;
 
-import com.DTOLayer.DTOEntity.EventDTO;
 import com.DTOLayer.DTOEntity.orderDTO.OrderDTOList;
-import com.DTOLayer.DTOEntity.OrderDTO;
-import com.model.Entity.Event;
-import com.model.Entity.Order;
 import com.serviceLayer.service.EventService;
 import com.serviceLayer.service.OrderService;
 import com.serviceLayer.service.RestaurantService;
@@ -15,10 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Controller
 public class OrderController {
@@ -42,13 +34,13 @@ public class OrderController {
         return new OrderDTOList(orderService.orderListOfEvent(eventId));
     }
 
-    @RequestMapping("/eventsJson/")
-    public @ResponseBody
-    Set<EventDTO> getEvent() {
-        Set<EventDTO> EventDTOs = new HashSet<>();
-        for (Event e: eventService.getListOfAllEvents()) {
-            EventDTOs.add(new EventDTO(e));
-        }
-        return EventDTOs;
+
+
+    @RequestMapping("/remote_from_order{item}_{event}")
+    public  @ResponseBody
+    OrderDTOList get_common_order_by_event(HttpSession session,@PathVariable("event") int eventId,@PathVariable("item") int itemId) {
+        int userId = (int) session.getAttribute("userId");
+        orderService.deleteItemFromOrder(userId,eventId,itemId);
+        return new OrderDTOList(orderService.orderListOfUserByEvent(userId,eventId));
     }
 }
