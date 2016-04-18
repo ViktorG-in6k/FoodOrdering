@@ -40,6 +40,7 @@ public class MainController {
 
     @RequestMapping(value = "/events")
     public String events(HttpSession session) {
+
         session.setAttribute("allEvents", eventService.getListOfAllEvents());
         session.setAttribute("backPage", "/events");
         return "events";
@@ -47,6 +48,11 @@ public class MainController {
 
     @RequestMapping(value = "/events", method = RequestMethod.POST)
     public String events(HttpSession session, HttpServletRequest req) {
+        String email = req.getParameter("email");
+        session.setAttribute("backPage","/");
+        userService.saveUser(email);
+
+
         session.setAttribute("userId", userService.getUserByEmail(req.getParameter("email")).getId());
         return "events";
     }
