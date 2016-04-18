@@ -25,7 +25,7 @@
                                 {{event.date.hour}}:{{event.date.minute}}</b><br/>
                             <div ng-if="event.user == null">
                                 <b style="background-color: rgba(0, 0, 0, 0.58);"><input type="hidden" value="{{event.id}}" name="eventId">
-                                    <button type="submit" class="btn btn-success pull-right">To take responsibility
+                                    <button type="submit" class="btn btn-success pull-right">Take responsibility
                                     </button>
                                 </b>
 
@@ -34,7 +34,7 @@
                             <div ng-if="event.user != null">
                                 <b style="background-color: rgba(0, 0, 0, 0.58);"> {{event.user.email}}
 `                                       <a href="#/commonOrder/{{event.id}}">
-                                        <button type="button" class="btn btn-success ">make order</button>
+                                        <button ng-if=" event.user.email == event.sessionUser.email" type="button" class="btn btn-success ">Make order</button>
                                     </a>
                                 </b>
                             </div>
