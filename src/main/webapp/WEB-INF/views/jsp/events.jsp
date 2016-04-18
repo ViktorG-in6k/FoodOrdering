@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js"></script>
+<script src="/resources/js/angular.min.js"></script>
+<script src="/resources/js/angular-route.min.js"></script>
 <script src="/resources/js/app.js"></script>
 <head>
     <title>Maven + Spring MVC + @JavaConfig</title>
@@ -17,15 +17,11 @@
     <div ng-app="foodOrdering" class="container">
         <jsp:include page="/WEB-INF/views/jspf/creatorOfEvent.jsp" flush="true" />
         <div ng-view></div>
-
     </div>
 
-    <spring:url value="/resources/core/js/bootstrap.js" var="coreJs" />
-    <spring:url value="/resources/core/js/bootstrap.min.js" var="bootstrapJs" />
-    <spring:url value="/resources/core/js/bootstrap.min.js" var="jQuery"/>
+    <script src="/resources/core/css/bootstrap.css"></script>
+    <script src="/resources/core/js/jquery-2.1.4.min.js"></script>
+    <script src="/resources/core/js/bootstrap.js"></script>
 
-    <script src="${jQuery}"></script>
-    <script src="${coreJs}"></script>
-    <script src="${bootstrapJs}"></script>
 </body>
 </html>

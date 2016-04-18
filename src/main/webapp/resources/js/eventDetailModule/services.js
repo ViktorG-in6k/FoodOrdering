@@ -16,12 +16,22 @@ services.factory("OrderListService", function ($http, $rootScope) {
         });
     };
 
+    orderListService.removeFromOrder = function (eventId, itemId) {
+        $http({
+            method: 'GET',
+            url: "/remote_from_order"+itemId+"_"+eventId
+        }).then(function () {
+            orderListService.updateOrderList();
+        });
+    };
 
     orderListService.updateOrderList = function () {
         $http.get("/MyOrderJson_" + $rootScope.eventId).success(function (data) {
             $rootScope.myOrders = data;
         })
     };
+    
+    
 
 
     orderListService.getTotal = function () {
