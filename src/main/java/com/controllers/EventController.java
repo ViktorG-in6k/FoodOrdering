@@ -2,6 +2,7 @@ package com.controllers;
 
 import com.DTOLayer.DTOEntity.EventDTO;
 import com.model.Entity.Event;
+import com.model.Entity.User;
 import com.serviceLayer.service.EventService;
 import com.serviceLayer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,11 @@ public class EventController {
 
     @RequestMapping("/eventsJson/")
     public @ResponseBody
-    Set<EventDTO> getEvents() {
+    Set<EventDTO> getEvents(HttpSession session) {
         Set<EventDTO> EventDTOs = new HashSet<>();
+        User user = userService.getUser((int) session.getAttribute("userId"));
         for (Event e: eventService.getListOfAllEvents()) {
-            EventDTOs.add(new EventDTO(e));
+            EventDTOs.add(new EventDTO(e,user));
         }
         return EventDTOs;
     }
