@@ -1,18 +1,21 @@
 package com.controllers;
 
-import com.serviceLayer.implementation.EventServiceImpl;
+import com.DTOLayer.DTOEntity.EventDTO;
+import com.model.Entity.Event;
+import com.serviceLayer.service.EventService;
 import com.serviceLayer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpSession;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 public class EventController {
     @Autowired
-    EventServiceImpl eventService;
+    EventService eventService;
 
     @Autowired
     UserService userService;
@@ -23,4 +26,23 @@ public class EventController {
         eventService.setResponsibleUser(userId,eventId);
         return "redirect:/events/";
     }
+
+    @RequestMapping("/eventsJson/")
+    public @ResponseBody
+    Set<EventDTO> getEvents() {
+        Set<EventDTO> EventDTOs = new HashSet<>();
+        for (Event e: eventService.getListOfAllEvents()) {
+            EventDTOs.add(new EventDTO(e));
+        }
+        return EventDTOs;
+    }
+
+    @RequestMapping("/event_{id}")
+    public @ResponseBody
+    EventDTO getEventById(@PathVariable("id") int eventId) {
+        EventDTO EventDTO = new EventDTO(eventService.getEventById(eventId));
+        return EventDTO;
+    }
+
+
 }

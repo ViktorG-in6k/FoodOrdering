@@ -54,4 +54,11 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> orderListOfEvent(int eventId) {
         return orderDAO.orderListOfEvent(eventId);
     }
+
+    @Override
+    public void deleteItemFromOrder(int userId, int eventId, int itemId) {
+        orderDAO.deleteItemFromOrder(userId, eventId, itemId);
+    }
+
+
 }

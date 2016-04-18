@@ -1,5 +1,6 @@
 package com.dataLayer.Implementations;
 
+import com.DTOLayer.DTOEntity.OrderDTO;
 import com.dataLayer.DAO.OrderDAO;
 import com.model.Entity.Order;
 import org.hibernate.Query;
@@ -40,5 +41,28 @@ public class OrderDAOImpl implements OrderDAO {
         return (List<Order>) query
                 .setLong("eventId",eventId)
                 .list();
+    }
+
+
+    public Order SelectOrder(int userId,int eventId,int itemId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from order_list where event_id=:eventId and user_id=:userId and item_id=:itemId");
+        return (Order) query
+                .setInteger("eventId",eventId)
+                .setInteger("userId",userId)
+                .setInteger("itemId",itemId);
+    }
+
+    @Override
+    public void deleteItemFromOrder(int userId,int eventId,int itemId) {
+        Session session = sessionFactory.getCurrentSession();
+
+
+        Query query = session.createQuery("delete from order_list where event_id=:eventId and user_id=:userId and item_id=:itemId  LIMIT 1");
+        query
+                .setInteger("eventId",eventId)
+                .setInteger("userId",userId)
+                .setInteger("itemId",itemId);
+        query.executeUpdate();
     }
 }
