@@ -17,5 +17,11 @@ public interface OrderService {
 
     public void deleteItemFromOrder(int userId,int eventId,int itemId);
 
-    public void updateOrderedOfOrder(boolean ordered,int eventId,int itemId);
+    public void deleteOneItemFromOrder(int userId, int eventId, int itemId);
+
+//    void deleteOneItemFromOrder(Order order);
+
+//    Order SelectOrder(int userId, int eventId, int itemId);
+
+    public void updateOrderedOfOrder(boolean ordered, int eventId, int itemId);
 }

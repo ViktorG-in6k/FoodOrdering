@@ -5,12 +5,14 @@ import com.model.Entity.User;
 import java.time.LocalDateTime;
 
 public class EventDTO {
-    protected int id;
-    protected String name;
-    protected String description;
-    protected User user;
-    protected String imageURL;
-    protected LocalDateTime date;
+    private int id;
+    private String name;
+    private String description;
+    private User user;
+    private User sessionUser;
+    private String imageURL;
+    private LocalDateTime date;
+
 
     public EventDTO(Event event) {
         this.id = event.getId();
@@ -19,6 +21,7 @@ public class EventDTO {
         this.imageURL = event.getImageURL();
         this.date = event.getDate();
         this.user = event.getUser();
+
     }
 
     public String getImageURL() {
