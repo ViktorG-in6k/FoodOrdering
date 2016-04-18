@@ -20,7 +20,7 @@
                         <i  style="color:green"  class="fa fa-plus" aria-hidden="true"></i></a>
                 </div>
                 </td>
-                <td>{{item.count * item.item.price|currency}}</td>
+                <td>{{item.count * item.item.price}}</td>
                 <td><a href="" ng-click="removeFromOrder(eventId,item.item.id)"><i style="color:red"   class="fa fa-times" aria-hidden="true"></i></a></td>
             </tr>
             <tr>
@@ -28,7 +28,6 @@
                 <td></td>
                 <td>Total</td>
                 <td>{{getTotal() | currency}}</td>
-
             </tr>
         </table>
     </div>
