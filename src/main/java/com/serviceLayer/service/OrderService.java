@@ -16,4 +16,6 @@ public interface OrderService {
     public List<Order> orderListOfEvent(int eventId);
 
     public void deleteItemFromOrder(int userId,int eventId,int itemId);
+
+    public void updateOrderedOfOrder(boolean ordered,int eventId,int itemId);
 }

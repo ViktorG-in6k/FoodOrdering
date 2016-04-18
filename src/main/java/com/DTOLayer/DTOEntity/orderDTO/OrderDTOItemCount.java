@@ -1,14 +1,15 @@
 package com.DTOLayer.DTOEntity.orderDTO;
 
 import com.DTOLayer.DTOEntity.ItemDTO;
-import com.DTOLayer.DTOEntity.RestaurantDTO;
 import com.DTOLayer.DTOEntity.restaurantDTO.RestaurantDTOforOrder;
-import com.model.Entity.Item;
+import com.model.Entity.Order;
 
 class OrderDTOItemCount {
     private ItemDTO item;
     private int count;
     private RestaurantDTOforOrder restaurant;
+    private boolean ordered;
+
     public int getCount() {
         return count;
     }
@@ -25,10 +26,11 @@ class OrderDTOItemCount {
         this.item = item;
     }
 
-    public OrderDTOItemCount(Item item){
-        this.item = new ItemDTO(item);
+    public OrderDTOItemCount(Order order){
+        this.item = new ItemDTO(order.getItem());
         count = 1;
-        this.restaurant = new RestaurantDTOforOrder(item.getRestaurant());
+        this.restaurant = new RestaurantDTOforOrder(order.getItem().getRestaurant());
+        this.ordered = order.isOrdered();
     }
 
     public RestaurantDTOforOrder getRestaurant() {
@@ -37,5 +39,13 @@ class OrderDTOItemCount {
 
     public void setRestaurant(RestaurantDTOforOrder restaurant) {
         this.restaurant = restaurant;
+    }
+
+    public boolean isOrdered() {
+        return ordered;
+    }
+
+    public void setOrdered(boolean ordered) {
+        this.ordered = ordered;
     }
 }
