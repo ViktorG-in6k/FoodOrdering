@@ -28,10 +28,19 @@ app.factory('eventService',function($http){
 
 app.controller('commonOrderCtrl',function ($routeParams, $http, $rootScope, $scope) {
     $rootScope.id = $routeParams.eventId;
-
     $http.get('/CommonOrderJson_' + $routeParams.eventId ).success(function (data) {
         $scope.eventOrderList = data;
     });
+
+    $scope.getTotal = function () {
+        var total = 0;
+        if ($scope.eventOrderList) {
+            for (var i = 0; i < $scope.eventOrderList.myOrderList.length; i++) {
+                total += $scope.eventOrderList.myOrderList[i].count * $scope.eventOrderList.myOrderList[i].item.price;
+            }
+        } else return 0;
+        return total;
+    };
 
 });
 
