@@ -10,10 +10,10 @@
     <spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss"/>
     <link href="${bootstrapCss}" rel="stylesheet"/>
     <link href="/resources/css/test.css" rel="stylesheet"/>
+    <link href="/resources/css/bootstrapTheme.css" rel="stylesheet">
 </head>
 <body ng-app="foodOrdering">
     <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true" />
-
     <div ng-app="foodOrdering" class="container">
         <jsp:include page="/WEB-INF/views/jspf/creatorOfEvent.jsp" flush="true" />
         <div ng-view></div>

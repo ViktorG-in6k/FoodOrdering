@@ -21,6 +21,7 @@
                             <label for="image">URL-image:</label>
                             <input type="url" class="form-control" id="image" name="image">
                         </div>
+                        <input hidden type="text" name="eventId" value="{{eventId}}">
                         <button type="submit" class="btn btn-success pull-right">Add</button>
                     </div>
                 </fieldset>

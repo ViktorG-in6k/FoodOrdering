@@ -5,7 +5,7 @@
 <spring:url value="/resources/core/css/hello.css" var="coreCss"/>
 <spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss"/>
 
-<div class="col-md-8">
+<div class="col-md-8 col-sm-8">
     <jsp:include page="/WEB-INF/views/jspf/eventDetails.jsp"/>
 
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -17,8 +17,8 @@
                              aria-controls="collapseOne">
                             <div class="panel-body">
                                 <a role="button">
-                                    <img src="{{'/'+ restaurant.imageUrl}}" width="100px"
-                                         height="100px;" style="float: left; margin-top: -22px;">
+                                    <img src="{{restaurant.imageURL}}" width="100px"
+                                         height="100px;" style="float: left; ">
                                     <h1 style="padding-top: 10px;padding-left: 110px;">{{restaurant.name}}</h1>
                                     <p style="padding-left: 110px; color: black">{{restaurant.description}}</p>
                                 </a>

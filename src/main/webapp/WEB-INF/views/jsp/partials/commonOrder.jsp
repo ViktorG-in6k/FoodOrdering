@@ -10,8 +10,10 @@
                         <th>Name</th>
                         <th>Amount</th>
                         <th>Price</th>
-                        <th></th>
+                        <th>Ordered</th>
+
                     </tr>
+
                     <tr ng-repeat="item in eventOrderList.myOrderList | orderBy:'restaurant.name'">
                         <td>{{item.restaurant.name}}</td>
                         <td>{{item.item.name}}</td>
@@ -23,8 +25,7 @@
                         </td>
 
                         <td>{{item.count * item.item.price|currency}}</td>
-
-                        <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                        <td><input ng-click="changeOrderItemStatus(id,item.item.id,true)" ng-checked="{{item.ordered != false}}" ng-disabled="{{item.ordered != false}}" type="checkbox"></td>
                     </tr>
                     <tr>
                         <td></td>

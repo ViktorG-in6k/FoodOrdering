@@ -12,7 +12,7 @@
 <form role="form" action="/new_event" method="post" class="col-md-3  pull-right" style="position: fixed; right: 10px; ">
     <fieldset>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="/resources/core/js/jquery-2.1.4.min.js"></script>
         <script>
             $(document).ready(function () {
                 $("#slide").click(function () {

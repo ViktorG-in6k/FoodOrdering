@@ -16,21 +16,33 @@ app.config(['$routeProvider',
         });
     }]);
 
-app.factory('eventService',function($http){
+app.factory('eventService', function ($http) {
     var events = {};
     events.getEvents = function () {
-         $http.get('/eventsJson/').success(function (data) {
-             return data;
-         });
+        $http.get('/eventsJson/').success(function (data) {
+            return data;
+        });
     };
     return events;
 });
 
-app.controller('commonOrderCtrl',function ($routeParams, $http, $rootScope, $scope) {
+app.controller('commonOrderCtrl', function ($routeParams, $http, $rootScope, $scope) {
     $rootScope.id = $routeParams.eventId;
-    $http.get('/CommonOrderJson_' + $routeParams.eventId ).success(function (data) {
-        $scope.eventOrderList = data;
-    });
+    $scope.restoraunt = "";
+
+    $scope.changeOrderItemStatus = function (eventId, itemId, ordred) {
+        $http.get("/update_ordered" + eventId + "_" + itemId + "_" + ordred).then(function () {
+            $scope.updateCommonOrder();
+        });
+    };
+
+    $scope.updateCommonOrder = function () {
+        $http.get('/CommonOrderJson_' + $routeParams.eventId).success(function (data) {
+            $scope.eventOrderList = data;
+        });
+    };
+    $scope.updateCommonOrder();
+
     $scope.getTotal = function () {
         var total = 0;
         if ($scope.eventOrderList) {
@@ -40,26 +52,27 @@ app.controller('commonOrderCtrl',function ($routeParams, $http, $rootScope, $sco
         } else return 0;
         return total;
     };
+
 });
 
 
-app.controller('eventController',function ($scope, eventService, $http) {
+app.controller('eventController', function ($scope, eventService, $http) {
     $http.get('/eventsJson/').success(function (data) {
         $scope.events = data;
     });
 });
 
-app.factory('orderService',function($http){
+app.factory('orderService', function ($http) {
     var orders = {};
     orders.getOrders = function () {
         $http.get('/ordersJson/*').success(function (data) {
             return data;
         });
     };
-    return orders ;
+    return orders;
 });
 
-app.controller('orderController',function ($scope, orderService, $http) {
+app.controller('orderController', function ($scope, orderService, $http) {
     $http.get('/ordersJson/*').success(function (data) {
         $scope.orders = data;
     });
