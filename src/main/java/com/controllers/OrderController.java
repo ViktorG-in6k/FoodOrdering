@@ -1,9 +1,6 @@
 package com.controllers;
 
-import com.model.Event;
-import com.model.Order;
-import com.model.ResponseEntity.ResponseEvent;
-import com.model.ResponseEntity.ResponseOrder;
+import com.DTOLayer.DTOEntity.orderDTO.OrderDTOList;
 import com.serviceLayer.service.EventService;
 import com.serviceLayer.service.OrderService;
 import com.serviceLayer.service.RestaurantService;
@@ -12,11 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Controller
 public class OrderController {
@@ -29,34 +23,39 @@ public class OrderController {
 
     @RequestMapping("/MyOrderJson_{event}")
     public  @ResponseBody
-    List<ResponseOrder> get_my_order_by_event(HttpSession session, @PathVariable("event") int eventId) {
+    OrderDTOList get_my_order_by_event(HttpSession session, @PathVariable("event") int eventId) {
         int userId = (int) session.getAttribute("userId");
-        List<ResponseOrder>responseOrders = new ArrayList<ResponseOrder>();
-        for (Order order: orderService.orderListOfUserByEvent(userId,eventId)) {
-            responseOrders.add(new ResponseOrder(order));
-        }
-        return responseOrders;
+        return new OrderDTOList(orderService.orderListOfUserByEvent(userId,eventId));
     }
 
     @RequestMapping("/CommonOrderJson_{event}")
     public  @ResponseBody
-    List<ResponseOrder> get_common_order_by_event(HttpSession session, @PathVariable("event") int eventId) {
-
-        List<ResponseOrder>responseOrders = new ArrayList<ResponseOrder>();
-        for (Order order: orderService.orderListOfEvent(eventId)) {
-            responseOrders.add(new ResponseOrder(order));
-        }
-        return responseOrders;
+    OrderDTOList get_common_order_by_event(@PathVariable("event") int eventId) {
+        return new OrderDTOList(orderService.orderListOfEvent(eventId));
     }
 
-    @RequestMapping("/eventsJson/")
-    public @ResponseBody
-    Set<ResponseEvent> getEvent() {
-        Set<ResponseEvent>responseEvents = new HashSet<>();
-        for (Event e: eventService.getListOfAllEvents()) {
-            System.out.println(e.getName());
-            responseEvents.add(new ResponseEvent(e));
-        }
-        return responseEvents;
+    @RequestMapping("/update_ordered{event}_{item}_{ordered}")
+    public  @ResponseBody
+    OrderDTOList updateOrdered(HttpSession session,@PathVariable("event") int eventId, @PathVariable("item") int itemId,
+                               @PathVariable("ordered") boolean ordered) {
+        int userId = (int) session.getAttribute("userId");
+        orderService.updateOrderedOfOrder(ordered, eventId, itemId);
+        return new OrderDTOList(orderService.orderListOfUserByEvent(userId,eventId));
+    }
+
+    @RequestMapping("/remote_from_order{item}_{event}")
+    public  @ResponseBody
+    OrderDTOList remoteItemFromOrder(HttpSession session,@PathVariable("event") int eventId,@PathVariable("item") int itemId) {
+        int userId = (int) session.getAttribute("userId");
+        orderService.deleteItemFromOrder(userId,eventId,itemId);
+        return new OrderDTOList(orderService.orderListOfUserByEvent(userId,eventId));
+    }
+
+    @RequestMapping("/remote_one_item_from_order{item}_{event}")
+    public  @ResponseBody
+    OrderDTOList remoteOneItem(HttpSession session,@PathVariable("event") int eventId,@PathVariable("item") int itemId) {
+        int userId = (int) session.getAttribute("userId");
+        orderService.deleteOneItemFromOrder(userId,eventId,itemId);
+        return new OrderDTOList(orderService.orderListOfUserByEvent(userId,eventId));
     }
 }

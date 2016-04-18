@@ -1,6 +1,6 @@
 package com.serviceLayer.service;
 
-import com.model.User;
+import com.model.Entity.User;
 
 public interface UserService {
     public void saveUser(User person);

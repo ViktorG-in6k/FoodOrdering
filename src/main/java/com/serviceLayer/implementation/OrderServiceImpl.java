@@ -4,7 +4,10 @@ import com.dataLayer.DAO.EventDAO;
 import com.dataLayer.DAO.MenuDAO;
 import com.dataLayer.DAO.OrderDAO;
 import com.dataLayer.DAO.UserDAO;
-import com.model.*;
+import com.model.Entity.Event;
+import com.model.Entity.Item;
+import com.model.Entity.Order;
+import com.model.Entity.User;
 import com.serviceLayer.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,5 +53,26 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> orderListOfEvent(int eventId) {
         return orderDAO.orderListOfEvent(eventId);
+    }
+
+    @Override
+    public void deleteItemFromOrder(int userId, int eventId, int itemId) {
+        orderDAO.deleteItemFromOrder(userId, eventId, itemId);
+    }
+
+    @Override
+    public void deleteOneItemFromOrder(int userId, int eventId, int itemId) {
+        //Order order = SelectOrder(userId, eventId, itemId);
+        orderDAO.deleteOneItemFromOrder( userId,  eventId,  itemId);
+    }
+
+//    @Override
+//    public Order SelectOrder(int userId, int eventId, int itemId){
+//        return orderDAO.selectOrder(userId, eventId, itemId);
+//    }
+
+    @Override
+    public void updateOrderedOfOrder(boolean ordered, int eventId, int itemId) {
+        orderDAO.updateOrderedOfOrder(ordered,eventId,itemId);
     }
 }

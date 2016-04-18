@@ -1,8 +1,8 @@
 package com.serviceLayer.implementation;
 
 import com.dataLayer.DAO.MenuDAO;
-import com.model.Item;
-import com.model.Restaurant;
+import com.model.Entity.Item;
+import com.model.Entity.Restaurant;
 import com.serviceLayer.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.serviceLayer.service;
 
-import com.model.Event;
+import com.model.Entity.Event;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
@@ -24,6 +24,8 @@ public interface EventService {
     public List<Event> getListOfEventsByNameAndDate(String eventName, LocalDate eventDate);
 
     public List<Event> getListOfEventsBetweenTwoDates(LocalDate firstDate, LocalDate lastDate);
+
+    public void setResponsibleUser(int userId, int eventId);
 
     public void update(Event event);
 }

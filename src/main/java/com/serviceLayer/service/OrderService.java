@@ -1,6 +1,6 @@
 package com.serviceLayer.service;
 
-import com.model.Order;
+import com.model.Entity.Order;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,4 +14,14 @@ public interface OrderService {
     public List<Order> orderListOfUserByEvent(int userId, int eventId);
 
     public List<Order> orderListOfEvent(int eventId);
+
+    public void deleteItemFromOrder(int userId,int eventId,int itemId);
+
+    public void deleteOneItemFromOrder(int userId, int eventId, int itemId);
+
+//    void deleteOneItemFromOrder(Order order);
+
+//    Order SelectOrder(int userId, int eventId, int itemId);
+
+    public void updateOrderedOfOrder(boolean ordered, int eventId, int itemId);
 }

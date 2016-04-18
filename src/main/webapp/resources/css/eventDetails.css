@@ -1,0 +1,7 @@
+.hoverWell .plus {
+    color: #f5f5f5;
+}
+
+.hoverWell:hover .plus {
+    color: #337ab7;
+}

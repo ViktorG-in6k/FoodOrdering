@@ -1,8 +1,8 @@
 package com.serviceLayer.implementation;
 
 import com.dataLayer.DAO.RestaurantDAO;
-import com.model.Item;
-import com.model.Restaurant;
+import com.model.Entity.Item;
+import com.model.Entity.Restaurant;
 import com.serviceLayer.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     public void save(Restaurant restaurant) {
         if (restaurant.getImageURL().equals("")) {
-            restaurant.setImageURL("/resources/image/restaurant.jpg");
+            restaurant.setImageURL("http://localhost:8080/resources/image/restaurant.jpg");
         }
         restaurantDAO.save(restaurant);
     }

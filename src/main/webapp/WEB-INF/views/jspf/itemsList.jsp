@@ -13,7 +13,7 @@
                    style="font-size: 19px; color: #000000;">${item.getName()}</label>
 
             <label class="text-info  pull-right" style="font-size: 19px; color: #000000;">
-                {{${item.getPrice()} | currency}}
+                {{${item.getPrice()} | currency :"UAH"}}
             </label>
             <div class="col-md-7 text-left">
 

@@ -1,22 +1,21 @@
-package com.model.ResponseEntity;
+package com.DTOLayer.DTOEntity;
 
-import com.model.Item;
+import com.model.Entity.Item;
+
 import java.math.BigDecimal;
 
-public class ResponseItem {
+public class ItemDTO {
     private int id;
     private String name;
     private String description;
     private String imageURL;
     private BigDecimal price;
-    private ResponseRestaurant responseRestaurant;
 
-    public ResponseItem(Item item){
+    public ItemDTO(Item item){
         this.id = item.getId();
         this.name = item.getName();
         this.description = item.getDescription();
         this.imageURL = item.getImageURL();
-        this.responseRestaurant = new ResponseRestaurant(item.getRestaurant());
         this.price = item.getPrice();
     }
 
@@ -40,7 +39,5 @@ public class ResponseItem {
         return id;
     }
 
-    public ResponseRestaurant getResponseRestaurant() {
-        return responseRestaurant;
-    }
+
 }

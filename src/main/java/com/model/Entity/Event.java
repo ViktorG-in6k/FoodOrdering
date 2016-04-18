@@ -1,38 +1,29 @@
-package com.model;
+package com.model.Entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
-@Entity(name = "restaurant")
-public class Restaurant extends com.model.base.Entity {
+@Entity(name = "event")
+public class Event extends com.model.base.Entity {
     @Column
     private String name;
     @Column
     private String description;
     @Column
     private String imageURL;
+    @Column
+    private LocalDateTime date;
+    @OneToOne
+    private User user;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "restaurant")
-    private List<Item> item;
-
-    public Restaurant(String name, LocalDateTime date) {
-        this.name = name;
-    }
-
-    public Restaurant(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
-
-    public Restaurant(String name, String description, String imageURL) {
+    public Event(String name, String description, String imageURL, LocalDateTime date) {
         this.name = name;
         this.description = description;
         this.imageURL = imageURL;
+        this.date = date;
     }
 
-    public Restaurant() {
-    }
+    public Event() {}
 
     public String getName() {
         return name;
@@ -58,15 +49,19 @@ public class Restaurant extends com.model.base.Entity {
         this.imageURL = imageURL;
     }
 
-    public List<Item> getItem() {
-        return item;
+    public LocalDateTime getDate() {
+        return date;
     }
 
-    public void setItem(List<Item> item) {
-        this.item = item;
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 
-    public void addToMenu(Item item) {
-        this.item.add(item);
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
