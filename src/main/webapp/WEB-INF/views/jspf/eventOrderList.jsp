@@ -14,19 +14,22 @@
                 <td>{{item.item.name}}</td>
                 <td>
                     <div>
-                        <a style="margin-right: 5px;" href=""><i  style="color:green"  class="fa fa-minus" aria-hidden="true"></i></a>
+                        <a style="margin-right: 5px;" href=""><i  style="color:green" ng-click="removeOneItemFromOrder(eventId,item.item.id)" class="fa fa-minus" aria-hidden="true"></i></a>
                     <span style="">{{item.count}}</span>
                     <a href="" ng-click="addToOrder(eventId,item.item.id)" style="margin-left: 5px;">
                         <i  style="color:green"  class="fa fa-plus" aria-hidden="true"></i></a>
                 </div>
                 </td>
+
                 <td>{{item.count * item.item.price|currency:"UAH"}}</td>
+
                 <td><a href="" ng-click="removeFromOrder(eventId,item.item.id)"><i style="color:red"   class="fa fa-times" aria-hidden="true"></i></a></td>
             </tr>
             <tr>
                 <td></td>
                 <td></td>
                 <td>Total</td>
+
                 <td>{{getTotal() | currency:"UAH"}}</td>
 
             </tr>

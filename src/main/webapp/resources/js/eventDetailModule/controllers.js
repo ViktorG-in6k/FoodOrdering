@@ -4,6 +4,7 @@ controllers.controller("eventController", function ($http,$scope, $routeParams, 
     $rootScope.eventId = $routeParams.id;
     $scope.addToOrder = OrderListService.addToOrder;
     $scope.removeFromOrder  = OrderListService.removeFromOrder;
+    $scope.removeOneItemFromOrder = OrderListService.removeOneItemFromOrder;
     
     $scope.getTotal = OrderListService.getTotal;
 
