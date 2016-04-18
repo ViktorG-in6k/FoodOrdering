@@ -31,7 +31,6 @@ app.controller('commonOrderCtrl',function ($routeParams, $http, $rootScope, $sco
     $http.get('/CommonOrderJson_' + $routeParams.eventId ).success(function (data) {
         $scope.eventOrderList = data;
     });
-
     $scope.getTotal = function () {
         var total = 0;
         if ($scope.eventOrderList) {
@@ -41,7 +40,6 @@ app.controller('commonOrderCtrl',function ($routeParams, $http, $rootScope, $sco
         } else return 0;
         return total;
     };
-
 });
 
 
