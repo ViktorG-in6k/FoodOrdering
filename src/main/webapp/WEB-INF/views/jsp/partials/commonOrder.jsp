@@ -13,6 +13,7 @@
                         <th>Ordered</th>
 
                     </tr>
+                    <!-- Ukraine Hryvnia - UAH -->
 
                     <tr ng-repeat="item in eventOrderList.myOrderList | orderBy:'restaurant.name'">
                         <td>{{item.restaurant.name}}</td>
@@ -24,14 +25,14 @@
                         </div>
                         </td>
 
-                        <td>{{item.count * item.item.price|currency}}</td>
+                        <td>{{item.count * item.item.price|currency:"UAH"}}</td>
                         <td><input ng-click="changeOrderItemStatus(id,item.item.id,true)" ng-checked="{{item.ordered != false}}" ng-disabled="{{item.ordered != false}}" type="checkbox"></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
                         <td>Total</td>
-                        <td>{{getTotal() | currency}}</td>
+                        <td>{{getTotal() | currency:"UAH"}}</td>
 
                     </tr>
                 </table>

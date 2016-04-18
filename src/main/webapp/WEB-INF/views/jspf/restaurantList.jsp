@@ -36,7 +36,7 @@
                                         <div class="col-lg-8"><h2>{{item.name}}</h2>
                                             <p style="color: black">{{item.description}} </p>
                                         </div>
-                                        <div class="col-lg-2"><h3>{{item.price|currency}}</h3></div>
+                                        <div class="col-lg-2"><h3>{{item.price|currency:"UAH"}}</h3></div>
                                         <div class="col-lg-1">
                                             <h3 class="plus"><i class="fa fa-plus"></i></h3>
                                         </div>
