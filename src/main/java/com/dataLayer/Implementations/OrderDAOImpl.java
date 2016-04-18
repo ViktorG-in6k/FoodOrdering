@@ -44,26 +44,52 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
 
-    public Order SelectOrder(int userId,int eventId,int itemId) {
+
+    @Override
+    public List<Order> selectOrderList(int userId, int eventId, int itemId) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from order_list where event_id=:eventId and user_id=:userId and item_id=:itemId");
-        return (Order) query
+        return (List<Order>) query
                 .setInteger("eventId",eventId)
                 .setInteger("userId",userId)
-                .setInteger("itemId",itemId);
+                .setInteger("itemId",itemId).list();
+    }
+
+    @Override
+    public void deleteOneItemFromOrder(int userId, int eventId, int itemId) {
+        Session session = sessionFactory.getCurrentSession();
+        Order order = selectOrderList(userId, eventId, itemId).get(0);
+        session.delete(order);
     }
 
     @Override
     public void deleteItemFromOrder(int userId,int eventId,int itemId) {
         Session session = sessionFactory.getCurrentSession();
-
-
         Query query = session.createQuery("delete from order_list where event_id=:eventId and user_id=:userId and item_id=:itemId");
         query
                 .setInteger("eventId",eventId)
                 .setInteger("userId",userId)
                 .setInteger("itemId",itemId);
         query.executeUpdate();
+    }
+
+//    @Override
+//    public void deleteOneItemFromOrder(int userId, int eventId, int itemId) {
+//        Session session = sessionFactory.getCurrentSession();
+//        Query query = session.createQuery("from order_list where event_id=:eventId and user_id=:userId and item_id=:itemId");
+//        query
+//                .setInteger("eventId",eventId)
+//                .setInteger("userId",userId)
+//                .setInteger("itemId",itemId);
+//        session.delete((Order)query.setInteger("eventId",eventId)
+//                .setInteger("userId",userId)
+//                .setInteger("itemId",itemId));
+//    }
+
+    @Override
+    public void deleteOneItemFromOrder(Order order) {
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(order);
     }
 
     @Override

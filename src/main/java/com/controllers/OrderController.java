@@ -45,9 +45,17 @@ public class OrderController {
 
     @RequestMapping("/remote_from_order{item}_{event}")
     public  @ResponseBody
-    OrderDTOList get_common_order_by_event(HttpSession session,@PathVariable("event") int eventId,@PathVariable("item") int itemId) {
+    OrderDTOList remoteItemFromOrder(HttpSession session,@PathVariable("event") int eventId,@PathVariable("item") int itemId) {
         int userId = (int) session.getAttribute("userId");
         orderService.deleteItemFromOrder(userId,eventId,itemId);
+        return new OrderDTOList(orderService.orderListOfUserByEvent(userId,eventId));
+    }
+
+    @RequestMapping("/remote_one_item_from_order{item}_{event}")
+    public  @ResponseBody
+    OrderDTOList remoteOneItem(HttpSession session,@PathVariable("event") int eventId,@PathVariable("item") int itemId) {
+        int userId = (int) session.getAttribute("userId");
+        orderService.deleteOneItemFromOrder(userId,eventId,itemId);
         return new OrderDTOList(orderService.orderListOfUserByEvent(userId,eventId));
     }
 }

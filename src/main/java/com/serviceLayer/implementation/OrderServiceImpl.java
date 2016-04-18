@@ -61,6 +61,17 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public void deleteOneItemFromOrder(int userId, int eventId, int itemId) {
+        //Order order = SelectOrder(userId, eventId, itemId);
+        orderDAO.deleteOneItemFromOrder( userId,  eventId,  itemId);
+    }
+
+//    @Override
+//    public Order SelectOrder(int userId, int eventId, int itemId){
+//        return orderDAO.selectOrder(userId, eventId, itemId);
+//    }
+
+    @Override
     public void updateOrderedOfOrder(boolean ordered, int eventId, int itemId) {
         orderDAO.updateOrderedOfOrder(ordered,eventId,itemId);
     }
