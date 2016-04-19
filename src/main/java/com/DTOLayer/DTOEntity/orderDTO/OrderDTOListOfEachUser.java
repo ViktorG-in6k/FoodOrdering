@@ -1,27 +1,23 @@
 package com.DTOLayer.DTOEntity.orderDTO;
 
-import com.DTOLayer.DTOEntity.UserDTO;
-
-import java.util.List;
-
 public class OrderDTOListOfEachUser {
-    private List<OrderDTOList> orderDTOList;
+    private OrderDTOList orderDTOList;
     private String userMail;
 
-    public OrderDTOListOfEachUser(List<OrderDTOList> orderDTOList, UserDTO userDTO){
+    public OrderDTOListOfEachUser(OrderDTOList orderDTOList, String userMail){
         this.orderDTOList = orderDTOList;
-        this.userMail = userDTO.getEmail();
+        this.userMail = userMail;
     }
 
-    public void addToOrderList(OrderDTOList orderDTOList){
-        this.orderDTOList.add(orderDTOList);
+    public OrderDTOListOfEachUser(){
     }
 
-    public List<OrderDTOList> getOrderDTOList() {
+
+    public OrderDTOList getOrderDTOList() {
         return orderDTOList;
     }
 
-    public void setOrderDTOList(List<OrderDTOList> orderDTOList) {
+    public void setOrderDTOList(OrderDTOList orderDTOList) {
         this.orderDTOList = orderDTOList;
     }
 

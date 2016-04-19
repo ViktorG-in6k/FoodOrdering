@@ -1,5 +1,7 @@
 package com.serviceLayer.implementation;
 
+import com.DTOLayer.DTOEntity.orderDTO.OrderDTOList;
+import com.DTOLayer.DTOEntity.orderDTO.OrderDTOListOfEachUser;
 import com.dataLayer.DAO.OrderDAO;
 import com.model.Entity.Event;
 import com.model.Entity.Item;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,8 +49,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> orderListOfUserByEvent(int userId, int eventId) {
-        return orderDAO.orderListOfUserByEvent(userId,eventId);
+    public OrderDTOList orderListOfUserByEvent(int userId, int eventId) {
+        return new OrderDTOList(orderDAO.orderListOfUserByEvent(userId,eventId));
     }
 
     @Override
@@ -68,5 +71,15 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void updateOrderedOfOrder(boolean ordered, int eventId, int itemId) {
         orderDAO.updateOrderedOfOrder(ordered,eventId,itemId);
+    }
+
+    public List<OrderDTOListOfEachUser> orderDTOListOfEachUser(int eventId){
+        List<User>users=userService.getListOfAllUsers();
+        List<OrderDTOListOfEachUser> orderDTOListOfEachUser = new ArrayList<>();
+        for (User user:users) {
+            OrderDTOList order = orderListOfUserByEvent(user.getId(),eventId);
+            orderDTOListOfEachUser.add(new OrderDTOListOfEachUser(order,user.getEmail()));
+        }
+        return  orderDTOListOfEachUser;
     }
 }
