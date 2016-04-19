@@ -60,27 +60,27 @@ public class MainController {
     }
 
     @RequestMapping(value = "/sing_out")
-    public String sing_out(HttpSession session) {
+    public String singOut(HttpSession session) {
         session.setAttribute("userMail", null);
         return "main";
     }
 
     @RequestMapping(value = "/new_item", method = RequestMethod.POST)
-    public String new_item(HttpServletRequest req, HttpSession session) {
+    public String newItem(HttpServletRequest req, HttpSession session) {
         menuService.saveByRequest(req, session);
         String ref = req.getHeader("Referer");
         return "redirect:" + ref;
     }
 
     @RequestMapping(value = "/new_event", method = RequestMethod.POST)
-    public String new_Event(HttpServletRequest req) {
+    public String newEvent(HttpServletRequest req) {
         eventService.saveByRequest(req);
         String ref = req.getHeader("Referer");
         return "redirect:" + ref;
     }
 
     @RequestMapping(value = "/new_restaurant", method = RequestMethod.POST)
-    public String new_restaurant(HttpServletRequest req , @RequestParam("eventId") int eventId) {
+    public String newRestaurant(HttpServletRequest req , @RequestParam("eventId") int eventId) {
         restaurantService.saveByRequest(req);
         String ref = req.getHeader("Referer");
         return "redirect:" + ref+"#/"+eventId;
@@ -94,7 +94,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/events/event_{id}")
-    public String get_restaurants(HttpSession session, @PathVariable("id") String id) {
+    public String getAllRestaurants(HttpSession session, @PathVariable("id") String id) {
         session.setAttribute("eventId", id);
         session.setAttribute("allRestaurants", restaurantService.getListOfAllRestaurant());
         session.setAttribute("backPage", "/events");
@@ -102,7 +102,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/events/event_{event}/restaurant_{id}")
-    public String get_menu(HttpSession session, @PathVariable("event") int event, @PathVariable("id") int id) {
+    public String getAllItemsByRestaurant(HttpSession session, @PathVariable("event") int event, @PathVariable("id") int id) {
         session.setAttribute("restaurant", restaurantService.getRestaurantById(id));
         session.setAttribute("Menu", restaurantService.getRestaurantById(id).getItem());
         session.setAttribute("backPage", "/events/event_" + event);

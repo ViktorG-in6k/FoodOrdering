@@ -25,14 +25,14 @@ public class OrderController {
 
     @RequestMapping("/MyOrderJson_{event}")
     public  @ResponseBody
-    OrderDTOList get_my_order_by_event(HttpSession session, @PathVariable("event") int eventId) {
+    OrderDTOList getMyOrderByEvent(HttpSession session, @PathVariable("event") int eventId) {
         int userId = (int) session.getAttribute("userId");
         return orderService.orderListOfUserByEvent(userId,eventId);
     }
 
     @RequestMapping("/CommonOrderJson_{event}")
     public  @ResponseBody
-    OrderDTOList get_common_order_by_event(@PathVariable("event") int eventId) {
+    OrderDTOList getCommonOrderByEvent(@PathVariable("event") int eventId) {
         return new OrderDTOList(orderService.orderListOfEvent(eventId));
     }
 
@@ -44,7 +44,8 @@ public class OrderController {
 
     @RequestMapping("/update_ordered{event}_{item}_{ordered}")
     public  @ResponseBody
-    OrderDTOList updateOrdered(HttpSession session,@PathVariable("event") int eventId, @PathVariable("item") int itemId,
+    OrderDTOList updateOrdered(HttpSession session,@PathVariable("event") int eventId,
+                               @PathVariable("item") int itemId,
                                @PathVariable("ordered") boolean ordered) {
         int userId = (int) session.getAttribute("userId");
         orderService.updateOrderedOfOrder(ordered, eventId, itemId);
@@ -53,7 +54,7 @@ public class OrderController {
 
     @RequestMapping("/remote_from_order{item}_{event}")
     public  @ResponseBody
-    OrderDTOList remoteItemFromOrder(HttpSession session,@PathVariable("event") int eventId,@PathVariable("item") int itemId) {
+    OrderDTOList remoteItemFromMyOrder(HttpSession session,@PathVariable("event") int eventId,@PathVariable("item") int itemId) {
         int userId = (int) session.getAttribute("userId");
         orderService.deleteItemFromOrder(userId,eventId,itemId);
         return orderService.orderListOfUserByEvent(userId,eventId);
