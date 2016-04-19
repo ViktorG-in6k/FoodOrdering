@@ -1,8 +1,8 @@
 <div class="well well-sm">
     <div class="media">
-        <a class="pull-left" href="#">
+
             <img class="media-object" width="160px" height="160px"  src="http://www.ekaterinawalter.com/wp-content/uploads/2016/01/image-2.jpg">
-        </a>
+
         <div class="media-body">
             <h4 class="media-heading">{{event.name}}</h4>
             <p class="text-right" ng-if="event.user != null">Responsible for order : {{event.user.email}}</p>
