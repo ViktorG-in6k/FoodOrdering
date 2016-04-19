@@ -12,7 +12,6 @@ public class OrderDTOListOfEachUser {
     public OrderDTOListOfEachUser(){
     }
 
-
     public OrderDTOList getOrderDTOList() {
         return orderDTOList;
     }

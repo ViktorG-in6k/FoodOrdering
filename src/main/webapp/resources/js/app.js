@@ -11,6 +11,9 @@ app.config(['$routeProvider',
         }).when('/commonOrder/:eventId/', {
             templateUrl: '/partials/commonOrder',
             controller: 'commonOrderCtrl'
+        }).when('/commonOrderS/:eventId/', {
+            templateUrl: '/partials/comonOrderByEachUser',
+            controller: 'commonOrderByEachUserCtrl'
         }).otherwise({
             redirectTo: '/AllEvents'
         });
@@ -50,6 +53,35 @@ app.controller('commonOrderCtrl', function ($routeParams, $http, $rootScope, $sc
                 total += $scope.eventOrderList.myOrderList[i].count * $scope.eventOrderList.myOrderList[i].item.price;
             }
         } else return 0;
+        return total;
+    };
+
+});
+
+app.controller('commonOrderByEachUserCtrl', function ($routeParams, $http, $rootScope, $scope) {
+    $rootScope.id = $routeParams.eventId;
+    $scope.restoraunt = "";
+
+    $scope.changeOrderItemStatus = function (eventId, itemId, ordred) {
+        $http.get("/update_ordered" + eventId + "_" + itemId + "_" + ordred).then(function () {
+            $scope.updateCommonOrder();
+        });
+    };
+
+    $scope.updateCommonOrder = function () {
+        $http.get('/CommonOrder_' + $routeParams.eventId).success(function (data) {
+            $scope.OrderDTOList = data;
+        });
+    };
+    $scope.updateCommonOrder();
+
+    $scope.getTotal = function () {
+        var total = 0;
+        // if ($scope.OrderDTOList) {
+        //     for (var i = 0; i < $scope.OrderDTOList.myOrderList.length; i++) {
+        //         total += $scope.OrderDTOList.myOrderList[i].count * $scope.OrderDTOList.myOrderList[i].item.price;
+        //     }
+        // } else return 0;
         return total;
     };
 

@@ -77,8 +77,11 @@ public class OrderServiceImpl implements OrderService {
         List<User>users=userService.getListOfAllUsers();
         List<OrderDTOListOfEachUser> orderDTOListOfEachUser = new ArrayList<>();
         for (User user:users) {
-            OrderDTOList order = orderListOfUserByEvent(user.getId(),eventId);
-            orderDTOListOfEachUser.add(new OrderDTOListOfEachUser(order,user.getEmail()));
+            OrderDTOList order = orderListOfUserByEvent(user.getId(), eventId);
+            if (orderDAO.selectOrderList(user.getId(), eventId).size() > 0) {
+                orderDTOListOfEachUser.add(new OrderDTOListOfEachUser(order, user.getEmail()));
+
+            }
         }
         return  orderDTOListOfEachUser;
     }
