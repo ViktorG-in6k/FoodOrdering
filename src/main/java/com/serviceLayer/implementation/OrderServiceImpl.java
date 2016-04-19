@@ -1,14 +1,14 @@
 package com.serviceLayer.implementation;
 
-import com.dataLayer.DAO.EventDAO;
-import com.dataLayer.DAO.MenuDAO;
 import com.dataLayer.DAO.OrderDAO;
-import com.dataLayer.DAO.UserDAO;
 import com.model.Entity.Event;
 import com.model.Entity.Item;
 import com.model.Entity.Order;
 import com.model.Entity.User;
+import com.serviceLayer.service.EventService;
+import com.serviceLayer.service.MenuService;
 import com.serviceLayer.service.OrderService;
+import com.serviceLayer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,12 +21,12 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     OrderDAO orderDAO;
     @Autowired
-    MenuDAO menuDAO;
+    MenuService menuService;
     @Autowired
-    UserDAO userDAO;
+    UserService userService;
 
     @Autowired
-    EventDAO eventDAO;
+    EventService eventService;
 
     public void save(Order order) {
         orderDAO.save(order);
@@ -34,11 +34,11 @@ public class OrderServiceImpl implements OrderService {
 
     public void saveByRequest(HttpServletRequest req, HttpSession session) {
         int event_id = Integer.parseInt(req.getParameter("event_id"));
-        Event event = eventDAO.getEventById(event_id);
+        Event event = eventService.getEventById(event_id);
         int item_id = Integer.parseInt(req.getParameter("item_id"));
-        Item item = menuDAO.getItemById(item_id);
+        Item item = menuService.getItemById(item_id);
         int user_id = (int) session.getAttribute("userId");
-        User user = userDAO.getUser(user_id);
+        User user = userService.getUser(user_id);
 
         Order order = new Order(user,item,event);
 
@@ -62,14 +62,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void deleteOneItemFromOrder(int userId, int eventId, int itemId) {
-        //Order order = SelectOrder(userId, eventId, itemId);
         orderDAO.deleteOneItemFromOrder( userId,  eventId,  itemId);
     }
-
-//    @Override
-//    public Order SelectOrder(int userId, int eventId, int itemId){
-//        return orderDAO.selectOrder(userId, eventId, itemId);
-//    }
 
     @Override
     public void updateOrderedOfOrder(boolean ordered, int eventId, int itemId) {
