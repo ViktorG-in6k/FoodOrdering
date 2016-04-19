@@ -45,18 +45,24 @@
             </div>
 
             <script type="text/javascript"
-                    src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
-            </script>
-            <script type="text/javascript"
                     src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
             </script>
             <script type="text/javascript"
-                    src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+                    src="/resources/js/bootstrap-datetimepicker.min.js">
             </script>
-            <script type="text/javascript"
-                    src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
-            </script>
+
             <script type="text/javascript">
+                ;(function($){
+                    $.fn.datetimepicker.dates['pt-BR'] = {
+                        days: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"],
+                        daysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"],
+                        daysMin: ["Do", "Se", "Te", "Qu", "Qu", "Se", "Sa", "Do"],
+                        months: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+                        monthsShort: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+                        today: "Hoje"
+                    };
+                }(jQuery));
+
                 $('#datetimepicker').datetimepicker({
                     format: 'dd/MM/yyyy hh:mm',
                     language: 'en-EN'
