@@ -24,6 +24,8 @@ app.factory('eventService', function ($http) {
     events.getEvents = function () {
         $http.get('/eventsJson/').success(function (data) {
             return data;
+            events = data;
+
         });
     };
     return events;
