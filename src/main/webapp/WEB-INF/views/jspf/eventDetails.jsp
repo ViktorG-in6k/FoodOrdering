@@ -5,7 +5,9 @@
         </a>
         <div class="media-body">
             <h4 class="media-heading">{{event.name}}</h4>
-            <p class="text-right" ng-if="event.user != null">Responsible for order : {{event.user.email}}</p>
+            <p class="text-right" ng-if="event.user != null"><a href="/events#/commonOrder/{{event.id}}">
+                <button ng-if=" event.user.email == event.sessionUser.email" type="button" class="btn btn-success ">Make order</button>
+            </a></p>
             <p>{{event.description}}</p>
             <ul class="list-inline list-unstyled">
                 <li><span>        <b><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i> {{event.date.dayOfWeek |

@@ -2,17 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js"></script>
-<script src="/resources/js/app.js"></script>
 <head>
     <title>Maven + Spring MVC + @JavaConfig</title>
-
-    <spring:url value="/resources/core/css/hello.css" var="coreCss" />
-    <spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss" />
-
-    <link href="${bootstrapCss}" rel="stylesheet" />
-    <link href="${coreCss}" rel="stylesheet" />
+    <link href="/resources/core/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="/resources/js/angular.min.js"></script>
 </head>
 
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true" />
@@ -22,12 +15,8 @@
     <jsp:include page="/WEB-INF/views/jspf/itemsList.jsp" flush="true" />
 </div>
 
-<spring:url value="/resources/core/js/bootstrap.js" var="coreJs" />
-<spring:url value="/resources/core/js/bootstrap.min.js" var="bootstrapJs" />
-<spring:url value="/resources/core/js/bootstrap.min.js" var="jQuery"/>
-
-<script src="${jQuery}"></script>
-<script src="${coreJs}"></script>
-<script src="${bootstrapJs}"></script>
-
+<script src="/resources/core/js/jquery-2.1.4.min.js"></script>
+<script src="/resources/core/js/bootstrap.min.js"></script>
 </html>
+
+

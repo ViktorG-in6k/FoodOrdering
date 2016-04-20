@@ -11,6 +11,9 @@ app.config(['$routeProvider',
         }).when('/commonOrder/:eventId/', {
             templateUrl: '/partials/commonOrder',
             controller: 'commonOrderCtrl'
+        }).when('/commonOrderByUsers/:eventId/', {
+            templateUrl: '/partials/comonOrderByEachUser',
+            controller: 'commonOrderByEachUserCtrl'
         }).otherwise({
             redirectTo: '/AllEvents'
         });
@@ -55,6 +58,24 @@ app.controller('commonOrderCtrl', function ($routeParams, $http, $rootScope, $sc
 
 });
 
+app.controller('commonOrderByEachUserCtrl', function ($routeParams, $http, $rootScope, $scope) {
+    $rootScope.id = $routeParams.eventId;
+
+    $scope.changeOrderItemStatus = function (eventId, itemId, ordred) {
+        $http.get("/update_ordered" + eventId + "_" + itemId + "_" + ordred).then(function () {
+            $scope.updateCommonOrder();
+        });
+    };
+
+    $scope.updateCommonOrder = function () {
+        $http.get('/CommonOrder_' + $routeParams.eventId).success(function (data) {
+            $scope.array = data;
+        });
+    };
+    $scope.updateCommonOrder();
+
+});
+
 
 app.controller('eventController', function ($scope, eventService, $http) {
     $http.get('/eventsJson/').success(function (data) {
@@ -75,5 +96,11 @@ app.factory('orderService', function ($http) {
 app.controller('orderController', function ($scope, orderService, $http) {
     $http.get('/ordersJson/*').success(function (data) {
         $scope.orders = data;
+    });
+});
+
+app.controller("navbarCtrl",function ($http, $scope) {
+    $http.get('/eventsJson/').success(function (data) {
+        $scope.events = data;
     });
 });
