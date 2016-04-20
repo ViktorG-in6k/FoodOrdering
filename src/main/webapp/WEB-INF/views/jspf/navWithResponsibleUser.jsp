@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
-<nav class="navbar navbar-default   navbar-fixed-top" ng-controller="navbarCtrl">
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="navbarCtrl">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="/events">Food ordering</a>
@@ -25,7 +25,4 @@
     </div>
 </nav>
 <br/><br/><br/>
-<%--
-<a href="#/commonOrder/{{event.id}}">
-    <button ng-if=" event.user.email == event.sessionUser.email" type="button" class="btn btn-success ">Make order</button>
-</a>--%>
+
