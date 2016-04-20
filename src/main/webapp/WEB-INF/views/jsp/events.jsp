@@ -1,13 +1,17 @@
+<%--this--%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
+
 <script src="/resources/js/angular.min.js"></script>
 <script src="/resources/js/angular-route.min.js"></script>
 <script src="/resources/js/app.js"></script>
+<script src="/resources/js/xeditable.min.js"></script>
 <head>
     <title>Maven + Spring MVC + @JavaConfig</title>
     <spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss"/>
+    <link href="/resources/css/xeditable.css" rel="stylesheet"/>
     <link href="${bootstrapCss}" rel="stylesheet"/>
     <link href="/resources/css/test.css" rel="stylesheet"/>
     <link href="/resources/css/bootstrapTheme.css" rel="stylesheet">

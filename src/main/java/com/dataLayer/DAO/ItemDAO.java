@@ -1,8 +1,14 @@
+//this
 package com.dataLayer.DAO;
 
 import com.model.Entity.Item;
 
-public interface MenuDAO {
+import java.math.BigDecimal;
+
+public interface ItemDAO {
     public void save(Item item);
+
     public Item getItemById(int id);
+
+    void updatePrice(int id, BigDecimal price);
 }

@@ -1,4 +1,27 @@
-var app = angular.module('foodOrdering', ["ngRoute"]);
+//this
+var app = angular.module('foodOrdering', ["ngRoute", "xeditable"]);
+
+app.run(function (editableOptions, editableThemes) {
+    editableThemes.bs3.inputClass = 'form-control';
+    editableOptions.theme = 'bs3';
+});
+
+app.controller('Ctrl', function ($routeParams,$scope, $http, editableThemes, editableOptions) {
+
+    editableThemes.bs3.inputClass = 'form-control';
+    editableOptions.theme = 'bs3';
+    $scope.user = {
+        name: 'awesome user'
+    };
+
+    $scope.updatePrice = function(data, id,  eventId){
+        var dataForRequest = {'id':id, 'price':data, 'eventId':eventId};
+
+        $http.post('/update_item_price',dataForRequest).success(function (data) {
+            return data;
+        });
+    }
+});
 
 app.config(['$routeProvider',
     function ($routeProvider) {
@@ -17,14 +40,15 @@ app.config(['$routeProvider',
         }).otherwise({
             redirectTo: '/AllEvents'
         });
-    }]);
+    }
+]);
 
 app.factory('eventService', function ($http) {
     var events = {};
     events.getEvents = function () {
         $http.get('/eventsJson/').success(function (data) {
             return data;
-            events = data;
+
 
         });
     };
@@ -57,7 +81,6 @@ app.controller('commonOrderCtrl', function ($routeParams, $http, $rootScope, $sc
         } else return 0;
         return total;
     };
-
 });
 
 app.controller('commonOrderByEachUserCtrl', function ($routeParams, $http, $rootScope, $scope) {
@@ -75,9 +98,7 @@ app.controller('commonOrderByEachUserCtrl', function ($routeParams, $http, $root
         });
     };
     $scope.updateCommonOrder();
-
 });
-
 
 app.controller('eventController', function ($scope, eventService, $http) {
     $http.get('/eventsJson/').success(function (data) {
@@ -101,7 +122,7 @@ app.controller('orderController', function ($scope, orderService, $http) {
     });
 });
 
-app.controller("navbarCtrl",function ($http, $scope) {
+app.controller("navbarCtrl", function ($http, $scope) {
     $http.get('/eventsJson/').success(function (data) {
         $scope.events = data;
     });

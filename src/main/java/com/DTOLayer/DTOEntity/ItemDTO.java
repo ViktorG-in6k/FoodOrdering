@@ -1,3 +1,4 @@
+//this
 package com.DTOLayer.DTOEntity;
 
 import com.model.Entity.Item;
@@ -17,6 +18,11 @@ public class ItemDTO {
         this.description = item.getDescription();
         this.imageURL = item.getImageURL();
         this.price = item.getPrice();
+    }
+
+    public ItemDTO(int id, BigDecimal price){
+        this.id = id;
+        this.price = price;
     }
 
     public String getName() {
