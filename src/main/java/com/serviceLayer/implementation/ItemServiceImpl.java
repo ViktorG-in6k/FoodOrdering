@@ -3,7 +3,7 @@ package com.serviceLayer.implementation;
 import com.dataLayer.DAO.MenuDAO;
 import com.model.Entity.Item;
 import com.model.Entity.Restaurant;
-import com.serviceLayer.service.MenuService;
+import com.serviceLayer.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 
 @Service
-public class MenuServiceImpl implements MenuService {
+public class ItemServiceImpl implements ItemService {
 
     @Autowired
     MenuDAO itemDAO;

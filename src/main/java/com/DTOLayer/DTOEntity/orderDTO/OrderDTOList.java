@@ -21,7 +21,6 @@ public class OrderDTOList {
             }
             if(!k){
                 myOrderList.add(new OrderDTOItemCount(order));
-
             }
         }
     }

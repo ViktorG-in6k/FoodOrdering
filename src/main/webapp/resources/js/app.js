@@ -11,6 +11,9 @@ app.config(['$routeProvider',
         }).when('/commonOrder/:eventId/', {
             templateUrl: '/partials/commonOrder',
             controller: 'commonOrderCtrl'
+        }).when('/commonOrderByUsers/:eventId/', {
+            templateUrl: '/partials/comonOrderByEachUser',
+            controller: 'commonOrderByEachUserCtrl'
         }).otherwise({
             redirectTo: '/AllEvents'
         });
@@ -52,6 +55,24 @@ app.controller('commonOrderCtrl', function ($routeParams, $http, $rootScope, $sc
         } else return 0;
         return total;
     };
+
+});
+
+app.controller('commonOrderByEachUserCtrl', function ($routeParams, $http, $rootScope, $scope) {
+    $rootScope.id = $routeParams.eventId;
+
+    $scope.changeOrderItemStatus = function (eventId, itemId, ordred) {
+        $http.get("/update_ordered" + eventId + "_" + itemId + "_" + ordred).then(function () {
+            $scope.updateCommonOrder();
+        });
+    };
+
+    $scope.updateCommonOrder = function () {
+        $http.get('/CommonOrder_' + $routeParams.eventId).success(function (data) {
+            $scope.array = data;
+        });
+    };
+    $scope.updateCommonOrder();
 
 });
 

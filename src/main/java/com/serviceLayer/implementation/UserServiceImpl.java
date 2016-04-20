@@ -6,6 +6,8 @@ import com.serviceLayer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -30,5 +32,10 @@ public class UserServiceImpl implements UserService {
 
     public User getUserByEmail(String email) {
         return userDAO.getUserByEmail(email);
+    }
+
+
+    public List<User> getListOfAllUsers() {
+        return userDAO.getListOfAllUsers();
     }
 }
