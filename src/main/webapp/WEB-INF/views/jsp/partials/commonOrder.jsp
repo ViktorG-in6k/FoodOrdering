@@ -1,9 +1,9 @@
 <div ng-controller="commonOrderCtrl" class="container">
     <a href="#/commonOrderByUsers/{{id}}">
-        <button type="button" class="btn btn-success ">Sort by user</button>
+        <button type="button" class="btn btn-success col-md-offset-7">Sort by user</button>
     </a>
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-9">
             <div>
                 <h3>Common order</h3>
                 <table class="table">
