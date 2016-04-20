@@ -1,16 +1,31 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: employee
-  Date: 4/20/16
-  Time: 9:48 AM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
 
-</body>
-</html>
+
+<nav class="navbar navbar-default   navbar-fixed-top" ng-controller="navbarCtrl">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/events">Food ordering</a>
+        </div>
+        <div class="navbar-header pull-right" style=" right: 10px;">
+
+            <ul class="nav navbar-nav" >
+                <li class="dropdown">
+                    <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">You responsible for orders <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="event in events"><a ng-if="event.user.email == event.sessionUser.email" href="/events/event_{{event.id}}#/{{event.id}}">{{event.name|limitTo:24}}</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <label class="navbar-brand">
+                Welcome!
+            </label>
+        </div>
+    </div>
+</nav>
+<br/><br/><br/>
+<%--
+<a href="#/commonOrder/{{event.id}}">
+    <button ng-if=" event.user.email == event.sessionUser.email" type="button" class="btn btn-success ">Make order</button>
+</a>--%>
