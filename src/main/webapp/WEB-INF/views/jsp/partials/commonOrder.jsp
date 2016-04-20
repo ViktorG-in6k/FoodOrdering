@@ -1,12 +1,9 @@
 <div ng-controller="commonOrderCtrl" class="container">
-
     <a href="#/commonOrderByUsers/{{id}}">
         <button type="button" class="btn btn-success ">Sort by user</button>
     </a>
-
     <div class="row">
         <div class="col-md-7">
-
             <div>
                 <h3>Common order</h3>
                 <table class="table">
@@ -16,10 +13,7 @@
                         <th>Amount</th>
                         <th>Price</th>
                         <th>Ordered</th>
-
                     </tr>
-                    <!-- Ukraine Hryvnia - UAH -->
-
                     <tr ng-repeat="item in eventOrderList.myOrderList | orderBy:'restaurant.name'">
                         <td>{{item.restaurant.name}}</td>
                         <td>{{item.item.name}}</td>
@@ -38,11 +32,9 @@
                         <td></td>
                         <td>Total</td>
                         <td>{{getTotal() | currency:"UAH"}}</td>
-
                     </tr>
                 </table>
             </div>
         </div>
     </div>
-
 </div>
