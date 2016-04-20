@@ -41,10 +41,8 @@ public class EventController {
 
     @RequestMapping("/event_{id}")
     public @ResponseBody
-    EventDTO getEventById(@PathVariable("id") int eventId) {
-        EventDTO EventDTO = new EventDTO(eventService.getEventById(eventId));
-        return EventDTO;
+    EventDTO getEventById(@PathVariable("id") int eventId, HttpSession session) {
+        User user = userService.getUser((int) session.getAttribute("userId"));
+        return new EventDTO(eventService.getEventById(eventId), user);
     }
-
-
 }
