@@ -13,7 +13,7 @@
     <link href="/resources/css/bootstrapTheme.css" rel="stylesheet">
 </head>
 <body ng-app="foodOrdering">
-    <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true" />
+    <jsp:include page="/WEB-INF/views/jspf/navWithResponsibleUser.jsp" flush="true" />
     <div ng-app="foodOrdering" class="container">
         <jsp:include page="/WEB-INF/views/jspf/creatorOfEvent.jsp" flush="true" />
         <div ng-view></div>

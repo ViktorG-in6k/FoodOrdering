@@ -77,3 +77,9 @@ app.controller('orderController', function ($scope, orderService, $http) {
         $scope.orders = data;
     });
 });
+
+app.controller("navbarCtrl",function ($http, $scope) {
+    $http.get('/eventsJson/').success(function (data) {
+        $scope.events = data;
+    });
+});
