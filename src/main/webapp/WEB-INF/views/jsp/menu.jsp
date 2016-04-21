@@ -42,17 +42,17 @@
          ng-repeat="item in restaurant.itemList">
         <div class="text-info col-md-7" style="font-size: 19px; color: #000000;" >
               <span>
-                <a href="#" editable-text="item.name" onbeforesave=""> {{item.name}}  </a>
+                <a href="#" editable-text="item.name" onbeforesave="updateItemName($data,item.id)"> {{item.name}}  </a>
             </span>
         </div>
         <div class="text-info  pull-right" style="font-size: 19px; color: #000000;">
             <span class="price">
-                <a href="#" editable-text="item.price" onbeforesave=""> {{'&#8372 '+ item.price}}  </a>
+                <a href="#" editable-text="item.price" onbeforesave="updateItemPrice($data,item.id)"> {{'&#8372 '+ item.price}}  </a>
             </span>
         </div>
         <div class="col-md-7 text-left">
             <p>
-                <a href="#" editable-text="item.price" onbeforesave=""> {{item.description}}</a>
+                <a href="#" editable-text="item.description" onbeforesave="updateItemDescription($data,item.id)"> {{item.description}}</a>
             </p>
         </div>
     </div>
@@ -69,6 +69,27 @@
         $http.get("/restaurant_" + $scope.restaurantId).then(function (data) {
             $scope.restaurant = data.data;
         });
+
+        $scope.updateItemName = function (name, id) {
+            var dataForRequest = {"id":id, "name":name};
+            $http.post('/update_name_of_item',dataForRequest).success(function (data) {
+                return data;
+            });
+        }
+
+        $scope.updateItemPrice = function (price, id) {
+            var dataForRequest = {"id":id, "price":price};
+            $http.post('/update_price_of_item',dataForRequest).success(function (data) {
+                return data;
+            });
+        }
+
+        $scope.updateItemDescription = function (description, id) {
+            var dataForRequest = {"id":id, "description":description};
+            $http.post('/update_description_of_item',dataForRequest).success(function (data) {
+                return data;
+            });
+        }
     })
 </script>
 </html>

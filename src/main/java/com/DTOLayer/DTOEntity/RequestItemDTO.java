@@ -7,6 +7,7 @@ public class RequestItemDTO {
     private BigDecimal price;
     private int eventId;
     private String name;
+    private String description;
 
     public RequestItemDTO(){}
 
@@ -54,6 +55,14 @@ public class RequestItemDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
 

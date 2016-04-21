@@ -12,5 +12,7 @@ public interface ItemDAO {
     void updatePrice(int id, BigDecimal price);
 
     void updateName(int id, String name);
+
+    void updateDescription(int id, String description);
 }
 

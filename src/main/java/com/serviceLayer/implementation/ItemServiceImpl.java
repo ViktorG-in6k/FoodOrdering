@@ -1,5 +1,6 @@
 package com.serviceLayer.implementation;
 
+import com.DTOLayer.DTOEntity.ItemDTO;
 import com.DTOLayer.DTOEntity.RequestItemDTO;
 import com.dataLayer.DAO.ItemDAO;
 import com.model.Entity.Item;
@@ -48,6 +49,11 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public ItemDTO getItemDTOById(int id) {
+        return new ItemDTO(itemDAO.getItemById(id));
+    }
+
+    @Override
     public void updateItemPrice(RequestItemDTO item) {
         itemDAO.updatePrice(item.getId(), item.getPrice());
     }
@@ -55,6 +61,11 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public void updateItemName(RequestItemDTO item) {
         itemDAO.updateName(item.getId(), item.getName());
+    }
+
+    @Override
+    public void updateItemDescription(RequestItemDTO item) {
+        itemDAO.updateDescription(item.getId(), item.getDescription());
     }
 }
 

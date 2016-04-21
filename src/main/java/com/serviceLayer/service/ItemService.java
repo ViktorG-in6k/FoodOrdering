@@ -1,5 +1,6 @@
 package com.serviceLayer.service;
 
+import com.DTOLayer.DTOEntity.ItemDTO;
 import com.DTOLayer.DTOEntity.RequestItemDTO;
 import com.model.Entity.Item;
 
@@ -12,10 +13,14 @@ public interface ItemService {
 
     public void saveByRequest(HttpServletRequest req, HttpSession session);
 
-    public Item getItemById(int id);
+    abstract Item getItemById(int id);
+
+    ItemDTO getItemDTOById(int id);
 
     void updateItemPrice(RequestItemDTO item);
 
     void updateItemName(RequestItemDTO item);
+
+    void updateItemDescription(RequestItemDTO item);
 }
 

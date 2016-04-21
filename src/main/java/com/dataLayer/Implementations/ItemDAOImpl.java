@@ -50,4 +50,14 @@ public class ItemDAOImpl implements ItemDAO {
                 .setInteger("id",id);
         query.executeUpdate();
     }
+
+    @Override
+    public void updateDescription(int id, String description){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("update menu set description=:description where id = :id");
+        query
+                .setString("description",description)
+                .setInteger("id",id);
+        query.executeUpdate();
+    }
 }

@@ -11,6 +11,27 @@ public class ItemDTO {
     private String imageURL;
     private BigDecimal price;
 
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
     public ItemDTO(Item item) {
         this.id = item.getId();
         this.name = item.getName();
