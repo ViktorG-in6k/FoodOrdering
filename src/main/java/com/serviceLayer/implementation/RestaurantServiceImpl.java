@@ -55,5 +55,10 @@ public class RestaurantServiceImpl implements RestaurantService {
     public List<Item> getRestaurantMenuById(int id) {
         return restaurantDAO.getRestaurantMenuById(id);
     }
+
+    @Override
+    public void updateRestaurantName(RestaurantDTO restaurant) {
+        restaurantDAO.updateName(restaurant.getId(), restaurant.getName());
+    }
 }
 

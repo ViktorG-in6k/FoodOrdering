@@ -4,8 +4,11 @@ import com.DTOLayer.DTOEntity.RestaurantDTO;
 import com.model.Entity.Restaurant;
 import com.serviceLayer.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -53,6 +56,12 @@ public class RestaurantsController {
     public  @ResponseBody
     RestaurantDTO getRestaurantById(@PathVariable("id") int id) {
         return restaurantService.getRestaurantDTOById(id);
+    }
+
+    @RequestMapping(value = "/update_restaurant_name", method = RequestMethod.POST)
+    public ResponseEntity<RestaurantDTO> updateRestaurantName(@RequestBody RestaurantDTO restaurant) {
+        restaurantService.updateRestaurantName(restaurant);
+        return new ResponseEntity<RestaurantDTO>(restaurant, HttpStatus.OK);
     }
 }
 

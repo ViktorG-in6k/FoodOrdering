@@ -15,5 +15,7 @@ public interface RestaurantDAO {
     public Restaurant getRestaurantById(int id);
 
     public List<Item> getRestaurantMenuById(int id);
+
+    void updateName(int id, String name);
 }
 
