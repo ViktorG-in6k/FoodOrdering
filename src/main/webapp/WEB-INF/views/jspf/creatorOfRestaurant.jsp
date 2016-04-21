@@ -6,7 +6,7 @@
         <div class="col-md-9">
             <form role="form" action="/new_restaurant"  method="post">
                 <fieldset>
-                    <legend class="button"  data-slide-toggle="#s" data-slide-toggle-duration="300"><a>New restaurant</a></legend>
+                    <button class="button"  data-slide-toggle="#s" data-slide-toggle-duration="300"><a>New restaurant</a></button>
                     <div id="s" style="display: none">
                         <div class="form-group">
                             <label for="name">Restaurant name:</label>
