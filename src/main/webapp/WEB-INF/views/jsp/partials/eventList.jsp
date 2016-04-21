@@ -32,7 +32,7 @@
                             <div ng-if="event.user != null">
                                 <b style="background-color: rgba(0, 0, 0, 0.58);"> {{event.user.email}}
                                        <a href="#/commonOrder/{{event.id}}">
-                                        <button ng-if=" event.user.email == event.sessionUser.email" type="button" class="btn btn-success ">Make order</button>
+                                        <button ng-if=" event.user.email == event.sessionUser.email" type="button" class="btn btn-success ">Order</button>
                                     </a>
                                 </b>
                             </div>
