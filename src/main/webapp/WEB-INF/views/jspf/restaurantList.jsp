@@ -44,8 +44,8 @@
                             </div>
                         </a>
                     </div>
-                    <button class="btn pull-right"><a href="/events/event_{{eventId}}/restaurant_{{restaurant.id}}">Add
-                        item</a></button>
+                    <button class="btn pull-right"><a href="/events/event_{{eventId}}/restaurant_{{restaurant.id}}">
+                        manage restaurant</a></button>
                 </div>
             </div>
         </div>
