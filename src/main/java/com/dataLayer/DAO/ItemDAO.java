@@ -10,4 +10,6 @@ public interface ItemDAO {
     public Item getItemById(int id);
 
     void updatePrice(int id, BigDecimal price);
+
+    void updateName(int id, String name);
 }

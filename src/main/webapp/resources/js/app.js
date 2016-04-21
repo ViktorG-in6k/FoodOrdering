@@ -11,10 +11,17 @@ app.controller('Ctrl', function ($routeParams,$scope, $http, editableThemes, edi
     editableOptions.theme = 'bs3';
 
     $scope.updatePrice = function(data, id,  eventId){
-        var dataForRequest = {"id":id, "price":data, "eventId":eventId};
-        
         console.log(id);
-        $http.post('/update_item_price',dataForRequest).success(function (data) {
+        var dataForRequest = {"id":id, "price":data, "eventId":eventId};
+         $http.post('/update_item_price',dataForRequest).success(function (data) {
+            return data;
+        });
+    }
+
+    $scope.updateName = function(data, id,  eventId){
+        console.log(id);
+        var dataForRequest = {"id":id, "name":data, "eventId":eventId};
+        $http.post('/update_item_name',dataForRequest).success(function (data) {
             return data;
         });
     }

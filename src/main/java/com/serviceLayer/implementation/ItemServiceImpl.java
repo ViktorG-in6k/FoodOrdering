@@ -1,11 +1,13 @@
 package com.serviceLayer.implementation;
 
+import com.DTOLayer.DTOEntity.RequestItemDTO;
 import com.dataLayer.DAO.ItemDAO;
 import com.model.Entity.Item;
 import com.model.Entity.Restaurant;
 import com.serviceLayer.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
@@ -46,7 +48,12 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void updateItemPrice(int id, BigDecimal price){
-        itemDAO.updatePrice(id, price);
+    public void updateItemPrice(RequestItemDTO item){
+        itemDAO.updatePrice(item.getId(), item.getPrice());
+    }
+
+    @Override
+    public void updateItemName(RequestItemDTO item){
+        itemDAO.updateName(item.getId(), item.getName());
     }
 }

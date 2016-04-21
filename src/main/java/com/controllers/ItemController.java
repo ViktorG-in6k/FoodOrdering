@@ -31,7 +31,14 @@ public class ItemController {
 
     @RequestMapping(value = "/update_item_price", method = RequestMethod.POST)
     public ResponseEntity<OrderDTOList> updateItemPrice(@RequestBody RequestItemDTO item) {
-        itemService.updateItemPrice(item.getId(),item.getPrice());
+        itemService.updateItemPrice(item);
+        OrderDTOList commonOrder = orderService.orderListOfEvent(item.getEventId());
+        return new ResponseEntity<OrderDTOList>(commonOrder,HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/update_item_name", method = RequestMethod.POST)
+    public ResponseEntity<OrderDTOList> updateItemName(@RequestBody RequestItemDTO item) {
+        itemService.updateItemName(item);
         OrderDTOList commonOrder = orderService.orderListOfEvent(item.getEventId());
         return new ResponseEntity<OrderDTOList>(commonOrder,HttpStatus.OK);
     }

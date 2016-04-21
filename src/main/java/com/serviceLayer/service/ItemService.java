@@ -1,10 +1,10 @@
 package com.serviceLayer.service;
 
+import com.DTOLayer.DTOEntity.RequestItemDTO;
 import com.model.Entity.Item;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.math.BigDecimal;
 
 
 public interface ItemService {
@@ -14,5 +14,7 @@ public interface ItemService {
 
     public Item getItemById(int id);
 
-    void updateItemPrice(int id, BigDecimal price);
+    void updateItemPrice(RequestItemDTO item);
+
+    void updateItemName(RequestItemDTO item);
 }

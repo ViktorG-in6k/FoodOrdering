@@ -7,10 +7,7 @@ import com.model.Entity.Event;
 import com.model.Entity.Item;
 import com.model.Entity.Order;
 import com.model.Entity.User;
-import com.serviceLayer.service.EventService;
-import com.serviceLayer.service.ItemService;
-import com.serviceLayer.service.OrderService;
-import com.serviceLayer.service.UserService;
+import com.serviceLayer.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
