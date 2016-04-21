@@ -50,12 +50,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDTOList orderListOfUserByEvent(int userId, int eventId) {
-        return new OrderDTOList(orderDAO.orderListOfUserByEvent(userId,eventId));
+        return new OrderDTOList(orderDAO.orderListOfUserByEvent(userId,eventId),eventId);
     }
 
     @Override
-    public List<Order> orderListOfEvent(int eventId) {
-        return orderDAO.orderListOfEvent(eventId);
+    public OrderDTOList orderListOfEvent(int eventId) {
+        return new OrderDTOList(orderDAO.orderListOfEvent(eventId),eventId);
     }
 
     @Override

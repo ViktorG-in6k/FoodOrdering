@@ -10,13 +10,11 @@ app.controller('Ctrl', function ($routeParams,$scope, $http, editableThemes, edi
 
     editableThemes.bs3.inputClass = 'form-control';
     editableOptions.theme = 'bs3';
-    $scope.user = {
-        name: 'awesome user'
-    };
 
     $scope.updatePrice = function(data, id,  eventId){
-        var dataForRequest = {'id':id, 'price':data, 'eventId':eventId};
-
+        var dataForRequest = {"id":id, "price":data, "eventId":eventId};
+        
+        console.log(id);
         $http.post('/update_item_price',dataForRequest).success(function (data) {
             return data;
         });

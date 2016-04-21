@@ -28,7 +28,7 @@
                         </td>
 
                         <td><div ng-controller="Ctrl">
-                            <a href="#" editable-text="item.item.price" onbeforesave="updatePrice($data,item.item.id)">{{item.item.price|currency:"&#8372"}}</a>
+                            <a href="#" editable-text="item.item.price" onbeforesave="updatePrice($data,item.item.id,eventOrderList.eventId)">{{item.item.price|currency:"&#8372"}}</a>
                         </div></td>
                         <td> {{item.count * item.item.price|currency:"&#8372"}}</td>
                         <td><input ng-click="changeOrderItemStatus(id,item.item.id,true)" ng-checked="{{item.ordered != false}}" ng-disabled="{{item.ordered != false}}" type="checkbox"></td>

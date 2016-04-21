@@ -6,9 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDTOList {
+    private int eventId;
     private List<OrderDTOItemCount> myOrderList;
 
-    public OrderDTOList(List<Order>orderList){
+    public OrderDTOList(){
+
+    }
+
+    public OrderDTOList(List<Order>orderList,int eventId){
         myOrderList = new ArrayList<>();
         for(Order order: orderList){
             boolean k = false;
@@ -23,6 +28,7 @@ public class OrderDTOList {
                 myOrderList.add(new OrderDTOItemCount(order));
             }
         }
+        this.eventId = eventId;
     }
 
     public List<OrderDTOItemCount> getMyOrderList(){
@@ -31,5 +37,13 @@ public class OrderDTOList {
 
     public void setMyOrderList(List<OrderDTOItemCount> myOrderList){
         this.myOrderList = myOrderList;
+    }
+
+    public int getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
     }
 }

@@ -1,3 +1,4 @@
+//this
 package com.controllers;
 
 import com.DTOLayer.DTOEntity.orderDTO.OrderDTOList;
@@ -35,7 +36,7 @@ public class OrderController {
     @RequestMapping("/CommonOrderJson_{event}")
     public  @ResponseBody
     OrderDTOList getCommonOrderByEvent(@PathVariable("event") int eventId) {
-        return new OrderDTOList(orderService.orderListOfEvent(eventId));
+        return orderService.orderListOfEvent(eventId);
     }
 
     @RequestMapping("/CommonOrder_{event}")

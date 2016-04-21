@@ -15,7 +15,7 @@ public interface OrderService {
 
     public OrderDTOList orderListOfUserByEvent(int userId, int eventId);
 
-    public List<Order> orderListOfEvent(int eventId);
+    public OrderDTOList orderListOfEvent(int eventId);
 
     public void deleteItemFromOrder(int userId,int eventId,int itemId);
 

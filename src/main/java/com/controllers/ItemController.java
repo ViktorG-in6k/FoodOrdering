@@ -2,6 +2,7 @@
 package com.controllers;
 
 import com.DTOLayer.DTOEntity.ItemDTO;
+import com.DTOLayer.DTOEntity.RequestItemDTO;
 import com.DTOLayer.DTOEntity.orderDTO.OrderDTOList;
 import com.serviceLayer.service.ItemService;
 import com.serviceLayer.service.OrderService;
@@ -31,10 +32,10 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/update_item_price", method = RequestMethod.POST)
-    public ResponseEntity<OrderDTOList> updateItemPrice(HttpServletRequest req, @RequestParam("dataForRequest")ItemDTO item, HttpSession session) {
-       // ItemDTO itemDTO = new ItemDTO();
-        itemService.saveByRequest(req, session);
-       // OrderDTOList orderDTOList = new OrderDTOList();
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<OrderDTOList> updateItemPrice(@RequestParam("dataForRequest")RequestItemDTO item) {
+        System.out.print("a");
+        itemService.updateItemPrice(item.getId(),item.getPrice());
+        OrderDTOList commonOrder = orderService.orderListOfEvent(item.getEventId());
+        return new ResponseEntity<OrderDTOList>(commonOrder,HttpStatus.OK);
     }
 }
