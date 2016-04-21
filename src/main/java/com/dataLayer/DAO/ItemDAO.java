@@ -13,3 +13,4 @@ public interface ItemDAO {
 
     void updateName(int id, String name);
 }
+

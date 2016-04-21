@@ -15,9 +15,9 @@ import java.util.List;
 @SuppressWarnings("unchecked")
 @Repository
 @Transactional
-public class RestaurantDAOImpl implements RestaurantDAO{
+public class RestaurantDAOImpl implements RestaurantDAO {
     @Autowired
-    SessionFactory sessionFactory ;
+    SessionFactory sessionFactory;
 
     public void save(Restaurant restaurant) {
         Session session = sessionFactory.getCurrentSession();
@@ -37,12 +37,13 @@ public class RestaurantDAOImpl implements RestaurantDAO{
     public Restaurant getRestaurantById(int id) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from restaurant where id = :id");
-        return (Restaurant) query.setInteger("id",id).uniqueResult();
+        return (Restaurant) query.setInteger("id", id).uniqueResult();
     }
 
     public List<Item> getRestaurantMenuById(int id) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from restaurant where id = :id");
-        return (List<Item>) query.setInteger("id",id).list();
+        return (List<Item>) query.setInteger("id", id).list();
     }
 }
+

@@ -55,3 +55,4 @@ public class RestaurantsController {
         return restaurantService.getRestaurantDTOById(id);
     }
 }
+

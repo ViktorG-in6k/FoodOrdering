@@ -17,7 +17,7 @@ import java.util.*;
 @Transactional
 public class EventDAOImpl implements EventDAO {
     @Autowired
-    SessionFactory sessionFactory ;
+    SessionFactory sessionFactory;
 
     public void save(Event e) {
         Session session = sessionFactory.getCurrentSession();
@@ -27,7 +27,7 @@ public class EventDAOImpl implements EventDAO {
     public Event getEventById(int id) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from event where id = :id");
-        return (Event) query.setInteger("id",id).uniqueResult();
+        return (Event) query.setInteger("id", id).uniqueResult();
     }
 
     public Set<Event> getListOfAllEvents() {
@@ -41,21 +41,21 @@ public class EventDAOImpl implements EventDAO {
     public List<Event> getListOfEvents(String eventName) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from event where name = :eventName");
-        return (List<Event>) query.setString("eventName",eventName).list();
+        return (List<Event>) query.setString("eventName", eventName).list();
     }
 
     public List<Event> getListOfEventsByDate(LocalDate eventDate) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from event where date = :eventDate");
-        return (List<Event>) query.setDate("eventDate",java.sql.Date.valueOf(eventDate)).list();
+        return (List<Event>) query.setDate("eventDate", java.sql.Date.valueOf(eventDate)).list();
     }
 
     public List<Event> getListOfEventsByNameAndDate(String eventName, LocalDate eventDate) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from event where name = :eventName and date = :eventDate");
         return (List<Event>) query
-                .setString("eventName",eventName)
-                .setDate("eventDate",java.sql.Date.valueOf(eventDate)).list();
+                .setString("eventName", eventName)
+                .setDate("eventDate", java.sql.Date.valueOf(eventDate)).list();
     }
 
     @Override
@@ -68,3 +68,4 @@ public class EventDAOImpl implements EventDAO {
         sessionFactory.getCurrentSession().update(event);
     }
 }
+

@@ -23,7 +23,8 @@ public class Event extends com.model.base.Entity {
         this.date = date;
     }
 
-    public Event() {}
+    public Event() {
+    }
 
     public String getName() {
         return name;
@@ -65,3 +66,4 @@ public class Event extends com.model.base.Entity {
         this.user = user;
     }
 }
+

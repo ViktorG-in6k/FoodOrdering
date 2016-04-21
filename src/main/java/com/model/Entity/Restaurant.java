@@ -70,3 +70,4 @@ public class Restaurant extends com.model.base.Entity {
         this.item.add(item);
     }
 }
+

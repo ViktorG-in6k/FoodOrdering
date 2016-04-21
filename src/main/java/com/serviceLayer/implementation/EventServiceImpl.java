@@ -79,3 +79,4 @@ public class EventServiceImpl implements EventService {
         eventDAO.save(event);
     }
 }
+

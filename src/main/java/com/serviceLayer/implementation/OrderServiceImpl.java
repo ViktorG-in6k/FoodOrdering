@@ -40,19 +40,19 @@ public class OrderServiceImpl implements OrderService {
         int user_id = (int) session.getAttribute("userId");
         User user = userService.getUser(user_id);
 
-        Order order = new Order(user,item,event);
+        Order order = new Order(user, item, event);
 
         orderDAO.save(order);
     }
 
     @Override
     public OrderDTOList orderListOfUserByEvent(int userId, int eventId) {
-        return new OrderDTOList(orderDAO.orderListOfUserByEvent(userId,eventId),eventId);
+        return new OrderDTOList(orderDAO.orderListOfUserByEvent(userId, eventId), eventId);
     }
 
     @Override
     public OrderDTOList orderListOfEvent(int eventId) {
-        return new OrderDTOList(orderDAO.orderListOfEvent(eventId),eventId);
+        return new OrderDTOList(orderDAO.orderListOfEvent(eventId), eventId);
     }
 
     @Override
@@ -62,24 +62,25 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void deleteOneItemFromOrder(int userId, int eventId, int itemId) {
-        orderDAO.deleteOneItemFromOrder( userId,  eventId,  itemId);
+        orderDAO.deleteOneItemFromOrder(userId, eventId, itemId);
     }
 
     @Override
     public void updateOrderedOfOrder(boolean ordered, int eventId, int itemId) {
-        orderDAO.updateOrderedOfOrder(ordered,eventId,itemId);
+        orderDAO.updateOrderedOfOrder(ordered, eventId, itemId);
     }
 
-    public List<OrderDTOListOfEachUser> orderDTOListOfEachUser(int eventId){
-        List<User>users=userService.getListOfAllUsers();
+    public List<OrderDTOListOfEachUser> orderDTOListOfEachUser(int eventId) {
+        List<User> users = userService.getListOfAllUsers();
         List<OrderDTOListOfEachUser> orderDTOListOfEachUser = new ArrayList<>();
-        for (User user:users) {
+        for (User user : users) {
             OrderDTOList order = orderListOfUserByEvent(user.getId(), eventId);
             if (orderDAO.selectOrderList(user.getId(), eventId).size() > 0) {
                 orderDTOListOfEachUser.add(new OrderDTOListOfEachUser(order, user.getEmail()));
 
             }
         }
-        return  orderDTOListOfEachUser;
+        return orderDTOListOfEachUser;
     }
 }
+

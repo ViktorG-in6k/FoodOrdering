@@ -26,7 +26,7 @@ public class EventDTO {
 
     }
 
-    public EventDTO(Event event,User user) {
+    public EventDTO(Event event, User user) {
         this.id = event.getId();
         this.name = event.getName();
         this.description = event.getDescription();
@@ -68,3 +68,4 @@ public class EventDTO {
         this.sessionUser = sessionUser;
     }
 }
+
