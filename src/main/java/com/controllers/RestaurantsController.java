@@ -48,4 +48,10 @@ public class RestaurantsController {
         }
         return RestaurantDTOs;
     }
+
+    @RequestMapping("/restaurant_{id}")
+    public  @ResponseBody
+    RestaurantDTO getRestaurantById(@PathVariable("id") int id) {
+        return restaurantService.getRestaurantDTOById(id);
+    }
 }
