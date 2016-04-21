@@ -11,7 +11,8 @@
                 });
             });
         </script>
-        <legend class="button" id="slide"><a>New item</a></legend>
+        <button class="btn col-md-offset-10 btn-success pull-right" id="slide">Create new item</button>
+
         <div id="s" style="display: none">
 
             <div class="form-group">

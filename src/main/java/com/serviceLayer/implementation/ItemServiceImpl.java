@@ -35,7 +35,7 @@ public class ItemServiceImpl implements ItemService {
 
         Restaurant restaurant = (Restaurant) session.getAttribute("restaurant");
 
-        Item item = new Item( name, description, URLimage, price, restaurant);
+        Item item = new Item(name, description, URLimage, price, restaurant);
         if (item.getImageURL().equals("")) {
             item.setImageURL("/resources/image/shief.jpg");
         }
@@ -43,17 +43,18 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Item getItemById(int id){
+    public Item getItemById(int id) {
         return itemDAO.getItemById(id);
     }
 
     @Override
-    public void updateItemPrice(RequestItemDTO item){
+    public void updateItemPrice(RequestItemDTO item) {
         itemDAO.updatePrice(item.getId(), item.getPrice());
     }
 
     @Override
-    public void updateItemName(RequestItemDTO item){
+    public void updateItemName(RequestItemDTO item) {
         itemDAO.updateName(item.getId(), item.getName());
     }
 }
+

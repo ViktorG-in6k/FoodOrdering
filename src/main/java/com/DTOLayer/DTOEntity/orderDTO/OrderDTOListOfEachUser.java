@@ -4,12 +4,12 @@ public class OrderDTOListOfEachUser {
     private OrderDTOList orderDTOList;
     private String userMail;
 
-    public OrderDTOListOfEachUser(OrderDTOList orderDTOList, String userMail){
+    public OrderDTOListOfEachUser(OrderDTOList orderDTOList, String userMail) {
         this.orderDTOList = orderDTOList;
         this.userMail = userMail;
     }
 
-    public OrderDTOListOfEachUser(){
+    public OrderDTOListOfEachUser() {
     }
 
     public OrderDTOList getOrderDTOList() {
@@ -28,3 +28,4 @@ public class OrderDTOListOfEachUser {
         this.userMail = userMail;
     }
 }
+

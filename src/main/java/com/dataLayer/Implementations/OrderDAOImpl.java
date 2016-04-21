@@ -29,8 +29,8 @@ public class OrderDAOImpl implements OrderDAO {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from order_list where user_id = :userId and event_id=:eventId");
         return (List<Order>) query
-                .setLong("userId",userId)
-                .setLong("eventId",eventId)
+                .setLong("userId", userId)
+                .setLong("eventId", eventId)
                 .list();
     }
 
@@ -39,7 +39,7 @@ public class OrderDAOImpl implements OrderDAO {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from order_list where event_id=:eventId");
         return (List<Order>) query
-                .setLong("eventId",eventId)
+                .setLong("eventId", eventId)
                 .list();
     }
 
@@ -48,9 +48,9 @@ public class OrderDAOImpl implements OrderDAO {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from order_list where event_id=:eventId and user_id=:userId and item_id=:itemId");
         return (List<Order>) query
-                .setInteger("eventId",eventId)
-                .setInteger("userId",userId)
-                .setInteger("itemId",itemId).list();
+                .setInteger("eventId", eventId)
+                .setInteger("userId", userId)
+                .setInteger("itemId", itemId).list();
     }
 
     @Override
@@ -58,8 +58,8 @@ public class OrderDAOImpl implements OrderDAO {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from order_list where event_id=:eventId and user_id=:userId");
         return (List<Order>) query
-                .setInteger("eventId",eventId)
-                .setInteger("userId",userId)
+                .setInteger("eventId", eventId)
+                .setInteger("userId", userId)
                 .list();
     }
 
@@ -71,13 +71,13 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public void deleteItemFromOrder(int userId,int eventId,int itemId) {
+    public void deleteItemFromOrder(int userId, int eventId, int itemId) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("delete from order_list where event_id=:eventId and user_id=:userId and item_id=:itemId");
         query
-                .setInteger("eventId",eventId)
-                .setInteger("userId",userId)
-                .setInteger("itemId",itemId);
+                .setInteger("eventId", eventId)
+                .setInteger("userId", userId)
+                .setInteger("itemId", itemId);
         query.executeUpdate();
     }
 
@@ -88,14 +88,15 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public void updateOrderedOfOrder(boolean ordered,int eventId,int itemId) {
+    public void updateOrderedOfOrder(boolean ordered, int eventId, int itemId) {
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("update order_list SET ordered=:ordered where event_id=:eventId and item_id=:itemId");
         query
-                .setBoolean("ordered",ordered)
-                .setInteger("eventId",eventId)
-                .setInteger("itemId",itemId);
+                .setBoolean("ordered", ordered)
+                .setInteger("eventId", eventId)
+                .setInteger("itemId", itemId);
         query.executeUpdate();
     }
 }
+

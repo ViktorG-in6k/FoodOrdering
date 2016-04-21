@@ -47,3 +47,4 @@ public class UserDAOImpl implements UserDAO {
         return (List<User>) query.list();
     }
 }
+

@@ -19,7 +19,7 @@ public class RestaurantDTO {
         this.name = restaurant.getName();
         this.description = restaurant.getDescription();
         this.imageURL = restaurant.getImageURL();
-        for (Item item:restaurant.getItem()) {
+        for (Item item : restaurant.getItem()) {
             this.itemList.add(new ItemDTO(item));
         }
     }
@@ -44,3 +44,4 @@ public class RestaurantDTO {
         return itemList;
     }
 }
+

@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackages =  {"com", "com.controllers" , "com.dataLayer.Implementations", "com.serviceLayer.service"})
+@ComponentScan(basePackages = {"com", "com.controllers", "com.dataLayer.Implementations", "com.serviceLayer.service"})
 public class WebAppConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -28,3 +28,4 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
         return viewResolver;
     }
 }
+

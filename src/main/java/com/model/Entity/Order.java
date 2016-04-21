@@ -62,3 +62,4 @@ public class Order extends com.model.base.Entity {
         this.ordered = ordered;
     }
 }
+

@@ -17,15 +17,12 @@ public interface OrderService {
 
     public OrderDTOList orderListOfEvent(int eventId);
 
-    public void deleteItemFromOrder(int userId,int eventId,int itemId);
+    public void deleteItemFromOrder(int userId, int eventId, int itemId);
 
     public void deleteOneItemFromOrder(int userId, int eventId, int itemId);
-
-//    void deleteOneItemFromOrder(Order order);
-
-//    Order SelectOrder(int userId, int eventId, int itemId);
 
     public void updateOrderedOfOrder(boolean ordered, int eventId, int itemId);
 
     public List<OrderDTOListOfEachUser> orderDTOListOfEachUser(int eventId);
 }
+

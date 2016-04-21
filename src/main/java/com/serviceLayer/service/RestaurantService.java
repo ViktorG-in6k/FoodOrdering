@@ -19,4 +19,9 @@ public interface RestaurantService {
     RestaurantDTO getRestaurantDTOById(int id);
 
     public List<Item> getRestaurantMenuById(int id);
+
+    void updateRestaurantName(RestaurantDTO restaurant);
+
+    void updateRestaurantDescription(RestaurantDTO restaurant);
 }
+

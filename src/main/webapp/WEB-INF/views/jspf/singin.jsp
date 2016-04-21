@@ -3,7 +3,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
 <script src="/resources/js/singin.js"></script>
 
-
 <div  class="container" style="margin-top: 250px">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
