@@ -1,4 +1,3 @@
-//this
 var app = angular.module('foodOrdering', ["ngRoute", "xeditable"]);
 
 app.run(function (editableOptions, editableThemes) {

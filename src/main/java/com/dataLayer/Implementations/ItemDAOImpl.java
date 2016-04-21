@@ -1,4 +1,3 @@
-//this
 package com.dataLayer.Implementations;
 
 import com.dataLayer.DAO.ItemDAO;

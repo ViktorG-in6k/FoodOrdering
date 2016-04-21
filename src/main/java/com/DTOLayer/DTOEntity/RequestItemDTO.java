@@ -7,9 +7,7 @@ public class RequestItemDTO {
     private BigDecimal price;
     private int eventId;
 
-    public RequestItemDTO(){
-
-    }
+    public RequestItemDTO(){}
 
     public RequestItemDTO(int id, BigDecimal price,int eventId){
         this.id = id;

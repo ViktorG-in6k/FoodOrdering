@@ -1,4 +1,3 @@
-//this
 package com.dataLayer.DAO;
 
 import com.model.Entity.Item;

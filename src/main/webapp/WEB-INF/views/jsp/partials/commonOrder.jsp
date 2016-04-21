@@ -1,4 +1,3 @@
-<%--this--%>
 <div ng-controller="commonOrderCtrl" class="container">
     <a href="#/commonOrderByUsers/{{id}}">
         <button type="button" class="btn btn-success col-md-offset-7">Sort by user</button>

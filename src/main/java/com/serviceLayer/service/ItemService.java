@@ -1,4 +1,3 @@
-//this
 package com.serviceLayer.service;
 
 import com.model.Entity.Item;

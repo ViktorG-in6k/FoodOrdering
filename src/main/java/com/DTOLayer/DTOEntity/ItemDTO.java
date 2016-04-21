@@ -1,4 +1,3 @@
-//this
 package com.DTOLayer.DTOEntity;
 
 import com.model.Entity.Item;
