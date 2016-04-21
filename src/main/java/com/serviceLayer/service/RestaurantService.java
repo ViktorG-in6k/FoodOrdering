@@ -21,5 +21,7 @@ public interface RestaurantService {
     public List<Item> getRestaurantMenuById(int id);
 
     void updateRestaurantName(RestaurantDTO restaurant);
+
+    void updateRestaurantDescription(RestaurantDTO restaurant);
 }
 

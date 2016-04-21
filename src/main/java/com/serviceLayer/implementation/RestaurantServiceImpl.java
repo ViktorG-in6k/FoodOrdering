@@ -60,5 +60,10 @@ public class RestaurantServiceImpl implements RestaurantService {
     public void updateRestaurantName(RestaurantDTO restaurant) {
         restaurantDAO.updateName(restaurant.getId(), restaurant.getName());
     }
+
+    @Override
+    public void updateRestaurantDescription(RestaurantDTO restaurant) {
+        restaurantDAO.updateDescription(restaurant.getId(), restaurant.getDescription());
+    }
 }
 

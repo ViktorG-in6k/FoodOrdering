@@ -64,5 +64,12 @@ public class RestaurantsController {
         RestaurantDTO restaurantDTO = getRestaurantById(restaurant.getId());
         return new ResponseEntity<RestaurantDTO>(restaurantDTO, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/update_restaurant_description", method = RequestMethod.POST)
+    public ResponseEntity<RestaurantDTO> updateRestaurantDescription(@RequestBody RestaurantDTO restaurant) {
+        restaurantService.updateRestaurantDescription(restaurant);
+        RestaurantDTO restaurantDTO = getRestaurantById(restaurant.getId());
+        return new ResponseEntity<RestaurantDTO>(restaurantDTO, HttpStatus.OK);
+    }
 }
 
