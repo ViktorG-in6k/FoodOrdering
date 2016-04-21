@@ -32,9 +32,9 @@
     <div class="well col-md-8">
         <img src="{{restaurant.imageURL}}" width="100px"
              height="100px;" style="float: left; ">
-        <h2 style="padding-left: 120px"><a href="#" editable-text="restaurant.name" onbeforesave="">{{restaurant.name}}</a></h2>
+        <h2 style="padding-left: 120px"><a href="#" editable-text="restaurant.name" onbeforesave="updateRestaurantName($data, restaurant.id)">{{restaurant.name}}</a></h2>
         <p class="description">
-            <a href="#" href="#" editable-textarea="restaurant.description" e-rows="7" e-cols="80">{{restaurant.description}}</a>
+            <a href="#" href="#" editable-textarea="restaurant.description" onbeforesave="updateRestaurantDescription($data, restaurant.id)"> {{restaurant.description}}</a>
         </p>
     </div>
 
@@ -70,26 +70,40 @@
             $scope.restaurant = data.data;
         });
 
+        $scope.updateRestaurantName = function (name, id) {
+            var dataForRequest = {"id":id, "name":name};
+            $http.post('/update_restaurant_name',dataForRequest).success(function (data) {
+                return data;
+            });
+        };
+
+        $scope.updateRestaurantDescription = function (description, id) {
+            var dataForRequest = {"id":id, "description":description};
+            $http.post('/update_restaurant_description',dataForRequest).success(function (data) {
+                return data;
+            });
+        };
+
         $scope.updateItemName = function (name, id) {
             var dataForRequest = {"id":id, "name":name};
             $http.post('/update_name_of_item',dataForRequest).success(function (data) {
                 return data;
             });
-        }
+        };
 
         $scope.updateItemPrice = function (price, id) {
             var dataForRequest = {"id":id, "price":price};
             $http.post('/update_price_of_item',dataForRequest).success(function (data) {
                 return data;
             });
-        }
+        };
 
         $scope.updateItemDescription = function (description, id) {
             var dataForRequest = {"id":id, "description":description};
             $http.post('/update_description_of_item',dataForRequest).success(function (data) {
                 return data;
             });
-        }
+        };
     })
 </script>
 </html>

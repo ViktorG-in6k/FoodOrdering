@@ -1,5 +1,6 @@
 package com.controllers;
 
+import com.DTOLayer.DTOEntity.RequestRestaurantDTO;
 import com.DTOLayer.DTOEntity.RestaurantDTO;
 import com.model.Entity.Restaurant;
 import com.serviceLayer.service.RestaurantService;
@@ -59,14 +60,14 @@ public class RestaurantsController {
     }
 
     @RequestMapping(value = "/update_restaurant_name", method = RequestMethod.POST)
-    public ResponseEntity<RestaurantDTO> updateRestaurantName(@RequestBody RestaurantDTO restaurant) {
+    public ResponseEntity<RestaurantDTO> updateRestaurantName(@RequestBody RequestRestaurantDTO restaurant) {
         restaurantService.updateRestaurantName(restaurant);
         RestaurantDTO restaurantDTO = getRestaurantById(restaurant.getId());
         return new ResponseEntity<RestaurantDTO>(restaurantDTO, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/update_restaurant_description", method = RequestMethod.POST)
-    public ResponseEntity<RestaurantDTO> updateRestaurantDescription(@RequestBody RestaurantDTO restaurant) {
+    public ResponseEntity<RestaurantDTO> updateRestaurantDescription(@RequestBody RequestRestaurantDTO restaurant) {
         restaurantService.updateRestaurantDescription(restaurant);
         RestaurantDTO restaurantDTO = getRestaurantById(restaurant.getId());
         return new ResponseEntity<RestaurantDTO>(restaurantDTO, HttpStatus.OK);

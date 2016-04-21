@@ -1,5 +1,6 @@
 package com.serviceLayer.implementation;
 
+import com.DTOLayer.DTOEntity.RequestRestaurantDTO;
 import com.DTOLayer.DTOEntity.RestaurantDTO;
 import com.dataLayer.DAO.RestaurantDAO;
 import com.model.Entity.Item;
@@ -57,12 +58,12 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public void updateRestaurantName(RestaurantDTO restaurant) {
+    public void updateRestaurantName(RequestRestaurantDTO restaurant) {
         restaurantDAO.updateName(restaurant.getId(), restaurant.getName());
     }
 
     @Override
-    public void updateRestaurantDescription(RestaurantDTO restaurant) {
+    public void updateRestaurantDescription(RequestRestaurantDTO restaurant) {
         restaurantDAO.updateDescription(restaurant.getId(), restaurant.getDescription());
     }
 }
