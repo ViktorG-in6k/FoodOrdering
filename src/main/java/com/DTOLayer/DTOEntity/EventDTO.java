@@ -14,7 +14,6 @@ public class EventDTO {
     private String imageURL;
     private LocalDateTime date;
 
-
     public EventDTO(Event event) {
         this.id = event.getId();
         this.name = event.getName();
@@ -64,8 +63,32 @@ public class EventDTO {
         return sessionUser;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public void setSessionUser(UserDTO sessionUser) {
         this.sessionUser = sessionUser;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 }
 

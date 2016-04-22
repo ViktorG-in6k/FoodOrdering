@@ -1,4 +1,4 @@
-var app = angular.module('foodOrdering', ["ngRoute", "xeditable"]);
+var app = angular.module('foodOrdering', ["ngRoute", "xeditable", "ui.bootstrap.datetimepicker"]);
 
 app.run(function (editableOptions, editableThemes) {
     editableThemes.bs3.inputClass = 'form-control';
@@ -22,6 +22,17 @@ app.controller('Ctrl', function ($routeParams,$scope, $http, editableThemes, edi
         console.log(id);
         var dataForRequest = {"id":id, "name":data, "eventId":eventId};
         $http.post('/update_item_name',dataForRequest).success(function (data) {
+            return data;
+        });
+    }
+});
+
+app.controller('CreteTheEventController', function ($routeParams,$scope, $http, $filter) {
+    $scope.createEvent = function(name, description, date){
+        console.log($filter('date')(date, "yyyy-MM-dd HH:mm"));
+        var datetime = $filter('date')(date, "yyyy-MM-dd HH:mm");
+        var dataForRequest = {"name":name, "description":description,  'date':datetime};
+        $http.post('/new_event',dataForRequest).success(function (data) {
             return data;
         });
     }

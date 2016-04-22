@@ -1,5 +1,7 @@
 package com.serviceLayer.implementation;
 
+import com.DTOLayer.DTOEntity.EventDTO;
+import com.DTOLayer.DTOEntity.RequestEventDTO;
 import com.dataLayer.DAO.EventDAO;
 import com.model.Entity.Event;
 import com.serviceLayer.service.EventService;
@@ -21,17 +23,18 @@ public class EventServiceImpl implements EventService {
     @Autowired
     UserService userService;
 
-    public void save(Event e) {
-        if (e.getImageURL().equals("")) {
-            if (e.getDate().getHour() > 12 && e.getDate().getHour() < 16) {
-                e.setImageURL("/resources/image/lanch.jpg");
-            } else if (e.getDate().getHour() > 16 || (e.getDate().getHour() > -1 && e.getDate().getHour() < 5)) {
-                e.setImageURL("/resources/image/food.jpg");
+    public void save(RequestEventDTO eventDTO) {
+        if (eventDTO.getImageURL().equals("")) {
+            if (eventDTO.getDate().getHour() > 12 && eventDTO.getDate().getHour() < 16) {
+                eventDTO.setImageURL("/resources/image/lanch.jpg");
+            } else if (eventDTO.getDate().getHour() > 16 || (eventDTO.getDate().getHour() > -1 && eventDTO.getDate().getHour() < 5)) {
+                eventDTO.setImageURL("/resources/image/food.jpg");
             } else {
-                e.setImageURL("/resources/image/breakfast.jpg");
+                eventDTO.setImageURL("/resources/image/breakfast.jpg");
             }
         }
-        eventDAO.save(e);
+        Event newEvent = new Event(eventDTO);
+        eventDAO.save(newEvent);
     }
 
     public Event getEventById(int id) {
@@ -71,6 +74,7 @@ public class EventServiceImpl implements EventService {
     public void saveByRequest(HttpServletRequest req) {
         String name = req.getParameter("name");
         String description = req.getParameter("discript");
+
         String URLimage = req.getParameter("image");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime date = LocalDateTime.parse(req.getParameter("date"), formatter);

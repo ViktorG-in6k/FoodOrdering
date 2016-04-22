@@ -1,6 +1,7 @@
 package com.controllers;
 
 import com.DTOLayer.DTOEntity.EventDTO;
+import com.DTOLayer.DTOEntity.RequestEventDTO;
 import com.model.Entity.Event;
 import com.model.Entity.User;
 import com.serviceLayer.service.EventService;
@@ -56,10 +57,9 @@ public class EventController {
     }
 
     @RequestMapping(value = "/new_event", method = RequestMethod.POST)
-    public String newEvent(HttpServletRequest req) {
-        eventService.saveByRequest(req);
-        String ref = req.getHeader("Referer");
-        return "redirect:" + ref;
+    public @ResponseBody Set<EventDTO> newEvent(@RequestBody RequestEventDTO event, HttpServletRequest req, HttpSession session) {
+        eventService.save(event);
+        return getEvents(session);
     }
 
     @RequestMapping(value = "/events")
