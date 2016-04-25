@@ -48,7 +48,9 @@ public class EventController {
 
     @RequestMapping(value = "/events", method = RequestMethod.POST)
     public String events(HttpSession session, HttpServletRequest req) {
+
         String email = req.getParameter("email");
+
         session.setAttribute("backPage", "/");
         userService.saveUser(email);
 

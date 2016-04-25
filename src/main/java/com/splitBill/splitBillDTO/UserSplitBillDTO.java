@@ -7,6 +7,12 @@ public class UserSplitBillDTO {
 
     public UserSplitBillDTO(){}
 
+    public UserSplitBillDTO(int status, String message, String data) {
+        this.status = status;
+        this.message = message;
+        this.data = data;
+    }
+
     public int getStatus() {
         return status;
     }

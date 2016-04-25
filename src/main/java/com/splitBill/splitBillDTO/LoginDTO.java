@@ -1,11 +1,11 @@
 package com.splitBill.splitBillDTO;
 
-public class loginDTO {
+public class LoginDTO {
     private String email;
 
-    public loginDTO(){}
+    public LoginDTO(){}
 
-    public loginDTO(String email){
+    public LoginDTO(String email){
         this.email = email;
     }
 
