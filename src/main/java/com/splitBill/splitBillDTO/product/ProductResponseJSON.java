@@ -1,17 +1,9 @@
-package com.splitBill.splitBillDTO.user;
+package com.splitBill.splitBillDTO.product;
 
-public class UserSplitBillDTO {
+public class ProductResponseJSON {
     private int status;
     private String message;
-    private String data;
-
-    public UserSplitBillDTO(){}
-
-    public UserSplitBillDTO(int status, String message, String data) {
-        this.status = status;
-        this.message = message;
-        this.data = data;
-    }
+    private ProductDataResponse data;
 
     public int getStatus() {
         return status;
@@ -29,11 +21,11 @@ public class UserSplitBillDTO {
         this.message = message;
     }
 
-    public String getData() {
+    public ProductDataResponse getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(ProductDataResponse data) {
         this.data = data;
     }
 }

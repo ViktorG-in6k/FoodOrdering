@@ -1,14 +1,17 @@
 package com.splitBill;
 
 
+import com.splitBill.spliBillServices.BillSplitBillService;
 import com.splitBill.spliBillServices.EventSplitBillService;
+import com.splitBill.spliBillServices.ProductSplitBillService;
 import com.splitBill.spliBillServices.UserSplitBillService;
+import com.splitBill.splitBillDTO.bill.BillResponceJSON;
 import com.splitBill.splitBillDTO.event.EventRequestDTO;
 import com.splitBill.splitBillDTO.event.EventResponseDTO;
-import com.splitBill.spliBillServices.BillSplitBillService;
-import com.splitBill.splitBillDTO.login.LoginDTO;
-import com.splitBill.splitBillDTO.bill.BillResponceJSON;
-import com.splitBill.splitBillDTO.user.UserSplitBillDTO;
+import com.splitBill.splitBillDTO.product.ProductRequestJSON;
+import com.splitBill.splitBillDTO.product.ProductResponseJSON;
+import com.splitBill.splitBillDTO.user.UserLoginRequestJSON;
+import com.splitBill.splitBillDTO.user.UserLoginResponceJSON;
 import retrofit.JacksonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
@@ -20,9 +23,10 @@ public class SplitBillApi {
     private UserSplitBillService userSplitBillService;
     private EventSplitBillService eventSplitBillService;
     private BillSplitBillService billSplitBillService;
+    private ProductSplitBillService productSplitBillService;
     private String token;
     private int eventId;
-
+    private int billId;
 
     public SplitBillApi() {
         retrofit = new Retrofit.Builder()
@@ -33,16 +37,28 @@ public class SplitBillApi {
         userSplitBillService = retrofit.create(UserSplitBillService.class);
         eventSplitBillService = retrofit.create(EventSplitBillService.class);
         billSplitBillService = retrofit.create(BillSplitBillService.class);
+        productSplitBillService = retrofit.create(ProductSplitBillService.class);
     }
 
     public void login(String email) throws IOException {
-        Response<UserSplitBillDTO> execute = userSplitBillService.login(new LoginDTO(email)).execute();
+        Response<UserLoginResponceJSON> execute = userSplitBillService.login(new UserLoginRequestJSON(email)).execute();
         token = execute.body().getData();
     }
 
     public void newBill(int eventId) throws IOException {
-        System.out.println(token);
         Response<BillResponceJSON> execute = billSplitBillService.newBill(eventId, token).execute();
+        billId = execute.body().getData().getId();
+    }
+
+    public void newProduct(ProductRequestJSON productRequestJSON) throws IOException {
+        System.out.println(token);
+        System.out.println(billId);
+        Response<ProductResponseJSON> execute = productSplitBillService.addProduct(productRequestJSON,billId, token).execute();
+        System.out.println(execute.body().getStatus());
+        System.out.println(execute.body().getMessage());
+        System.out.println(execute.body().getData().getTitle());
+        System.out.println(execute.body().getData().getAmount());
+        System.out.println(execute.body().getData().getPrice());
     }
 
     public String getToken() {

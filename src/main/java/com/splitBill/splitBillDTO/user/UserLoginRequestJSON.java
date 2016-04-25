@@ -1,11 +1,11 @@
-package com.splitBill.splitBillDTO.login;
+package com.splitBill.splitBillDTO.user;
 
-public class LoginDTO {
+public class UserLoginRequestJSON {
     private String email;
 
-    public LoginDTO(){}
+    public UserLoginRequestJSON(){}
 
-    public LoginDTO(String email){
+    public UserLoginRequestJSON(String email){
         this.email = email;
     }
 

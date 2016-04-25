@@ -1,7 +1,5 @@
 package com.splitBill.splitBillDTO.bill;
 
-import com.splitBill.splitBillDTO.user.UserResponce;
-
 public class EventBillJSON {
     private int id;
     private UserResponce creator;

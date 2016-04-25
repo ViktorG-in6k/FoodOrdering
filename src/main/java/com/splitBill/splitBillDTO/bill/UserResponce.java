@@ -1,4 +1,4 @@
-package com.splitBill.splitBillDTO.user;
+package com.splitBill.splitBillDTO.bill;
 
 public class UserResponce {
     private int id;

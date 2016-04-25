@@ -1,7 +1,5 @@
 package com.splitBill.splitBillDTO.bill;
 
-import com.splitBill.splitBillDTO.user.UserResponce;
-
 public class BillJSON {
     private int id;
     private String name;

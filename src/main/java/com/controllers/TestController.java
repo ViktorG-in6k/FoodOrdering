@@ -3,6 +3,7 @@ package com.controllers;
 import com.model.Entity.User;
 import com.serviceLayer.service.UserService;
 import com.splitBill.SplitBillApi;
+import com.splitBill.splitBillDTO.product.ProductRequestJSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 @Controller
 public class TestController {
@@ -24,6 +26,9 @@ public class TestController {
         System.out.println(user.getEmail());
 
         splitBillApi.newBill(841);
+        ProductRequestJSON productRequestJSON = new ProductRequestJSON(5,"banasssn",new BigDecimal(14.55));
+        splitBillApi.newProduct(productRequestJSON);
         return "OK";
     }
 }
+
