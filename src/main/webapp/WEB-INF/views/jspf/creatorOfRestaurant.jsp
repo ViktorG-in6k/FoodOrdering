@@ -1,12 +1,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-
 <div class="col-md-4 col-lg-4" >
     <div style="position: fixed">
         <div class="col-md-9">
             <form role="form" action="/new_restaurant"  method="post">
                 <fieldset>
-                    <legend class="button"  data-slide-toggle="#s" data-slide-toggle-duration="300"><a>New restaurant</a></legend>
+                    <script src="/resources/core/js/jquery-2.1.4.min.js"></script>
+                    <script>
+                        $(document).ready(function () {
+                            $("#slide").click(function () {
+                                $("#s").slideToggle();
+                            });
+                        });
+                    </script>
+                    <button class="btn col-md-offset-10 btn-success pull-right" id="slide">Create new restaurant</button>
                     <div id="s" style="display: none">
                         <div class="form-group">
                             <label for="name">Restaurant name:</label>

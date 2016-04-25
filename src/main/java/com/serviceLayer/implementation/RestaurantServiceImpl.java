@@ -1,5 +1,7 @@
 package com.serviceLayer.implementation;
 
+import com.DTOLayer.DTOEntity.RequestRestaurantDTO;
+import com.DTOLayer.DTOEntity.RestaurantDTO;
 import com.dataLayer.DAO.RestaurantDAO;
 import com.model.Entity.Item;
 import com.model.Entity.Restaurant;
@@ -15,6 +17,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Autowired
     RestaurantDAO restaurantDAO;
 
+    @Override
     public void save(Restaurant restaurant) {
         if (restaurant.getImageURL().equals("")) {
             restaurant.setImageURL("http://localhost:8080/resources/image/restaurant.jpg");
@@ -22,6 +25,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         restaurantDAO.save(restaurant);
     }
 
+    @Override
     public void saveByRequest(HttpServletRequest req) {
         String name = req.getParameter("name");
         String description = req.getParameter("discript");
@@ -33,15 +37,34 @@ public class RestaurantServiceImpl implements RestaurantService {
         restaurantDAO.save(restaurant);
     }
 
+    @Override
     public List<Restaurant> getListOfAllRestaurant() {
         return restaurantDAO.getListOfAllRestaurant();
     }
 
+    @Override
     public Restaurant getRestaurantById(int id) {
         return restaurantDAO.getRestaurantById(id);
     }
 
+    @Override
+    public RestaurantDTO getRestaurantDTOById(int id) {
+        return new RestaurantDTO(restaurantDAO.getRestaurantById(id));
+    }
+
+    @Override
     public List<Item> getRestaurantMenuById(int id) {
         return restaurantDAO.getRestaurantMenuById(id);
     }
+
+    @Override
+    public void updateRestaurantName(RequestRestaurantDTO restaurant) {
+        restaurantDAO.updateName(restaurant.getId(), restaurant.getName());
+    }
+
+    @Override
+    public void updateRestaurantDescription(RequestRestaurantDTO restaurant) {
+        restaurantDAO.updateDescription(restaurant.getId(), restaurant.getDescription());
+    }
 }
+

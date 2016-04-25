@@ -1,21 +1,25 @@
 package com.serviceLayer.implementation;
 
-import com.dataLayer.DAO.MenuDAO;
+import com.DTOLayer.DTOEntity.ItemDTO;
+import com.DTOLayer.DTOEntity.RequestItemDTO;
+import com.dataLayer.DAO.ItemDAO;
 import com.model.Entity.Item;
 import com.model.Entity.Restaurant;
-import com.serviceLayer.service.MenuService;
+import com.serviceLayer.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 
 @Service
-public class MenuServiceImpl implements MenuService {
+public class ItemServiceImpl implements ItemService {
 
     @Autowired
-    MenuDAO itemDAO;
+    ItemDAO itemDAO;
 
+    @Override
     public void save(Item item) {
         if (item.getImageURL().equals("")) {
             item.setImageURL("/resources/image/shief.jpg");
@@ -23,6 +27,7 @@ public class MenuServiceImpl implements MenuService {
         itemDAO.save(item);
     }
 
+    @Override
     public void saveByRequest(HttpServletRequest req, HttpSession session) {
         String name = req.getParameter("name");
         String description = req.getParameter("discript");
@@ -31,14 +36,36 @@ public class MenuServiceImpl implements MenuService {
 
         Restaurant restaurant = (Restaurant) session.getAttribute("restaurant");
 
-        Item item = new Item( name, description, URLimage, price, restaurant);
+        Item item = new Item(name, description, URLimage, price, restaurant);
         if (item.getImageURL().equals("")) {
             item.setImageURL("/resources/image/shief.jpg");
         }
         itemDAO.save(item);
     }
 
-    public Item getItemById(int id){
+    @Override
+    public Item getItemById(int id) {
         return itemDAO.getItemById(id);
     }
+
+    @Override
+    public ItemDTO getItemDTOById(int id) {
+        return new ItemDTO(itemDAO.getItemById(id));
+    }
+
+    @Override
+    public void updateItemPrice(RequestItemDTO item) {
+        itemDAO.updatePrice(item.getId(), item.getPrice());
+    }
+
+    @Override
+    public void updateItemName(RequestItemDTO item) {
+        itemDAO.updateName(item.getId(), item.getName());
+    }
+
+    @Override
+    public void updateItemDescription(RequestItemDTO item) {
+        itemDAO.updateDescription(item.getId(), item.getDescription());
+    }
 }
+

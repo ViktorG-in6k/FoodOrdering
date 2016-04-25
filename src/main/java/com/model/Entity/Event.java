@@ -1,6 +1,10 @@
 package com.model.Entity;
 
-import javax.persistence.*;
+import com.DTOLayer.DTOEntity.RequestEventDTO;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import java.time.LocalDateTime;
 
 @Entity(name = "event")
@@ -23,7 +27,15 @@ public class Event extends com.model.base.Entity {
         this.date = date;
     }
 
-    public Event() {}
+    public Event(RequestEventDTO eventDTO) {
+        this.name = eventDTO.getName();
+        this.description = eventDTO.getDescription();
+        this.imageURL = eventDTO.getImageURL();
+        this.date = eventDTO.getDate();
+    }
+
+    public Event() {
+    }
 
     public String getName() {
         return name;
@@ -65,3 +77,4 @@ public class Event extends com.model.base.Entity {
         this.user = user;
     }
 }
+

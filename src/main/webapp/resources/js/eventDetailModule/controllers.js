@@ -24,3 +24,8 @@ controllers.controller("orderList", function (OrderListService, $scope) {
    OrderListService.updateOrderList();
 });
 
+controllers.controller("navbarCtrl",function ($http, $scope) {
+    $http.get('/eventsJson/').success(function (data) {
+        $scope.events = data;
+    });
+});

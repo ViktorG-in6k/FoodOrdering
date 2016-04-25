@@ -9,3 +9,4 @@ public class JsonpAdvice extends AbstractJsonpResponseBodyAdvice {
         super("callback");
     }
 }
+

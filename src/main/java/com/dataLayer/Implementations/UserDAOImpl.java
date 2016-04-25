@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @SuppressWarnings("unchecked")
 @Repository
 @Transactional
@@ -37,6 +39,12 @@ public class UserDAOImpl implements UserDAO {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from user where email = :email");
         return (User) query.setString("email",email).uniqueResult();
+    }
 
+    public List<User> getListOfAllUsers() {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from user");
+        return (List<User>) query.list();
     }
 }
+

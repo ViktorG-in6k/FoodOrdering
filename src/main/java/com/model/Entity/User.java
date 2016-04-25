@@ -44,3 +44,4 @@ public class User extends com.model.base.Entity {
         this.enabled = enabled;
     }
 }
+

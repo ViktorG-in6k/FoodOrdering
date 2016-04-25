@@ -1,15 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">--%>
-<link rel="stylesheet" type="text/css" media="screen"
-      href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
-
-<%--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>--%>
-<%--<script src="/resources/js/app.js"></script>--%>
 
 
-
-
-<form role="form" action="/new_event" method="post" class="col-md-3  pull-right" style="position: fixed; right: 10px; ">
+<form role="form" ng-controller="CreteTheEventController"
+      ng-submit="createEvent(name,description,data.dateDropDownInput)" method="post" class="col-md-3  pull-right"
+      style="position: fixed; right: 10px; ">
     <fieldset>
 
         <script src="/resources/core/js/jquery-2.1.4.min.js"></script>
@@ -21,28 +15,39 @@
             });
         </script>
 
-        <legend class="button" id="slide"><a>New event</a></legend>
+        <button class="btn col-md-offset-10 btn-success pull-right" id="slide">Create new event</button>
         <div id="s" style="display: none">
 
-        <div class="form-group">
-            <label for="name">Event name:</label>
-            <input type="text" class="form-control" id="name" name="name" required>
-        </div>
-
-        <div class="form-group">
-            <label for="discript">Discription:</label>
-            <textarea  class="form-control text-area" rows="10"  id="discript" name="discript" style="resize: vertical"></textarea>
-        </div>
-
-        <%--<div class="form-group">--%>
-            <%--<label for="image">URL-image:</label>--%>
-            <%--<input type="url" class="form-control" id="image" name="image">--%>
-        <%--</div>--%>
-
-            <div id="datetimepicker" class="form-group">
-                <label for="cal">Date:</label>
-                <input id="cal" class="col-md-12 add-on form-control" type="text" name="date" required>
+            <div class="form-group">
+                <label for="name">Event name:</label>
+                <input ng-model="name" type="text" class="form-control" id="name" name="name" required>
             </div>
+
+            <div class="form-group">
+                <label for="discription">Description:</label>
+                <textarea ng-model="description" class="form-control text-area" rows="10" id="discription"
+                          name="discript"
+                          style="resize: vertical"></textarea>
+            </div>
+
+            <div class="dropdown">
+                <label for="dropdown2">Date:</label>
+                <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
+                    <div class="input-group">
+                        <input type="text" class="form-control" data-ng-model="data.dateDropDownInput">
+                        <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                        </span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <datetimepicker data-ng-model="data.dateDropDownInput"
+                                    data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }">
+                    </datetimepicker>
+                </ul>
+                {{data.dateDropDownInput | date:'yyyy-MM-dd HH:mm'}}
+            </div>
+
 
             <script type="text/javascript"
                     src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
@@ -52,7 +57,8 @@
             </script>
 
             <script type="text/javascript">
-                ;(function($){
+                ;
+                (function ($) {
                     $.fn.datetimepicker.dates['pt-BR'] = {
                         days: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"],
                         daysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"],
@@ -64,12 +70,12 @@
                 }(jQuery));
 
                 $('#datetimepicker').datetimepicker({
-                    format: 'dd/MM/yyyy hh:mm',
+                    format: 'dd/MM/yyyy HH:mm',
                     language: 'en-EN'
                 });
             </script>
-        <br/><br/>
-        <button type="submit" class="btn btn-success pull-right">Add</button>
+            <br/><br/>
+            <button type="submit" class="btn btn-success pull-right">Add</button>
         </div>
     </fieldset>
 </form>

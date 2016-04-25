@@ -1,5 +1,7 @@
 package com.serviceLayer.service;
 
+import com.DTOLayer.DTOEntity.RequestRestaurantDTO;
+import com.DTOLayer.DTOEntity.RestaurantDTO;
 import com.model.Entity.Item;
 import com.model.Entity.Restaurant;
 
@@ -15,5 +17,12 @@ public interface RestaurantService {
 
     public Restaurant getRestaurantById(int id);
 
+    RestaurantDTO getRestaurantDTOById(int id);
+
     public List<Item> getRestaurantMenuById(int id);
+
+    void updateRestaurantName(RequestRestaurantDTO restaurant);
+
+    void updateRestaurantDescription(RequestRestaurantDTO restaurant);
 }
+

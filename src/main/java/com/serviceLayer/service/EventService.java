@@ -1,5 +1,6 @@
 package com.serviceLayer.service;
 
+import com.DTOLayer.DTOEntity.RequestEventDTO;
 import com.model.Entity.Event;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +10,7 @@ import java.util.Set;
 
 
 public interface EventService {
-    public void save(Event e);
+    public void save(RequestEventDTO e);
 
     public void saveByRequest(HttpServletRequest req);
 
@@ -29,3 +30,4 @@ public interface EventService {
 
     public void update(Event event);
 }
+

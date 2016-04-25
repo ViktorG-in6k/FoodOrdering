@@ -11,7 +11,7 @@ public class OrderDTO {
 
     private boolean ordered;
 
-    public OrderDTO(Order order){
+    public OrderDTO(Order order) {
         this.item = new ItemDTO(order.getItem());
         this.user = new UserDTO(order.getUser());
         this.event = new EventDTO(order.getEvent());
@@ -37,3 +37,4 @@ public class OrderDTO {
         this.ordered = ordered;
     }
 }
+

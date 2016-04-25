@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<form role="form" action="/new_item" method="post" class="col-md-3  pull-right" style="position: fixed; right: 10px; ">
+<form role="form" action="/new_item" method="post" class="col-md-4  pull-right" style="position: fixed; right: 10px; ">
     <fieldset>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -11,8 +11,8 @@
                 });
             });
         </script>
+        <button class="btn col-md-offset-10 btn-success pull-right" id="slide">Create new item</button>
 
-        <legend class="button" id="slide"><a>New item</a></legend>
         <div id="s" style="display: none">
 
             <div class="form-group">

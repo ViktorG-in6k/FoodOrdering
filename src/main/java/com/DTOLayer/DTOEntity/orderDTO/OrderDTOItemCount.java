@@ -26,7 +26,7 @@ class OrderDTOItemCount {
         this.item = item;
     }
 
-    public OrderDTOItemCount(Order order){
+    public OrderDTOItemCount(Order order) {
         this.item = new ItemDTO(order.getItem());
         count = 1;
         this.restaurant = new RestaurantDTOforOrder(order.getItem().getRestaurant());
@@ -49,3 +49,4 @@ class OrderDTOItemCount {
         this.ordered = ordered;
     }
 }
+
