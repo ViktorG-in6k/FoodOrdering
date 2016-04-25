@@ -1,4 +1,4 @@
-package com.DTOLayer.DTOEntity;
+package com.DTOLayer.DTOEntity.itemDTO;
 
 import java.math.BigDecimal;
 

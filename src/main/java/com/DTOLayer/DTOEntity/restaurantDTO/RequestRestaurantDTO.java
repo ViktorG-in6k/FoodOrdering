@@ -1,4 +1,4 @@
-package com.DTOLayer.DTOEntity;
+package com.DTOLayer.DTOEntity.restaurantDTO;
 
 public class RequestRestaurantDTO {
     private int id;

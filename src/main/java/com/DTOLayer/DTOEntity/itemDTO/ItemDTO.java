@@ -1,4 +1,4 @@
-package com.DTOLayer.DTOEntity;
+package com.DTOLayer.DTOEntity.itemDTO;
 
 import com.model.Entity.Item;
 

@@ -1,6 +1,6 @@
 package com.DTOLayer.DTOEntity.orderDTO;
 
-import com.DTOLayer.DTOEntity.ItemDTO;
+import com.DTOLayer.DTOEntity.itemDTO.ItemDTO;
 import com.DTOLayer.DTOEntity.restaurantDTO.RestaurantDTOforOrder;
 import com.model.Entity.Order;
 

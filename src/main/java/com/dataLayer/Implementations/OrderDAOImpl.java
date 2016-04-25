@@ -1,6 +1,5 @@
 package com.dataLayer.Implementations;
 
-import com.DTOLayer.DTOEntity.OrderDTO;
 import com.dataLayer.DAO.OrderDAO;
 import com.model.Entity.Order;
 import org.hibernate.Query;

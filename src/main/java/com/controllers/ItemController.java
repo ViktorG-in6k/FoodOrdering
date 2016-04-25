@@ -1,7 +1,7 @@
 package com.controllers;
 
-import com.DTOLayer.DTOEntity.ItemDTO;
-import com.DTOLayer.DTOEntity.RequestItemDTO;
+import com.DTOLayer.DTOEntity.itemDTO.ItemDTO;
+import com.DTOLayer.DTOEntity.itemDTO.RequestItemDTO;
 import com.DTOLayer.DTOEntity.orderDTO.OrderDTOList;
 import com.serviceLayer.service.ItemService;
 import com.serviceLayer.service.OrderService;

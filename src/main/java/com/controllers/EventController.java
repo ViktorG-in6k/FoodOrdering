@@ -1,7 +1,7 @@
 package com.controllers;
 
-import com.DTOLayer.DTOEntity.EventDTO;
-import com.DTOLayer.DTOEntity.RequestEventDTO;
+import com.DTOLayer.DTOEntity.eventDTO.EventDTO;
+import com.DTOLayer.DTOEntity.eventDTO.RequestEventDTO;
 import com.model.Entity.Event;
 import com.model.Entity.User;
 import com.serviceLayer.service.EventService;

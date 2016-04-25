@@ -1,6 +1,6 @@
 package com.serviceLayer.service;
 
-import com.DTOLayer.DTOEntity.RequestEventDTO;
+import com.DTOLayer.DTOEntity.eventDTO.RequestEventDTO;
 import com.model.Entity.Event;
 
 import javax.servlet.http.HttpServletRequest;

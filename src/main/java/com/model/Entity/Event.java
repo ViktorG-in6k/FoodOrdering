@@ -1,6 +1,6 @@
 package com.model.Entity;
 
-import com.DTOLayer.DTOEntity.RequestEventDTO;
+import com.DTOLayer.DTOEntity.eventDTO.RequestEventDTO;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -40,14 +40,15 @@
             <%--</div>--%>
             <%--</div>--%>
             <%--</div>--%>
-            <div class="well col-md-9 pull-left">
+            <div class="well col-md-11 pull-left">
 
                 <form action="">
 
-                    <img src="" class="img-thumbnail col-md-3 pull-left">
+                    <img src="{{event.imageURL}}" class="img-thumbnail col-md-3 pull-left">
 
                     <label class="text-info col-md-7"
-                           style="font-size: 19px; color: #000000;"> {{event.name}}</label>
+                           style="font-size: 19px; color: #000000;">
+                        <a href="/events/event_{{event.id}}#/{{event.id}}">{{event.name}}</a></label>
 
                     <label class="pull-right">
                         time
@@ -61,13 +62,27 @@
                         {{event.description}}
 
                     </div>
-                    <a class="btn btn-primary col-md-offset-7 col-md-2 "
-                       href="">Get
-                        order</a>
+                    <div class="col-md-12">
+                        <a class="btn btn-primary col-md-offset-6 col-md-3"
+                           href="">Check to see</a>
 
+                        <div ng-if="event.user == null" class="col-md-offset-1 col-md-2">
+                            <input type="hidden" value="{{event.id}}"  name="eventId">
+                            <button type="submit" class="btn btn-success pull-right">Take responsibility
+                            </button>
 
-                    <a class="btn btn-primary col-md-offset-10 col-md-2   "
-                       href="">Participate</a>
+                        </div>
+
+                        <div ng-if="event.user != null" class="col-md-offset-1 col-md-2">
+                            {{event.user.email}}
+                            <a href="#/commonOrder/{{event.id}}">
+                                <button ng-if=" event.user.email == event.sessionUser.email" type="button"
+                                        class="btn btn-success ">Order
+                                </button>
+                            </a>
+
+                        </div>
+                    </div>
 
                 </form>
             </div>

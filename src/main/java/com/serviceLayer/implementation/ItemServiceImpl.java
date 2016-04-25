@@ -1,7 +1,7 @@
 package com.serviceLayer.implementation;
 
-import com.DTOLayer.DTOEntity.ItemDTO;
-import com.DTOLayer.DTOEntity.RequestItemDTO;
+import com.DTOLayer.DTOEntity.itemDTO.ItemDTO;
+import com.DTOLayer.DTOEntity.itemDTO.RequestItemDTO;
 import com.dataLayer.DAO.ItemDAO;
 import com.model.Entity.Item;
 import com.model.Entity.Restaurant;

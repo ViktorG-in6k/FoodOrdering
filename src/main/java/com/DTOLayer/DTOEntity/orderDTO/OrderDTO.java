@@ -1,5 +1,8 @@
-package com.DTOLayer.DTOEntity;
+package com.DTOLayer.DTOEntity.orderDTO;
 
+import com.DTOLayer.DTOEntity.eventDTO.EventDTO;
+import com.DTOLayer.DTOEntity.itemDTO.ItemDTO;
+import com.DTOLayer.DTOEntity.userDTO.UserDTO;
 import com.model.Entity.Order;
 
 public class OrderDTO {

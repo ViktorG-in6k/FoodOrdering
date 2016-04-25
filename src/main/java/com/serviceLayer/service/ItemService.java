@@ -1,7 +1,7 @@
 package com.serviceLayer.service;
 
-import com.DTOLayer.DTOEntity.ItemDTO;
-import com.DTOLayer.DTOEntity.RequestItemDTO;
+import com.DTOLayer.DTOEntity.itemDTO.ItemDTO;
+import com.DTOLayer.DTOEntity.itemDTO.RequestItemDTO;
 import com.model.Entity.Item;
 
 import javax.servlet.http.HttpServletRequest;
