@@ -1,14 +1,14 @@
-package com.splitBill.splitBillDTO;
+package com.splitBill.splitBillDTO.user;
 
-public class UserDTO {
+public class CreatorBillDTO {
     private int id;
     private String email;
     private String name;
 
-    public UserDTO() {
+    public CreatorBillDTO() {
     }
 
-    public UserDTO(int id, String email, String name) {
+    public CreatorBillDTO(int id, String email, String name) {
         this.id = id;
         this.email = email;
         this.name = name;

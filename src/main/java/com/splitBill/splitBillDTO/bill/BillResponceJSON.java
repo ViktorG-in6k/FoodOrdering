@@ -1,24 +1,24 @@
-package com.splitBill.splitBillDTO;
+package com.splitBill.splitBillDTO.bill;
 
-public class Responce {
+public class BillResponceJSON {
     private int status;
     private String message;
-    private BillDTO data;
+    private BillJSON data;
 
-    public Responce() {
+    public BillResponceJSON() {
     }
 
-    public Responce(int status, String message, BillDTO data) {
+    public BillResponceJSON(int status, String message, BillJSON data) {
         this.status = status;
         this.message = message;
         this.data = data;
     }
 
-    public BillDTO getData() {
+    public BillJSON getData() {
         return data;
     }
 
-    public void setData(BillDTO data) {
+    public void setData(BillJSON data) {
         this.data = data;
     }
 

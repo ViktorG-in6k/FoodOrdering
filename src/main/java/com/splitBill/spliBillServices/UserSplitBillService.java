@@ -1,7 +1,7 @@
 package com.splitBill.spliBillServices;
 
-import com.splitBill.splitBillDTO.UserSplitBillDTO;
-import com.splitBill.splitBillDTO.LoginDTO;
+import com.splitBill.splitBillDTO.user.UserSplitBillDTO;
+import com.splitBill.splitBillDTO.login.LoginDTO;
 import retrofit.Call;
 import retrofit.http.*;
 

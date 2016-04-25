@@ -1,10 +1,12 @@
-package com.splitBill.splitBillDTO;
+package com.splitBill.splitBillDTO.bill;
 
-public class BillDTO {
+import com.splitBill.splitBillDTO.user.UserResponce;
+
+public class BillJSON {
     private int id;
     private String name;
-    private EventBillDTO event;
-    private UserDTO user;
+    private EventBillJSON event;
+    private UserResponce user;
 
 
     public int getId() {
@@ -23,19 +25,19 @@ public class BillDTO {
         this.name = name;
     }
 
-    public EventBillDTO getEvent() {
+    public EventBillJSON getEvent() {
         return event;
     }
 
-    public void setEvent(EventBillDTO event) {
+    public void setEvent(EventBillJSON event) {
         this.event = event;
     }
 
-    public UserDTO getUser() {
+    public UserResponce getUser() {
         return user;
     }
 
-    public void setUser(UserDTO user) {
+    public void setUser(UserResponce user) {
         this.user = user;
     }
 }

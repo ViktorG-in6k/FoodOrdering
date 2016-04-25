@@ -1,4 +1,4 @@
-package com.splitBill.splitBillDTO;
+package com.splitBill.splitBillDTO.login;
 
 public class LoginDTO {
     private String email;

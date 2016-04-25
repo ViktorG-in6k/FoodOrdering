@@ -1,11 +1,17 @@
-package com.splitBill.splitBillDTO;
+package com.splitBill.splitBillDTO.user;
 
-public class EventResponseDTO {
+public class UserSplitBillDTO {
     private int status;
     private String message;
-    private int data;
+    private String data;
 
-    public EventResponseDTO(){}
+    public UserSplitBillDTO(){}
+
+    public UserSplitBillDTO(int status, String message, String data) {
+        this.status = status;
+        this.message = message;
+        this.data = data;
+    }
 
     public int getStatus() {
         return status;
@@ -23,11 +29,11 @@ public class EventResponseDTO {
         this.message = message;
     }
 
-    public int getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(int data) {
+    public void setData(String data) {
         this.data = data;
     }
 }
