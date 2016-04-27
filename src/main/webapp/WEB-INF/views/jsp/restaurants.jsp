@@ -9,7 +9,7 @@
     <link href="/resources/css/eventDetails.css" rel="stylesheet">
     <link href="/resources/css/bootstrapTheme.css" rel="stylesheet">
 </head>
-<body>
+<body style="background-color: lightgray;">
 <<jsp:include page="/WEB-INF/views/jspf/navWithResponsibleUser.jsp" flush="true" />
 <br/>
 <div class="container" >
