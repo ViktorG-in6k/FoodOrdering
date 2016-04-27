@@ -1,4 +1,4 @@
-var app = angular.module('foodOrdering', ["ngRoute", "xeditable", "ui.bootstrap.datetimepicker"]);
+var app = angular.module('foodOrdering', ["ngRoute", "xeditable","ui.bootstrap"]);
 
 app.run(function (editableOptions, editableThemes) {
     editableThemes.bs3.inputClass = 'form-control';
@@ -16,7 +16,7 @@ app.controller('Ctrl', function ($routeParams,$scope, $http, editableThemes, edi
          $http.post('/update_item_price',dataForRequest).success(function (data) {
             return data;
         });
-    }
+    };
 
     $scope.updateName = function(data, id,  eventId){
         console.log(id);
@@ -69,6 +69,7 @@ app.factory('eventService', function ($http) {
     };
     return events;
 });
+
 
 app.controller('commonOrderCtrl', function ($routeParams, $http, $rootScope, $scope) {
     $rootScope.id = $routeParams.eventId;
@@ -141,4 +142,9 @@ app.controller("navbarCtrl", function ($http, $scope) {
     $http.get('/eventsJson/').success(function (data) {
         $scope.events = data;
     });
+});
+
+
+app.controller('DatepickerPopupDemoCtrl', function ($scope) {
+
 });
