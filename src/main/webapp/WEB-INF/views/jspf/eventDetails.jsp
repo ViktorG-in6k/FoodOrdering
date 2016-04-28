@@ -4,10 +4,12 @@
                 {{event.name}}
         </div>
 
-        <div class="col-md-offset-11">
+        <div class="col-md-offset-10" style="font-size: 19px;">
+            <div class="col-md-offset-4">
             <i class="glyphicon glyphicon-calendar" aria-hidden="true"></i>
             {{event.date.dayOfMonth}} {{event.date.month | limitTo: 3}}
-            {{event.date.year}}
+            {{event.date.hour}}:{{event.date.minute}}
+            </div>
         </div>
         <br/>
         <div class="row"></div>
