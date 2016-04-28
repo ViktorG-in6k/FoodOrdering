@@ -21,7 +21,7 @@
 
 </head>
 
-<body ng-app="foodOrdering" style="background-color: lightgray">
+<body ng-app="foodOrdering" >
     <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true" />
     <div ng-app="foodOrdering" class="container" style="margin-top: 60px">
         <div class="row">

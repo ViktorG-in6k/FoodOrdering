@@ -1,24 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="col-sm-9 col-md-9 col-xs-9 " ng-controller="eventController">
     <div ng-repeat="event in events | orderBy:['date.year','date.month','date.dayOfMonth']">
-        <%--<label class="text-info col-md-7"
-               style="font-size: 19px; color: #000000;"> {{event.name}}</label>
-        <label class="pull-right">
-            time
-            {{event.date.dayOfWeek |
-            limitTo: 3}} {{event.date.dayOfMonth}} {{event.date.month | limitTo: 3}}
-            {{event.date.hour}}:{{event.date.minute}}
-        </label>
-        <div class="col-md-9 ">
-            {{event.description}}
-        </div>
-        <a class="btn btn-primary col-md-offset-7 col-md-2 "
-           href="">Get
-            order</a>
-        <a class="btn btn-primary col-md-offset-10 col-md-2   "
-           href="">Participate</a>
-    --%>
-        <div style="height: 100px;background-color: white; border: 3px solid black;">
+        <div style="height: 100px;background-color: white; border: 1px solid #BBB4B4;background-color: #F5F5F5">
             <div class="row">
                 <div class="col-md-12" style="height: 12px"></div>
             </div>
@@ -29,16 +12,19 @@
                     <a href="/events/event_{{event.id}}#/{{event.id}}" style="font-size: 25px;">{{event.name}}</a>
                 </div>
                 <div class="col-md-4 col-xs-4">
-                    <p style="font-size: 25px;">
+                    <p style="font-size: 20px;">
                         {{event.date.dayOfMonth}}
-                        {{event.date.month | limitTo: 3}} 2016</p>
+                        {{event.date.month | limitTo: 3}} 2016
+                        20:20
+                    </p>
+
                 </div>
 
             </div>
             <div class="row">
                 <div class="col-md-1 col-xs-1"></div>
                 <div class="col-md-4 col-xs-4">
-                    <p style="color: black">Creator: user@example.com</p>
+                    <p style="color: black">Created by user@example.com</p>
                 </div>
             </div>
         </div>
@@ -70,7 +56,7 @@
                 </p>
 
             </div>
-            <button type="submit" class="btn btn-success pull-right">Add</button>
+            <button type="submit" class="btn btn-success pull-right">Add event</button>
         </div>
 
     </form>
