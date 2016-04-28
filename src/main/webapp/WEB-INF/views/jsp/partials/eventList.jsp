@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="col-sm-9 col-md-9 col-xs-9 " ng-controller="eventController">
+<div ng-controller="eventController">
+
+
+<div class="col-sm-9 col-md-9 col-xs-9 " >
     <div ng-repeat="event in events | orderBy:['date.year','date.month','date.dayOfMonth']">
         <div style="height: 100px;background-color: white;     border: 1px solid #BBB4B4;background-color: #F5F5F5">
             <div class="row">
@@ -29,7 +32,7 @@
 </div>
 ​
 ​
-<div class="col-sm-3 col-md-3 col-xs-3" ng-controller="createEventController">
+<div class="col-sm-3 col-md-3 col-xs-3 pull-right" ng-controller="createEventController">
     <form role="form"
           ng-submit="createEvent(name,date)" method="post"
           style="">
@@ -43,10 +46,10 @@
                        k-ng-model="date"
                        style="width: 100%;height: 27px;margin-bottom: 1px;"
                        k-options="monthPickerConfig"/>
-                ​
             </div>
             <button type="submit" class="btn btn-success pull-right">Add event</button>
         </div>
         ​
     </form>
+</div>
 </div>

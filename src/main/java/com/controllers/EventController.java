@@ -75,13 +75,16 @@ public class EventController {
     }
 
     @RequestMapping(value = "/newEvent", method = RequestMethod.GET)
-    public @ResponseBody String createEvent(@RequestParam("name") String name, @RequestParam("date") String date) {
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss Z");
+    public @ResponseBody Set<EventDTO> createEvent(@RequestParam("name") String name, @RequestParam("date") String date, HttpSession session) {
+        System.out.println(date);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
-
-        System.out.println(localDateTime);
-        return "ok";
+        int userId = (int) session.getAttribute("userId");
+        RequestEventDTO event = new RequestEventDTO();
+        event.setName(name);
+        event.setDate(localDateTime);
+        eventService.save(event, userId);
+        return getEvents(session);
     }
 }
 

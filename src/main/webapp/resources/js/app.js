@@ -147,22 +147,18 @@ app.controller("navbarCtrl", function ($http, $scope) {
 app.controller("createEventController", function ($scope, $filter, $http) {
 
     $scope.createEvent = function (name, date) {
-        var sentDate = $filter("date")(date, "yyyy-MM-dd HH:mm:ss Z");
-    console.log(sentDate);
-
+        var sentDate = $filter("date")(date, "yyyy-MM-dd HH:mm");
         $http({
             url: '/newEvent',
             method: "GET",
             params: {"name": name,"date":sentDate}
         }).then(function (response) {
+            console.log(response);
+            $scope.events = response;
             });
-
-        
-
         $scope.date = new Date();
         $scope.name = '';
     };
-
 
     $scope.date = new Date();
     $scope.monthPickerConfig = {
