@@ -9,6 +9,11 @@
     <link href="/resources/core/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/resources/css/test.css" rel="stylesheet"/>
     <link href="/resources/css/bootstrapTheme.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.1.412/styles/kendo.common.min.css"/>
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.1.412/styles/kendo.rtl.min.css"/>
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.1.412/styles/kendo.silver.min.css"/>
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.1.412/styles/kendo.mobile.all.min.css"/>
+
     <script src="/resources/core/js/jquery-2.1.4.min.js"></script>
     <script src="/resources/js/angular.min.js"></script>
     <script src="/resources/js/angular-route.min.js"></script>
@@ -18,7 +23,7 @@
     <script src="/resources/js/bootstrap.js"></script>
     <script src="/resources/js/angular-touch.js"></script>
     <script src="/resources/js/app.js"></script>
-
+    <script src="//kendo.cdn.telerik.com/2016.1.412/js/kendo.all.min.js"></script>
 </head>
 
 <body ng-app="foodOrdering" >
@@ -30,6 +35,5 @@
             <div ng-view></div>
         </div>
     </div>
-
 </body>
 </html>
