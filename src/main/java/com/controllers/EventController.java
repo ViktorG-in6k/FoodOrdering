@@ -7,11 +7,14 @@ import com.model.Entity.User;
 import com.serviceLayer.service.EventService;
 import com.serviceLayer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -68,6 +71,16 @@ public class EventController {
         session.setAttribute("allEvents", eventService.getListOfAllEvents());
         session.setAttribute("backPage", "/events");
         return "events";
+    }
+
+    @RequestMapping(value = "/newEvent", method = RequestMethod.GET)
+    public @ResponseBody String createEvent(@RequestParam("name") String name, @RequestParam("date") String date) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss Z");
+        LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
+
+        System.out.println(localDateTime);
+        return "ok";
     }
 }
 

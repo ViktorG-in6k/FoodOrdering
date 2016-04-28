@@ -1,38 +1,38 @@
-var app = angular.module('foodOrdering', ["ngRoute", "xeditable","ui.bootstrap"]);
+var app = angular.module('foodOrdering', ["ngRoute", "xeditable", "kendo.directives"]);
 
 app.run(function (editableOptions, editableThemes) {
     editableThemes.bs3.inputClass = 'form-control';
     editableOptions.theme = 'bs3';
 });
 
-app.controller('Ctrl', function ($routeParams,$scope, $http, editableThemes, editableOptions) {
+app.controller('Ctrl', function ($routeParams, $scope, $http, editableThemes, editableOptions) {
 
     editableThemes.bs3.inputClass = 'form-control';
     editableOptions.theme = 'bs3';
 
-    $scope.updatePrice = function(data, id,  eventId){
+    $scope.updatePrice = function (data, id, eventId) {
         console.log(id);
-        var dataForRequest = {"id":id, "price":data, "eventId":eventId};
-         $http.post('/update_item_price',dataForRequest).success(function (data) {
+        var dataForRequest = {"id": id, "price": data, "eventId": eventId};
+        $http.post('/update_item_price', dataForRequest).success(function (data) {
             return data;
         });
     };
 
-    $scope.updateName = function(data, id,  eventId){
+    $scope.updateName = function (data, id, eventId) {
         console.log(id);
-        var dataForRequest = {"id":id, "name":data, "eventId":eventId};
-        $http.post('/update_item_name',dataForRequest).success(function (data) {
+        var dataForRequest = {"id": id, "name": data, "eventId": eventId};
+        $http.post('/update_item_name', dataForRequest).success(function (data) {
             return data;
         });
     }
 });
 
-app.controller('CreteTheEventController', function ($routeParams,$scope, $http, $filter) {
-    $scope.createEvent = function(name, description, date){
+app.controller('CreteTheEventController', function ($routeParams, $scope, $http, $filter) {
+    $scope.createEvent = function (name, description, date) {
         console.log($filter('date')(date, "yyyy-MM-dd HH:mm"));
         var datetime = $filter('date')(date, "yyyy-MM-dd HH:mm");
-        var dataForRequest = {"name":name, "description":description,  'date':datetime};
-        $http.post('/new_event',dataForRequest).success(function (data) {
+        var dataForRequest = {"name": name, "description": description, 'date': datetime};
+        $http.post('/new_event', dataForRequest).success(function (data) {
             return data;
         });
     }
@@ -144,7 +144,58 @@ app.controller("navbarCtrl", function ($http, $scope) {
     });
 });
 
+app.controller("createEventController", function ($scope, $filter, $http) {
 
-app.controller('DatepickerPopupDemoCtrl', function ($scope) {
+    $scope.createEvent = function (name, date) {
+        var sentDate = $filter("date")(date, "yyyy-MM-dd HH:mm:ss Z");
+    console.log(sentDate);
 
+        $http({
+            url: '/newEvent',
+            method: "GET",
+            params: {"name": name,"date":sentDate}
+        }).then(function (response) {
+            });
+
+        
+
+        $scope.date = new Date();
+        $scope.name = '';
+    };
+
+
+    $scope.date = new Date();
+    $scope.monthPickerConfig = {
+        format: "dd-MM-yyyy HH:mm",
+        timeFormat: "HH:mm",
+        value: new Date(),
+        animation: {
+            close: {
+                effects: "fadeOut zoom:out",
+                duration: 300
+            },
+            open: {
+                effects: "fadeIn zoom:in",
+                duration: 300
+            }
+        },
+        disableDates: function (date) {
+            var today = new Date();
+            var tommorow = today.setDate(today.getDate() - 1);
+            return date <= tommorow;
+        },
+        change: function () {
+            var value = this.value();
+            console.log(value); //value is the selected date in the timepicker
+        },
+        open: function (e) {
+            console.log(e);
+            if (e.view == "time") {
+                console.log("true");
+                this.setOptions({
+                    min: new Date()
+                })
+            }
+        }
+    };
 });
