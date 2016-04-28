@@ -10,6 +10,9 @@ app.config(['$routeProvider',
         $routeProvider.when('/:id', {
             templateUrl: '/partials/eventDetails',
             controller: 'eventController'
+        }).when('/:id', {
+            templateUrl: '/partials/eventDetails',
+            controller: 'eventController'
         }).otherwise({
             redirectTo: '/AllEvents'
         });

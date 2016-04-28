@@ -10,9 +10,9 @@
     <link href="/resources/css/bootstrapTheme.css" rel="stylesheet">
 </head>
 <body >
-<<jsp:include page="/WEB-INF/views/jspf/navWithResponsibleUser.jsp" flush="true" />
+<<jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true" />
 <br/>
-<div class="container" >
+<div >
     <div class="row">
         <div ng-view></div>
     </div>

@@ -23,7 +23,7 @@
     }
 </style>
 </head>
-
+<iframe src="/WEB-INF/views/jspf/nav.jsp"></iframe>
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true"/>
 <br/>
 <jsp:include page="/WEB-INF/views/jspf/creatorOfItemInMenu.jsp" flush="true"/>

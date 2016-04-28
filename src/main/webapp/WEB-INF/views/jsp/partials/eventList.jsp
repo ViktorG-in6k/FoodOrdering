@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-md-1 col-xs-1"></div>
                 <div class="col-md-4 col-xs-4">
-                    <p style="color: black">Created by user@example.com</p>
+                    <p style="color: black">Created by {{event.user.email}}</p>
                 </div>
             </div>
         </div>
