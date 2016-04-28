@@ -12,25 +12,17 @@ public class Event extends com.model.base.Entity {
     @Column
     private String name;
     @Column
-    private String description;
-    @Column
-    private String imageURL;
-    @Column
     private LocalDateTime date;
     @OneToOne
     private User user;
 
-    public Event(String name, String description, String imageURL, LocalDateTime date) {
+    public Event(String name, LocalDateTime date) {
         this.name = name;
-        this.description = description;
-        this.imageURL = imageURL;
         this.date = date;
     }
 
     public Event(RequestEventDTO eventDTO) {
         this.name = eventDTO.getName();
-        this.description = eventDTO.getDescription();
-        this.imageURL = eventDTO.getImageURL();
         this.date = eventDTO.getDate();
     }
 
@@ -43,22 +35,6 @@ public class Event extends com.model.base.Entity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getImageURL() {
-        return imageURL;
-    }
-
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
     }
 
     public LocalDateTime getDate() {

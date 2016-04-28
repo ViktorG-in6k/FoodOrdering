@@ -58,7 +58,8 @@ public class EventController {
 
     @RequestMapping(value = "/new_event", method = RequestMethod.POST)
     public @ResponseBody Set<EventDTO> newEvent(@RequestBody RequestEventDTO event, HttpServletRequest req, HttpSession session) {
-        eventService.save(event);
+        int userId = (int) session.getAttribute("userId");
+        eventService.save(event,userId);
         return getEvents(session);
     }
 

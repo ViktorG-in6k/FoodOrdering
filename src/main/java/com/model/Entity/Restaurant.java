@@ -9,26 +9,22 @@ public class Restaurant extends com.model.base.Entity {
     @Column
     private String name;
     @Column
-    private String description;
+    private String phone;
     @Column
-    private String imageURL;
+    private String link;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "restaurant")
     private List<Item> item;
 
-    public Restaurant(String name, LocalDateTime date) {
+    public Restaurant(String name, String phone) {
         this.name = name;
+        this.phone = phone;
     }
 
-    public Restaurant(String name, String description) {
+    public Restaurant(String name, String phone, String link) {
         this.name = name;
-        this.description = description;
-    }
-
-    public Restaurant(String name, String description, String imageURL) {
-        this.name = name;
-        this.description = description;
-        this.imageURL = imageURL;
+        this.phone = phone;
+        this.link = link;
     }
 
     public Restaurant() {
@@ -42,20 +38,20 @@ public class Restaurant extends com.model.base.Entity {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPhone(String description) {
+        this.phone = description;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getLink() {
+        return link;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setLink(String imageURL) {
+        this.link = imageURL;
     }
 
     public List<Item> getItem() {
@@ -64,10 +60,6 @@ public class Restaurant extends com.model.base.Entity {
 
     public void setItem(List<Item> item) {
         this.item = item;
-    }
-
-    public void addToMenu(Item item) {
-        this.item.add(item);
     }
 }
 

@@ -5,6 +5,6 @@
          version="2.5">
 
     <display-name>Gradle + Spring MVC Hello World + XML</display-name>
-    <description>Spring MVC web application</description>
+    <phone>Spring MVC web application</phone>
 
 </web-app>

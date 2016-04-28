@@ -9,23 +9,15 @@
     <link href="/resources/css/eventDetails.css" rel="stylesheet">
     <link href="/resources/css/bootstrapTheme.css" rel="stylesheet">
 </head>
-<body style="background-color: lightgray;">
+<body >
 <<jsp:include page="/WEB-INF/views/jspf/navWithResponsibleUser.jsp" flush="true" />
 <br/>
 <div class="container" >
     <div class="row">
         <div ng-view></div>
-
     </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#slide").click(function () {
-            $("#s").slideToggle();
-        });
-    });
-</script>
+
 <spring:url value="/resources/core/js/bootstrap.js" var="coreJs" />
 <spring:url value="/resources/core/js/bootstrap.min.js" var="bootstrapJs" />
 <script src="${coreJs}"></script>

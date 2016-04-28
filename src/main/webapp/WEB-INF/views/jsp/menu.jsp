@@ -13,12 +13,12 @@
         width: 50px;
     }
 
-    .description .price .editable-wrap .editable-controls > input, .editable-wrap .editable-controls > select, .editable-wrap .editable-controls > textarea {
+    .phone .price .editable-wrap .editable-controls > input, .editable-wrap .editable-controls > select, .editable-wrap .editable-controls > textarea {
         margin-bottom: 0;
         width: 500px;
 
     }
-    .description{
+    .phone{
         margin-left: 120px;
     }
 </style>
@@ -33,8 +33,8 @@
         <img src="{{restaurant.imageURL}}" width="100px"
              height="100px;" style="float: left; ">
         <h2 style="padding-left: 120px"><a href="#" editable-text="restaurant.name" onbeforesave="updateRestaurantName($data, restaurant.id)">{{restaurant.name}}</a></h2>
-        <p class="description">
-            <a href="#" href="#" editable-textarea="restaurant.description" onbeforesave="updateRestaurantDescription($data, restaurant.id)"> {{restaurant.description}}</a>
+        <p class="phone">
+            <a href="#" href="#" editable-textarea="restaurant.phone" onbeforesave="updateRestaurantDescription($data, restaurant.id)"> {{restaurant.phone}}</a>
         </p>
     </div>
 
@@ -52,7 +52,7 @@
         </div>
         <div class="col-md-7 text-left">
             <p>
-                <a href="#" editable-text="item.description" onbeforesave="updateItemDescription($data,item.id)"> {{item.description}}</a>
+                <a href="#" editable-text="item.phone" onbeforesave="updateItemDescription($data,item.id)"> {{item.phone}}</a>
             </p>
         </div>
     </div>
@@ -77,8 +77,8 @@
             });
         };
 
-        $scope.updateRestaurantDescription = function (description, id) {
-            var dataForRequest = {"id":id, "description":description};
+        $scope.updateRestaurantDescription = function (phone, id) {
+            var dataForRequest = {"id":id, "phone":phone};
             $http.post('/update_restaurant_description',dataForRequest).success(function (data) {
                 return data;
             });
@@ -98,8 +98,8 @@
             });
         };
 
-        $scope.updateItemDescription = function (description, id) {
-            var dataForRequest = {"id":id, "description":description};
+        $scope.updateItemDescription = function (phone, id) {
+            var dataForRequest = {"id":id, "phone":phone};
             $http.post('/update_description_of_item',dataForRequest).success(function (data) {
                 return data;
             });

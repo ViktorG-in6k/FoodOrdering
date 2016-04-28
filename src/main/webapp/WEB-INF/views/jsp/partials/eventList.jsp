@@ -35,7 +35,7 @@
 
 <div class="col-sm-3 col-md-3 col-xs-3">
     <form role="form" ng-controller="DatepickerPopupDemoCtrl"
-          ng-submit="createEvent(name,description,data.dateDropDownInput)" method="post"
+          ng-submit="createEvent(name,phone,data.dateDropDownInput)" method="post"
           style="">
         <div id="s">
             <div class="form-group">

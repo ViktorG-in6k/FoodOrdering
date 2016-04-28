@@ -19,21 +19,15 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public void save(Restaurant restaurant) {
-        if (restaurant.getImageURL().equals("")) {
-            restaurant.setImageURL("http://localhost:8080/resources/image/restaurant.jpg");
-        }
         restaurantDAO.save(restaurant);
     }
 
     @Override
     public void saveByRequest(HttpServletRequest req) {
         String name = req.getParameter("name");
-        String description = req.getParameter("discript");
-        String URLimage = req.getParameter("image");
-        Restaurant restaurant = new Restaurant(name, description, URLimage);
-        if (restaurant.getImageURL().equals("")) {
-            restaurant.setImageURL("/resources/image/restaurant.jpg");
-        }
+        String phone = req.getParameter("phone");
+        String link = req.getParameter("link");
+        Restaurant restaurant = new Restaurant(name, phone, link);
         restaurantDAO.save(restaurant);
     }
 
@@ -64,7 +58,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public void updateRestaurantDescription(RequestRestaurantDTO restaurant) {
-        restaurantDAO.updateDescription(restaurant.getId(), restaurant.getDescription());
+        restaurantDAO.updateDescription(restaurant.getId(), restaurant.getPhone());
     }
 }
 

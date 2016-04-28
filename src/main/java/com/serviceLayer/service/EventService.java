@@ -14,6 +14,8 @@ public interface EventService {
 
     public void saveByRequest(HttpServletRequest req);
 
+    void save(RequestEventDTO eventDTO, int userId);
+
     public Event getEventById(int id);
 
     public Set<Event> getListOfAllEvents();

@@ -2,7 +2,7 @@
 
 
 <form role="form" ng-controller="CreteTheEventController"
-      ng-submit="createEvent(name,description,data.dateDropDownInput)" method="post" class="col-md-3  pull-right"
+      ng-submit="createEvent(name,phone,data.dateDropDownInput)" method="post" class="col-md-3  pull-right"
       style="position: fixed; right: 10px; ">
     <fieldset>
 
@@ -25,7 +25,7 @@
 
             <div class="form-group">
                 <label for="discription">Description:</label>
-                <textarea ng-model="description" class="form-control text-area" rows="10" id="discription"
+                <textarea ng-model="phone" class="form-control text-area" rows="10" id="discription"
                           name="discript"
                           style="resize: vertical"></textarea>
             </div>
