@@ -33,7 +33,6 @@ services.factory("OrderListService", function ($http, $rootScope) {
             orderListService.updateOrderList();
         });
     };
-
     
     orderListService.updateOrderList = function () {
         $http.get("/MyOrderJson_" + $rootScope.eventId).success(function (data) {
@@ -41,9 +40,6 @@ services.factory("OrderListService", function ($http, $rootScope) {
         })
     };
     
-    
-
-
     orderListService.getTotal = function () {
         var total = 0;
         if ($rootScope.myOrders) {

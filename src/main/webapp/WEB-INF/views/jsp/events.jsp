@@ -22,10 +22,13 @@
     <script src="/resources/js/moment.js"></script>
     <script src="/resources/js/bootstrap.js"></script>
     <script src="/resources/js/angular-touch.js"></script>
-    <script src="/resources/js/app.js"></script>
+    <script src="/resources/js/eventsModule/app.js"></script>
+    <script src="/resources/js/eventsModule/controllers.js"></script>
+    <script src="/resources/js/eventsModule/services.js"></script>
+    <script src="/resources/js/eventsModule/filters.js"></script>
     <script src="//kendo.cdn.telerik.com/2016.1.412/js/kendo.all.min.js"></script>
 </head>
-<body ng-app="foodOrdering" >
+<body ng-app="events" >
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true"/>
     <div class="container" style="margin-top: 60px">
         <div class="row">
