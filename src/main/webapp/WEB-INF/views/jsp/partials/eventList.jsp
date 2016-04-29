@@ -5,7 +5,7 @@
             <div style="height: 100px;border: 1px solid #BBB4B4;background-color: #F5F5F5">
             </div>
         </div>
-        <div ng-repeat="event in events | orderBy:['date.year','date.monthValue','date.dayOfMonth']">
+        <div ng-repeat="event in events | orderBy:['date.year','date.monthValue','date.dayOfMonth','date.hour','date.minute']">
             <div style="height: 100px;border: 1px solid #BBB4B4;background-color: #F5F5F5">
                 <div class="row">
                     <div class="col-md-12" style="height: 12px"></div>
