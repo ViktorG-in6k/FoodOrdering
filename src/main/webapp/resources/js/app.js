@@ -183,15 +183,6 @@ app.controller("createEventController", function ($scope, $filter, $http, $rootS
         change: function () {
             var value = this.value();
             console.log(value); //value is the selected date in the timepicker
-        },
-        open: function (e) {
-            console.log(e);
-            if (e.view == "time") {
-                console.log("true");
-                this.setOptions({
-                    min: new Date()
-                })
-            }
         }
     };
 });
