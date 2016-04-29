@@ -9,7 +9,7 @@
 </div>
 <div class="col-md-offset-1 col-sm-offset-1 col-md-8 col-sm-8">
     <div class="panel-group col-md-offset-1 col-sm-offset-1 col-md-11 col-sm-11" id="accordion" role="tablist" aria-multiselectable="true">
-        <div ng-repeat="restaurant in restaurants" class="panel panel-default"   style="  margin-top: 15px;">
+        <div ng-repeat="restaurant in restaurants | orderBy: 'name'" class="panel panel-default"   style="  margin-top: 15px;">
             <div style="height: 120px;background-color: white; border: 1px solid #BBB4B4;background-color: #F5F5F5">
 
                 <div class=" col-md-4">
