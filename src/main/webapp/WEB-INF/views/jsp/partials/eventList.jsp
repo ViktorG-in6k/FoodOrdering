@@ -8,7 +8,7 @@
 
             </div>
         </div>
-        <div ng-repeat="event in events | orderBy:['date.year','date.month','date.dayOfMonth']">
+        <div ng-repeat="event in events | orderBy: date.hour">
             <div style="height: 100px;border: 1px solid #BBB4B4;background-color: #F5F5F5">
                 <div class="row">
                     <div class="col-md-12" style="height: 12px"></div>
@@ -38,7 +38,7 @@
     <div class="col-sm-3 col-md-3 col-xs-3 pull-right" ng-controller="createEventController">
         <form role="form" ng-submit="createEvent(name,date)">
             <div>
-                <p>created</p>
+
                 <div class="form-group">
                     <input ng-model="name" type="text" class="form-control" id="name" placeholder="Event title"
                            name="name" required>

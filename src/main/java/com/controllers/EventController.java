@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,13 +33,14 @@ public class EventController {
     }
 
     @RequestMapping("/eventsJson/")
-    public
-    @ResponseBody
-    Set<EventDTO> getEvents(HttpSession session) {
+    public @ResponseBody
+    Set<EventDTO> getComingEvents(HttpSession session) {
         Set<EventDTO> EventDTOs = new HashSet<>();
         User user = userService.getUser((int) session.getAttribute("userId"));
         for (Event event : eventService.getListOfAllEvents()) {
-            EventDTOs.add(new EventDTO(event, user));
+            if(event.getDate().isAfter(LocalDateTime.now().minusMinutes(10))){
+                EventDTOs.add(new EventDTO(event, user));
+            }
         }
         return EventDTOs;
     }
@@ -69,7 +69,7 @@ public class EventController {
     Set<EventDTO> newEvent(@RequestBody RequestEventDTO event, HttpServletRequest req, HttpSession session) {
         int userId = (int) session.getAttribute("userId");
         eventService.save(event, userId);
-        return getEvents(session);
+        return getComingEvents(session);
     }
 
     @RequestMapping(value = "/events")
@@ -85,7 +85,7 @@ public class EventController {
                               @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") LocalDateTime localDateTime) {
         int userId = (int) session.getAttribute("userId");
         eventService.save(new RequestEventDTO(name, localDateTime), userId);
-        return getEvents(session);
+        return getComingEvents(session);
     }
 }
 
