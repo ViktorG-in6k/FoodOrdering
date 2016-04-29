@@ -33,12 +33,13 @@ public class EventController {
     }
 
     @RequestMapping("/eventsJson/")
-    public @ResponseBody
+    public
+    @ResponseBody
     Set<EventDTO> getComingEvents(HttpSession session) {
         Set<EventDTO> EventDTOs = new HashSet<>();
         User user = userService.getUser((int) session.getAttribute("userId"));
         for (Event event : eventService.getListOfAllEvents()) {
-            if(event.getDate().isAfter(LocalDateTime.now().minusMinutes(10))){
+            if (event.getDate().isAfter(LocalDateTime.now().minusMinutes(10))) {
                 EventDTOs.add(new EventDTO(event, user));
             }
         }
@@ -81,12 +82,13 @@ public class EventController {
     }
 
     @RequestMapping(value = "/newEvent", method = RequestMethod.GET)
-    public @ResponseBody Set<EventDTO> createEvent(HttpSession session, @RequestParam("name") String name,
+    public
+    @ResponseBody
+    Set<EventDTO> createEvent(HttpSession session, @RequestParam("name") String name,
                               @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") LocalDateTime localDateTime) {
         int userId = (int) session.getAttribute("userId");
         eventService.save(new RequestEventDTO(name, localDateTime), userId);
         return getComingEvents(session);
     }
 }
-
 

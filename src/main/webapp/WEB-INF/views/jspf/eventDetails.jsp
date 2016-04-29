@@ -3,7 +3,6 @@
         <div class="col-md-6" style="font-size: 25px;">
                 {{event.name}}
         </div>
-
         <div class="col-md-offset-10" style="font-size: 19px;">
             <div class="col-md-offset-4">
             <i class="glyphicon glyphicon-calendar" aria-hidden="true"></i>
@@ -16,3 +15,4 @@
         <div class="col-md-6" style="font-size: 15px;" >Created by {{event.user.email}}</div>
     </div>
 </div>
+

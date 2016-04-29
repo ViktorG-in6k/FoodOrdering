@@ -4,7 +4,6 @@
 <html lang="en">
 <head>
     <title>Events</title>
-
     <link href="/resources/css/xeditable.css" rel="stylesheet"/>
     <link href="/resources/core/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/resources/css/test.css" rel="stylesheet"/>
@@ -13,7 +12,6 @@
     <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.1.412/styles/kendo.rtl.min.css"/>
     <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.1.412/styles/kendo.silver.min.css"/>
     <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.1.412/styles/kendo.mobile.all.min.css"/>
-
     <script src="/resources/core/js/jquery-2.1.4.min.js"></script>
     <script src="/resources/js/angular.min.js"></script>
     <script src="/resources/js/angular-route.min.js"></script>
@@ -34,3 +32,4 @@
     </div>
 </body>
 </html>
+

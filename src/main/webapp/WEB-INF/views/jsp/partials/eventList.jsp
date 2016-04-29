@@ -1,7 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div ng-controller="eventController">
-
-
     <div class="col-sm-9 col-md-9 col-xs-9 ">
         <div ng-if="events.length == 0">
             <div style="height: 100px;border: 1px solid #BBB4B4;background-color: #F5F5F5">
@@ -9,7 +6,6 @@
             </div>
         </div>
         <div ng-repeat="event in events | orderBy:['date.year','date.monthValue','date.dayOfMonth']">
-
             <div style="height: 100px;border: 1px solid #BBB4B4;background-color: #F5F5F5">
                 <div class="row">
                     <div class="col-md-12" style="height: 12px"></div>
@@ -23,7 +19,8 @@
                             {{event.date.dayOfMonth}}
                             {{event.date.month | limitTo: 3| lowercase|capitalize}} <br>
                         </p>
-                        <p style="font-size: 25px; padding-left: 145px;margin-top: -9px;"> {{event.date.hour}}:{{event.date.minute}}</p>
+                        <p style="font-size: 25px; padding-left: 145px;margin-top: -9px;">
+                            {{event.date.hour}}:{{event.date.minute}}</p>
                     </div>
                     <div class="col-md-4 col-xs-4" style="margin-left: 4%">
                         <p style="color: black">created by user@example.com</p>
@@ -34,12 +31,10 @@
             </div>
             <div style="height: 15px"></div>
         </div>
-    </div>
-    ​
+    </div>    ​
     <div class="col-sm-3 col-md-3 col-xs-3 pull-right" ng-controller="createEventController">
         <form role="form" ng-submit="createEvent(name,date)">
             <div>
-
                 <div class="form-group">
                     <input ng-model="name" type="text" class="form-control" id="name" placeholder="Event title"
                            name="name" required>
@@ -57,3 +52,4 @@
         </form>
     </div>
 </div>
+

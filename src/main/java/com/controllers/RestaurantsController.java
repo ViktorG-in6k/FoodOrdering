@@ -21,10 +21,10 @@ public class RestaurantsController {
     RestaurantService restaurantService;
 
     @RequestMapping(value = "/new_restaurant", method = RequestMethod.POST)
-    public String newRestaurant(HttpServletRequest req , @RequestParam("eventId") int eventId) {
+    public String newRestaurant(HttpServletRequest req, @RequestParam("eventId") int eventId) {
         restaurantService.saveByRequest(req);
         String ref = req.getHeader("Referer");
-        return "redirect:" + ref+"#/"+eventId;
+        return "redirect:" + ref + "#/" + eventId;
     }
 
     @RequestMapping(value = "/events/event_{id}")
@@ -44,17 +44,19 @@ public class RestaurantsController {
     }
 
     @RequestMapping("/restaurants")
-    public  @ResponseBody
+    public
+    @ResponseBody
     List<RestaurantDTO> getRestaurants() {
         List<RestaurantDTO> RestaurantDTOs = new ArrayList<RestaurantDTO>();
-        for (Restaurant restaurant: restaurantService.getListOfAllRestaurant()) {
+        for (Restaurant restaurant : restaurantService.getListOfAllRestaurant()) {
             RestaurantDTOs.add(new RestaurantDTO(restaurant));
         }
         return RestaurantDTOs;
     }
 
     @RequestMapping("/restaurant_{id}")
-    public  @ResponseBody
+    public
+    @ResponseBody
     RestaurantDTO getRestaurantById(@PathVariable("id") int id) {
         return restaurantService.getRestaurantDTOById(id);
     }
