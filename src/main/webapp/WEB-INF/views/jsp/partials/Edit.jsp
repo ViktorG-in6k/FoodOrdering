@@ -1,3 +1,4 @@
 <div ng-controller="eventController">
-    {{event.name}} {{event.description}}
+    {{event.name}} {{event.phone}}
 </div>
+

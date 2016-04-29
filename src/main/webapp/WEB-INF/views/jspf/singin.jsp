@@ -11,7 +11,7 @@
 
                     <div  class="input-group col-md-12">
 
-                        <input class="btn btn-lg col-md-8" style="text-align: left" name="email" id="email"
+                        <input class="btn btn-lg col-md-8" style="text-align: left;color:black" name="email" id="email"
 
                                placeholder="Your Email" required>
 

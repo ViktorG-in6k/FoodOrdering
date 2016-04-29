@@ -5,6 +5,7 @@ import com.model.Entity.Event;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -13,6 +14,8 @@ public interface EventService {
     public void save(RequestEventDTO e);
 
     public void saveByRequest(HttpServletRequest req);
+
+    void save(RequestEventDTO eventDTO, int userId);
 
     public Event getEventById(int id);
 

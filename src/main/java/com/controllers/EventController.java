@@ -7,11 +7,13 @@ import com.model.Entity.User;
 import com.serviceLayer.service.EventService;
 import com.serviceLayer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,20 +32,35 @@ public class EventController {
         return "redirect:/events/";
     }
 
+    @RequestMapping(value = "/new_event", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    Set<EventDTO> newEvent(@RequestBody RequestEventDTO event, HttpServletRequest req, HttpSession session) {
+        int userId = (int) session.getAttribute("userId");
+        eventService.save(event, userId);
+        return getComingEvents(session);
+    }
+
     @RequestMapping("/eventsJson/")
-    public @ResponseBody Set<EventDTO> getEvents(HttpSession session) {
+    public
+    @ResponseBody
+    Set<EventDTO> getComingEvents(HttpSession session) {
         Set<EventDTO> EventDTOs = new HashSet<>();
         User user = userService.getUser((int) session.getAttribute("userId"));
         for (Event event : eventService.getListOfAllEvents()) {
-            EventDTOs.add(new EventDTO(event, user));
+            if (event.getDate().isAfter(LocalDateTime.now().minusMinutes(10))) {
+                EventDTOs.add(new EventDTO(event, user));
+            }
         }
         return EventDTOs;
     }
 
     @RequestMapping("/event_{id}")
-    public @ResponseBody EventDTO getEventById(@PathVariable("id") int eventId, HttpSession session) {
+    public
+    @ResponseBody
+    EventDTO getEventById(@PathVariable("id") int eventId, HttpSession session) {
         User user = userService.getUser((int) session.getAttribute("userId"));
-       return new EventDTO(eventService.getEventById(eventId), user);
+        return new EventDTO(eventService.getEventById(eventId), user);
     }
 
     @RequestMapping(value = "/events", method = RequestMethod.POST)
@@ -56,18 +73,22 @@ public class EventController {
         return "events";
     }
 
-    @RequestMapping(value = "/new_event", method = RequestMethod.POST)
-    public @ResponseBody Set<EventDTO> newEvent(@RequestBody RequestEventDTO event, HttpServletRequest req, HttpSession session) {
-        eventService.save(event);
-        return getEvents(session);
-    }
-
     @RequestMapping(value = "/events")
     public String events(HttpSession session) {
 
         session.setAttribute("allEvents", eventService.getListOfAllEvents());
         session.setAttribute("backPage", "/events");
         return "events";
+    }
+
+    @RequestMapping(value = "/newEvent", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Set<EventDTO> createEvent(HttpSession session, @RequestParam("name") String name,
+                              @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") LocalDateTime localDateTime) {
+        int userId = (int) session.getAttribute("userId");
+        eventService.save(new RequestEventDTO(name, localDateTime), userId);
+        return getComingEvents(session);
     }
 }
 
