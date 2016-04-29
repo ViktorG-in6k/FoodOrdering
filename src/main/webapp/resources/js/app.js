@@ -61,11 +61,7 @@ app.config(['$routeProvider',
 app.factory('eventService', function ($http) {
     var events = {};
     events.getEvents = function () {
-        $http.get('/eventsJson/').success(function (data) {
-            return data;
-
-
-        });
+       return $http.get('/eventsJson/');
     };
     return events;
 });
@@ -116,10 +112,11 @@ app.controller('commonOrderByEachUserCtrl', function ($routeParams, $http, $root
     $scope.updateCommonOrder();
 });
 
-app.controller('eventController', function ($scope, eventService, $http) {
-    $http.get('/eventsJson/').success(function (data) {
-        $scope.events = data;
+app.controller('eventController', function ($scope, eventService,$rootScope,$http) {
+    eventService.getEvents().success(function (data) {
+        $rootScope.events = data;
     });
+
 });
 
 app.factory('orderService', function ($http) {
@@ -143,26 +140,25 @@ app.controller("navbarCtrl", function ($http, $scope) {
         $scope.events = data;
     });
 });
+app.filter('capitalize', function() {
+    return function(token) {
+        return token.charAt(0).toUpperCase() + token.slice(1);
+    }
+});
 
-app.controller("createEventController", function ($scope, $filter, $http) {
-
+app.controller("createEventController", function ($scope, $filter, $http, $rootScope) {
     $scope.createEvent = function (name, date) {
-        var sentDate = $filter("date")(date, "yyyy-MM-dd HH:mm:ss Z");
-    console.log(sentDate);
-
+        var sentDate = $filter("date")(date, "yyyy-MM-dd HH:mm");
         $http({
             url: '/newEvent',
             method: "GET",
             params: {"name": name,"date":sentDate}
         }).then(function (response) {
-            });
-
-        
-
-        $scope.date = new Date();
-        $scope.name = '';
+            $rootScope.events = response.data;
+            $scope.date = new Date();
+            $scope.name = '';
+        });
     };
-
 
     $scope.date = new Date();
     $scope.monthPickerConfig = {
@@ -198,4 +194,8 @@ app.controller("createEventController", function ($scope, $filter, $http) {
             }
         }
     };
+});
+
+app.factory("EventService", function ($filter, $scope) {
+
 });

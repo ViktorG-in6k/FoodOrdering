@@ -25,11 +25,8 @@
     <script src="/resources/js/app.js"></script>
     <script src="//kendo.cdn.telerik.com/2016.1.412/js/kendo.all.min.js"></script>
 </head>
-
 <body ng-app="foodOrdering" >
-
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true"/>
-
     <div class="container" style="margin-top: 60px">
         <div class="row">
             <div ng-view></div>
