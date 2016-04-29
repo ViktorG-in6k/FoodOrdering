@@ -22,7 +22,7 @@
                             {{event.date.dayOfMonth}}
                             {{event.date.month | limitTo: 3| lowercase|capitalize}} <br>
                         </p>
-                        <p style="font-size: 25px; padding-left: 145px;"> 20:00</p>
+                        <p style="font-size: 25px; padding-left: 145px;"> {{event.date.hour}}:{{event.date.minute}}</p>
                     </div>
                     <div class="col-md-4 col-xs-4" style="margin-left: 4%">
                         <p style="color: black">created by user@example.com</p>
@@ -47,7 +47,7 @@
                     <input kendo-date-time-picker
                            ng-model="str"
                            k-ng-model="date"
-                           style="width: 100%;height: 27px;margin-bottom: 1px;padding-left: 8px;"
+                           style="width: 100%;height: 27px;margin-bottom: 1px;"
                            k-options="monthPickerConfig"/>
                 </div>
                 <button type="submit" class="btn btn-success pull-right">Add event</button>
