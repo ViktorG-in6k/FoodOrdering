@@ -22,8 +22,8 @@ controllers.controller("restaurantController", function ($http,$scope, $routePar
     $scope.addToOrder = OrderListService.addToOrder;
     $scope.removeFromOrder  = OrderListService.removeFromOrder;
     $scope.removeOneItemFromOrder = OrderListService.removeOneItemFromOrder;
-
     $scope.getTotal = OrderListService.getTotal;
+
 
     $http.get("/restaurants").success(function (data) {
         $scope.restaurants = data;
@@ -37,8 +37,11 @@ controllers.controller("restaurantController", function ($http,$scope, $routePar
 
 controllers.controller("orderList", function (OrderListService, $scope) {
     $scope.addToOrder = OrderListService.addToOrder;
+    $scope.removeFromOrder  = OrderListService.removeFromOrder;
+    $scope.removeOneItemFromOrder = OrderListService.removeOneItemFromOrder;
    OrderListService.updateOrderList();
 });
+
 
 controllers.controller("navbarCtrl",function ($http, $scope) {
     $http.get('/eventsJson/').success(function (data) {
