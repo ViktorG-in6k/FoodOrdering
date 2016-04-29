@@ -10,6 +10,14 @@ public class RequestEventDTO {
     private String imageURL;
     private LocalDateTime date;
 
+    public RequestEventDTO(String name, LocalDateTime date) {
+        this.name = name;
+        this.date = date;
+    }
+
+    public RequestEventDTO() {
+    }
+
     public String getName() {
         return name;
     }

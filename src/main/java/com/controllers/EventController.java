@@ -34,7 +34,9 @@ public class EventController {
     }
 
     @RequestMapping("/eventsJson/")
-    public @ResponseBody Set<EventDTO> getEvents(HttpSession session) {
+    public
+    @ResponseBody
+    Set<EventDTO> getEvents(HttpSession session) {
         Set<EventDTO> EventDTOs = new HashSet<>();
         User user = userService.getUser((int) session.getAttribute("userId"));
         for (Event event : eventService.getListOfAllEvents()) {
@@ -44,9 +46,11 @@ public class EventController {
     }
 
     @RequestMapping("/event_{id}")
-    public @ResponseBody EventDTO getEventById(@PathVariable("id") int eventId, HttpSession session) {
+    public
+    @ResponseBody
+    EventDTO getEventById(@PathVariable("id") int eventId, HttpSession session) {
         User user = userService.getUser((int) session.getAttribute("userId"));
-       return new EventDTO(eventService.getEventById(eventId), user);
+        return new EventDTO(eventService.getEventById(eventId), user);
     }
 
     @RequestMapping(value = "/events", method = RequestMethod.POST)
@@ -60,9 +64,11 @@ public class EventController {
     }
 
     @RequestMapping(value = "/new_event", method = RequestMethod.POST)
-    public @ResponseBody Set<EventDTO> newEvent(@RequestBody RequestEventDTO event, HttpServletRequest req, HttpSession session) {
+    public
+    @ResponseBody
+    Set<EventDTO> newEvent(@RequestBody RequestEventDTO event, HttpServletRequest req, HttpSession session) {
         int userId = (int) session.getAttribute("userId");
-        eventService.save(event,userId);
+        eventService.save(event, userId);
         return getEvents(session);
     }
 
@@ -75,16 +81,12 @@ public class EventController {
     }
 
     @RequestMapping(value = "/newEvent", method = RequestMethod.GET)
-    public @ResponseBody Set<EventDTO> createEvent(@RequestParam("name") String name, @RequestParam("date") String date, HttpSession session) {
-        System.out.println(date);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
+    public @ResponseBody Set<EventDTO> createEvent(HttpSession session, @RequestParam("name") String name,
+                              @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") LocalDateTime localDateTime) {
         int userId = (int) session.getAttribute("userId");
-        RequestEventDTO event = new RequestEventDTO();
-        event.setName(name);
-        event.setDate(localDateTime);
-        eventService.save(event, userId);
+        eventService.save(new RequestEventDTO(name, localDateTime), userId);
         return getEvents(session);
     }
 }
+
 
