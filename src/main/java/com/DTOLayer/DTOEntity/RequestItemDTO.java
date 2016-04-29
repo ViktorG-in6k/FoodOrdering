@@ -7,18 +7,18 @@ public class RequestItemDTO {
     private BigDecimal price;
     private int eventId;
     private String name;
-    private String description;
 
-    public RequestItemDTO(){}
+    public RequestItemDTO() {
+    }
 
-    public RequestItemDTO(int id, BigDecimal price,int eventId){
+    public RequestItemDTO(int id, BigDecimal price, int eventId) {
         this.id = id;
         this.price = price;
         this.eventId = eventId;
         this.name = null;
     }
 
-    public RequestItemDTO(int id, String name,int eventId){
+    public RequestItemDTO(int id, String name, int eventId) {
         this.id = id;
         this.name = name;
         this.eventId = eventId;
@@ -55,14 +55,6 @@ public class RequestItemDTO {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }
 

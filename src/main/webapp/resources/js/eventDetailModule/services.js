@@ -19,29 +19,27 @@ services.factory("OrderListService", function ($http, $rootScope) {
     orderListService.removeFromOrder = function (eventId, itemId) {
         $http({
             method: 'GET',
-            url: "/remote_from_order"+itemId+"_"+eventId
-        }).then(function () {
-            orderListService.updateOrderList();
-        });
-    };
-    
-    orderListService.removeOneItemFromOrder = function (eventId, itemId) {
-        $http({
-            method: 'GET',
-            url: '/remote_one_item_from_order'+itemId+"_"+eventId
+            url: "/remote_from_order" + itemId + "_" + eventId
         }).then(function () {
             orderListService.updateOrderList();
         });
     };
 
-    
+    orderListService.removeOneItemFromOrder = function (eventId, itemId) {
+        $http({
+            method: 'GET',
+            url: '/remote_one_item_from_order' + itemId + "_" + eventId
+        }).then(function () {
+            orderListService.updateOrderList();
+        });
+    };
+
+
     orderListService.updateOrderList = function () {
         $http.get("/MyOrderJson_" + $rootScope.eventId).success(function (data) {
             $rootScope.myOrders = data;
         })
     };
-    
-    
 
 
     orderListService.getTotal = function () {
@@ -57,7 +55,16 @@ services.factory("OrderListService", function ($http, $rootScope) {
     return orderListService;
 });
 
+services.factory("ItemService", function ($http) {
+    var itemService = {};
+    itemService.addNewItem = function (dataForRequest) {
+        return $http.post('/new_item', dataForRequest)
+    };
+    return itemService;
+});
+
 services.factory("RestaurantService", function ($http) {
     var restaurantService = {};
     return restaurantService;
 });
+
