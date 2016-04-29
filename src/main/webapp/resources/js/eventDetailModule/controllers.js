@@ -2,6 +2,7 @@ var controllers = angular.module('eventApp.controllers', []);
 
 controllers.controller("eventController", function ($http, $scope, $routeParams, $rootScope, OrderListService) {
     $rootScope.eventId = $routeParams.id;
+    $rootScope.restaurant = null;
     $scope.addToOrder = OrderListService.addToOrder;
     $scope.removeFromOrder = OrderListService.removeFromOrder;
     $scope.removeOneItemFromOrder = OrderListService.removeOneItemFromOrder;
