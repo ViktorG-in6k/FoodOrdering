@@ -34,20 +34,6 @@ controllers.controller("restaurantController", function ($http,$scope, $routePar
     });
 });
 
-// app.controller("createItem", function ($scope, $filter, $http, $rootScope) {
-//     $scope.createItem = function (name, price) {
-//
-//         $http({
-//             url: '/new_item',
-//             method: "POST",
-//             params: {"name": name, "price": price, "restaurantId": $rootScope.currentRestaurant}
-//         }).then(function (response) {
-//             $scope.restaurant = response.data;
-//             $scope.price = '';
-//             $scope.name = '';
-//         });
-//     };
-// });
 
 controllers.controller("orderList", function (OrderListService, $scope) {
     $scope.addToOrder = OrderListService.addToOrder;
