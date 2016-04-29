@@ -9,6 +9,7 @@
             </div>
         </div>
         <div ng-repeat="event in events | orderBy:['date.year','date.monthValue','date.dayOfMonth']">
+
             <div style="height: 100px;border: 1px solid #BBB4B4;background-color: #F5F5F5">
                 <div class="row">
                     <div class="col-md-12" style="height: 12px"></div>
@@ -22,7 +23,7 @@
                             {{event.date.dayOfMonth}}
                             {{event.date.month | limitTo: 3| lowercase|capitalize}} <br>
                         </p>
-                        <p style="font-size: 25px; padding-left: 145px;"> {{event.date.hour}}:{{event.date.minute}}</p>
+                        <p style="font-size: 25px; padding-left: 145px;margin-top: -9px;"> {{event.date.hour}}:{{event.date.minute}}</p>
                     </div>
                     <div class="col-md-4 col-xs-4" style="margin-left: 4%">
                         <p style="color: black">created by user@example.com</p>
@@ -38,7 +39,7 @@
     <div class="col-sm-3 col-md-3 col-xs-3 pull-right" ng-controller="createEventController">
         <form role="form" ng-submit="createEvent(name,date)">
             <div>
-                <p>created</p>
+
                 <div class="form-group">
                     <input ng-model="name" type="text" class="form-control" id="name" placeholder="Event title"
                            name="name" required>
@@ -48,7 +49,7 @@
                            ng-model="str"
                            k-ng-model="date"
                            style="width: 100%;height: 27px;margin-bottom: 1px;"
-                           k-options="monthPickerConfig"/>
+                           k-options="dateTimePickerConfig"/>
                 </div>
                 <button type="submit" class="btn btn-success pull-right">Add event</button>
             </div>

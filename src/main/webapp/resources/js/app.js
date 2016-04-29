@@ -140,6 +140,7 @@ app.controller("navbarCtrl", function ($http, $scope) {
         $scope.events = data;
     });
 });
+
 app.filter('capitalize', function() {
     return function(token) {
         return token.charAt(0).toUpperCase() + token.slice(1);
@@ -159,9 +160,8 @@ app.controller("createEventController", function ($scope, $filter, $http, $rootS
             $scope.name = '';
         });
     };
-
     $scope.date = new Date();
-    $scope.monthPickerConfig = {
+    $scope.dateTimePickerConfig = {
         format: "dd-MM-yyyy HH:mm",
         timeFormat: "HH:mm",
         value: new Date(),
@@ -179,14 +179,6 @@ app.controller("createEventController", function ($scope, $filter, $http, $rootS
             var today = new Date();
             var tommorow = today.setDate(today.getDate() - 1);
             return date <= tommorow;
-        },
-        change: function () {
-            var value = this.value();
-            console.log(value); //value is the selected date in the timepicker
         }
     };
-});
-
-app.factory("EventService", function ($filter, $scope) {
-
 });
