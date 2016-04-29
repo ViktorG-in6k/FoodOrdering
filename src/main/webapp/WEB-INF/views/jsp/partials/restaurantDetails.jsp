@@ -3,7 +3,7 @@
         <div class="well pull-left" style="height: 120px; width: 100%">
             <div class="col-md-6" style="font-size: 25px;">
                 {{restaurant.name}}<br>
-                <a href="{{restaurant.link}}" style="font-size: 13px">Web-site</a>
+                <a href="{{restaurant.link}}" target="_blank" style="font-size: 13px">Web-site</a>
                 <p style="font-size: 13px">Phone: {{restaurant.phone}}</p>
             </div>
 

@@ -6,8 +6,16 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="/events">Events</a>
         </div>
-        <div ng-controller="eventController" ng-if="eventId" class="navbar-header navbar-brand">
-            /&nbsp &nbsp{{event.name}}
+        <div  ng-controller="eventController" ng-if="eventId">
+
+            <a  class=" navbar-brand" href="/events/event_{{event.id}}#/{{event.id}}">
+             /   &nbsp &nbsp{{event.name}}
+            </a>
+        </div>
+        <div ng-controller="eventController" ng-if="currentRestaurant" >
+            <a  class=" navbar-brand" href="{{'#/'+ eventId}}/{{restaurant.id}}">
+            /   &nbsp &nbsp{{restaurant.name}}
+            </a>
         </div>
         <div class="navbar-header pull-right" style=" right: 10px;">
             <label class="navbar-brand">
