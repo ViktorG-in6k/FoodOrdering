@@ -30,8 +30,7 @@
                 <td>{{item.name}}</td>
                 <td>{{item.price | currency:"&#8372"}}</td>
                 <td>          <div>
-                    <a style="margin-right: 5px;" href=""><i  style="color:green" ng-click="removeOneItemFromOrder(eventId, item.id)" class="fa fa-minus" aria-hidden="true"></i></a>
-                    <span style="">0</span>
+
                     <a href="" ng-click="addToOrder(eventId, item.id)" style="margin-left: 5px;">
                         <i  style="color:green"  class="fa fa-plus" aria-hidden="true"></i></a>
                 </div></td>
