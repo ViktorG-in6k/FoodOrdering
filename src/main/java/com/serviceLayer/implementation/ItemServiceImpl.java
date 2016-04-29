@@ -21,9 +21,6 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void save(Item item) {
-        if (item.getImageURL().equals("")) {
-            item.setImageURL("/resources/image/shief.jpg");
-        }
         itemDAO.save(item);
     }
 
@@ -36,10 +33,7 @@ public class ItemServiceImpl implements ItemService {
 
         Restaurant restaurant = (Restaurant) session.getAttribute("restaurant");
 
-        Item item = new Item(name, description, URLimage, price, restaurant);
-        if (item.getImageURL().equals("")) {
-            item.setImageURL("/resources/image/shief.jpg");
-        }
+        Item item = new Item(name, price, restaurant);
         itemDAO.save(item);
     }
 

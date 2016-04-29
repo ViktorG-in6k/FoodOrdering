@@ -32,6 +32,15 @@ public class EventController {
         return "redirect:/events/";
     }
 
+    @RequestMapping(value = "/new_event", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    Set<EventDTO> newEvent(@RequestBody RequestEventDTO event, HttpServletRequest req, HttpSession session) {
+        int userId = (int) session.getAttribute("userId");
+        eventService.save(event, userId);
+        return getComingEvents(session);
+    }
+
     @RequestMapping("/eventsJson/")
     public
     @ResponseBody
@@ -62,15 +71,6 @@ public class EventController {
 
         session.setAttribute("userId", userService.getUserByEmail(req.getParameter("email")).getId());
         return "events";
-    }
-
-    @RequestMapping(value = "/new_event", method = RequestMethod.POST)
-    public
-    @ResponseBody
-    Set<EventDTO> newEvent(@RequestBody RequestEventDTO event, HttpServletRequest req, HttpSession session) {
-        int userId = (int) session.getAttribute("userId");
-        eventService.save(event, userId);
-        return getComingEvents(session);
     }
 
     @RequestMapping(value = "/events")

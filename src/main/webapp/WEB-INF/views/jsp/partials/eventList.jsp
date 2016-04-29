@@ -32,7 +32,6 @@
             <div style="height: 15px"></div>
         </div>
     </div>
-    ​
     <div class="col-sm-3 col-md-3 col-xs-3 pull-right" ng-controller="createEventController">
         <form role="form" ng-submit="createEvent(name,date)">
             <div>
