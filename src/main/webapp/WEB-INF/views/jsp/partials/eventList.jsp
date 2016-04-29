@@ -1,8 +1,8 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div ng-controller="eventController">
     <div class="col-sm-9 col-md-9 col-xs-9 ">
         <div ng-if="events.length == 0">
             <div style="height: 100px;border: 1px solid #BBB4B4;background-color: #F5F5F5">
-
             </div>
         </div>
         <div ng-repeat="event in events | orderBy:['date.year','date.monthValue','date.dayOfMonth']">
@@ -31,7 +31,8 @@
             </div>
             <div style="height: 15px"></div>
         </div>
-    </div>    ​
+    </div>
+    ​
     <div class="col-sm-3 col-md-3 col-xs-3 pull-right" ng-controller="createEventController">
         <form role="form" ng-submit="createEvent(name,date)">
             <div>
@@ -40,16 +41,12 @@
                            name="name" required>
                 </div>
                 <div class="form-group">
-                    <input kendo-date-time-picker
-                           ng-model="str"
-                           k-ng-model="date"
+                    <input kendo-date-time-picker ng-model="str" k-ng-model="date"
                            style="width: 100%;height: 27px;margin-bottom: 1px;"
                            k-options="dateTimePickerConfig"/>
                 </div>
                 <button type="submit" class="btn btn-success pull-right">Add event</button>
             </div>
-            ​
         </form>
     </div>
 </div>
-
