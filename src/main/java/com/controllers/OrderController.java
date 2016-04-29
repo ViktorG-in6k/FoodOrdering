@@ -38,6 +38,12 @@ public class OrderController {
         return orderService.orderListOfEvent(eventId);
     }
 
+    @RequestMapping("/CommonOrderJson_{event}/{restaurant}")
+    public  @ResponseBody
+    OrderDTOList getCommonOrderByEventAndRestaurant(@PathVariable("event") int eventId,@PathVariable("restaurant") int restaurantId) {
+        return orderService.orderListOfUserByRestaurant(eventId,restaurantId);
+    }
+
     @RequestMapping("/CommonOrder_{event}")
     public  @ResponseBody
     List<OrderDTOListOfEachUser> getCommonOrderForResponsible(@PathVariable("event") int eventId) {

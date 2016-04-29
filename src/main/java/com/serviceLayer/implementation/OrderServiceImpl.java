@@ -24,6 +24,8 @@ public class OrderServiceImpl implements OrderService {
     ItemService itemService;
     @Autowired
     UserService userService;
+    @Autowired
+    RestaurantService restaurantService;
 
     @Autowired
     EventService eventService;
@@ -39,9 +41,7 @@ public class OrderServiceImpl implements OrderService {
         Item item = itemService.getItemById(item_id);
         int user_id = (int) session.getAttribute("userId");
         User user = userService.getUser(user_id);
-
         Order order = new Order(user, item, event);
-
         orderDAO.save(order);
     }
 
@@ -53,6 +53,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDTOList orderListOfEvent(int eventId) {
         return new OrderDTOList(orderDAO.orderListOfEvent(eventId), eventId);
+    }
+
+    @Override
+    public OrderDTOList orderListOfUserByRestaurant(int eventId, int restaurantId) {
+        List<Order> orderList = orderDAO.orderListOfEvent(eventId);
+        return new OrderDTOList(restaurantId,orderList);
     }
 
     @Override
@@ -77,7 +83,6 @@ public class OrderServiceImpl implements OrderService {
             OrderDTOList order = orderListOfUserByEvent(user.getId(), eventId);
             if (orderDAO.selectOrderList(user.getId(), eventId).size() > 0) {
                 orderDTOListOfEachUser.add(new OrderDTOListOfEachUser(order, user.getEmail()));
-
             }
         }
         return orderDTOListOfEachUser;
