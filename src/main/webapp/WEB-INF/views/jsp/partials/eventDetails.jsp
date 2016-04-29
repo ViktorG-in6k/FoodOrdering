@@ -25,7 +25,7 @@
             <div style="height: 120px;background-color: white; border: 1px solid #BBB4B4;background-color: #F5F5F5">
                 <div class=" col-md-4">
                     <h3>
-                        <a href="/restaurant_{{restaurant.id}}" style="font-size: 25px;">
+                        <a href="{{'#/'+ eventId}}/{{restaurant.id}}" style="font-size: 25px;">
                             {{restaurant.name}}
                         </a>
                     </h3>
