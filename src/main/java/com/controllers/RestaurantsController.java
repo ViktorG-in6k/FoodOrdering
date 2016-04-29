@@ -32,7 +32,7 @@ public class RestaurantsController {
         session.setAttribute("eventId", id);
         session.setAttribute("allRestaurants", restaurantService.getListOfAllRestaurant());
         session.setAttribute("backPage", "/events");
-        return "restaurants";
+        return "eventDetails";
     }
 
     @RequestMapping(value = "/events/event_{event}/restaurant_{id}")
