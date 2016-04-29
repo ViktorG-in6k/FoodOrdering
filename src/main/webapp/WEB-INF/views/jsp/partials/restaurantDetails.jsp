@@ -29,7 +29,7 @@
 
             <tr>
                 <td>{{item.name}}</td>
-                <td>{{item.price}}</td>
+                <td>{{item.price | currency:"&#8372"}}</td>
             </tr>
             </tbody>
         </table>
@@ -38,18 +38,20 @@
 </div>
 
 
-<form style=" margin-top: 15px;" role="form" action="/new_item" method="post" class=" col-md-offset-0 col-md-2">
+<form style=" margin-top: 15px;" role="form" ng-controller="createItem" ng-submit="createItem(name,price)" class="col-md-offset-0 col-md-2">
     <fieldset>
         <div class="form-group">
             <input type="text*" placeholder="name*" class="form-control" id="name" name="name" required>
         </div>
 
         <div class="form-group">
-            <input placeholder="phone*" type="text" class="form-control" id="phone" name="phone" required>
+            <input placeholder="price*" type="text" class="form-control" id="price" name="price" required>
         </div>
 
-        <input hidden type="text" name="restaurantId" value="{{eventId}}">
+        <input hidden type="text" name="restaurantId" value="{{restaurantId}}">
         <button type="submit" class="btn btn-success pull-right">Add item</button>
     </fieldset>
 </form>
+
+
 

@@ -10,10 +10,6 @@ public class Item extends com.model.base.Entity {
     @Column
     private String name;
     @Column
-    private String description;
-    @Column
-    private String imageURL;
-    @Column
     private BigDecimal price;
     @OneToOne
     private Restaurant restaurant;
@@ -21,10 +17,8 @@ public class Item extends com.model.base.Entity {
     public Item() {
     }
 
-    public Item(String name, String description, String imageURL, BigDecimal price, Restaurant restaurant) {
+    public Item(String name, BigDecimal price, Restaurant restaurant) {
         this.restaurant = restaurant;
-        this.description = description;
-        this.imageURL = imageURL;
         this.name = name;
         this.price = price;
     }
@@ -35,22 +29,6 @@ public class Item extends com.model.base.Entity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getImageURL() {
-        return imageURL;
-    }
-
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
     }
 
     public BigDecimal getPrice() {
