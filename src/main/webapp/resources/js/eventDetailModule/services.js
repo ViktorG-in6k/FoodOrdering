@@ -34,13 +34,11 @@ services.factory("OrderListService", function ($http, $rootScope) {
         });
     };
 
-
     orderListService.updateOrderList = function () {
-        $http.get("/MyOrderJson_" + $rootScope.eventId).success(function (data) {
+        $http.get("/CommonOrderJson_" + $rootScope.eventId+"/"+$rootScope.currentRestaurant).success(function (data) {
             $rootScope.myOrders = data;
         })
     };
-    
 
     orderListService.getTotal = function () {
         var total = 0;
