@@ -6,10 +6,8 @@ app.run(function (editableOptions, editableThemes) {
 });
 
 app.controller('Ctrl', function ($routeParams, $scope, $http, editableThemes, editableOptions) {
-
     editableThemes.bs3.inputClass = 'form-control';
     editableOptions.theme = 'bs3';
-
     $scope.updatePrice = function (data, id, eventId) {
         console.log(id);
         var dataForRequest = {"id": id, "price": data, "eventId": eventId};
@@ -61,7 +59,14 @@ app.config(['$routeProvider',
 app.factory('eventService', function ($http) {
     var events = {};
     events.getEvents = function () {
-       return $http.get('/eventsJson/');
+        return $http.get('/eventsJson/');
+    };
+    events.saveEvent = function (name, date) {
+        return  $http({
+            url: '/newEvent',
+            method: "GET",
+            params: {"name": name,"date":date}
+        })
     };
     return events;
 });
@@ -147,14 +152,10 @@ app.filter('capitalize', function() {
     }
 });
 
-app.controller("createEventController", function ($scope, $filter, $http, $rootScope) {
+app.controller("createEventController", function ($scope, $filter, $http, $rootScope,eventService) {
     $scope.createEvent = function (name, date) {
         var sentDate = $filter("date")(date, "yyyy-MM-dd HH:mm");
-        $http({
-            url: '/newEvent',
-            method: "GET",
-            params: {"name": name,"date":sentDate}
-        }).then(function (response) {
+        eventService.saveEvent(name,sentDate).then(function (response) {
             $rootScope.events = response.data;
             $scope.date = new Date();
             $scope.name = '';
