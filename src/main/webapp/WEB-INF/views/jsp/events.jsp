@@ -20,7 +20,7 @@
     <script src="/resources/js/moment.js"></script>
     <script src="/resources/js/bootstrap.js"></script>
     <script src="/resources/js/angular-touch.js"></script>
-    <script src="/resources/js/app.js"></script>
+    <script src="/resources/js/app.js"> </script>
 
     <script src="/resources/js/kendo.js"></script>
 </head>
