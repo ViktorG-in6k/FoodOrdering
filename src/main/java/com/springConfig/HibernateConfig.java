@@ -22,7 +22,7 @@ public class HibernateConfig {
     public DataSource dataSource(
             @Value("jdbc:mysql://localhost:3306/food_order_db") String url,
             @Value("root") String username,
-            @Value("YWgaMaZpf2") String password
+            @Value("1107") String password
     ) throws SQLException {
         DriverManagerDataSource source = new DriverManagerDataSource(
                 url, username, password
