@@ -23,5 +23,6 @@ public interface OrderDAO {
 
     public void updateOrderedOfOrder(boolean ordered, int eventId, int itemId);
 
+    void setResponsibleUser(int userId, int eventId, int restaurantId);
 }
 

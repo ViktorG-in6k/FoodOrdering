@@ -21,16 +21,8 @@ import java.util.Set;
 public class EventController {
     @Autowired
     EventService eventService;
-
     @Autowired
     UserService userService;
-
-    @RequestMapping(value = "/addResponsibleUser", method = RequestMethod.POST)
-    public String setResponsibleUser(HttpSession session, @RequestParam("eventId") int eventId) {
-        int userId = (int) session.getAttribute("userId");
-        eventService.setResponsibleUser(userId, eventId);
-        return "redirect:/events/";
-    }
 
     @RequestMapping(value = "/new_event", method = RequestMethod.POST)
     public

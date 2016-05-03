@@ -7,10 +7,7 @@ import com.serviceLayer.service.OrderService;
 import com.serviceLayer.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -24,6 +21,13 @@ public class OrderController {
     EventService eventService;
     @Autowired
     RestaurantService restaurantService;
+
+    @RequestMapping(value = "/addResponsibleUser", method = RequestMethod.POST)
+    public String setResponsibleUser(HttpSession session, @RequestParam("eventId") int eventId, @RequestParam("restaurantId") int restaurantId) {
+        int userId = (int) session.getAttribute("userId");
+        orderService.setResponsibleUser(userId,eventId,restaurantId);
+        return "redirect:/events/";
+    }
 
     @RequestMapping("/MyOrderJson_{event}")
     public  @ResponseBody

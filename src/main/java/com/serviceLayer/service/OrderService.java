@@ -15,6 +15,8 @@ public interface OrderService {
 
     public OrderDTOList orderListOfUserByEvent(int userId, int eventId);
 
+    public void setResponsibleUser(int userId, int eventId, int restaurantId);
+
     public OrderDTOList orderListOfEvent(int eventId);
 
     OrderDTOList orderListOfUserByRestaurant(int eventId, int restaurantId);

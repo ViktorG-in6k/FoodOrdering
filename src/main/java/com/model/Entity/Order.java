@@ -17,8 +17,16 @@ public class Order extends com.model.base.Entity {
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "responsibility_user_id", nullable = false)
+    private User responsibilityUser;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "event_id", nullable = false)
     private Event event;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    private Restaurant restaurant;
 
     @Column
     private boolean ordered;
@@ -27,7 +35,24 @@ public class Order extends com.model.base.Entity {
         this.user = user;
         this.item = item;
         this.event = event;
+        this.restaurant = item.getRestaurant();
         this.ordered = false;
+    }
+
+    public User getResponsibilityUser() {
+        return responsibilityUser;
+    }
+
+    public void setResponsibilityUser(User responsibilityUser) {
+        this.responsibilityUser = responsibilityUser;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     public Item getItem() {

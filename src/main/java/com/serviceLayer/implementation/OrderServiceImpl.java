@@ -51,6 +51,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public void setResponsibleUser(int userId, int eventId, int restaurantId) {
+        orderDAO.setResponsibleUser(userId, eventId, restaurantId);
+    }
+
+    @Override
     public OrderDTOList orderListOfEvent(int eventId) {
         return new OrderDTOList(orderDAO.orderListOfEvent(eventId), eventId);
     }

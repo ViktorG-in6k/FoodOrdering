@@ -98,5 +98,17 @@ public class OrderDAOImpl implements OrderDAO {
                 .setInteger("itemId", itemId);
         query.executeUpdate();
     }
+
+    @Override
+    public void setResponsibleUser(int userId, int eventId, int restaurantId) {
+        Session session = sessionFactory.getCurrentSession();
+
+        Query query = session.createQuery("update order_list SET responsibility_user_id=:userId where event_id=:eventId and restaurant_id=:restaurantId");
+        query
+                .setInteger("userId",userId)
+                .setInteger("eventId", eventId)
+                .setInteger("restaurantId", restaurantId);
+        query.executeUpdate();
+    }
 }
 
