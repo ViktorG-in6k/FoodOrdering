@@ -7,30 +7,31 @@
                 <p style="font-size: 13px">Phone: {{restaurant.phone}}</p>
             </div>
             <br/>
-            <div class="row"></div>
+
         </div>
     </div>
 </div>
 <div class="col-md-offset-1 col-sm-offset-1 col-md-8 col-sm-8">
     <div class="panel-group col-md-offset-1 col-sm-offset-1 col-md-11 col-sm-11" id="accordion" role="tablist"
          aria-multiselectable="true">
-        <table class="table">
+        <table class="table ">
             <thead>
             <tr>
                 <th>name</th>
                 <th>price</th>
+                <th></th>
             </tr>
             </thead>
-            <tbody ng-repeat="item in restaurant.itemList | orderBy: 'name'">
-            <tr>
+            <tbody >
+            <tr ng-repeat="item in restaurant.itemList | orderBy: 'name'">
                 <td>{{item.name}}</td>
                 <td>{{item.price | currency:"&#8372"}}</td>
-                <td>
-                    <div>
+                <td style="width: 25%">
+
                         <div ng-controller="orderList">
-                            <div ng-repeat="itemInOrder in myOrders.myOrderList">
-                                <div class="col-md-3" ng-if="item.name == itemInOrder.item.name">
-                                    <a style="margin-right: 5px;" href="">
+                            <div ng-repeat="itemInOrder in myOrders.myOrderList" style="display: inline;">
+                                <div ng-if="item.id == itemInOrder.item.id" style="display: inline;margin-left: -11px;">
+                                    <a  href="">
                                         <i style="color:green"
                                            ng-click="removeOneItemFromOrder(eventId,itemInOrder.item.id)"
                                            class="fa fa-minus" aria-hidden="true">
@@ -39,12 +40,11 @@
                                     <span style="">{{itemInOrder.count}}</span>
                                 </div>
                             </div>
-                            <div class="col-md-1">
-                                <a href="" ng-click="addToOrder(eventId, item.id)" style="margin-left: 5px;">
+                            <div style=" display: inline">
+                                <a href="" ng-click="addToOrder(eventId, item.id)" >
                                     <i style="color:green" class="fa fa-plus" aria-hidden="true"></i></a>
                             </div>
-                        </div>
-                    </div>
+                            </div>
                 </td>
             </tr>
             </tbody>
@@ -92,9 +92,8 @@
                                                                                        aria-hidden="true"></i></a></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
                     <td>Total</td>
+                    <td></td>
                     <td>{{getTotal() |currency:"&#8372"}}</td>
                 </tr>
             </table>
