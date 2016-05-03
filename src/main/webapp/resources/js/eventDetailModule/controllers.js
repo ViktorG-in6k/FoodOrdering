@@ -36,6 +36,8 @@ controllers.controller("restaurantController", function ($http, $scope, $routePa
 controllers.controller("createItem", function ($scope, ItemService, $filter, $http, $rootScope) {
     $scope.createItem = function (name, price) {
         var dataForRequest = {"name": name, "price": price, "restaurantId": $rootScope.currentRestaurant};
+
+
         ItemService.addNewItem(dataForRequest).success(function (data) {
             $rootScope.restaurant = data;
             $scope.name = '';
@@ -51,6 +53,25 @@ controllers.controller("orderList", function (OrderListService, $scope) {
         $scope.addToOrder = OrderListService.addToOrder;
         OrderListService.updateOrderList();
 
+    $scope.blur = function (newCount, oldCount, eventId, itemId) {
+
+
+            if(newCount > oldCount){
+                OrderListService.addNumberItemFromOrder(itemId, eventId,newCount-oldCount);
+            }else {
+                OrderListService.removeNumberItemFromOrder(itemId, eventId, oldCount - newCount)
+            }
+        
+    };
+
+        $scope.changeItem = function (newCount, oldCount, eventId, itemId) {
+            console.log(newCount);
+            console.log(oldCount);
+            console.log(eventId);
+            console.log(itemId);
+
+
+        };
     }
 );
 

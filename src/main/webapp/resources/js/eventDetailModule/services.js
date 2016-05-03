@@ -50,6 +50,32 @@ services.factory("OrderListService", function ($http, $rootScope) {
         return total;
     };
 
+    orderListService.removeNumberItemFromOrder = function (itemId,eventId, number) {
+        $http({
+            method: 'GET',
+            url: '/remote_item_from_order' + itemId + "_" + eventId + "_" + number
+        }).then(function () {
+         
+        });
+    };
+    
+    
+    
+    
+    orderListService.addNumberItemFromOrder = function (itemId,eventId, number) {
+            $http({
+                method: 'POST',
+                url: '/add_number_item_to_order',
+                params: {
+                    event_id: eventId,
+                    item_id: itemId,
+                    number: number
+                }
+            }).then(function () {
+
+            });
+    };
+
     return orderListService;
 });
 
