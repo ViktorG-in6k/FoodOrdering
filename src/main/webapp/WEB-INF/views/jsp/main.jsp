@@ -6,7 +6,7 @@
     <title>FoodOrdering</title>
     <link href="/resources/css/bootstrapTheme.css" rel="stylesheet">
     <script src="/resources/js/angular.min.js"></script>
-    <script src="/resources/js/app.js"></script>
+
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/jspf/mainNav.jsp" flush="true"/>
