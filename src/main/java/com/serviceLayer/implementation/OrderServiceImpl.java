@@ -41,6 +41,7 @@ public class OrderServiceImpl implements OrderService {
         Item item = itemService.getItemById(item_id);
         int user_id = (int) session.getAttribute("userId");
         User user = userService.getUser(user_id);
+
         Order order = new Order(user, item, event);
         orderDAO.save(order);
     }
