@@ -8,10 +8,6 @@
     <link href="/resources/core/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/resources/css/test.css" rel="stylesheet"/>
     <link href="/resources/css/bootstrapTheme.css" rel="stylesheet">
-    <%--    <link rel="stylesheet" href="/resources/css/kendoLib/kendo.common.min.css"/>
-        <link rel="stylesheet" href="/resources/css/kendoLib/kendo.rtl.css"/>
-        <link rel="stylesheet" href="/resources/css/kendoLib/kendo.silver.css"/>
-        <link rel="stylesheet" href="/resources/css/kendoLib/kengo.modile.css"/>--%>
     <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.1.412/styles/kendo.common.min.css"/>
     <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.1.412/styles/kendo.rtl.min.css"/>
     <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.1.412/styles/kendo.silver.min.css"/>
