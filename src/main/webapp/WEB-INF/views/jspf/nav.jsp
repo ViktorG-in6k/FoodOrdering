@@ -7,7 +7,6 @@
             <a class="navbar-brand" href="/events">Events</a>
         </div>
         <div  ng-controller="eventController" ng-if="eventId">
-
             <a  class=" navbar-brand" href="/events/event_{{event.id}}#/{{event.id}}">
              /   &nbsp &nbsp{{event.name}}
             </a>

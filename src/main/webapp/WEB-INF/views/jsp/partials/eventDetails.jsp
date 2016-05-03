@@ -17,7 +17,6 @@
         </div>
     </div>
 
-
 </div>
 <div class="col-md-offset-1 col-sm-offset-1 col-md-8 col-sm-8">
     <div class="panel-group col-md-offset-1 col-sm-offset-1 col-md-11 col-sm-11" id="accordion" role="tablist" aria-multiselectable="true">

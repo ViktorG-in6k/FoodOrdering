@@ -6,11 +6,8 @@
                 <a href="{{restaurant.link}}" target="_blank" style="font-size: 13px">Web-site</a>
                 <p style="font-size: 13px">Phone: {{restaurant.phone}}</p>
             </div>
-
-
             <br/>
             <div class="row"></div>
-
         </div>
     </div>
 </div>
@@ -22,7 +19,6 @@
             <tr>
                 <th>name</th>
                 <th>price</th>
-
             </tr>
             </thead>
             <tbody ng-repeat="item in restaurant.itemList | orderBy: 'name'">
@@ -52,7 +48,6 @@
         <input hidden type="text" name="restaurantId" value="{{restaurantId}}">
         <button type="submit" class="btn btn-success pull-right">Add item</button>
     </fieldset>
-
     <div ng-controller="orderList">
         <div>
             <h3 class="text-center">Your order</h3>
