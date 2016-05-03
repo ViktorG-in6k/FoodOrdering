@@ -37,7 +37,10 @@
                                            class="fa fa-minus" aria-hidden="true">
                                         </i>
                                     </a>
-                                    <span style="">{{itemInOrder.count}}</span>
+                                    <span style="">
+                                        <input style="width: 40px" min="1" type="number" ng-change="changeItem(itemInOrder.count, oldValue, eventId, item.id)" ng-blur="blur(itemInOrder.count, oldValue, eventId, item.id)"  ng-init="oldValue=itemInOrder.count"  ng-model="itemInOrder.count"/>
+                                    </span>
+
                                 </div>
                             </div>
                             <div style=" display: inline">
