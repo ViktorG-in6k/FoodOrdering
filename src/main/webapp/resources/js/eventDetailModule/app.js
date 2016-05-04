@@ -13,6 +13,9 @@ app.config(['$routeProvider',
         }).when('/:id/:restaurantId', {
             templateUrl: '/partials/restaurantDetails',
             controller: 'restaurantController'
+        }).when('/:id/:restaurantId/order', {
+            templateUrl: '/partials/commonOrderList',
+            controller: 'commonOrderList'
         }).otherwise({
             redirectTo: '/AllEvents'
         });
