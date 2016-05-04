@@ -2,7 +2,10 @@ package com.dataLayer.Implementations;
 
 import com.DTOLayer.DTOEntity.OrderDTO;
 import com.dataLayer.DAO.OrderDAO;
+import com.model.Entity.Event;
+import com.model.Entity.Item;
 import com.model.Entity.Order;
+import com.model.Entity.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -97,6 +100,24 @@ public class OrderDAOImpl implements OrderDAO {
                 .setInteger("eventId", eventId)
                 .setInteger("itemId", itemId);
         query.executeUpdate();
+    }
+
+    @Override
+    public void saveNumberItemToOrder(User user, Item item, Event event, int number) {
+        Session session = sessionFactory.getCurrentSession();
+        for (int i = 0; i < number; i++) {
+            session.save(new Order(user, item, event));
+        }
+    }
+
+    @Override
+    public void deleteNumberItemFromOrder(int userId, int eventId, int itemId, int number) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createSQLQuery("DELETE FROM order_list WHERE id IN (SELECT id from (select id\n" +
+                "            FROM order_list WHERE event_id = " + eventId + " and item_id = " + itemId + " AND order_list.user_id = " + userId +
+                "            LIMIT " + number + ") x)");
+        query.executeUpdate();
+
     }
 }
 
