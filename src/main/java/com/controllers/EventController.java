@@ -40,9 +40,7 @@ public class EventController {
         Set<EventDTO> EventDTOs = new HashSet<>();
         User user = userService.getUser((int) session.getAttribute("userId"));
         for (Event event : eventService.getListOfAllEvents()) {
-            if (event.getDate().isAfter(LocalDateTime.now().minusMinutes(10))) {
                 EventDTOs.add(new EventDTO(event, user));
-            }
         }
         return EventDTOs;
     }
