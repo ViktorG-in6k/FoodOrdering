@@ -9,7 +9,7 @@ public class OrderDTO {
 
     private EventDTO event;
 
-    private boolean ordered;
+    private int amount;
 
     public OrderDTO(Order order) {
         this.item = new ItemDTO(order.getItem());
@@ -29,12 +29,12 @@ public class OrderDTO {
         return event;
     }
 
-    public boolean isOrdered() {
-        return ordered;
+    public int isOrdered() {
+        return amount;
     }
 
-    public void setOrdered(boolean ordered) {
-        this.ordered = ordered;
+    public void setOrdered(int amount) {
+        this.amount = amount;
     }
 }
 
