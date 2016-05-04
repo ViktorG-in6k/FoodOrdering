@@ -22,6 +22,8 @@ public interface OrderDAO {
 
     public List<Order> orderListOfUserByEvent(int userId, int eventId);
 
+    List<Order> orderListOfUserByRestaurantInEvent(int userId, int eventId, int restaurantId);
+
     public List<Order> orderListOfEvent(int eventId);
 
     public void deleteItemFromOrder(int userId, int eventId, int itemId);

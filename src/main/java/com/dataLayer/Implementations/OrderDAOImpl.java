@@ -107,6 +107,17 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
+    public List<Order> orderListOfUserByRestaurantInEvent(int userId, int eventId, int restaurantId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from order_list where user_id = :userId and event_id=:eventId and restaurant_id=:restaurantId");
+        return (List<Order>) query
+                .setLong("restaurantId", restaurantId)
+                .setLong("userId", userId)
+                .setLong("eventId", eventId)
+                .list();
+    }
+
+    @Override
     public List<Order> orderListOfEvent(int eventId) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from order_list where event_id=:eventId");
