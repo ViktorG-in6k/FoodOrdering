@@ -109,10 +109,21 @@ public class OrderController {
 
     @RequestMapping(value = "/add_number_item_to_order", method = RequestMethod.POST)
     public String addNumberItemToOrder(HttpServletRequest req, HttpSession session, @RequestParam("number") int number, @RequestParam("event_id") int eventId, @RequestParam("item_id") int itemId) {
+        User userOfOrder = userService.getUser((int) session.getAttribute("userId"));
+        Event event = eventService.getEventById(eventId);
+        Item item = itemService.getItemById(itemId);
+        orderService.addNumberItemToOrder(userOfOrder, item, event, number);
+        String ref = req.getHeader("Referer");
+        return "redirect:" + ref;
+    }
+
+    @RequestMapping(value = "/update_number_item_to_order", method = RequestMethod.POST)
+    public String updateNumberItemToOrder(HttpServletRequest req, HttpSession session, @RequestParam("number") int number, @RequestParam("event_id") int eventId, @RequestParam("item_id") int itemId) {
         User user = userService.getUser((int) session.getAttribute("userId"));
         Event event = eventService.getEventById(eventId);
         Item item = itemService.getItemById(itemId);
-        orderService.addNumberItemToOrder(user, item, event, number);
+        System.out.println(number);
+        orderService.updateNumberItemToOrder(user, item, event, number);
         String ref = req.getHeader("Referer");
         return "redirect:" + ref;
     }
