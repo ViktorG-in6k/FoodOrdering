@@ -52,26 +52,7 @@ controllers.controller("orderList", function (OrderListService, $scope) {
         $scope.removeOneItemFromOrder = OrderListService.removeOneItemFromOrder;
         $scope.addToOrder = OrderListService.addToOrder;
         OrderListService.updateOrderList();
-
-    $scope.blur = function (newCount, oldCount, eventId, itemId) {
-
-
-            if(newCount > oldCount){
-                OrderListService.addNumberItemFromOrder(itemId, eventId,newCount-oldCount);
-            }else {
-                OrderListService.removeNumberItemFromOrder(itemId, eventId, oldCount - newCount)
-            }
-        
-    };
-
-        $scope.changeItem = function (newCount, oldCount, eventId, itemId) {
-            console.log(newCount);
-            console.log(oldCount);
-            console.log(eventId);
-            console.log(itemId);
-
-
-        };
+        $scope.changeItemNumber = OrderListService.changeItemNumber;
     }
 );
 
