@@ -19,9 +19,20 @@ public class OrderDAOImpl implements OrderDAO {
     @Autowired
     SessionFactory sessionFactory;
 
+    @Override
     public void save(Order order) {
         Session session = sessionFactory.getCurrentSession();
         session.save(order);
+    }
+
+    @Override
+    public List<Order> getUserResponsibilityOrderList(Order order){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from order_list where event_id=:eventId and restaurant_id=:restaurantId");
+        return (List<Order>) query
+                .setLong("restaurantId", order.getRestaurant().getId())
+                .setLong("eventId", order.getEvent().getId())
+                .list();
     }
 
     @Override
