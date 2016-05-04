@@ -56,6 +56,7 @@ public class OrderServiceImpl implements OrderService {
         User user = userService.getUser(user_id);
 
         Order order = new Order(user, item, event);
+
         order.setResponsibilityUser(userReponsibility(order));
         orderDAO.save(order);
     }
@@ -116,6 +117,33 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void deleteNumberItemFromOrder(int userId, int eventId, int itemId, int number) {
         orderDAO.deleteNumberItemFromOrder(userId, eventId, itemId, number);
+    }
+
+    @Override
+    public void updateNumberItemToOrder(User user, Item item, Event event, int number) {
+        Order order = new Order(user,item,event);
+        if(number==-2 && orderDAO.isInOrder(order)!=null){
+            addNumberItemFromOrder(order,-1);
+        }
+        else if(number==-1 && orderDAO.isInOrder(order)!=null){
+            addNumberItemFromOrder(order,1);
+        }
+        else if(orderDAO.isInOrder(order)!=null){
+            orderDAO.updateAmount(order,number);
+        }
+        else{
+            save(order);
+        }
+    }
+
+    @Override
+    public void addNumberItemFromOrder(int userId, int eventId, int itemId, int number) {
+        orderDAO.deleteNumberItemFromOrder(userId, eventId, itemId, number);
+    }
+
+    @Override
+    public void addNumberItemFromOrder(Order order, int amount) {
+        orderDAO.addAmount(order, amount);
     }
 }
 

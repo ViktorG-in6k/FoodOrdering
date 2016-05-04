@@ -35,5 +35,11 @@ public interface OrderService {
     void addNumberItemToOrder(User user, Item item, Event event, int number);
 
     void deleteNumberItemFromOrder(int userId, int eventId, int itemId, int number);
+
+    void updateNumberItemToOrder(User user, Item item, Event event, int number);
+
+    void addNumberItemFromOrder(int userId, int eventId, int itemId, int number);
+
+    void addNumberItemFromOrder(Order order, int amount);
 }
 
