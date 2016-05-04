@@ -35,7 +35,7 @@ services.factory("OrderListService", function ($http, $rootScope) {
     };
 
     orderListService.updateOrderList = function () {
-        $http.get("/CommonOrderJson_" + $rootScope.eventId+"/"+$rootScope.currentRestaurant).success(function (data) {
+        $http.get("/MyOrderJson_" + $rootScope.eventId+"/"+$rootScope.currentRestaurant).success(function (data) {
             $rootScope.myOrders = data;
         })
     };
