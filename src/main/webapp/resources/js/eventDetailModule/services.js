@@ -99,6 +99,10 @@ services.factory("ItemService", function ($http) {
 
 services.factory("RestaurantService", function ($http) {
     var restaurantService = {};
+    restaurantService.getRestaurantById = function (id) {
+        return  $http.get("/restaurant_" + id)
+    };
+    
     return restaurantService;
 });
 

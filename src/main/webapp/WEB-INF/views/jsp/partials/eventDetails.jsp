@@ -45,6 +45,9 @@
                 <div ng-if="restaurant.phone" class="col-md-4 pull-left" style="font-size: 13px;">
                     Phone: {{restaurant.phone}}
                 </div>
+                <a href="{{'#/'+ eventId}}/{{restaurant.id}}/order" style="font-size: 25px;">
+                    <p>order</p>
+                </a>
             </div>
         </div>
     </div>

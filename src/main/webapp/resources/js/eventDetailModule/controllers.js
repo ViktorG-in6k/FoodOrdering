@@ -62,3 +62,21 @@ controllers.controller("navbarCtrl", function ($http, $scope) {
     });
 });
 
+controllers.controller("commonOrderList", function ($scope, EventService, $routeParams, $rootScope, OrderListService, RestaurantService) {
+    $rootScope.eventId = $routeParams.id;
+    $rootScope.currentRestaurant = $routeParams.restaurantId;
+    EventService.getEventById($scope.eventId).success(function (data) {
+        $scope.event = data;
+    });
+    RestaurantService.getRestaurantById($rootScope.currentRestaurant).success(function (data) {
+        $scope.restaurant = data;
+    });
+    $rootScope.currentRestaurant = $routeParams.restaurantId;
+    $scope.addToOrder = OrderListService.addToOrder;
+    $scope.removeFromOrder = OrderListService.removeFromOrder;
+    $scope.removeOneItemFromOrder = OrderListService.removeOneItemFromOrder;
+    $scope.addToOrder = OrderListService.addToOrder;
+    OrderListService.updateOrderList();
+    $scope.changeItemNumber = OrderListService.changeItemNumber;
+});
+
