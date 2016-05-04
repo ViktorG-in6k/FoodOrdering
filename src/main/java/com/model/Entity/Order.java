@@ -28,15 +28,23 @@ public class Order extends com.model.base.Entity {
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 
-    @Column
-    private boolean ordered;
+    @Column(name = "item_amount", nullable = false)
+    private int itemAmount;
 
     public Order(User user, Item item, Event event) {
         this.user = user;
         this.item = item;
         this.event = event;
         this.restaurant = item.getRestaurant();
-        this.ordered = false;
+        this.itemAmount = 1;
+    }
+
+    public Order(User user, Item item, Event event, int itemAmount) {
+        this.user = user;
+        this.item = item;
+        this.event = event;
+        this.restaurant = item.getRestaurant();
+        this.itemAmount = itemAmount;
     }
 
     public User getResponsibilityUser() {
@@ -79,12 +87,12 @@ public class Order extends com.model.base.Entity {
         this.event = event;
     }
 
-    public boolean isOrdered() {
-        return ordered;
+    public int getItemAmount() {
+        return itemAmount;
     }
 
-    public void setOrdered(boolean ordered) {
-        this.ordered = ordered;
+    public void setItemAmount(int itemAmount) {
+        this.itemAmount = itemAmount;
     }
 }
 

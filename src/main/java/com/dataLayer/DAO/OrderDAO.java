@@ -7,6 +7,10 @@ import java.util.List;
 public interface OrderDAO {
     public void save(Order order);
 
+    void updateAmount(Order order, int amount);
+
+    void updateAmount(Order order);
+
     List<Order> getUserResponsibilityOrderList(Order order);
 
     public List<Order> orderListOfUserByEvent(int userId, int eventId);

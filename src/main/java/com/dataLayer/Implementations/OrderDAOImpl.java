@@ -26,6 +26,28 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
+    public void updateAmount(Order order, int amount) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("update order_list SET item_amount=:amount where event_id=:eventId and item_id=:itemId");
+        query
+                .setInteger("amount", amount)
+                .setInteger("eventId", order.getEvent().getId())
+                .setInteger("itemId", order.getItem().getId());
+        query.executeUpdate();
+    }
+
+    @Override
+    public void updateAmount(Order order) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("update order_list SET item_amount=:amount where event_id=:eventId and item_id=:itemId");
+        query
+                .setInteger("amount", order.getItemAmount())
+                .setInteger("eventId", order.getEvent().getId())
+                .setInteger("itemId", order.getItem().getId());
+        query.executeUpdate();
+    }
+
+    @Override
     public List<Order> getUserResponsibilityOrderList(Order order){
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from order_list where event_id=:eventId and restaurant_id=:restaurantId");
