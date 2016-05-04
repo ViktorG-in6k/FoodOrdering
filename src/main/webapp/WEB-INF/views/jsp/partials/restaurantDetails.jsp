@@ -1,3 +1,10 @@
+<style scoped>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+</style>
 <div style=" margin-top: 30px;">
     <div>
         <div class="well pull-left" style="height: 120px; width: 100%">
@@ -7,7 +14,6 @@
                 <p style="font-size: 13px">Phone: {{restaurant.phone}}</p>
             </div>
             <br/>
-
         </div>
     </div>
 </div>
@@ -30,7 +36,7 @@
 
                         <div ng-controller="orderList">
                             <div ng-repeat="itemInOrder in myOrders.myOrderList" style="display: inline;">
-                                <div ng-if="item.id == itemInOrder.item.id" style="display: inline;margin-left: -11px;">
+                                <div ng-if="item.id == itemInOrder.item.id" style="display: inline;margin-left: -35px;">
                                     <a  href="">
                                         <i style="color:green"
                                            ng-click="removeOneItemFromOrder(eventId,itemInOrder.item.id)"
@@ -38,9 +44,8 @@
                                         </i>
                                     </a>
                                     <span style="">
-                                        <input style="width: 40px" min="1" type="number" ng-change="changeItem(itemInOrder.count, oldValue, eventId, item.id)" ng-blur="blur(itemInOrder.count, oldValue, eventId, item.id)"  ng-init="oldValue=itemInOrder.count"  ng-model="itemInOrder.count"/>
+                                        <input style="width: 40px;margin-left: 8px;margin-right: 8px" min="1" type="number" ng-blur="changeItemNumber(itemInOrder.count, oldValue, eventId, item.id)"  ng-init="oldValue=itemInOrder.count"  ng-model="itemInOrder.count"/>
                                     </span>
-
                                 </div>
                             </div>
                             <div style=" display: inline">
@@ -69,7 +74,11 @@
     </fieldset>
     <div ng-controller="orderList">
         <div>
-            <h3 class="text-center">Your order</h3>
+            <ul class="nav nav-tabs nav-justified" style="margin-top: 10px">
+                <li role="presentation" class="active"><a href="#">All items</a></li>
+                <li role="presentation"><a href="#">My items</a></li>
+            </ul>
+
             <table class="table">
                 <tr>
                     <th>Name</th>
