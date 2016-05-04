@@ -29,24 +29,60 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
+    public Order isInOrder(Order order) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from order_list where event_id=:eventId and user_id=:userId and item_id=:itemId");
+        return (Order) query
+                .setInteger("eventId", order.getEvent().getId())
+                .setInteger("userId", order.getUser().getId())
+                .setInteger("itemId", order.getItem().getId()).uniqueResult();
+    }
+
+    @Override
     public void updateAmount(Order order, int amount) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("update order_list SET item_amount=:amount where event_id=:eventId and item_id=:itemId");
+        Query query = session.createQuery("update order_list SET item_amount=:amount where event_id=:eventId and item_id=:itemId and user_id=:userId");
         query
                 .setInteger("amount", amount)
                 .setInteger("eventId", order.getEvent().getId())
-                .setInteger("itemId", order.getItem().getId());
+                .setInteger("itemId", order.getItem().getId())
+                .setInteger("userId", order.getUser().getId());
+        query.executeUpdate();
+    }
+
+    @Override
+    public void addAmount(Order order, int amount) {
+        Session session = sessionFactory.getCurrentSession();
+        int currentAmount = isInOrder(order).getItemAmount();
+        Query query;
+        if(currentAmount+amount!=0) {
+            query = session.createQuery("update order_list SET item_amount=:amount where event_id=:eventId and item_id=:itemId and user_id=:userId");
+            query
+                    .setInteger("amount", currentAmount + amount)
+                    .setInteger("eventId", order.getEvent().getId())
+                    .setInteger("itemId", order.getItem().getId())
+                    .setInteger("userId", order.getUser().getId());
+        }
+        else{
+            query = session.createQuery("delete from order_list where event_id=:eventId and user_id=:userId and item_id=:itemId");
+            query
+                    .setInteger("eventId", order.getEvent().getId())
+                    .setInteger("itemId", order.getItem().getId())
+                    .setInteger("userId", order.getUser().getId());
+        }
         query.executeUpdate();
     }
 
     @Override
     public void updateAmount(Order order) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("update order_list SET item_amount=:amount where event_id=:eventId and item_id=:itemId");
+        Query query = session.createQuery("update order_list SET item_amount=:amount where event_id=:eventId and item_id=:itemId and user_id=:userId");
         query
                 .setInteger("amount", order.getItemAmount())
                 .setInteger("eventId", order.getEvent().getId())
-                .setInteger("itemId", order.getItem().getId());
+                .setInteger("itemId", order.getItem().getId())
+                .setInteger("userId", order.getUser().getId());
+
         query.executeUpdate();
     }
 
@@ -150,9 +186,13 @@ public class OrderDAOImpl implements OrderDAO {
     @Override
     public void saveNumberItemToOrder(User user, Item item, Event event, int number) {
         Session session = sessionFactory.getCurrentSession();
-        for (int i = 0; i < number; i++) {
-            session.save(new Order(user, item, event));
-        }
+        Query query = session.createQuery("update order_list SET item_amount=:amount where event_id=:eventId and item_id=:itemId and user_id=:userId");
+        query
+                .setInteger("amount", number)
+                .setInteger("eventId", event.getId())
+                .setInteger("itemId", item.getId())
+                .setInteger("userId", user.getId());
+        query.executeUpdate();
     }
 
     @Override

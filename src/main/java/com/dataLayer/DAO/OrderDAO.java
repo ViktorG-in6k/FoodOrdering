@@ -10,7 +10,11 @@ import java.util.List;
 public interface OrderDAO {
     public void save(Order order);
 
+    Order isInOrder(Order order);
+
     void updateAmount(Order order, int amount);
+
+    void addAmount(Order order, int amount);
 
     void updateAmount(Order order);
 
