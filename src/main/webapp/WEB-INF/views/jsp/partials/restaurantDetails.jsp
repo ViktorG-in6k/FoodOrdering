@@ -44,7 +44,7 @@
                                         </i>
                                     </a>
                                     <span style="">
-                                        <input style="width: 40px;margin-left: 8px;margin-right: 8px" min="1" type="number" ng-blur="changeItemNumber(itemInOrder.count, oldValue, eventId, item.id)"  ng-init="oldValue=itemInOrder.count"  ng-model="itemInOrder.count"/>
+                                        <input style="width: 40px;margin: 0 8px;height: 24px;" min="1" type="number" ng-blur="changeItemNumber(itemInOrder.count, oldValue, eventId, item.id)" ng-init="oldValue=itemInOrder.count" ng-model="itemInOrder.count"/>
                                     </span>
                                 </div>
                             </div>
@@ -75,10 +75,9 @@
     <div ng-controller="orderList">
         <div>
             <ul class="nav nav-tabs nav-justified" style="margin-top: 10px">
-                <li role="presentation" class="active"><a href="#">All items</a></li>
-                <li role="presentation"><a href="#">My items</a></li>
+                <li role="presentation" class="active"><a href="#">My items</a></li>
+                <li role="presentation"><a href="#">All items</a></li>
             </ul>
-
             <table class="table">
                 <tr>
                     <th>Name</th>
