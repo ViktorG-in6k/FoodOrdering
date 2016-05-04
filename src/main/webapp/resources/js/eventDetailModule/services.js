@@ -52,17 +52,19 @@ services.factory("OrderListService", function ($http, $rootScope) {
 
     orderListService.removeNumberItemFromOrder = function (itemId,eventId, number) {
         $http({
-            method: 'GET',
-            url: '/remote_item_from_order' + itemId + "_" + eventId + "_" + number
-        }).then(function () {
-         
+            method: 'POST',
+            url: '/remote_number_item_from_order',
+            params: {
+                event_id: eventId,
+                item_id: itemId,
+                number: number
+            }
+        }).finally(function () {
+            orderListService.updateOrderList();
         });
     };
-    
-    
-    
-    
-    orderListService.addNumberItemFromOrder = function (itemId,eventId, number) {
+
+    orderListService.addNumberItemToOrder = function (itemId,eventId, number) {
             $http({
                 method: 'POST',
                 url: '/add_number_item_to_order',
@@ -71,8 +73,8 @@ services.factory("OrderListService", function ($http, $rootScope) {
                     item_id: itemId,
                     number: number
                 }
-            }).then(function () {
-
+            }).finally(function () {
+                orderListService.updateOrderList();
             });
     };
 
