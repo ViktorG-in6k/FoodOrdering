@@ -36,6 +36,8 @@ controllers.controller("restaurantController", function ($http, $scope, $routePa
 controllers.controller("createItem", function ($scope, ItemService, $filter, $http, $rootScope) {
     $scope.createItem = function (name, price) {
         var dataForRequest = {"name": name, "price": price, "restaurantId": $rootScope.currentRestaurant};
+
+
         ItemService.addNewItem(dataForRequest).success(function (data) {
             $rootScope.restaurant = data;
             $scope.name = '';
@@ -50,7 +52,7 @@ controllers.controller("orderList", function (OrderListService, $scope) {
         $scope.removeOneItemFromOrder = OrderListService.removeOneItemFromOrder;
         $scope.addToOrder = OrderListService.addToOrder;
         OrderListService.updateOrderList();
-
+        $scope.changeItemNumber = OrderListService.changeItemNumber;
     }
 );
 

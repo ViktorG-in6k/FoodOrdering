@@ -1,3 +1,10 @@
+<style scoped>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+</style>
 <div style=" margin-top: 30px;">
     <div>
         <div class="well pull-left" style="height: 120px; width: 100%">
@@ -7,29 +14,46 @@
                 <p style="font-size: 13px">Phone: {{restaurant.phone}}</p>
             </div>
             <br/>
-            <div class="row"></div>
         </div>
     </div>
 </div>
 <div class="col-md-offset-1 col-sm-offset-1 col-md-8 col-sm-8">
     <div class="panel-group col-md-offset-1 col-sm-offset-1 col-md-11 col-sm-11" id="accordion" role="tablist"
          aria-multiselectable="true">
-        <table class="table">
+        <table class="table ">
             <thead>
             <tr>
                 <th>name</th>
                 <th>price</th>
+                <th></th>
             </tr>
             </thead>
-            <tbody ng-repeat="item in restaurant.itemList | orderBy: 'name'">
-            <tr>
+            <tbody >
+            <tr ng-repeat="item in restaurant.itemList | orderBy: 'name'">
                 <td>{{item.name}}</td>
                 <td>{{item.price | currency:"&#8372"}}</td>
-                <td>          <div>
+                <td style="width: 25%">
 
-                    <a href="" ng-click="addToOrder(eventId, item.id)" style="margin-left: 5px;">
-                        <i  style="color:green"  class="fa fa-plus" aria-hidden="true"></i></a>
-                </div></td>
+                        <div ng-controller="orderList">
+                            <div ng-repeat="itemInOrder in myOrders.myOrderList" style="display: inline;">
+                                <div ng-if="item.id == itemInOrder.item.id" style="display: inline;margin-left: -35px;">
+                                    <a  href="">
+                                        <i style="color:green"
+                                           ng-click="removeOneItemFromOrder(eventId,itemInOrder.item.id)"
+                                           class="fa fa-minus" aria-hidden="true">
+                                        </i>
+                                    </a>
+                                    <span style="">
+                                        <input style="width: 40px;margin: 0 8px;height: 24px;" min="1" type="number" ng-blur="changeItemNumber(itemInOrder.count, oldValue, eventId, item.id)" ng-init="oldValue=itemInOrder.count" ng-model="itemInOrder.count"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <div style=" display: inline">
+                                <a href="" ng-click="addToOrder(eventId, item.id)" >
+                                    <i style="color:green" class="fa fa-plus" aria-hidden="true"></i></a>
+                            </div>
+                            </div>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -50,7 +74,10 @@
     </fieldset>
     <div ng-controller="orderList">
         <div>
-            <h3 class="text-center">Your order</h3>
+            <ul class="nav nav-tabs nav-justified" style="margin-top: 10px">
+                <li role="presentation" class="active"><a href="#">My items</a></li>
+                <li role="presentation"><a href="#">All items</a></li>
+            </ul>
             <table class="table">
                 <tr>
                     <th>Name</th>
@@ -62,19 +89,22 @@
                     <td>{{item.item.name}}</td>
                     <td>
                         <div>
-                            <a style="margin-right: 5px;" href=""><i  style="color:green" ng-click="removeOneItemFromOrder(eventId,item.item.id)" class="fa fa-minus" aria-hidden="true"></i></a>
+                            <a style="margin-right: 5px;" href=""><i style="color:green"
+                                                                     ng-click="removeOneItemFromOrder(eventId,item.item.id)"
+                                                                     class="fa fa-minus" aria-hidden="true"></i></a>
                             <span style="">{{item.count}}</span>
                             <a href="" ng-click="addToOrder(eventId, item.item.id)" style="margin-left: 5px;">
-                                <i  style="color:green"  class="fa fa-plus" aria-hidden="true"></i></a>
+                                <i style="color:green" class="fa fa-plus" aria-hidden="true"></i></a>
                         </div>
                     </td>
                     <td>{{item.count * item.item.price|currency:"&#8372"}}</td>
-                    <td><a href="" ng-click="removeFromOrder(eventId,item.item.id)"><i style="color:red"   class="fa fa-times" aria-hidden="true"></i></a></td>
+                    <td><a href="" ng-click="removeFromOrder(eventId,item.item.id)"><i style="color:red"
+                                                                                       class="fa fa-times"
+                                                                                       aria-hidden="true"></i></a></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
                     <td>Total</td>
+                    <td></td>
                     <td>{{getTotal() |currency:"&#8372"}}</td>
                 </tr>
             </table>
