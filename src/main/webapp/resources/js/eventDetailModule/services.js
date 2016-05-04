@@ -78,12 +78,22 @@ services.factory("OrderListService", function ($http, $rootScope) {
             });
     };
 
-    orderListService.changeItemNumber = function (newCount, oldCount, eventId, itemId) {
-        if (newCount > oldCount) {
-            orderListService.addNumberItemToOrder(itemId, eventId, newCount - oldCount);
-        } else {
-            orderListService.removeNumberItemFromOrder(itemId, eventId, oldCount - newCount)
-        }
+    orderListService.updateNumberItemToOrder = function (itemId,eventId, number) {
+        $http({
+            method: 'POST',
+            url: '/update_number_item_to_order',
+            params: {
+                event_id: eventId,
+                item_id: itemId,
+                number: number
+            }
+        }).finally(function () {
+            orderListService.updateOrderList();
+        });
+    };    
+
+    orderListService.changeItemNumber = function ( eventId, itemId,count) {        
+        orderListService.updateNumberItemToOrder(itemId, eventId, count);     
     };
     
     return orderListService;

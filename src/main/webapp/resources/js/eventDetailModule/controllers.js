@@ -50,7 +50,7 @@ controllers.controller("orderList", function (OrderListService, $scope) {
         $scope.addToOrder = OrderListService.addToOrder;
         $scope.removeFromOrder = OrderListService.removeFromOrder;
         $scope.removeOneItemFromOrder = OrderListService.removeOneItemFromOrder;
-        $scope.addToOrder = OrderListService.addToOrder;
+        $scope.updateNumberItemToOrder = OrderListService.updateNumberItemToOrder;        
         OrderListService.updateOrderList();
         $scope.changeItemNumber = OrderListService.changeItemNumber;
     }
