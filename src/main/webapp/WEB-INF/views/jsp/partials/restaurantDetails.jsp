@@ -28,31 +28,33 @@
                 <th></th>
             </tr>
             </thead>
-            <tbody >
+            <tbody>
             <tr ng-repeat="item in restaurant.itemList | orderBy: 'name'">
                 <td>{{item.name}}</td>
                 <td>{{item.price | currency:"&#8372"}}</td>
                 <td style="width: 25%">
 
-                        <div ng-controller="orderList">
-                            <div ng-repeat="itemInOrder in myOrders.myOrderList" style="display: inline;">
-                                <div ng-if="item.id == itemInOrder.item.id" style="display: inline;margin-left: -35px;">
-                                    <a  href="">
-                                        <i style="color:green"
-                                           ng-click="removeOneItemFromOrder(eventId,itemInOrder.item.id)"
-                                           class="fa fa-minus" aria-hidden="true">
-                                        </i>
-                                    </a>
+                    <div ng-controller="orderList">
+                        <div ng-repeat="itemInOrder in myOrders.orderList" style="display: inline;">
+                            <div ng-if="item.id == itemInOrder.item.id" style="display: inline;margin-left: -35px;">
+                                <a href="">
+                                    <i style="color:green"
+                                       ng-click="changeItemNumber(eventId, item.id, -2)"
+                                       class="fa fa-minus" aria-hidden="true">
+                                    </i>
+                                </a>
                                     <span style="">
-                                        <input style="width: 40px;margin: 0 8px;height: 24px;" min="1" type="number" ng-blur="changeItemNumber(itemInOrder.count, oldValue, eventId, item.id)" ng-init="oldValue=itemInOrder.count" ng-model="itemInOrder.count"/>
+                                        <input style="width: 40px;margin: 0 8px;height: 24px;" min="1" type="number"
+                                               ng-blur="changeItemNumber( eventId, item.id,itemInOrder.count)"
+                                               ng-init="count=itemInOrder.count" ng-model="itemInOrder.count"/>
                                     </span>
-                                </div>
                             </div>
-                            <div style=" display: inline">
-                                <a href="" ng-click="addToOrder(eventId, item.id)" >
-                                    <i style="color:green" class="fa fa-plus" aria-hidden="true"></i></a>
-                            </div>
-                            </div>
+                        </div>
+                        <div style=" display: inline">
+                            <a href="" ng-click="changeItemNumber(eventId, item.id, -1)">
+                                <i style="color:green" class="fa fa-plus" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
                 </td>
             </tr>
             </tbody>
@@ -85,7 +87,7 @@
                     <th>Price</th>
                     <th></th>
                 </tr>
-                <tr ng-repeat="item in myOrders.myOrderList | orderBy:'restaurant.name'">
+                <tr ng-repeat="item in myOrders.orderList | orderBy:'restaurant.name'">
                     <td>{{item.item.name}}</td>
                     <td>
                         <div>
