@@ -102,3 +102,12 @@ services.factory("RestaurantService", function ($http) {
     return restaurantService;
 });
 
+services.factory("EventService", function ($http) {
+   var eventService = {};
+
+    eventService.getEventById = function (id) {
+       return $http.get("/event_" + id);
+    };
+
+    return eventService;
+});
