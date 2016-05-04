@@ -5,6 +5,7 @@
         margin: 0;
     }
 </style>
+
 <div style=" margin-top: 30px;">
     <div>
         <div class="well pull-left" style="height: 120px; width: 100%">
@@ -17,7 +18,9 @@
         </div>
     </div>
 </div>
-<div class="col-md-offset-1 col-sm-offset-1 col-md-8 col-sm-8">
+
+<div class="container">
+<div class="col-md-8 col-sm-8">
     <div class="panel-group col-md-offset-1 col-sm-offset-1 col-md-11 col-sm-11" id="accordion" role="tablist"
          aria-multiselectable="true">
         <table class="table ">
@@ -28,39 +31,46 @@
                 <th></th>
             </tr>
             </thead>
-            <tbody >
+            <tbody>
             <tr ng-repeat="item in restaurant.itemList | orderBy: 'name'">
-                <td>{{item.name}}</td>
-                <td>{{item.price | currency:"&#8372"}}</td>
+                <td>
+                    <div>{{item.name}}</div>
+                </td>
+                <td>
+                    <div>{{item.price | currency:"&#8372"}}</div>
+                </td>
                 <td style="width: 25%">
 
-                        <div ng-controller="orderList">
-                            <div ng-repeat="itemInOrder in myOrders.myOrderList" style="display: inline;">
-                                <div ng-if="item.id == itemInOrder.item.id" style="display: inline;margin-left: -35px;">
-                                    <a  href="">
-                                        <i style="color:green"
-                                           ng-click="removeOneItemFromOrder(eventId,itemInOrder.item.id)"
-                                           class="fa fa-minus" aria-hidden="true">
-                                        </i>
-                                    </a>
+                    <div ng-controller="orderList">
+                        <div ng-repeat="itemInOrder in myOrders.myOrderList" style="display: inline;">
+                            <div ng-if="item.id == itemInOrder.item.id" style="display: inline;margin-left: -35px;">
+                                <a href="">
+                                    <i style="color:green"
+                                       ng-click="removeOneItemFromOrder(eventId,itemInOrder.item.id)"
+                                       class="fa fa-minus" aria-hidden="true">
+                                    </i>
+                                </a>
                                     <span style="">
-                                        <input style="width: 40px;margin: 0 8px;height: 24px;" min="1" type="number" ng-blur="changeItemNumber(itemInOrder.count, oldValue, eventId, item.id)" ng-init="oldValue=itemInOrder.count" ng-model="itemInOrder.count"/>
+                                        <input style="width: 40px;margin: 0 8px;height: 24px;padding: 0;" min="1"
+                                               type="number"
+                                               ng-blur="changeItemNumber(itemInOrder.count, oldValue, eventId, item.id)"
+                                               ng-init="oldValue=itemInOrder.count" ng-model="itemInOrder.count"/>
                                     </span>
-                                </div>
                             </div>
-                            <div style=" display: inline">
-                                <a href="" ng-click="addToOrder(eventId, item.id)" >
-                                    <i style="color:green" class="fa fa-plus" aria-hidden="true"></i></a>
-                            </div>
-                            </div>
+                        </div>
+                        <div style=" display: inline">
+                            <a href="" ng-click="addToOrder(eventId, item.id)">
+                                <i style="color:green" class="fa fa-plus" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
-<form style=" margin-top: 15px;" role="form" ng-controller="createItem" ng-submit="createItem(name,price)"
-      class="col-md-offset-0 col-md-2">
+<div class="col-md-3">
+<form style=" margin-top: 15px;" role="form" ng-controller="createItem" ng-submit="createItem(name,price)" >
     <fieldset>
         <div class="form-group">
             <input type="text*" placeholder="name*" class="form-control" ng-model="name" id="name" name="name" required>
@@ -72,11 +82,12 @@
         <input hidden type="text" name="restaurantId" value="{{restaurantId}}">
         <button type="submit" class="btn btn-success pull-right">Add item</button>
     </fieldset>
+</form>
     <div ng-controller="orderList">
         <div>
             <ul class="nav nav-tabs nav-justified" style="margin-top: 10px">
-                <li role="presentation" class="active"><a href="#">My items</a></li>
-                <li role="presentation"><a href="#">All items</a></li>
+                <li role="presentation" ng-class="myItems" ng-click="myItems = 'active'; allItems = ''" ><a >My items</a></li>
+                <li role="presentation" ng-class="allItems" ng-click="allItems = 'active'; myItems = ''"><a >All items</a></li>
             </ul>
             <table class="table">
                 <tr>
@@ -110,7 +121,7 @@
             </table>
         </div>
     </div>
-</form>
 
-
+</div>
+</div>
 
