@@ -24,6 +24,8 @@ public interface OrderService {
 
     OrderDTOList orderListOfUserByRestaurant(int eventId, int restaurantId);
 
+    OrderDTOList orderListOfUserByRestaurantInEvent(int eventId, int restaurantId, int userId);
+
     public void deleteItemFromOrder(int userId, int eventId, int itemId);
 
     public void deleteOneItemFromOrder(int userId, int eventId, int itemId);
