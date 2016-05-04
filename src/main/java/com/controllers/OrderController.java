@@ -4,7 +4,6 @@ import com.DTOLayer.DTOEntity.orderDTO.OrderDTOList;
 import com.DTOLayer.DTOEntity.orderDTO.OrderDTOListOfEachUser;
 import com.model.Entity.Event;
 import com.model.Entity.Item;
-import com.model.Entity.Order;
 import com.model.Entity.User;
 import com.serviceLayer.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,25 +92,20 @@ public class OrderController {
         return "redirect:" + ref;
     }
 
-    @RequestMapping("/remote_item_from_order{item}_{event}_{number}")
-    public
-    @ResponseBody
-    OrderDTOList remoteNumberItem(HttpSession session, @PathVariable("event") int eventId, @PathVariable("item") int itemId, @PathVariable("number") int number) {
+    @RequestMapping(value = "/remote_number_item_from_order", method = RequestMethod.POST)
+    public @ResponseBody
+    OrderDTOList remoteNumberItemFromOrder(HttpServletRequest req, HttpSession session, @RequestParam("number") int number, @RequestParam("event_id") int eventId, @RequestParam("item_id") int itemId) {
         int userId = (int) session.getAttribute("userId");
-        for(int i = 0; i < number; i++){
-            orderService.deleteOneItemFromOrder(userId, eventId, itemId);
-        }
+        orderService.deleteNumberItemFromOrder(userId, eventId, itemId, number);
         return orderService.orderListOfUserByEvent(userId, eventId);
     }
 
     @RequestMapping(value = "/add_number_item_to_order", method = RequestMethod.POST)
-    public String addToOrder(HttpServletRequest req, HttpSession session, @RequestParam("number") int number, @RequestParam("event_id") int eventId, @RequestParam("item_id") int itemId) {
+    public String addNumberItemToOrder(HttpServletRequest req, HttpSession session, @RequestParam("number") int number, @RequestParam("event_id") int eventId, @RequestParam("item_id") int itemId) {
         User user = userService.getUser((int) session.getAttribute("userId"));
         Event event = eventService.getEventById(eventId);
         Item item = itemService.getItemById(itemId);
-        for(int i = 0; i < number; i++){
-        orderService.save( new Order(user, item, event));
-        }
+        orderService.addNumberItemToOrder(user, item, event, number);
         String ref = req.getHeader("Referer");
         return "redirect:" + ref;
     }
