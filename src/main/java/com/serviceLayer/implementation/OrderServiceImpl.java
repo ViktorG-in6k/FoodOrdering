@@ -30,10 +30,23 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     EventService eventService;
 
+    private User userReponsibility(Order order){
+        List<Order> orderList = orderDAO.getUserResponsibilityOrderList(order);
+        if(orderList.size()>0) {
+            return orderList.get(0).getResponsibilityUser();
+        }
+        else {
+            return null;
+        }
+    }
+
+    @Override
     public void save(Order order) {
+        order.setResponsibilityUser(userReponsibility(order));
         orderDAO.save(order);
     }
 
+    @Override
     public void saveByRequest(HttpServletRequest req, HttpSession session) {
         int event_id = Integer.parseInt(req.getParameter("event_id"));
         Event event = eventService.getEventById(event_id);
@@ -42,6 +55,7 @@ public class OrderServiceImpl implements OrderService {
         int user_id = (int) session.getAttribute("userId");
         User user = userService.getUser(user_id);
         Order order = new Order(user, item, event);
+        order.setResponsibilityUser(userReponsibility(order));
         orderDAO.save(order);
     }
 
