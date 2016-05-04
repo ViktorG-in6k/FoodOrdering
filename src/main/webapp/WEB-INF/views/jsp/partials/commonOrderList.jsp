@@ -19,41 +19,41 @@
 </div>
 <div class="container">
     <div class="row">
-    <div class="col-md-12"><p class="text-center">Order list</p></div>
-        <div class="col-sm-12">{{restaurant.name}}  phone:{{restaurant.phone}}</div>
+    <div class="col-md-12"><h1 class="text-center">Order list</h1></div>
+        <div>
+            <div class="col-md-12" style="margin-bottom: 5px">
+            <h1 style="display: inline">{{restaurant.name}}</h1> <h3  style=" display: inline;padding-left: 100px">phone:{{restaurant.phone}}</h3>
+            </div>
+        </div>
     </div>
     <div>
         <div>
-     <%--       <ul class="nav nav-tabs nav-justified" style="margin-top: 10px">
-                <li role="presentation" ng-class="myItems" ng-click="myItems = 'active'; allItems = ''" ><a >My items</a></li>
-                <li role="presentation" ng-class="allItems" ng-click="allItems = 'active'; myItems = ''"><a >All items</a></li>
-            </ul>--%>
-            <table class="table">
+            <table class="table table-bordered">
                 <tr>
                     <th>Name</th>
-                    <th>Amount</th>
                     <th>Price</th>
-                    <th></th>
+                    <th>Amount</th>
+                    <th>Cost</th>
                 </tr>
                 <tr ng-repeat="item in myOrders.myOrderList | orderBy:'restaurant.name'">
                     <td>{{item.item.name}}</td>
+                    <td>{{item.item.price}}</td>
                     <td>
                         <div>
-                            <a style="margin-right: 5px;" href=""><i style="color:green"
-                                                                     ng-click="removeOneItemFromOrder(eventId,item.item.id)"
-                                                                     class="fa fa-minus" aria-hidden="true"></i></a>
+
                             <span style="">{{item.count}}</span>
-                            <a href="" ng-click="addToOrder(eventId, item.item.id)" style="margin-left: 5px;">
-                                <i style="color:green" class="fa fa-plus" aria-hidden="true"></i></a>
+
                         </div>
                     </td>
-                    <td>{{item.count * item.item.price|currency:"&#8372"}}</td>
-                    <td><a href="" ng-click="removeFromOrder(eventId,item.item.id)"><i style="color:red"
-                                                                                       class="fa fa-times"
-                                                                                       aria-hidden="true"></i></a></td>
+
+                    <td>
+                    {{item.count * item.item.price|currency:"&#8372"}}
+                    </td>
+
                 </tr>
                 <tr>
                     <td>Total</td>
+                    <td></td>
                     <td></td>
                     <td>{{getTotal() |currency:"&#8372"}}</td>
                 </tr>

@@ -75,8 +75,8 @@ controllers.controller("commonOrderList", function ($scope, EventService, $route
     $scope.addToOrder = OrderListService.addToOrder;
     $scope.removeFromOrder = OrderListService.removeFromOrder;
     $scope.removeOneItemFromOrder = OrderListService.removeOneItemFromOrder;
-    $scope.addToOrder = OrderListService.addToOrder;
     OrderListService.updateOrderList();
     $scope.changeItemNumber = OrderListService.changeItemNumber;
+    $scope.getTotal = OrderListService.getTotal;
 });
 
