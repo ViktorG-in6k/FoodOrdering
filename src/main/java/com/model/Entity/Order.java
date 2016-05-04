@@ -17,7 +17,7 @@ public class Order extends com.model.base.Entity {
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "responsibility_user_id", nullable = false)
+    @JoinColumn(name = "responsibility_user_id")
     private User responsibilityUser;
 
     @ManyToOne(fetch = FetchType.EAGER)
