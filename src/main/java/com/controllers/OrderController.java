@@ -30,7 +30,7 @@ public class OrderController {
     @RequestMapping(value = "/addResponsibleUser", method = RequestMethod.POST)
     public String setResponsibleUser(HttpSession session, @RequestParam("eventId") int eventId, @RequestParam("restaurantId") int restaurantId) {
         int userId = (int) session.getAttribute("userId");
-        orderService.setResponsibleUser(userId,eventId,restaurantId);
+        orderService.setResponsibleUser(userId, eventId, restaurantId);
         return "redirect:/events/";
     }
 
@@ -40,6 +40,14 @@ public class OrderController {
     OrderDTOList getMyOrderByEvent(HttpSession session, @PathVariable("event") int eventId) {
         int userId = (int) session.getAttribute("userId");
         return orderService.orderListOfUserByEvent(userId, eventId);
+    }
+
+    @RequestMapping("/MyOrderJson_{event}/{restaurant}")
+    public
+    @ResponseBody
+    OrderDTOList getMyOrderByEventAndRestaurant(HttpSession session, @PathVariable("event") int eventId, @PathVariable("restaurant") int restaurantId) {
+        int userId = (int) session.getAttribute("userId");
+        return orderService.orderListOfUserByRestaurantInEvent(eventId, restaurantId, userId);
     }
 
     @RequestMapping("/CommonOrderJson_{event}")
@@ -100,7 +108,8 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/remote_number_item_from_order", method = RequestMethod.POST)
-    public @ResponseBody
+    public
+    @ResponseBody
     OrderDTOList remoteNumberItemFromOrder(HttpServletRequest req, HttpSession session, @RequestParam("number") int number, @RequestParam("event_id") int eventId, @RequestParam("item_id") int itemId) {
         int userId = (int) session.getAttribute("userId");
         orderService.deleteNumberItemFromOrder(userId, eventId, itemId, number);
