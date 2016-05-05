@@ -45,6 +45,17 @@ public class RestaurantDTO {
         this.userResponsibility = new UserDTO(user);
     }
 
+    public RestaurantDTO(Restaurant restaurant, UserDTO user) {
+        this.id = restaurant.getId();
+        this.name = restaurant.getName();
+        this.phone = restaurant.getPhone();
+        this.link = restaurant.getLink();
+        for (Item item : restaurant.getItem()) {
+            this.itemList.add(new ItemDTO(item));
+        }
+        this.userResponsibility = user;
+    }
+
     public String getName() {
         return name;
     }

@@ -2,7 +2,9 @@ package com.controllers;
 
 import com.DTOLayer.DTOEntity.RequestRestaurantDTO;
 import com.DTOLayer.DTOEntity.RestaurantDTO;
+import com.DTOLayer.DTOEntity.orderDTO.OrderDTOList;
 import com.model.Entity.Restaurant;
+import com.serviceLayer.service.OrderService;
 import com.serviceLayer.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,8 @@ import java.util.List;
 public class RestaurantsController {
     @Autowired
     RestaurantService restaurantService;
+    @Autowired
+    OrderService orderService;
 
     @RequestMapping(value = "/new_restaurant", method = RequestMethod.POST)
     public String newRestaurant(HttpServletRequest req, @RequestParam("eventId") int eventId) {
@@ -54,13 +58,14 @@ public class RestaurantsController {
         return RestaurantDTOs;
     }
 
-    @RequestMapping(value = "/restaurants_by_event", method = RequestMethod.POST)
+    @RequestMapping(value = "/restaurants_by_event_{eventId}", method = RequestMethod.GET)
     public
     @ResponseBody
-    List<RestaurantDTO> getRestaurantsByEvent(@RequestParam("eventId") int eventId) {
+    List<RestaurantDTO> getRestaurantsByEvent(@PathVariable("eventId") int eventId) {
         List<RestaurantDTO> RestaurantDTOs = new ArrayList<RestaurantDTO>();
         for (Restaurant restaurant : restaurantService.getListOfAllRestaurant()) {
-            RestaurantDTOs.add(new RestaurantDTO(restaurant));
+            OrderDTOList orderDTOList = orderService.orderListOfUserByRestaurant(eventId,restaurant.getId());
+            RestaurantDTOs.add(new RestaurantDTO(restaurant,orderDTOList.getUserResponsibility()));
         }
         return RestaurantDTOs;
     }
