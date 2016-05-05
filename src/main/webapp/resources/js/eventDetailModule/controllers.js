@@ -7,13 +7,16 @@ controllers.controller("eventController", function ($http, $scope, $routeParams,
     $scope.removeFromOrder = OrderListService.removeFromOrder;
     $scope.removeOneItemFromOrder = OrderListService.removeOneItemFromOrder;
     $scope.getTotal = OrderListService.getTotal;
-    $http.get("/restaurants").success(function (data) {
+    $http.get("/restaurants_by_event_"+$rootScope.eventId).success(function (data) {
         $scope.restaurants = data;
-
     });
+    
     $http.get("/event_" + $rootScope.eventId).success(function (data) {
         $scope.event = data;
     });
+
+
+
 
     }
 );
