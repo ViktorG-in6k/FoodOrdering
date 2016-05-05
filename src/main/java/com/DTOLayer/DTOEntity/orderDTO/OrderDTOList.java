@@ -33,16 +33,21 @@ public class OrderDTOList {
     public OrderDTOList(int restaurantId, List<Order> orderList) {
         this.orderList = new ArrayList<>();
         for (Order order : orderList) {
+
+
+
             if (order.getItem().getRestaurant().getId() == restaurantId) {
+                if(order.getResponsibilityUser()!=null) {
+                    System.out.println(order.getResponsibilityUser().getEmail());
+                    System.out.println(order.getRestaurant().getName());
+                    this.userResponsibility = new UserDTO(order.getResponsibilityUser());
+                }
                 this.orderList.add(new OrderDTOItemCount(order));
+                this.restaurant = new RestaurantDTOforOrder(order.getRestaurant());
             }
         }
         if (orderList.size() > 0) {
             this.eventId = orderList.get(0).getId();
-            this.restaurant = new RestaurantDTOforOrder(orderList.get(0).getRestaurant());
-            if (orderList.get(0).getResponsibilityUser() != null) {
-                this.userResponsibility = new UserDTO(orderList.get(0).getResponsibilityUser());
-            }
         }
     }
 
