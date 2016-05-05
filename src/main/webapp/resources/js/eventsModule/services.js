@@ -21,7 +21,6 @@ app.factory("DateTimePicker",function () {
         return {
             format: "dd-MM-yyyy HH:mm",
             timeFormat: "HH:mm",
-            value: new Date(),
             animation: {
                 close: {
                     effects: "fadeOut zoom:out",
