@@ -25,10 +25,11 @@ public class OrderController {
     ItemService itemService;
 
     @RequestMapping(value = "/addResponsibleUser", method = RequestMethod.POST)
-    public String setResponsibleUser(HttpSession session, @RequestParam("eventId") int eventId, @RequestParam("restaurantId") int restaurantId) {
+    public String setResponsibleUser(HttpServletRequest req, HttpSession session, @RequestParam("eventId") int eventId, @RequestParam("restaurantId") int restaurantId) {
         int userId = (int) session.getAttribute("userId");
         orderService.setResponsibleUser(userId, eventId, restaurantId);
-        return "redirect:/events/";
+        String ref = req.getHeader("Referer");
+        return "redirect:" + ref + "#/" + eventId;
     }
 
     @RequestMapping("/MyOrderJson_{event}")
