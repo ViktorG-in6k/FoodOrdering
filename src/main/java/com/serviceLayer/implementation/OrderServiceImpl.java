@@ -30,12 +30,11 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     EventService eventService;
 
-    private User userReponsibility(Order order){
+    private User userReponsibility(Order order) {
         List<Order> orderList = orderDAO.getUserResponsibilityOrderList(order);
-        if(orderList.size()>0) {
+        if (orderList.size() > 0) {
             return orderList.get(0).getResponsibilityUser();
-        }
-        else {
+        } else {
             return null;
         }
     }
@@ -44,6 +43,16 @@ public class OrderServiceImpl implements OrderService {
     public void save(Order order) {
         order.setResponsibilityUser(userReponsibility(order));
         orderDAO.save(order);
+    }
+
+    @Override
+    public void save(int userId, int itemId, int eventId) {
+        Order order = new Order(
+                userService.getUser(userId),
+                itemService.getItemById(itemId),
+                eventService.getEventById(eventId)
+        );
+        save(order);
     }
 
     @Override
@@ -84,7 +93,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDTOList orderListOfUserByRestaurantInEvent(int eventId, int restaurantId, int userId) {
-        List<Order> orderList = orderDAO.orderListOfUserByRestaurantInEvent(userId,eventId,restaurantId);
+        List<Order> orderList = orderDAO.orderListOfUserByRestaurantInEvent(userId, eventId, restaurantId);
         return new OrderDTOList(restaurantId, orderList);
     }
 
@@ -95,7 +104,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void deleteOneItemFromOrder(int userId, int eventId, int itemId) {
-        orderDAO.deleteOneItemFromOrder(userId, eventId, itemId);
+        Order order = getOrderFromOrderList(userId, eventId, itemId);
+        if (order.getItemAmount() - 1 == 0) {
+            deleteItemFromOrder(userId, eventId, itemId);
+        } else {
+            orderDAO.updateAmount(order, order.getItemAmount() - 1);
+        }
+    }
+
+    @Override
+    public Order getOrderFromOrderList(int userId, int eventId, int itemId) {
+        return orderDAO.getOrderFromOrderList(userId, itemId, eventId);
     }
 
     @Override
@@ -116,8 +135,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void addNumberItemToOrder(User user, Item item, Event event, int number) {
-        orderDAO.saveNumberItemToOrder(user, item, event, number);
+    public void addOneItemToOrder(int userId, int itemId, int eventId) {
+        Order orderInOrderList = orderDAO.getOrderFromOrderList(userId, itemId, eventId);
+        if (orderInOrderList != null) {
+            orderDAO.updateAmount(orderInOrderList, orderInOrderList.getItemAmount() + 1);
+        } else {
+            save(userId, itemId, eventId);
+        }
     }
 
     @Override
@@ -125,20 +149,17 @@ public class OrderServiceImpl implements OrderService {
         orderDAO.deleteNumberItemFromOrder(userId, eventId, itemId, number);
     }
 
+    private void updateAmount(Order order, int number) {
+        orderDAO.updateAmount(order, number);
+    }
+
     @Override
-    public void updateNumberItemToOrder(User user, Item item, Event event, int number) {
-        Order order = new Order(user,item,event);
-        if(number==-2 && orderDAO.isInOrder(order)!=null){
-            addNumberItemFromOrder(order,-1);
-        }
-        else if(number==-1 && orderDAO.isInOrder(order)!=null){
-            addNumberItemFromOrder(order,1);
-        }
-        else if(orderDAO.isInOrder(order)!=null){
-            orderDAO.updateAmount(order,number);
-        }
-        else{
-            save(order);
+    public void updateItemAmountInOrder(int userId, int eventId, int itemId, int number) {
+        Order order = orderDAO.getOrderFromOrderList(userId, eventId, itemId);
+        if (order != null) {
+            orderDAO.updateAmount(order, number);
+        } else {
+            save(userId, itemId, eventId);
         }
     }
 
