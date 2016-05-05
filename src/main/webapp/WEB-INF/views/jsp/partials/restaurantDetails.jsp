@@ -90,9 +90,10 @@
         <div ng-controller="orderList">
             <div>
                 <ul class="nav nav-tabs nav-justified" style="margin-top: 10px">
-                    <li role="presentation" ng-class="myItems" ng-click="myItems = 'active'; allItems = ''"><a>My
+                    <li role="presentation" ng-class="myItems" ng-click="myItems = 'active'; allItems = ''; updateOrderList()"><a>My
                         items</a></li>
-                    <li role="presentation" ng-class="allItems" ng-click="allItems = 'active'; myItems = ''"><a>All
+
+                    <li role="presentation" ng-class="allItems" ng-click="allItems = 'active'; myItems = ''; CommonOrder()"><a>All
                         items</a></li>
                 </ul>
                 <table class="table">
@@ -102,7 +103,7 @@
                         <th>Price</th>
                         <th></th>
                     </tr>
-                    <tr ng-repeat="item in myOrders.orderList | orderBy:'restaurant.name'">
+                    <tr ng-repeat="item in commonOrders.orderList | orderBy:'restaurant.name'">
                         <td>{{item.item.name}}</td>
                         <td>
                             <div>

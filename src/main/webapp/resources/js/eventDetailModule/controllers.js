@@ -57,7 +57,9 @@ controllers.controller("orderList", function (OrderListService, $scope, $rootSco
         $scope.removeFromOrder = OrderListService.removeFromOrder;
 
         $scope.updateNumberItemToOrder = OrderListService.updateNumberItemToOrder;
-        OrderListService.updateOrderList();
+      
+        $scope.updateOrderList =  OrderListService.updateOrderList();
+        $scope.CommonOrder =  OrderListService.CommonOrder();
         $scope.changeItemNumber = OrderListService.changeItemNumber;
         $scope.addOneItemToOrder = OrderListService.addOneItemToOrder;
         $scope.removeOneItemFromOrder = OrderListService.removeOneItemFromOrder;
@@ -68,8 +70,10 @@ controllers.controller("orderList", function (OrderListService, $scope, $rootSco
         $scope.getAllItems = function () {
             $http.get("/CommonOrderJson_" + $rootScope.eventId + "/" + $rootScope.currentRestaurant).success(function (data) {
                 $rootScope.myOrders = data;
+                $rootScope.commonOrders = data;
             })
         }
+    OrderListService.updateOrderList();
     }
 );
 
@@ -96,9 +100,7 @@ controllers.controller("commonOrderList", function ($scope, EventService, $route
 
     $http.get("/CommonOrderJson_" + $rootScope.eventId + "/" + $rootScope.currentRestaurant).success(function (data) {
         $rootScope.myOrders = data;
-
+        $rootScope.commonOrders = data;
     })
-
-
 });
 
