@@ -15,7 +15,6 @@
             <div class="col-md-6" style="font-size: 15px;">Created by {{event.user.email}}</div>
         </div>
     </div>
-
 </div>
 <div class="col-md-offset-1 col-sm-offset-1 col-md-8 col-sm-8">
     <div class="panel-group col-md-offset-1 col-sm-offset-1 col-md-11 col-sm-11" id="accordion" role="tablist"
@@ -31,9 +30,7 @@
                     </h3>
                 </div>
                 <div class="col-md-offset-4 col-md-4">
-
                     <h2 style="font-size: 15px;" class="col-md-offset-4">
-
                 </div>
                 <br/>
                 <div class="row"></div>
@@ -53,17 +50,12 @@
                     <input type="hidden" value="{{restaurant.id}}" name="restaurantId">
                     <button type="submit" class="btn btn-success pull-right">To take responsibility
                     </button>
+
                 </form>
-
-                <a href="{{'#/'+ eventId}}/{{restaurant.id}}/order" style="font-size: 25px;">
-                    <p style="">order</p>
-                </a>
-
             </div>
         </div>
     </div>
 </div>
-
 
 <form style=" margin-top: 15px;" role="form" action="/new_restaurant" method="post" class=" col-md-offset-0 col-md-2">
     <fieldset>

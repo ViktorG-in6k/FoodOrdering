@@ -5,22 +5,24 @@
         margin: 0;
     }
 </style>
-
 <div style=" margin-top: 30px;">
     <div>
         <div class="well pull-left" style="height: 120px; width: 100%">
             <div class="col-md-6" style="font-size: 25px;">
                 {{restaurant.name}}<br>
-
                 <a ng-if="restaurant.link" href="{{restaurant.link}}" target="_blank" style="font-size: 13px"><i
                         class="fa fa-link" aria-hidden="true"></i> {{ restaurant.link}}</a>
                 <p style="font-size: 13px"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}</p>
+
+            </div>
+            <div ng-if="responsible.email" class="col-md-6"><div class="pull-right"> <p >{{responsible.email}}
+                <a href="{{'#/'+ eventId}}/{{restaurant.id}}/order" style="font-size: 25px;"><p > Make order</p></div>
+                </a>
             </div>
             <br/>
         </div>
     </div>
 </div>
-
 <div class="container">
     <div class="col-md-8 col-sm-8">
         <div class="panel-group col-md-offset-1 col-sm-offset-1 col-md-11 col-sm-11" id="accordion" role="tablist"
@@ -42,7 +44,6 @@
                         <div>{{item.price | currency:"&#8372"}}</div>
                     </td>
                     <td style="width: 25%">
-
                         <div ng-controller="orderList">
                             <div ng-repeat="itemInOrder in myOrders.orderList" style="display: inline;">
                                 <div ng-if="item.id == itemInOrder.item.id" style="display: inline;margin-left: -35px;">
@@ -129,5 +130,3 @@
         </div>
     </div>
 </div>
-
-

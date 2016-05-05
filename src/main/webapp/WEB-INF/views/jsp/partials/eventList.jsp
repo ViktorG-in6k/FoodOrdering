@@ -14,13 +14,13 @@
                     <div class="col-md-7 col-xs-5" style="margin-left: 4%">
                         <a href="/events/event_{{event.id}}#/{{event.id}}" style="font-size: 25px;">{{event.name}}</a>
                     </div>
-                    <div class="col-md-4 col-xs-7 pull-right">
-                        <p style="font-size: 25px;padding-left: 140px;">
+                    <div class="col-md-5 col-xs-7 pull-right">
+                        <p style="font-size: 25px;padding-left: 140px;margin-top: -36px;">
                             {{event.date.dayOfMonth}}
-                            {{event.date.month | limitTo: 3 | lowercase | capitalize}} <br>
+                            {{event.date.month | limitTo: 3 | lowercase | capitalize}}  {{event.date.hour|toMinute}}:{{event.date.minute|toMinute}}</p><br>
                         </p>
                         <p style="font-size: 25px; padding-left: 142px;margin-top: -9px;">
-                            {{event.date.hour|toMinute}}:{{event.date.minute|toMinute}}</p>
+
                     </div>
                     <div class="col-md-4 col-xs-4" style="margin-left: 4%">
                         <p style="color: black">created by user@example.com</p>

@@ -70,7 +70,7 @@ public class EventController {
         return "events";
     }
 
-    @RequestMapping(value = "/newEvent", method = RequestMethod.GET)
+    @RequestMapping(value = "/newEvent", method = RequestMethod.POST)
     public
     @ResponseBody
     Set<EventDTO> createEvent(HttpSession session, @RequestParam("name") String name,
