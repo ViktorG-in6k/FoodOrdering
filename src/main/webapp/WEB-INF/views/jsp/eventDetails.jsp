@@ -17,6 +17,7 @@
     <script src="/resources/js/eventDetailModule/controllers.js"></script>
     <script src="/resources/js/eventDetailModule/services.js"></script>
     <script src="/resources/js/eventDetailModule/directives.js"></script>
+    <script src="/resources/js/eventsModule/filters.js"></script>
     <script src="/resources/js/eventDetailModule/app.js"></script>
 </head>
 <body>
