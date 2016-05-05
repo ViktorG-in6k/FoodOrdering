@@ -33,9 +33,6 @@ public class OrderDTOList {
     public OrderDTOList(int restaurantId, List<Order> orderList) {
         this.orderList = new ArrayList<>();
         for (Order order : orderList) {
-
-
-
             if (order.getItem().getRestaurant().getId() == restaurantId) {
                 if(order.getResponsibilityUser()!=null) {
                     System.out.println(order.getResponsibilityUser().getEmail());
