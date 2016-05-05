@@ -11,7 +11,7 @@
         <div class="well pull-left" style="height: 120px; width: 100%">
             <div class="col-md-6" style="font-size: 25px;">
                 {{restaurant.name}}<br>
-                <a ng-if="restaurant.link" href="{{restaurant.link}}" target="_blank" style="font-size: 13px">Web-site</a>
+                <a ng-if="restaurant.link" href="{{restaurant.link}}" target="_blank" style="font-size: 13px">{{restaurant.link}}</a>
                 <p style="font-size: 13px">Phone: {{restaurant.phone}}</p>
             </div>
             <br/>
