@@ -21,7 +21,7 @@
     <div class="col-md-12"><h1 class="text-center">Order list</h1></div>
         <div>
             <div class="col-md-12" style="margin-bottom: 5px">
-            <h1 style="display: inline">{{restaurant.name}}</h1> <h3  style=" display: inline;padding-left: 100px">phone: {{restaurant.phone}}</h3>
+            <h1 style="display: inline">{{restaurant.name}}</h1> <h3  style=" display: inline;padding-left: 100px"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}</h3>
             </div>
         </div>
     </div>

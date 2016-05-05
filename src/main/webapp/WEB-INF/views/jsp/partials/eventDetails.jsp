@@ -36,13 +36,14 @@
                 <br/>
                 <div class="row"></div>
                 <div ng-if="restaurant.link" class="col-md-8">
+
                     <a href="{{restaurant.link}}" target="_blank" style="font-size: 13px;">
-                        {{restaurant.link}}
+                        <i class="fa fa-link" aria-hidden="true"></i> {{restaurant.link}}
                     </a>
                 </div>
                 <br/>
                 <div ng-if="restaurant.phone" class="col-md-4 pull-left" style="font-size: 13px;padding-top: 8px">
-                    Phone: {{restaurant.phone}}
+                    <i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}
                 </div>
                 <a href="{{'#/'+ eventId}}/{{restaurant.id}}/order" style="font-size: 25px;">
                     <p style="">order</p>
