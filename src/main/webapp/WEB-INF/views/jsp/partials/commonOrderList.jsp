@@ -26,24 +26,24 @@
         </div>
     </div>
     <div>
-        <div >
+        <div>
             <table class="table table-bordered table-responsive">
                 <tr>
                     <th>Name</th>
-                    <th>Price</th>
                     <th>Amount</th>
+                    <th>Price</th>
                     <th>Cost</th>
                 </tr>
-                <tr ng-repeat="item in myOrders.myOrderList | orderBy:'restaurant.name'">
+                <tr ng-repeat="item in myOrders.orderList | orderBy:'restaurant.name'">
                     <td>{{item.item.name}}</td>
-                    <td>{{item.item.price}}</td>
                     <td>
                         <div>
                             <span style="">{{item.count}}</span>
                         </div>
                     </td>
+                    <td>{{item.item.price|currency:"&#8372"}}</td>
                     <td>
-                    {{item.count * item.item.price|currency:"&#8372"}}
+                    {{item.count * item.item.price|currency}}
                     </td>
                 </tr>
                 <tr>
