@@ -2,9 +2,6 @@ package com.controllers;
 
 import com.DTOLayer.DTOEntity.orderDTO.OrderDTOList;
 import com.DTOLayer.DTOEntity.orderDTO.OrderDTOListOfEachUser;
-import com.model.Entity.Event;
-import com.model.Entity.Item;
-import com.model.Entity.User;
 import com.serviceLayer.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -107,35 +104,28 @@ public class OrderController {
         return "redirect:" + ref;
     }
 
-    @RequestMapping(value = "/remote_number_item_from_order", method = RequestMethod.POST)
-    public
-    @ResponseBody
-    OrderDTOList remoteNumberItemFromOrder(HttpServletRequest req, HttpSession session, @RequestParam("number") int number, @RequestParam("event_id") int eventId, @RequestParam("item_id") int itemId) {
+    @RequestMapping(value = "/remote_one_item_from_order", method = RequestMethod.POST)
+    public String remoteNumberItemFromOrder(HttpServletRequest req, HttpSession session, @RequestParam("event_id") int eventId, @RequestParam("item_id") int itemId) {
         int userId = (int) session.getAttribute("userId");
-        orderService.deleteNumberItemFromOrder(userId, eventId, itemId, number);
-        return orderService.orderListOfUserByEvent(userId, eventId);
+        orderService.deleteOneItemFromOrder(userId, eventId, itemId);
+        String ref = req.getHeader("Referer");
+        return "redirect:" + ref;
     }
 
-    @RequestMapping(value = "/add_number_item_to_order", method = RequestMethod.POST)
-    public String addNumberItemToOrder(HttpServletRequest req, HttpSession session, @RequestParam("number") int number, @RequestParam("event_id") int eventId, @RequestParam("item_id") int itemId) {
-        User userOfOrder = userService.getUser((int) session.getAttribute("userId"));
-        Event event = eventService.getEventById(eventId);
-        Item item = itemService.getItemById(itemId);
-        orderService.addNumberItemToOrder(userOfOrder, item, event, number);
+    @RequestMapping(value = "/add_one_item_to_order", method = RequestMethod.POST)
+    public String addOneItemToOrder(HttpServletRequest req, HttpSession session, @RequestParam("event_id") int eventId, @RequestParam("item_id") int itemId) {
+        int userId = (int) session.getAttribute("userId");
+        orderService.addOneItemToOrder(userId, itemId, eventId);
         String ref = req.getHeader("Referer");
         return "redirect:" + ref;
     }
 
     @RequestMapping(value = "/update_number_item_to_order", method = RequestMethod.POST)
     public String updateNumberItemToOrder(HttpServletRequest req, HttpSession session, @RequestParam("number") int number, @RequestParam("event_id") int eventId, @RequestParam("item_id") int itemId) {
-        User user = userService.getUser((int) session.getAttribute("userId"));
-        Event event = eventService.getEventById(eventId);
-        Item item = itemService.getItemById(itemId);
-        System.out.println(number);
-        orderService.updateNumberItemToOrder(user, item, event, number);
+        int userId = (int) session.getAttribute("userId");
+        orderService.updateItemAmountInOrder(userId, eventId, itemId, number);
         String ref = req.getHeader("Referer");
         return "redirect:" + ref;
     }
-
 }
 
