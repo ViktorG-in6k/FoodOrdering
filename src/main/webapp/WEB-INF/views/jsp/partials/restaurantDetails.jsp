@@ -109,7 +109,7 @@
                                                                          ng-click="removeOneItemFromOrder(eventId,item.item.id)"
                                                                          class="fa fa-minus" aria-hidden="true"></i></a>
                                 <span style="">{{item.count}}</span>
-                                <a href="" ng-click="addToOrder(eventId, item.item.id)" style="margin-left: 5px;">
+                                <a href="" ng-click="addOneItemToOrder(item.item.id,eventId)" style="margin-left: 5px;">
                                     <i style="color:green" class="fa fa-plus" aria-hidden="true"></i></a>
                             </div>
                         </td>
