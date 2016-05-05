@@ -1,5 +1,6 @@
 package com.DTOLayer.DTOEntity.orderDTO;
 
+import com.DTOLayer.DTOEntity.UserDTO;
 import com.DTOLayer.DTOEntity.restaurantDTO.RestaurantDTOforOrder;
 import com.model.Entity.Order;
 
@@ -10,6 +11,7 @@ public class OrderDTOList {
     private int eventId;
     private List<OrderDTOItemCount> orderList;
     private RestaurantDTOforOrder restaurant;
+    private UserDTO userResponsibility;
 
     public OrderDTOList() {
     }
@@ -20,8 +22,11 @@ public class OrderDTOList {
             this.orderList.add(new OrderDTOItemCount(order));
         }
         this.eventId = eventId;
-        if(orderList.size()>0) {
+        if (orderList.size() > 0) {
             this.restaurant = new RestaurantDTOforOrder(orderList.get(0).getRestaurant());
+            if (orderList.get(0).getResponsibilityUser() != null) {
+                this.userResponsibility = new UserDTO(orderList.get(0).getResponsibilityUser());
+            }
         }
     }
 
@@ -32,9 +37,12 @@ public class OrderDTOList {
                 this.orderList.add(new OrderDTOItemCount(order));
             }
         }
-        if(orderList.size()>0) {
+        if (orderList.size() > 0) {
             this.eventId = orderList.get(0).getId();
             this.restaurant = new RestaurantDTOforOrder(orderList.get(0).getRestaurant());
+            if (orderList.get(0).getResponsibilityUser() != null) {
+                this.userResponsibility = new UserDTO(orderList.get(0).getResponsibilityUser());
+            }
         }
     }
 
@@ -60,6 +68,14 @@ public class OrderDTOList {
 
     public void setRestaurant(RestaurantDTOforOrder restaurant) {
         this.restaurant = restaurant;
+    }
+
+    public UserDTO getUserResponsibility() {
+        return userResponsibility;
+    }
+
+    public void setUserResponsibility(UserDTO userResponsibility) {
+        this.userResponsibility = userResponsibility;
     }
 }
 
