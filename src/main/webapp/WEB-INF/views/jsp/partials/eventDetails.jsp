@@ -5,15 +5,14 @@
                 {{event.name}}
             </div>
             <div class="col-md-offset-10" style="font-size: 19px;">
-                <div class="col-md-offset-4">
-                    <i class="glyphicon glyphicon-calendar" aria-hidden="true"></i>
+                <div class="col-md-offset-4" style="padding-right: 5px">
                     {{event.date.dayOfMonth}} {{event.date.month | limitTo: 3}}
-                    {{event.date.hour}}:{{event.date.minute}}
+                    {{event.date.hour|toMinute}}:{{event.date.minute|toMinute}}
                 </div>
             </div>
             <br/>
             <div class="row"></div>
-            <div class="col-md-6" style="font-size: 15px;" >Created by {{event.user.email}}</div>
+            <div class="col-md-6" style="font-size: 15px;;" >Created by {{event.user.email}}</div>
         </div>
     </div>
 
@@ -30,23 +29,23 @@
                     </h3>
                 </div>
                 <div class="col-md-offset-4 col-md-4">
-                    <h2 style="font-size: 15px;"  class="col-md-offset-4">
+                   <%-- <h2 style="font-size: 15px;"  class="col-md-offset-4">
                         Participants:
-                    </h2>
+                    </h2>--%>
                 </div>
                 <br/>
                 <div class="row"></div>
-                <div ng-if="restaurant.link" class="col-md-4">
+                <div ng-if="restaurant.link" class="col-md-8">
                     <a href="{{restaurant.link}}" target="_blank" style="font-size: 13px;">
-                        Web-site
+                        {{restaurant.link}}
                     </a>
                 </div>
                 <br/>
-                <div ng-if="restaurant.phone" class="col-md-4 pull-left" style="font-size: 13px;">
+                <div ng-if="restaurant.phone" class="col-md-4 pull-left" style="font-size: 13px;padding-top: 8px">
                     Phone: {{restaurant.phone}}
                 </div>
                 <a href="{{'#/'+ eventId}}/{{restaurant.id}}/order" style="font-size: 25px;">
-                    <p>order</p>
+                    <p style="">order</p>
                 </a>
             </div>
         </div>

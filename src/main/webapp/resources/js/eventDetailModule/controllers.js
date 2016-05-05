@@ -69,8 +69,10 @@ controllers.controller("commonOrderList", function ($scope, EventService, $route
         $scope.event = data;
     });
     RestaurantService.getRestaurantById($rootScope.currentRestaurant).success(function (data) {
-        $scope.restaurant = data;
+        $rootScope.restaurant = data;
     });
+    $rootScope.order = "Order";
+
     $rootScope.currentRestaurant = $routeParams.restaurantId;
     $scope.addToOrder = OrderListService.addToOrder;
     $scope.removeFromOrder = OrderListService.removeFromOrder;
