@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
@@ -48,9 +47,7 @@ public class EventController {
         Set<EventDTO> EventDTOs = new HashSet<>();
         User user = userService.getUser((int) session.getAttribute("userId"));
         for (Event event : eventService.getListOfAllEvents()) {
-            if (event.getDate().isAfter(LocalDateTime.now().minusMinutes(10))) {
                 EventDTOs.add(new EventDTO(event, user));
-            }
         }
         return EventDTOs;
     }
