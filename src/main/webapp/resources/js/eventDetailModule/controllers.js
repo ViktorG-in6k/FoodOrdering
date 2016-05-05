@@ -49,10 +49,12 @@ controllers.controller("createItem", function ($scope, ItemService, $filter, $ht
 controllers.controller("orderList", function (OrderListService, $scope) {
         $scope.addToOrder = OrderListService.addToOrder;
         $scope.removeFromOrder = OrderListService.removeFromOrder;
-        $scope.removeOneItemFromOrder = OrderListService.removeOneItemFromOrder;
-        $scope.updateNumberItemToOrder = OrderListService.updateNumberItemToOrder;        
+
+        $scope.updateNumberItemToOrder = OrderListService.updateNumberItemToOrder;
         OrderListService.updateOrderList();
         $scope.changeItemNumber = OrderListService.changeItemNumber;
+        $scope.addOneItemToOrder = OrderListService.addOneItemToOrder;
+        $scope.removeOneItemFromOrder = OrderListService.removeOneItemFromOrder;
     }
 );
 

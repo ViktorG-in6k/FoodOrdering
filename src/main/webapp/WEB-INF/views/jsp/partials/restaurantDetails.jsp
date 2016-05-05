@@ -39,19 +39,19 @@
                             <div ng-if="item.id == itemInOrder.item.id" style="display: inline;margin-left: -35px;">
                                 <a href="">
                                     <i style="color:green"
-                                       ng-click="changeItemNumber(eventId, item.id, -2)"
+                                       ng-click="removeOneItemFromOrder(eventId, item.id)"
                                        class="fa fa-minus" aria-hidden="true">
                                     </i>
                                 </a>
                                     <span style="">
                                         <input style="width: 40px;margin: 0 8px;height: 24px;" min="1" type="number"
-                                               ng-blur="changeItemNumber( eventId, item.id,itemInOrder.count)"
+                                               ng-blur="updateNumberItemToOrder( eventId, item.id,itemInOrder.count)"
                                                ng-init="count=itemInOrder.count" ng-model="itemInOrder.count"/>
                                     </span>
                             </div>
                         </div>
                         <div style=" display: inline">
-                            <a href="" ng-click="changeItemNumber(eventId, item.id, -1)">
+                            <a href="" ng-click="addOneItemToOrder(item.id,eventId)">
                                 <i style="color:green" class="fa fa-plus" aria-hidden="true"></i></a>
                         </div>
                     </div>
@@ -113,3 +113,4 @@
         </div>
     </div>
 </form>
+
