@@ -1,6 +1,5 @@
 package com.dataLayer.Implementations;
 
-import com.DTOLayer.DTOEntity.OrderDTO;
 import com.dataLayer.DAO.OrderDAO;
 import com.model.Entity.Event;
 import com.model.Entity.Item;
@@ -29,13 +28,24 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public Order isInOrder(Order order) {
+    public Order getOrderFromOrderList(Order order) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from order_list where event_id=:eventId and user_id=:userId and item_id=:itemId");
         return (Order) query
                 .setInteger("eventId", order.getEvent().getId())
                 .setInteger("userId", order.getUser().getId())
                 .setInteger("itemId", order.getItem().getId()).uniqueResult();
+    }
+
+    @Override
+    public Order getOrderFromOrderList(int userId, int itemId, int eventId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from order_list where event_id=:eventId and user_id=:userId and item_id=:itemId");
+        return (Order) query
+                .setInteger("eventId", eventId)
+                .setInteger("userId", userId)
+                .setInteger("itemId", itemId)
+                .uniqueResult();
     }
 
     @Override
@@ -53,17 +63,16 @@ public class OrderDAOImpl implements OrderDAO {
     @Override
     public void addAmount(Order order, int amount) {
         Session session = sessionFactory.getCurrentSession();
-        int currentAmount = isInOrder(order).getItemAmount();
+        int currentAmount = getOrderFromOrderList(order).getItemAmount();
         Query query;
-        if(currentAmount+amount!=0) {
+        if (currentAmount + amount != 0) {
             query = session.createQuery("update order_list SET item_amount=:amount where event_id=:eventId and item_id=:itemId and user_id=:userId");
             query
                     .setInteger("amount", currentAmount + amount)
                     .setInteger("eventId", order.getEvent().getId())
                     .setInteger("itemId", order.getItem().getId())
                     .setInteger("userId", order.getUser().getId());
-        }
-        else{
+        } else {
             query = session.createQuery("delete from order_list where event_id=:eventId and user_id=:userId and item_id=:itemId");
             query
                     .setInteger("eventId", order.getEvent().getId())
@@ -87,7 +96,7 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public List<Order> getUserResponsibilityOrderList(Order order){
+    public List<Order> getUserResponsibilityOrderList(Order order) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from order_list where event_id=:eventId and restaurant_id=:restaurantId");
         return (List<Order>) query
@@ -195,7 +204,7 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public void saveNumberItemToOrder(User user, Item item, Event event, int number) {
+    public void addOneItemToOrder(User user, Item item, Event event, int number) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("update order_list SET item_amount=:amount where event_id=:eventId and item_id=:itemId and user_id=:userId");
         query

@@ -10,7 +10,9 @@ import java.util.List;
 public interface OrderDAO {
     public void save(Order order);
 
-    Order isInOrder(Order order);
+    Order getOrderFromOrderList(Order order);
+
+    Order getOrderFromOrderList(int userId, int itemId, int eventId);
 
     void updateAmount(Order order, int amount);
 
@@ -40,7 +42,7 @@ public interface OrderDAO {
 
     void setResponsibleUser(int userId, int eventId, int restaurantId);
 
-    void saveNumberItemToOrder(User user, Item item, Event event, int number);
+    void addOneItemToOrder(User user, Item item, Event event, int number);
 
     void deleteNumberItemFromOrder(int userId, int eventId, int itemId, int number);
 }
