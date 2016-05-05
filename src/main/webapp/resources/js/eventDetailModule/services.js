@@ -112,6 +112,19 @@ services.factory("ItemService", function ($http) {
 
 services.factory("RestaurantService", function ($http) {
     var restaurantService = {};
+    restaurantService.getRestaurantById = function (id) {
+        return  $http.get("/restaurant_" + id)
+    };
+    
     return restaurantService;
 });
 
+services.factory("EventService", function ($http) {
+   var eventService = {};
+
+    eventService.getEventById = function (id) {
+       return $http.get("/event_" + id);
+    };
+
+    return eventService;
+});
