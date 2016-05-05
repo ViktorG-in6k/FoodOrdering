@@ -2,6 +2,7 @@ package com.DTOLayer.DTOEntity;
 
 import com.model.Entity.Item;
 import com.model.Entity.Restaurant;
+import com.model.Entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ public class RestaurantDTO {
     protected String name;
     protected String phone;
     protected String link;
+    private UserDTO userResponsibility;
 
     public List<ItemDTO> getItemList() {
         return itemList;
@@ -32,6 +34,17 @@ public class RestaurantDTO {
         }
     }
 
+    public RestaurantDTO(Restaurant restaurant, User user) {
+        this.id = restaurant.getId();
+        this.name = restaurant.getName();
+        this.phone = restaurant.getPhone();
+        this.link = restaurant.getLink();
+        for (Item item : restaurant.getItem()) {
+            this.itemList.add(new ItemDTO(item));
+        }
+        this.userResponsibility = new UserDTO(user);
+    }
+
     public String getName() {
         return name;
     }
@@ -46,6 +59,14 @@ public class RestaurantDTO {
 
     public int getId() {
         return id;
+    }
+
+    public UserDTO getUserResponsibility() {
+        return userResponsibility;
+    }
+
+    public void setUserResponsibility(UserDTO userResponsibility) {
+        this.userResponsibility = userResponsibility;
     }
 }
 

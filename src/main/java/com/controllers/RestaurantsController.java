@@ -54,6 +54,17 @@ public class RestaurantsController {
         return RestaurantDTOs;
     }
 
+    @RequestMapping(value = "/restaurants_by_event", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    List<RestaurantDTO> getRestaurantsByEvent(@RequestParam("eventId") int eventId) {
+        List<RestaurantDTO> RestaurantDTOs = new ArrayList<RestaurantDTO>();
+        for (Restaurant restaurant : restaurantService.getListOfAllRestaurant()) {
+            RestaurantDTOs.add(new RestaurantDTO(restaurant));
+        }
+        return RestaurantDTOs;
+    }
+
     @RequestMapping("/restaurant_{id}")
     public
     @ResponseBody
