@@ -1,13 +1,10 @@
 package com.controllers;
 
-import com.DTOLayer.DTOEntity.ItemDTO;
+import com.DTOLayer.DTOEntity.itemDTO.ItemDTO;
 import com.DTOLayer.DTOEntity.RequestItemDTO;
-import com.DTOLayer.DTOEntity.RestaurantDTO;
-import com.DTOLayer.DTOEntity.itemDTO.RequestItem;
-import com.DTOLayer.DTOEntity.orderDTO.OrderDTOList;
+import com.DTOLayer.DTOEntity.restaurantDTO.RestaurantDTO;
+import com.DTOLayer.DTOEntity.itemDTO.ItemRequest;
 import com.serviceLayer.service.ItemService;
-import com.serviceLayer.service.OrderService;
-import com.serviceLayer.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,31 +18,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ItemController {
     @Autowired
     ItemService itemService;
-    @Autowired
-    OrderService orderService;
-    @Autowired
-    RestaurantService restaurantService;
 
     @RequestMapping(value = "/new_item", method = RequestMethod.POST)
     public
     @ResponseBody
-    RestaurantDTO newItem(@RequestBody RequestItem item) {
+    RestaurantDTO newItem(@RequestBody ItemRequest item) {
         itemService.saveByRequest(item);
-        return restaurantService.getRestaurantDTOById(item.getRestaurantId());
-    }
-
-    @RequestMapping(value = "/update_item_price", method = RequestMethod.POST)
-    public ResponseEntity<OrderDTOList> updateItemPrice(@RequestBody RequestItemDTO item) {
-        itemService.updateItemPrice(item);
-        OrderDTOList commonOrder = orderService.orderListOfEvent(item.getEventId());
-        return new ResponseEntity<OrderDTOList>(commonOrder, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/update_item_name", method = RequestMethod.POST)
-    public ResponseEntity<OrderDTOList> updateItemName(@RequestBody RequestItemDTO item) {
-        itemService.updateItemName(item);
-        OrderDTOList commonOrder = orderService.orderListOfEvent(item.getEventId());
-        return new ResponseEntity<OrderDTOList>(commonOrder, HttpStatus.OK);
+        return itemService.getItemsByRestaurant(item.getRestaurantId());
     }
 
     @RequestMapping(value = "/update_name_of_item", method = RequestMethod.POST)
@@ -58,12 +37,6 @@ public class ItemController {
     @RequestMapping(value = "/update_price_of_item", method = RequestMethod.POST)
     public ResponseEntity<ItemDTO> updatePriceOfItem(@RequestBody RequestItemDTO item) {
         itemService.updateItemPrice(item);
-        ItemDTO itemDTO = itemService.getItemDTOById(item.getId());
-        return new ResponseEntity<ItemDTO>(itemDTO, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/update_description_of_item", method = RequestMethod.POST)
-    public ResponseEntity<ItemDTO> updateDescriptionOfItem(@RequestBody RequestItemDTO item) {
         ItemDTO itemDTO = itemService.getItemDTOById(item.getId());
         return new ResponseEntity<ItemDTO>(itemDTO, HttpStatus.OK);
     }

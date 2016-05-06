@@ -7,7 +7,7 @@ controllers.controller("eventController", function ($http, $scope, $routeParams,
         $scope.removeFromOrder = OrderListService.removeFromOrder;
         $scope.removeOneItemFromOrder = OrderListService.removeOneItemFromOrder;
         $scope.getTotal = OrderListService.getTotal;
-        $http.get("/restaurants_by_event_" + $rootScope.eventId).success(function (data) {
+        $http.get("/restaurants").success(function (data) {
             $scope.restaurants = data;
         });
 
@@ -35,7 +35,6 @@ controllers.controller("restaurantController", function ($http, $scope, $routePa
     $http.get("/restaurant_" + $rootScope.currentRestaurant).success(function (data) {
         $rootScope.restaurant = data;
     });
-
 });
 
 
@@ -59,11 +58,13 @@ controllers.controller("orderList", function (OrderListService, $scope, $rootSco
         $scope.updateNumberItemToOrder = OrderListService.updateNumberItemToOrder;
       
         $scope.updateOrderList =  OrderListService.updateOrderList();
-        $scope.CommonOrder =  OrderListService.CommonOrder();
+
+    $scope.CommonOrder =  OrderListService.CommonOrder();
         $scope.changeItemNumber = OrderListService.changeItemNumber;
         $scope.addOneItemToOrder = OrderListService.addOneItemToOrder;
         $scope.removeOneItemFromOrder = OrderListService.removeOneItemFromOrder;
         $scope.myItems = 'active';
+
         $scope.getMyItems = function () {
             OrderListService.updateOrderList();
         };
@@ -73,10 +74,9 @@ controllers.controller("orderList", function (OrderListService, $scope, $rootSco
                 $rootScope.commonOrders = data;
             })
         }
-    OrderListService.updateOrderList();
+        OrderListService.updateOrderList();
     }
 );
-
 
 controllers.controller("navbarCtrl", function ($http, $scope) {
     $http.get('/eventsJson/').success(function (data) {
