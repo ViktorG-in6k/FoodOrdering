@@ -48,7 +48,7 @@
                 <form class="post-title" role="form" action="/addResponsibleUser" method="post">
                     <input type="hidden" value="{{event.id}}" name="eventId">
                     <input type="hidden" value="{{restaurant.id}}" name="restaurantId">
-                    <button ng-if="restaurant.userResponsibility == null" type="submit" class="btn btn-success pull-right" style="margin-top: -5px;">To take responsibility
+                    <button ng-if="restaurant.userResponsibility == null" type="submit" class="btn btn-success pull-right" style="margin-top: -7px;">Take responsibility
                     </button>
                     <p ng-if="restaurant.userResponsibility" class="pull-right" style="padding-right: 20px" >Responsible for order: {{restaurant.userResponsibility.email}} <p ></p></p>
                 </form>
