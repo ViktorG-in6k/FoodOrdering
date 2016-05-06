@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <title>FoodOrdering</title>
-    <link href="/resources/css/bootstrapTheme.css" rel="stylesheet">
+    <link href="/resources/css/lib/bootstrapTheme.css" rel="stylesheet">
     <script src="/resources/js/lib/angular.min.js"></script>
 
 </head>

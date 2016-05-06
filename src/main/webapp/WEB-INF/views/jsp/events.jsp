@@ -4,20 +4,19 @@
 <html lang="en">
 <head>
     <title>Events</title>
-    <link href="/resources/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/resources/css/test.css" rel="stylesheet"/>
-    <link href="/resources/css/bootstrapTheme.css" rel="stylesheet">
+    <link href="/resources/css/lib/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/resources/css/eventsStyle.css" rel="stylesheet"/>
+    <link href="/resources/css/lib/bootstrapTheme.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="/resources/css/kendoLib/kendo.common.min.css"/>
-    <link rel="stylesheet" href="/resources/css/kendoLib/kendo.rtl.css"/>
-    <link rel="stylesheet" href="/resources/css/kendoLib/kendo.silver.css"/>
-    <link rel="stylesheet" href="/resources/css/kendoLib/kengo.modile.css"/>
+    <link rel="stylesheet" href="/resources/css/lib/kendoLib/kendo.common.min.css"/>
+    <link rel="stylesheet" href="/resources/css/lib/kendoLib/kendo.rtl.css"/>
+    <link rel="stylesheet" href="/resources/css/lib/kendoLib/kendo.silver.css"/>
+    <link rel="stylesheet" href="/resources/css/lib/kendoLib/kengo.modile.css"/>
 
 
     <script src="/resources/js/lib/jquery-2.1.4.min.js"></script>
     <script src="/resources/js/lib/angular.min.js"></script>
     <script src="/resources/js/lib/angular-route.min.js"></script>
-
     <script src="/resources/js/lib/bootstrap.js"></script>
     <script src="/resources/js/lib/angular-touch.js"></script>
 

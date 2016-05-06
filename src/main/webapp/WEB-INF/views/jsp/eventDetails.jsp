@@ -4,9 +4,9 @@
 <html lang="en" ng-app="eventApp">
 <head>
     <title>Restaurants</title>
-    <link href="/resources/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/resources/css/lib/bootstrap.min.css" rel="stylesheet"/>
     <link href="/resources/css/eventDetails.css" rel="stylesheet">
-    <link href="/resources/css/bootstrapTheme.css" rel="stylesheet">
+    <link href="/resources/css/lib/bootstrapTheme.css" rel="stylesheet">
     <link href="/resources/css/font-awesome-4.6.1/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="/resources/css/commonOrder.css" rel="stylesheet">
 
