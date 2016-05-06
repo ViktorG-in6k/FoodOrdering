@@ -46,7 +46,10 @@ public class HibernateConfig {
             {
                 setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
                 setProperty("hibernate.show_sql", "true");
-                setProperty("hibernate.hbm2ddl.auto", "update");
+                setProperty("hibernate.hbm2ddl.auto", "create-drop");
+                setProperty("hibernate.connection.useUnicode", "true");
+                setProperty("hibernate.connection.characterEncoding", "utf8mb4");
+                setProperty("hibernate.connection.charSet", "utf8mb4");
             }
         };
     }

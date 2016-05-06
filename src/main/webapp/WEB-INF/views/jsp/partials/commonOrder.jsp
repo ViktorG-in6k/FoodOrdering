@@ -18,21 +18,31 @@
                     </tr>
                     <tr ng-repeat="item in eventOrderList.orderList | orderBy:'restaurant.name'">
                         <td> {{item.restaurant.name}}</td>
-                        <td><div ng-controller="Ctrl">
-                            <a href="#" editable-text="item.item.name" onbeforesave="updateName($data,item.item.id,eventOrderList.eventId)">{{item.item.name}}</a>
-                        </div></td>
-                        <td><div >
-                            <a href=""><i class="fa fa-minus" aria-hidden="true"></i></a>
-                            <span style="padding-left: 5px;padding-right: 5px;width: 20px">{{item.count}}</span>
-                            <a href="" ng-click="addToOrder(eventId,item.item.id)" style="margin-left: 5px;"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                        </div>
+                        <td>
+                            <div ng-controller="Ctrl">
+                                <a href="#" editable-text="item.item.name"
+                                   onbeforesave="updateName($data,item.item.id,eventOrderList.eventId)">{{item.item.name}}</a>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <a href=""><i class="fa fa-minus" aria-hidden="true"></i></a>
+                                <span style="padding-left: 5px;padding-right: 5px;width: 20px">{{item.count}}</span>
+                                <a href="" ng-click="addToOrder(eventId,item.item.id)" style="margin-left: 5px;"><i
+                                        class="fa fa-plus" aria-hidden="true"></i></a>
+                            </div>
                         </td>
 
-                        <td><div ng-controller="Ctrl">
-                            <a href="#" editable-text="item.item.price" onbeforesave="updatePrice($data,item.item.id,eventOrderList.eventId)">{{item.item.price|currency:"&#8372"}}</a>
-                        </div></td>
+                        <td>
+                            <div ng-controller="Ctrl">
+                                <a href="#" editable-text="item.item.price"
+                                   onbeforesave="updatePrice($data,item.item.id,eventOrderList.eventId)">{{item.item.price|currency:"&#8372"}}</a>
+                            </div>
+                        </td>
                         <td> {{item.count * item.item.price|currency:"&#8372"}}</td>
-                        <td><input ng-click="changeOrderItemStatus(id,item.item.id,true)" ng-checked="{{item.ordered != false}}" ng-disabled="{{item.ordered != false}}" type="checkbox"></td>
+                        <td><input ng-click="changeOrderItemStatus(id,item.item.id,true)"
+                                   ng-checked="{{item.ordered != false}}" ng-disabled="{{item.ordered != false}}"
+                                   type="checkbox"></td>
                     </tr>
                     <tr>
                         <td></td>
