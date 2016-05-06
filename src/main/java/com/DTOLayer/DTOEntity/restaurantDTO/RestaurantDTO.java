@@ -1,5 +1,7 @@
-package com.DTOLayer.DTOEntity;
+package com.DTOLayer.DTOEntity.restaurantDTO;
 
+import com.DTOLayer.DTOEntity.userDTO.UserDTO;
+import com.DTOLayer.DTOEntity.itemDTO.ItemDTO;
 import com.model.Entity.Item;
 import com.model.Entity.Restaurant;
 import com.model.Entity.User;

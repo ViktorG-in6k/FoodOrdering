@@ -1,4 +1,4 @@
-package com.DTOLayer.DTOEntity;
+package com.DTOLayer.DTOEntity.userDTO;
 
 import com.model.Entity.User;
 

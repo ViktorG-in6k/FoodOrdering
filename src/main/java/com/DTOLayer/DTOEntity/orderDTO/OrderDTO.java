@@ -1,5 +1,4 @@
 package com.DTOLayer.DTOEntity.orderDTO;
 
-public class OrderId {
+public class OrderDTO {
 }
-
