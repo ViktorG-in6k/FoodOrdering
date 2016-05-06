@@ -20,9 +20,9 @@ import java.util.Properties;
 public class HibernateConfig {
     @Bean
     public DataSource dataSource(
-            @Value("jdbc:mysql://localhost:3306/food_order_db") String url,
-            @Value("root") String username,
-            @Value("YWgaMaZpf2") String password
+            @Value("jdbc:mysql://ivgz2rnl5rh7sphb.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/vw9i9thqd6ahzzl7") String url,
+            @Value("a1cz5y3jut8ha1hs") String username,
+            @Value("kie1l00fuojkesi8") String password
     ) throws SQLException {
         DriverManagerDataSource source = new DriverManagerDataSource(
                 url, username, password
