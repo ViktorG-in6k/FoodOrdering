@@ -14,19 +14,19 @@
     <link rel="stylesheet" href="/resources/css/kendoLib/kengo.modile.css"/>
 
 
-    <script src="/resources/js/jquery-2.1.4.min.js"></script>
-    <script src="/resources/js/angular.min.js"></script>
-    <script src="/resources/js/angular-route.min.js"></script>
+    <script src="/resources/js/lib/jquery-2.1.4.min.js"></script>
+    <script src="/resources/js/lib/angular.min.js"></script>
+    <script src="/resources/js/lib/angular-route.min.js"></script>
 
-    <script src="/resources/js/bootstrap.js"></script>
-    <script src="/resources/js/angular-touch.js"></script>
+    <script src="/resources/js/lib/bootstrap.js"></script>
+    <script src="/resources/js/lib/angular-touch.js"></script>
 
     <script src="/resources/js/eventsModule/app.js"></script>
     <script src="/resources/js/eventsModule/controllers.js"></script>
     <script src="/resources/js/eventsModule/services.js"></script>
     <script src="/resources/js/eventsModule/filters.js"></script>
 
-    <script src="/resources/js/kendo.js"></script>
+    <script src="/resources/js/lib/kendo.js"></script>
 </head>
 <body ng-app="events" >
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true"/>

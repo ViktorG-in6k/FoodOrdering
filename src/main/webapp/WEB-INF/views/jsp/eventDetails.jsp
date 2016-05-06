@@ -10,10 +10,10 @@
     <link href="/resources/css/font-awesome-4.6.1/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="/resources/css/commonOrder.css" rel="stylesheet">
 
-    <script src="/resources/js/jquery-2.1.4.min.js"></script>
-    <script src="/resources/js/bootstrap.min.js"></script>
-    <script src="/resources/js/angular.min.js"></script>
-    <script src="/resources/js/angular-route.min.js"></script>
+    <script src="/resources/js/lib/jquery-2.1.4.min.js"></script>
+    <script src="/resources/js/lib/bootstrap.min.js"></script>
+    <script src="/resources/js/lib/angular.min.js"></script>
+    <script src="/resources/js/lib/angular-route.min.js"></script>
 
     <script src="/resources/js/eventDetailModule/controllers.js"></script>
     <script src="/resources/js/eventDetailModule/services.js"></script>
