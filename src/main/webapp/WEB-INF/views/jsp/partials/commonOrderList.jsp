@@ -42,8 +42,9 @@
                         </div>
                     </td>
                     <td>{{item.item.price|currency:"&#8372"}}</td>
+
                     <td>
-                    {{item.count * item.item.price|currency}}
+                    {{item.count * item.item.price|currency:"&#8372"}}
                     </td>
                 </tr>
                 <tr>
