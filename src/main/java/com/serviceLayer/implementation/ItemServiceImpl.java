@@ -1,8 +1,9 @@
 package com.serviceLayer.implementation;
 
-import com.DTOLayer.DTOEntity.ItemDTO;
+import com.DTOLayer.DTOEntity.restaurantDTO.RestaurantDTO;
+import com.DTOLayer.DTOEntity.itemDTO.ItemDTO;
 import com.DTOLayer.DTOEntity.RequestItemDTO;
-import com.DTOLayer.DTOEntity.itemDTO.RequestItem;
+import com.DTOLayer.DTOEntity.itemDTO.ItemRequest;
 import com.dataLayer.DAO.ItemDAO;
 import com.model.Entity.Item;
 import com.model.Entity.Restaurant;
@@ -28,8 +29,8 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void saveByRequest(RequestItem requestItem) {
-        Item item = new Item(requestItem.getName(), requestItem.getPrice(), restaurantService.getRestaurantById(requestItem.getRestaurantId()));
+    public void saveByRequest(ItemRequest itemRequest) {
+        Item item = new Item(itemRequest.getName(), itemRequest.getPrice(), restaurantService.getRestaurantById(itemRequest.getRestaurantId()));
         itemDAO.save(item);
     }
 
@@ -40,6 +41,12 @@ public class ItemServiceImpl implements ItemService {
         Restaurant restaurant = restaurantService.getRestaurantById(Integer.parseInt(req.getParameter("restaurantId")));
         Item item = new Item(name, price, restaurant);
         itemDAO.save(item);
+    }
+
+    @Override
+    public RestaurantDTO getItemsByRestaurant(int id) {
+       return restaurantService.getRestaurantDTOById(id);
+
     }
 
     @Override
