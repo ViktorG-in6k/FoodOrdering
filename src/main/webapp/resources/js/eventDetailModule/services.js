@@ -38,9 +38,16 @@ services.factory("OrderListService", function ($http, $rootScope) {
         });
     };
 
+    orderListService.CommonOrder = function () {
+        $http.get("/CommonOrderJson_" + $rootScope.eventId + "/" + $rootScope.currentRestaurant).success(function (data) {
+            $rootScope.commonOrders = data;
+        })
+    };
+
     orderListService.updateOrderList = function () {
         $http.get("/MyOrderJson_" + $rootScope.eventId + "/" + $rootScope.currentRestaurant).success(function (data) {
             $rootScope.myOrders = data;
+            $rootScope.commonOrders = data;
         })
     };
 

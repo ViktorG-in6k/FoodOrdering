@@ -88,6 +88,14 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDTOList orderListOfUserByRestaurant(int eventId, int restaurantId) {
         List<Order> orderList = orderDAO.orderListOfEvent(eventId);
+        for(int i = 0; i<orderList.size();i++){
+            for(int j = i+1; j<orderList.size();j++){
+                if(orderList.get(i).getItem().getId()==orderList.get(j).getItem().getId()){
+                    orderList.get(i).setItemAmount(orderList.get(i).getItemAmount()+orderList.get(j).getItemAmount());
+                    orderList.remove(j);
+                }
+            }
+        }
         return new OrderDTOList(restaurantId, orderList);
     }
 
