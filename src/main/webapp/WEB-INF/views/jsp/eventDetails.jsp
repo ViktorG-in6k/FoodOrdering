@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="eventApp">
 <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
     <title>Restaurants</title>
     <link href="/resources/css/lib/bootstrap.min.css" rel="stylesheet"/>
     <link href="/resources/css/eventDetails.css" rel="stylesheet">
