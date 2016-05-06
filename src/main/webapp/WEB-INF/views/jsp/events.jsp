@@ -4,21 +4,20 @@
 <html lang="en">
 <head>
     <title>Events</title>
-    <link href="/resources/css/xeditable.css" rel="stylesheet"/>
-    <link href="/resources/core/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/resources/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/resources/css/test.css" rel="stylesheet"/>
     <link href="/resources/css/bootstrapTheme.css" rel="stylesheet">
+
     <link rel="stylesheet" href="/resources/css/kendoLib/kendo.common.min.css"/>
     <link rel="stylesheet" href="/resources/css/kendoLib/kendo.rtl.css"/>
     <link rel="stylesheet" href="/resources/css/kendoLib/kendo.silver.css"/>
     <link rel="stylesheet" href="/resources/css/kendoLib/kengo.modile.css"/>
 
-    <script src="/resources/core/js/jquery-2.1.4.min.js"></script>
+
+    <script src="/resources/js/jquery-2.1.4.min.js"></script>
     <script src="/resources/js/angular.min.js"></script>
     <script src="/resources/js/angular-route.min.js"></script>
-    <script src="/resources/js/xeditable.min.js"></script>
-    <script src="/resources/js/ui-bootstrap-tpls-1.3.2.min.js"></script>
-    <script src="/resources/js/moment.js"></script>
+
     <script src="/resources/js/bootstrap.js"></script>
     <script src="/resources/js/angular-touch.js"></script>
 

@@ -11,8 +11,8 @@
 <body>
 <jsp:include page="/WEB-INF/views/jspf/mainNav.jsp" flush="true"/>
 <jsp:include page="/WEB-INF/views/jspf/singin.jsp" flush="true"/>
-<script src="/resources/core/js/jquery-2.1.4.min.js"></script>
-<script src="/resources/core/js/bootstrap.min.js"></script>
+<script src="/resources/js/jquery-2.1.4.min.js"></script>
+<script src="/resources/js/bootstrap.min.js"></script>
 </body>
 </html>
 
