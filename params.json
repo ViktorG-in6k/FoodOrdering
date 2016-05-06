@@ -1,0 +1,6 @@
+{
+  "name": "Food Ordering",
+  "tagline": "Stack of technologies",
+  "body": "# java\r\n* Spring MVC\r\n* jUnit\r\n* Hibernate\r\n\r\n# javascript\r\n* jQuery\r\n* Angular 1.5\r\n\r\n# Bootstrap 3",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
