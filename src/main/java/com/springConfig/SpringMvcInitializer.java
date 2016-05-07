@@ -1,5 +1,7 @@
 package com.springConfig;
 
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -16,6 +18,13 @@ public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServ
     @Override
     protected String[] getServletMappings() {
         return new String[]{"/"};
+    }
+
+    @Override
+    protected WebApplicationContext createRootApplicationContext() {
+        WebApplicationContext context = super.createRootApplicationContext();
+        ((ConfigurableEnvironment) context.getEnvironment()).setActiveProfiles("dev");
+        return context;
     }
 }
 
