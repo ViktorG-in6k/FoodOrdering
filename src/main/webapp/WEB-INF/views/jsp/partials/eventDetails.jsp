@@ -16,6 +16,7 @@
         </div>
     </div>
 </div>
+
 <div class="col-md-offset-1 col-sm-offset-1 col-md-8 col-sm-8">
     <div class="panel-group col-md-offset-1 col-sm-offset-1 col-md-11 col-sm-11" id="accordion" role="tablist"
          aria-multiselectable="true">
@@ -24,13 +25,13 @@
             <div style="height: 120px;background-color: white; border: 1px solid #BBB4B4;background-color: #F5F5F5">
                 <div class=" col-md-4">
                     <h3>
-                        <a href="{{'#/'+ eventId}}/{{restaurant.id}}" style="font-size: 25px;">
+                        <a href="{{'#/'+ eventId}}/{{restaurant.order}}/{{restaurant.id}}" style="font-size: 25px;">
                             {{restaurant.name}}
                         </a>
                     </h3>
                 </div>
                 <div class="col-md-offset-4 col-md-4">
-                    <h2 style="font-size: 15px;" class="col-md-offset-4">
+                    <h2 style="font-size: 15px;" class="col-md-offset-4"></h2>
                 </div>
                 <br/>
                 <div class="row"></div>
@@ -48,9 +49,9 @@
                 <form class="post-title" role="form" action="/addResponsibleUser" method="post">
                     <input type="hidden" value="{{event.id}}" name="eventId">
                     <input type="hidden" value="{{restaurant.id}}" name="restaurantId">
-                    <button ng-if="restaurant.userResponsibility == null" type="submit" class="btn btn-success pull-right" style="margin-top: -5px;">To take responsibility
+                    <button ng-if="restaurant.payer == null" type="submit" class="btn btn-success pull-right" style="margin-top: -5px;">To take responsibility
                     </button>
-                    <p ng-if="restaurant.userResponsibility" class="pull-right" style="padding-right: 20px" >Responsible for order: {{restaurant.userResponsibility.email}} <p ></p></p>
+                    <p ng-if="restaurant.payer" class="pull-right" style="padding-right: 20px" >Responsible for order: {{restaurant.payer.email}} <p ></p></p>
                 </form>
             </div>
         </div>

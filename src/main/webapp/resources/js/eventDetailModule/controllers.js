@@ -20,6 +20,7 @@ controllers.controller("eventController", function ($http, $scope, $routeParams,
 controllers.controller("restaurantController", function ($http, $scope, $routeParams, $rootScope, OrderListService) {
     $rootScope.currentRestaurant = $routeParams.restaurantId;
     $rootScope.eventId = $routeParams.id;
+    $rootScope.orderId = $routeParams.order;
 
     $http.get("/CommonOrderJson_" + $rootScope.eventId + "/" + $rootScope.currentRestaurant).success(function (data) {
         $rootScope.responsible = data.userResponsibility;
@@ -28,11 +29,12 @@ controllers.controller("restaurantController", function ($http, $scope, $routePa
     $scope.removeFromOrder = OrderListService.removeFromOrder;
     $scope.removeOneItemFromOrder = OrderListService.removeOneItemFromOrder;
     $scope.getTotal = OrderListService.getTotal;
-    $http.get("/restaurants").success(function (data) {
+    
+    $http.get("/event_" + $rootScope.eventId +"/restaurants").success(function (data) {
         $scope.restaurants = data;
     });
 
-    $http.get("/restaurant_" + $rootScope.currentRestaurant).success(function (data) {
+    $http.get("/event_" + $rootScope.eventId +"/restaurant_" + $rootScope.currentRestaurant).success(function (data) {
         $rootScope.restaurant = data;
     });
 });
@@ -59,7 +61,7 @@ controllers.controller("orderList", function (OrderListService, $scope, $rootSco
       
         $scope.updateOrderList =  OrderListService.updateOrderList();
 
-    $scope.CommonOrder =  OrderListService.CommonOrder();
+        $scope.CommonOrder =  OrderListService.CommonOrder();
         $scope.changeItemNumber = OrderListService.changeItemNumber;
         $scope.addOneItemToOrder = OrderListService.addOneItemToOrder;
         $scope.removeOneItemFromOrder = OrderListService.removeOneItemFromOrder;
@@ -92,6 +94,7 @@ controllers.controller("commonOrderList", function ($scope, EventService, $route
     });
     RestaurantService.getRestaurantById($rootScope.currentRestaurant).success(function (data) {
         $rootScope.restaurant = data;
+        
     });
     $rootScope.order = "Order";
     $rootScope.currentRestaurant = $routeParams.restaurantId;
