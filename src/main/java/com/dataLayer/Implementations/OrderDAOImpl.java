@@ -2,6 +2,8 @@ package com.dataLayer.Implementations;
 
 import com.dataLayer.DAO.OrderDAO;
 import com.model.Entity.Order;
+import com.model.Entity.OrderItem;
+import com.model.Entity.Status;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,7 +21,7 @@ public class OrderDAOImpl implements OrderDAO {
     SessionFactory sessionFactory;
 
     @Override
-    public void save(Order order) {
+    public void saveOrder(Order order) {
         Session session = sessionFactory.getCurrentSession();
         session.save(order);
     }
@@ -64,6 +66,15 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
+    public Order getOrderByEventId(int eventId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from order_info where event_id = :eventId");
+        return (Order) query
+                .setInteger("eventId", eventId)
+                .uniqueResult();
+    }
+
+    @Override
     public List<Order> getOrdersByRestaurantId(int restaurantId) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from order_info where restaurant_id = :restaurantId");
@@ -73,7 +84,7 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public void setPayerForOrder(int orderId, int payerId) {
+    public void setPayer(int orderId, int payerId) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("update order_info set payer_id=:payerId where id = :orderId");
         query
@@ -83,7 +94,7 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public void setPayerForOrder(int eventId, int restaurantId, int payerId) {
+    public void setPayer(int eventId, int restaurantId, int payerId) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("update order_info set payer_id=:payerId where event_id = :eventId and restaurant_id = :restaurantId");
         query
@@ -92,6 +103,22 @@ public class OrderDAOImpl implements OrderDAO {
                 .setInteger("payerId", payerId);
         query.executeUpdate();
     }
-}
 
+    @Override
+    public void setStatus(int orderId, int statusId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("update order_info set status_id=:statusId where id = :orderId");
+        query
+                .setInteger("statusId", statusId)
+                .setInteger("orderId", orderId);
+        query.executeUpdate();
+    }
+
+    @Override
+    public Status getStatus(int orderId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from order_info where id = :orderId");
+        return (Status) query.setInteger("orderId", orderId);
+    }
+}
 
