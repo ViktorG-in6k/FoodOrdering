@@ -13,11 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 
 @Service
 public class ItemServiceImpl implements ItemService {
-
     @Autowired
     ItemDAO itemDAO;
     @Autowired
@@ -44,9 +44,8 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public RestaurantDTO getItemsByRestaurant(int id) {
-       return restaurantService.getRestaurantDTOById(id);
-
+    public RestaurantDTO getItemsByRestaurant(int eventId, int id, HttpSession session) {
+       return restaurantService.getRestaurantDTOById(eventId, id, session);
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.DTOLayer.DTOEntity.itemDTO.ItemRequest;
 import com.model.Entity.Item;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 public interface ItemService {
@@ -16,7 +17,7 @@ public interface ItemService {
 
     public void saveByRequest(HttpServletRequest req);
 
-    RestaurantDTO getItemsByRestaurant(int id);
+    RestaurantDTO getItemsByRestaurant(int eventId, int id, HttpSession session);
 
     abstract Item getItemById(int id);
 
