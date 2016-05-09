@@ -5,9 +5,6 @@ import java.util.List;
 
 @Entity(name = "order_info")
 public class Order extends com.model.base.Entity {
-    public Order() {
-    }
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
@@ -24,9 +21,17 @@ public class Order extends com.model.base.Entity {
     @JoinColumn(name = "status_id", nullable = false)
     private Status status;
 
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order_info")
+    @OneToMany(fetch = FetchType.EAGER)
     private List<OrderItem> orderItems;
+
+    public Order(Restaurant restaurant, Event event, Status status) {
+        this.restaurant = restaurant;
+        this.event = event;
+        this.status = status;
+    }
+
+    public Order() {
+    }
 
     public Restaurant getRestaurant() {
         return restaurant;

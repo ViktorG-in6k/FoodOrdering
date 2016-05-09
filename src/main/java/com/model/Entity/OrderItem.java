@@ -5,9 +5,6 @@ import java.util.List;
 
 @Entity(name = "order_item")
 public class OrderItem extends com.model.base.Entity {
-    public OrderItem() {
-    }
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -21,6 +18,15 @@ public class OrderItem extends com.model.base.Entity {
 
     @OneToOne
     private Order order;
+
+    public OrderItem() {
+    }
+
+    public OrderItem(User user, Item item) {
+        this.user = user;
+        this.item = item;
+        this.itemAmount = 1;
+    }
 
     public User getUser() {
         return user;
