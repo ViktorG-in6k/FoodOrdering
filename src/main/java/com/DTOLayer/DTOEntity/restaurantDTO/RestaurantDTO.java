@@ -1,10 +1,8 @@
 package com.DTOLayer.DTOEntity.restaurantDTO;
 
-import com.DTOLayer.DTOEntity.userDTO.UserDTO;
 import com.DTOLayer.DTOEntity.itemDTO.ItemDTO;
-import com.model.Entity.Item;
+import com.DTOLayer.DTOEntity.orderDTO.OrderPlacementStatus;
 import com.model.Entity.Restaurant;
-import com.model.Entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +12,34 @@ public class RestaurantDTO {
     protected String name;
     protected String phone;
     protected String link;
-    private UserDTO userResponsibility;
+    private OrderPlacementStatus orderPlacementStatus;
+    private List<ItemDTO> itemList = new ArrayList<ItemDTO>();
+
+    public RestaurantDTO(Restaurant restaurant, OrderPlacementStatus orderPlacementStatus) {
+        this.id = restaurant.getId();
+        this.name = restaurant.getName();
+        this.phone = restaurant.getPhone();
+        this.link = restaurant.getLink();
+        this.orderPlacementStatus = orderPlacementStatus;
+        restaurant.getItem().forEach(item -> this.itemList.add(new ItemDTO(item)));
+    }
+
+    public RestaurantDTO(Restaurant restaurant) {
+        this.id = restaurant.getId();
+        this.name = restaurant.getName();
+        this.phone = restaurant.getPhone();
+        this.link = restaurant.getLink();
+        this.orderPlacementStatus = null;
+        restaurant.getItem().forEach(item -> this.itemList.add(new ItemDTO(item)));
+    }
+
+    public OrderPlacementStatus getOrderPlacementStatus() {
+        return orderPlacementStatus;
+    }
+
+    public void setOrderPlacementStatus(OrderPlacementStatus orderPlacementStatus) {
+        this.orderPlacementStatus = orderPlacementStatus;
+    }
 
     public List<ItemDTO> getItemList() {
         return itemList;
@@ -24,62 +49,36 @@ public class RestaurantDTO {
         this.itemList = itemList;
     }
 
-    private List<ItemDTO> itemList = new ArrayList<ItemDTO>();
-
-    public RestaurantDTO(Restaurant restaurant) {
-        this.id = restaurant.getId();
-        this.name = restaurant.getName();
-        this.phone = restaurant.getPhone();
-        this.link = restaurant.getLink();
-        for (Item item : restaurant.getItem()) {
-            this.itemList.add(new ItemDTO(item));
-        }
+    public int getId() {
+        return id;
     }
 
-    public RestaurantDTO(Restaurant restaurant, User user) {
-        this.id = restaurant.getId();
-        this.name = restaurant.getName();
-        this.phone = restaurant.getPhone();
-        this.link = restaurant.getLink();
-        for (Item item : restaurant.getItem()) {
-            this.itemList.add(new ItemDTO(item));
-        }
-        this.userResponsibility = new UserDTO(user);
-    }
-
-    public RestaurantDTO(Restaurant restaurant, UserDTO user) {
-        this.id = restaurant.getId();
-        this.name = restaurant.getName();
-        this.phone = restaurant.getPhone();
-        this.link = restaurant.getLink();
-        for (Item item : restaurant.getItem()) {
-            this.itemList.add(new ItemDTO(item));
-        }
-        this.userResponsibility = user;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getPhone() {
         return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getLink() {
         return link;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public UserDTO getUserResponsibility() {
-        return userResponsibility;
-    }
-
-    public void setUserResponsibility(UserDTO userResponsibility) {
-        this.userResponsibility = userResponsibility;
+    public void setLink(String link) {
+        this.link = link;
     }
 }
 

@@ -1,23 +1,26 @@
 package com.DTOLayer.DTOEntity.orderItemDTO;
 
+import com.DTOLayer.DTOEntity.eventDTO.EventDTO;
 import com.DTOLayer.DTOEntity.itemDTO.ItemDTO;
 import com.DTOLayer.DTOEntity.orderDTO.OrderDTO;
 import com.DTOLayer.DTOEntity.userDTO.UserDTO;
-import com.model.Entity.OrderItem;
 
-public class OrderItemDTO {
+public class OrderItemUserEvent {
     private ItemDTO item;
     private UserDTO user;
     private int itemAmount;
     private OrderDTO order;
+    private EventDTO event;
 
-    public OrderItemDTO() {
+    public OrderItemUserEvent(ItemDTO item) {
     }
 
-    public OrderItemDTO(OrderItem orderItem){
-        this.item = new ItemDTO(orderItem.getItem());
-        this.user = new UserDTO(orderItem.getUser());
-        this.itemAmount = orderItem.getItemAmount();
+    public OrderItemUserEvent(ItemDTO item, UserDTO user, int itemAmount, OrderDTO order, EventDTO event) {
+        this.item = item;
+        this.user = user;
+        this.itemAmount = itemAmount;
+        this.order = order;
+        this.event = event;
     }
 
     public ItemDTO getItem() {
@@ -51,5 +54,12 @@ public class OrderItemDTO {
     public void setOrder(OrderDTO order) {
         this.order = order;
     }
-}
 
+    public EventDTO getEvent() {
+        return event;
+    }
+
+    public void setEvent(EventDTO event) {
+        this.event = event;
+    }
+}
