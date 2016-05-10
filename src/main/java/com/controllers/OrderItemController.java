@@ -3,6 +3,7 @@ package com.controllers;
 import com.DTOLayer.DTOEntity.orderItemDTO.OrderItemDTO;
 import com.serviceLayer.service.OrderItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,11 +29,11 @@ public class OrderItemController {
     }
 
     @RequestMapping(value = "/update_number_item_to_order", method = RequestMethod.POST)
-    public String updateNumberItemToOrder(HttpServletRequest req, HttpSession session,
+    public String updateNumberItemToOrder(HttpServletRequest req, Authentication authentication,
                                           @RequestParam("number") int number,
                                           @RequestParam("event_id") int eventId,
                                           @RequestParam("item_id") int itemId) {
-        orderItemService.updateItemAmountInOrder(session, eventId, itemId, number);
+        orderItemService.updateItemAmountInOrder(authentication, eventId, itemId, number);
         String ref = req.getHeader("Referer");
         return "redirect:" + ref;
     }

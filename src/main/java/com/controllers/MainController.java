@@ -26,6 +26,5 @@ public class MainController {
     public @ResponseBody String getCurrentUserEmail(Authentication authentication) {
        return ((User) authentication.getPrincipal()).getEmail();
     }
-
 }
 

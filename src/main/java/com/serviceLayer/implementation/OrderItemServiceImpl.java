@@ -2,9 +2,11 @@ package com.serviceLayer.implementation;
 
 import com.DTOLayer.DTOEntity.orderItemDTO.OrderItemDTO;
 import com.dataLayer.DAO.OrderItemDAO;
+import com.googleAuthentication.CurrentUserDetails;
 import com.model.Entity.*;
 import com.serviceLayer.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -60,8 +62,8 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
-    public void updateItemAmountInOrder(HttpSession session, int orderId, int itemId, int number) {
-        int userId = (int) session.getAttribute("userId");
+    public void updateItemAmountInOrder(Authentication authentication, int orderId, int itemId, int number) {
+        int userId =  ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId();
         OrderItem orderInOrderList = orderItemDAO.getOrderItem(userId, itemId, orderId);
         Order order = orderService.getOrderById(orderId);
         if (order != null) {
@@ -70,10 +72,6 @@ public class OrderItemServiceImpl implements OrderItemService {
             } else {
                 saveOrderItem(itemId, userId, orderId);
             }
-        } else {
-            Restaurant restaurant = restaurantService.getRestaurantById((int) session.getAttribute("restaurantId"));
-            Event event = eventService.getEventById((int) session.getAttribute("eventId"));
-            Item item = itemService.getItemById(itemId);
         }
     }
 }

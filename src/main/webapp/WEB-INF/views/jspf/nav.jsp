@@ -13,7 +13,7 @@
         </div>
         <div ng-controller="eventController" ng-if="currentRestaurant" >
             <a  class=" navbar-brand" href="{{'#/'+ eventId}}/{{restaurant.id}}">
-            /   &nbsp &nbsp{{restaurant.name}}
+            /   &nbsp &nbsp{{restaurant.name}} {{user}}
             </a>
         </div>
         <div class="navbar-header pull-right" style=" right: 10px;">

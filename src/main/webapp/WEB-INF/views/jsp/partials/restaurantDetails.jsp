@@ -58,11 +58,11 @@
                                     <a href="">
                                         <i style="color:green"
                                            ng-click="removeOneItemFromOrder(eventId, item.id)"
-                                           class="fa fa-minus" aria-hidden="true">
+                                           class="fa fa-minus" aria-hidden="true" >
                                         </i>
                                     </a>
                                     <span style="">
-                                        <input style="width: 40px;margin: 0 8px;height: 24px;" min="1" type="number"
+                                        <input style="width: 40px;margin: 0 8px;height: 24px;" min="1" required type="number"
                                                ng-blur="updateNumberItemToOrder( eventId, item.id,itemInOrder.count)"
                                                ng-init="count=itemInOrder.count" ng-model="itemInOrder.count"/>
                                     </span>

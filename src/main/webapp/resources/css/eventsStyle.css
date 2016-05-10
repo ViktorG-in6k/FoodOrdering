@@ -14,7 +14,10 @@ body
  }
 
  .event-date{
-     font-size: 25px;padding-left: 140px;margin-top: -36px;
+     padding-left: 140px;
+     margin-top: -36px;
+     font-size: 23px;
+     padding-top: 3px;
  }
 .event-creator{
     color: black;margin-top: 5px
