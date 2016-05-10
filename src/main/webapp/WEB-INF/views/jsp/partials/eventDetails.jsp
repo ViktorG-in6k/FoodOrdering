@@ -25,10 +25,13 @@
             <div style="height: 120px;background-color: white; border: 1px solid #BBB4B4;background-color: #F5F5F5">
                 <div class=" col-md-4">
                     <h3>
-                        <a href="{{'#/'+ eventId}}/{{restaurant.order}}/{{restaurant.id}}" style="font-size: 25px;">
+                        <a href="{{'#/'+ eventId}}/{{restaurant.id}}" style="font-size: 25px;">
                             {{restaurant.name}}
                         </a>
                     </h3>
+                </div>
+                <div class="col-md-4 pull-right" style="font-size: 13px;padding-top: 8px">
+                    Participants Amount: {{restaurant.orderPlacementStatus.participantsAmount}}
                 </div>
                 <div class="col-md-offset-4 col-md-4">
                     <h2 style="font-size: 15px;" class="col-md-offset-4"></h2>
@@ -45,6 +48,8 @@
                 <div ng-if="restaurant.phone" class="col-md-4 pull-left" style="font-size: 13px;padding-top: 8px">
                     <i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}
                 </div>
+
+
 
                 <form class="post-title" role="form" action="/addResponsibleUser" method="post">
                     <input type="hidden" value="{{event.id}}" name="eventId">
