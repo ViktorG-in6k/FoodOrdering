@@ -1,15 +1,15 @@
 package com.springConfig;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import javax.crypto.spec.OAEPParameterSpec;
+
 @EnableWebMvc
 @Configuration
-@Import(WebAppConfig.class)
+@Import(value = {WebAppConfig.class, OAuth2SecurityConfig.class})
+
 @ComponentScan(basePackages = {"com", "com.dataLayer.Implementations", "com.serviceLayer.service", "com.dataLayer.DAO"})
 public class ConfigurationClass {
     @Bean
