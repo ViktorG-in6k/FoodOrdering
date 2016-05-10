@@ -1,3 +1,13 @@
+<style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0;
+    }
+</style>
+
 <div style=" margin-top: 30px;">
     <div>
         <div class="well pull-left" style="height: 120px; width: 100%">
@@ -18,7 +28,7 @@
 </div>
 
 <div class="col-md-offset-1 col-sm-offset-1 col-md-8 col-sm-8">
-    <div class="panel-group col-md-offset-1 col-sm-offset-1 col-md-11 col-sm-11" id="accordion" role="tablist"
+    <div class="panel-group col-md-offset-1 col-sm-offset-1 col-md-10 col-sm-11" id="accordion" role="tablist"
          aria-multiselectable="true">
         <div ng-repeat="restaurant in restaurants | orderBy: 'name'" class="panel panel-default"
              style="  margin-top: 15px;">
@@ -30,13 +40,13 @@
                         </a>
                     </h3>
                 </div>
-                <div class="col-md-4 pull-right" style="font-size: 13px;padding-top: 8px">
-                    Participants Amount: {{restaurant.orderPlacementStatus.participantsAmount}}
+                <div class="col-md-4 pull-right" style="font-size: 13px; padding-top: 14px;padding-left: 140px;">
+                    Participants amount: {{restaurant.orderPlacementStatus.participantsAmount}}
                 </div>
                 <br>
-                <div class="col-md-4 pull-right" style="font-size: 13px;padding-top: 8px">
+                <%--<div class="col-md-4 pull-right" style="font-size: 13px;padding-top: 8px">
                     OrderID: {{restaurant.orderPlacementStatus.order.id}}
-                </div>
+                </div>--%>
                 <div class="col-md-offset-4 col-md-4">
                     <h2 style="font-size: 15px;" class="col-md-offset-4"></h2>
                 </div>
@@ -69,8 +79,8 @@
         </div>
     </div>
 </div>
-
-<form style=" margin-top: 15px;" role="form" ng-submit="createRestaurant(restaurant,eventId)" class=" col-md-offset-0 col-md-2">
+<div class=" col-md-offset-0 col-md-2 pull-left" style=" margin-left: -100px;">
+<form style=" margin-top: 15px;" role="form" ng-submit="createRestaurant(restaurant,eventId)" >
     <fieldset>
         <div class="form-group">
             <input type="text*" placeholder="Name*" ng-model="restaurant.title" class="form-control" id="name" name="name" required>
@@ -79,10 +89,10 @@
             <input placeholder="Link" type="url" ng-model="restaurant.link"  class="form-control" id="link" name="link">
         </div>
         <div class="form-group">
-            <input placeholder="Phone*" type="text" ng-model="restaurant.phone" class="form-control" id="phone" name="phone" required>
+            <input placeholder="Phone*" type="number" ng-model="restaurant.phone" class="form-control" id="phone" name="phone" required>
         </div>
         <input hidden type="text" name="eventId" value="{{eventId}}">
         <button type="submit" class="btn btn-success pull-right">Add restaurant</button>
     </fieldset>
 </form>
-
+</div>

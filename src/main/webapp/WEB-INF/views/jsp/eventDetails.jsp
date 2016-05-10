@@ -26,8 +26,10 @@
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true"/>
 <br/>
 <div>
+    <div class="container-fluid" >
     <div class="row">
         <div ng-view></div>
+    </div>
     </div>
 </div>
 </body>

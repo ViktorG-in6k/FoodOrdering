@@ -11,14 +11,8 @@
             <div class="col-md-6" style="font-size: 25px;">
                     {{restaurant.name}}
                 <br>
-                <div class="col-md-4 pull-right" style="font-size: 13px;padding-top: 8px">
-                    Participants Amount: {{restaurant.orderPlacementStatus.participantsAmount}}
-                    {{currentRestaurant}}
-                </div>
+
                 <br>
-                <div class="col-md-4 pull-right" style="font-size: 13px;padding-top: 8px">
-                    OrderID: {{restaurant.orderPlacementStatus.order.id}}
-                </div>
                 <a ng-if="restaurant.link" href="{{restaurant.link}}" target="_blank" style="font-size: 13px"><i
                         class="fa fa-link" aria-hidden="true"></i> {{ restaurant.link}}</a>
                 <p style="font-size: 13px"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}</p>
@@ -72,7 +66,6 @@
                             <div style=" display: inline">
                                 <a href="" ng-click="addOneItemToOrder(item.id,restaurant.orderPlacementStatus.order.id)">
                                     <i style="color:green" class="fa fa-plus" aria-hidden="true"></i></a>
-                                {{restaurant.orderPlacementStatus.order.id}}
                             </div>
                         </div>
                     </td>
