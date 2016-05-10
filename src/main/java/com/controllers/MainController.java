@@ -23,8 +23,8 @@ public class MainController {
     }
 
     @RequestMapping(value = "/getCurrentUser")
-    public @ResponseBody String getCurrentUserEmail(Authentication authentication) {
-       return ((User) authentication.getPrincipal()).getEmail();
+    public @ResponseBody User getCurrentUserEmail(Authentication authentication) {
+       return ((User) authentication.getPrincipal());
     }
 }
 
