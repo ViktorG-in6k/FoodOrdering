@@ -1,19 +1,23 @@
 package com.googleAuthentication;
 
-import com.model.Entity.GoogleProfile;
+import com.model.Entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Collection;
 
-public class GoogleUserDetails extends GoogleProfile implements UserDetails {
+public class CurrentUserDetails extends User implements UserDetails {
 
     private final Collection<? extends GrantedAuthority> authorities;
+    private User user;
 
-    public GoogleUserDetails(final GoogleProfile googleProfile,
+    public CurrentUserDetails(User user,
                              final Collection<? extends GrantedAuthority> authorities) {
-        super(googleProfile);
+        this.user = user;
         this.authorities = authorities;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     @Override
@@ -28,7 +32,7 @@ public class GoogleUserDetails extends GoogleProfile implements UserDetails {
 
     @Override
     public String getUsername() {
-        return getEmail();
+        return user.getName();
     }
 
     @Override
