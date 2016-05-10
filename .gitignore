@@ -6,4 +6,5 @@
 target
 out
 gen
+src/main/webapp/resources/testModule/node_modules
 # Created by .ignore support plugin (hsz.mobi)
