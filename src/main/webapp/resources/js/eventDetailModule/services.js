@@ -50,7 +50,7 @@ services.factory("OrderListService", function ($http, $rootScope) {
             method: 'POST',
             url: '/order_list_of_user',
             params: {
-                order_id: orderId
+                order_id: 11
             }
         }).success(function (data) {
             $rootScope.myOrders = data;

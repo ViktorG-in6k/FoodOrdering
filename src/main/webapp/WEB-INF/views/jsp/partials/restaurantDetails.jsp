@@ -22,7 +22,6 @@
                 <a ng-if="restaurant.link" href="{{restaurant.link}}" target="_blank" style="font-size: 13px"><i
                         class="fa fa-link" aria-hidden="true"></i> {{ restaurant.link}}</a>
                 <p style="font-size: 13px"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}</p>
-
             </div>
             <div ng-if="responsible.email" class="col-md-6"><div class="pull-right"> <p >{{responsible.email}}
                 <a href="{{'#/'+ eventId}}/{{restaurant.id}}/order" style="font-size: 25px;"><p > Make order</p></div>

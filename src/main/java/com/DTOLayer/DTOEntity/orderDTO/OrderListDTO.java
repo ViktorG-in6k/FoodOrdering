@@ -11,9 +11,10 @@ public class OrderListDTO {
     private OrderDTO order;
     private List<OrderItemDTO> items;
 
-    public OrderListDTO(){}
+    public OrderListDTO() {
+    }
 
-    public OrderListDTO(Order order, List<OrderItem> items){
+    public OrderListDTO(Order order, List<OrderItem> items) {
         this.order = new OrderDTO(order);
         this.items = new ArrayList<>();
         items.forEach(item -> this.items.add(new OrderItemDTO(item)));

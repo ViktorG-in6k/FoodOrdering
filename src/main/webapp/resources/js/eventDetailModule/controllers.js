@@ -97,7 +97,7 @@ controllers.controller("orderList", function (OrderListService, $scope, $rootSco
                 method: 'POST',
                 url: '/order_list_of_user',
                 params: {
-                    order_id: $rootScope.restaurant.orderPlacementStatus.order.id
+                    order_id: 11
                 }
             }).success(function (data) {
                 $rootScope.myOrders = data;
@@ -126,7 +126,6 @@ controllers.controller("commonOrderList", function ($scope, EventService, $route
     });
     RestaurantService.getRestaurantById($rootScope.currentRestaurant).success(function (data) {
         $rootScope.restaurant = data;
-
     });
     $rootScope.order = "Order";
     $rootScope.currentRestaurant = $routeParams.restaurantId;

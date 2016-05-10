@@ -1,6 +1,7 @@
 package com.controllers;
 
 import com.DTOLayer.DTOEntity.orderItemDTO.OrderItemDTO;
+import com.googleAuthentication.CurrentUserDetails;
 import com.serviceLayer.service.OrderItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -41,8 +41,8 @@ public class OrderItemController {
     @RequestMapping(value = "/order_list_of_user", method = RequestMethod.POST)
     public
     @ResponseBody
-    List<OrderItemDTO> getOrderListByCurrentUser(HttpSession session,
+    List<OrderItemDTO> getOrderListByCurrentUser(Authentication authentication,
                                                  @RequestParam("order_id") int orderId) {
-        return orderItemService.getOrderListByOrderIdAndUserId(orderId,(int) session.getAttribute("userId"));
+        return orderItemService.getOrderListByOrderIdAndUserId(orderId, ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId());
     }
 }
