@@ -4,7 +4,7 @@
             <div class="event-well">
             </div>
         </div>
-        <div ng-repeat="event in events | orderBy:['date.year','date.monthValue','date.dayOfMonth','date.hour','date.minute']">
+        <div ng-repeat="event in events | orderBy:['-date.year','-date.monthValue','-date.dayOfMonth','-date.hour','-date.minute']">
             <div class="event-well">
                 <div class="row event-detail">
                     <div class="col-md-7 col-xs-5 margin-left-4">
