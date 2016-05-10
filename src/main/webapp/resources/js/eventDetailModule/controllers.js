@@ -92,6 +92,7 @@ controllers.controller("orderList", function (OrderListService, $scope, $rootSco
         };
 
         $scope.getAllItems = function () {
+            console.log($rootScope.restaurant);
             $http({
                 method: 'POST',
                 url: '/order_list_of_user',
@@ -103,7 +104,7 @@ controllers.controller("orderList", function (OrderListService, $scope, $rootSco
                 $rootScope.commonOrders = data;
             })
         };
-        OrderListService.updateOrderList();
+        OrderListService.updateOrderList(orderId, $rootScope.restaurant);
     }
 );
 

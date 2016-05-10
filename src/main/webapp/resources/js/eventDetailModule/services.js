@@ -44,7 +44,8 @@ services.factory("OrderListService", function ($http, $rootScope) {
         })       
     };
 
-    orderListService.updateOrderList = function (orderId) {
+    orderListService.updateOrderList = function (orderId, restaurant) {
+        console.log(restaurant);
         $http({
             method: 'POST',
             url: '/order_list_of_user',

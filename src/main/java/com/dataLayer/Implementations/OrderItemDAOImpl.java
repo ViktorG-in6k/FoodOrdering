@@ -46,6 +46,15 @@ public class OrderItemDAOImpl implements OrderItemDAO {
     }
 
     @Override
+    public List<OrderItem> getOrderListByOrderId(int orderId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from order_item where order_id = :orderId");
+        return (List<OrderItem>) query
+                .setInteger("orderId", orderId)
+                .list();
+    }
+
+    @Override
     public void updateAmount(OrderItem orderItem, int amount) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("update order_item SET item_amount=:amount where order_id=:orderId and item_id=:itemId and user_id=:userId");
