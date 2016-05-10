@@ -84,11 +84,11 @@
         <form style=" margin-top: 15px;" role="form" ng-controller="createItem" ng-submit="createItem(name,price)">
             <fieldset>
                 <div class="form-group">
-                    <input type="text*" placeholder="name*" class="form-control" ng-model="name" id="name" name="name"
+                    <input type="text*" placeholder="Name*" class="form-control" ng-model="name" id="name" name="name"
                            required>
                 </div>
                 <div class="form-group">
-                    <input placeholder="price*" type="text" class="form-control" ng-model="price" id="price"
+                    <input placeholder="Price*" type="text" class="form-control" ng-model="price" id="price"
                            name="price"
                            required>
                 </div>

@@ -72,13 +72,13 @@
 <form style=" margin-top: 15px;" role="form" ng-submit="createRestaurant(restaurant,eventId)" class=" col-md-offset-0 col-md-2">
     <fieldset>
         <div class="form-group">
-            <input type="text*" placeholder="name*" ng-model="restaurant.title" class="form-control" id="name" name="name" required>
+            <input type="text*" placeholder="Name*" ng-model="restaurant.title" class="form-control" id="name" name="name" required>
         </div>
         <div class="form-group">
-            <input placeholder="link" type="url" ng-model="restaurant.link"  class="form-control" id="link" name="link">
+            <input placeholder="Link" type="url" ng-model="restaurant.link"  class="form-control" id="link" name="link">
         </div>
         <div class="form-group">
-            <input placeholder="phone*" type="text" ng-model="restaurant.phone" class="form-control" id="phone" name="phone" required>
+            <input placeholder="Phone*" type="text" ng-model="restaurant.phone" class="form-control" id="phone" name="phone" required>
         </div>
         <input hidden type="text" name="eventId" value="{{eventId}}">
         <button type="submit" class="btn btn-success pull-right">Add restaurant</button>

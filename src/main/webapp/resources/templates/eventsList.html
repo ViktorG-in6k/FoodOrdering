@@ -18,7 +18,7 @@
                         </p>
                     </div>
                     <div class="col-md-4 col-xs-4 margin-left-4">
-                        <p class="event-creator">created by {{event.user.email}}</p>
+                        <p class="event-creator">created by {{event.user.name}}</p>
                     </div>
                 </div>
             </div>
@@ -28,13 +28,13 @@
         <form role="form" ng-submit="createEvent(name,date)">
             <div>
                 <div class="form-group">
-                    <input ng-model="name" type="text" class="form-control" id="name" placeholder="Event title"
+                    <input ng-model="name" type="text" class="form-control" id="name" placeholder="Event title*"
                            name="name" required>
                 </div>
                 <div class="form-group">
                     <input kendo-date-time-picker ng-model="str" k-ng-model="date"
                            style="width: 100%;height: 27px;margin-bottom: 1px;"
-                           k-options="dateTimePickerConfig" required placeholder="   Event date"/>
+                           k-options="dateTimePickerConfig" required placeholder="   Event date*"/>
                 </div>
                 <button type="submit" class="btn btn-success pull-right">Add event</button>
             </div>
