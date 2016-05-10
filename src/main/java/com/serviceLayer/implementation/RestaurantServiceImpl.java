@@ -4,7 +4,6 @@ import com.DTOLayer.DTOEntity.RequestRestaurantDTO;
 import com.DTOLayer.DTOEntity.orderDTO.OrderPlacementStatus;
 import com.DTOLayer.DTOEntity.restaurantDTO.RestaurantDTO;
 import com.dataLayer.DAO.RestaurantDAO;
-import com.model.Entity.Event;
 import com.model.Entity.Item;
 import com.model.Entity.Order;
 import com.model.Entity.Restaurant;
@@ -65,8 +64,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public RestaurantDTO getRestaurantDTOById(int eventId, int restaurantId, HttpSession session) {
-        Event event = eventService.getEventById(eventId);
-        Order order = orderService.getOrderByEvent(event);
+        Order order = orderService.getOrdersByEventIdAndRestaurantId(eventId,restaurantId);
         Restaurant restaurant = restaurantDAO.getRestaurantById(restaurantId);
         OrderPlacementStatus orderPlacementStatus = orderService.getOrderPlacementStatus(order, restaurantId, eventId, session);
         return new RestaurantDTO(restaurant, orderPlacementStatus);
