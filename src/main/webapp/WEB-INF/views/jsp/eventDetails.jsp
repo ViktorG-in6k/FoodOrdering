@@ -3,17 +3,19 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="eventApp">
 <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
     <title>Restaurants</title>
-    <link href="/resources/core/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/resources/css/lib/bootstrap.min.css" rel="stylesheet"/>
     <link href="/resources/css/eventDetails.css" rel="stylesheet">
-    <link href="/resources/css/bootstrapTheme.css" rel="stylesheet">
-    <link href="/resources/css/font-awesome-4.6.1/css/font-awesome.min.css" rel="stylesheet"/>
-    <link href="/resources/css/hover-min.css" rel="stylesheet"/>
+    <link href="/resources/css/lib/bootstrapTheme.css" rel="stylesheet">
+    <link href="/resources/css/lib/font-awesome-4.6.1/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="/resources/css/commonOrder.css" rel="stylesheet">
-    <script src="/resources/core/js/jquery-2.1.4.min.js"></script>
-    <script src="/resources/core/js/bootstrap.min.js"></script>
-    <script src="/resources/js/angular.min.js"></script>
-    <script src="/resources/js/angular-route.min.js"></script>
+
+    <script src="/resources/js/lib/jquery-2.1.4.min.js"></script>
+    <script src="/resources/js/lib/bootstrap.min.js"></script>
+    <script src="/resources/js/lib/angular.min.js"></script>
+    <script src="/resources/js/lib/angular-route.min.js"></script>
+
     <script src="/resources/js/eventDetailModule/controllers.js"></script>
     <script src="/resources/js/eventDetailModule/services.js"></script>
     <script src="/resources/js/eventDetailModule/directives.js"></script>
