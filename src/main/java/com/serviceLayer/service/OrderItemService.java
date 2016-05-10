@@ -2,6 +2,7 @@ package com.serviceLayer.service;
 
 import com.DTOLayer.DTOEntity.orderItemDTO.OrderItemDTO;
 import com.model.Entity.OrderItem;
+import org.springframework.security.core.Authentication;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -15,5 +16,5 @@ public interface OrderItemService {
 
     List<OrderItemDTO> getOrderListByOrderIdAndUserId(int orderId, int userId);
 
-    void updateItemAmountInOrder(HttpSession session, int orderId, int itemId, int number);
+    void updateItemAmountInOrder(Authentication authentication, int orderId, int itemId, int number);
 }

@@ -50,7 +50,7 @@
                         <div>{{item.name}}</div>
                     </td>
                     <td>
-                        <div>{{item.price | currency:"&#8372"}}</div>
+                        <div>{{item.price | currency:" "}} &#8372</div>
                     </td>
                     <td style="width: 25%">
                         <div ng-controller="orderList">
@@ -59,11 +59,11 @@
                                     <a href="">
                                         <i style="color:green"
                                            ng-click="removeOneItemFromOrder(eventId, item.id)"
-                                           class="fa fa-minus" aria-hidden="true">
+                                           class="fa fa-minus" aria-hidden="true" >
                                         </i>
                                     </a>
                                     <span style="">
-                                        <input style="width: 40px;margin: 0 8px;height: 24px;" min="1" type="number"
+                                        <input style="width: 40px;margin: 0 8px;height: 24px;" min="1" required type="number"
                                                ng-blur="updateNumberItemToOrder( eventId, item.id,itemInOrder.count)"
                                                ng-init="count=itemInOrder.count" ng-model="itemInOrder.count"/>
                                     </span>
@@ -100,10 +100,10 @@
         <div ng-controller="orderList">
             <div>
                 <ul class="nav nav-tabs nav-justified" style="margin-top: 10px">
-                    <li role="presentation" ng-class="myItems" ng-click="myItems = 'active'; allItems = ''; updateOrderList()"><a>My
+                    <li style="cursor: pointer; " role="presentation" ng-class="myItems" ng-click="myItems = 'active'; allItems = ''; updateOrderList()"><a>My
                         items</a></li>
 
-                    <li role="presentation" ng-class="allItems" ng-click="allItems = 'active'; myItems = ''; CommonOrder()"><a>All
+                    <li style="cursor: pointer; " role="presentation" ng-class="allItems" ng-click="allItems = 'active'; myItems = ''; CommonOrder()"><a>All
                         items</a></li>
                 </ul>
                 <table class="table">
@@ -125,16 +125,16 @@
                                     <i style="color:green" class="fa fa-plus" aria-hidden="true"></i></a>
                             </div>
                         </td>
-                        <td>{{item.count * item.item.price|currency:"&#8372"}}</td>
+                        <td>{{item.count * item.item.price|currency:" "}}&#8372</td>
                         <td><a href="" ng-click="removeFromOrder(eventId,item.item.id)"><i style="color:red"
                                                                                            class="fa fa-times"
                                                                                            aria-hidden="true"></i></a>
                         </td>
                     </tr>
                     <tr>
-                        <td>Total</td>
+                        <td><b>Total</b></td>
                         <td></td>
-                        <td>{{getTotal() |currency:"&#8372"}}</td>
+                        <td>{{getTotal() |currency:" "}}&#8372</td>
                     </tr>
                 </table>
             </div>

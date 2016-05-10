@@ -31,7 +31,7 @@ controllers.controller("eventController", function ($http, $scope, $routeParams,
             }).success(function () {
                 $scope.restaurant = {};
                 $scope.restaurant.link = '';
-                $http.get("/restaurants_by_event_" + $rootScope.eventId).success(function (data) {
+                $http.get("/event_" + $rootScope.eventId + "/restaurants").success(function (data) {
                     $scope.restaurants = data;
                 });
             })
@@ -107,9 +107,13 @@ controllers.controller("orderList", function (OrderListService, $scope, $rootSco
     }
 );
 
-controllers.controller("navbarCtrl", function ($http, $scope) {
-    $http.get('/eventsJson/').success(function (data) {
+controllers.controller("navbarCtrl", function ($http, $scope, $rootScope) {
+    $http.get('/eventsJson/').success(function (data){
         $scope.events = data;
+         $http.get("/getCurrentUser").then(function (data) {
+             console.log(data);
+                 $rootScope.user = data;
+         })
     });
 });
 
