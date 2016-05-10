@@ -20,6 +20,7 @@ public class EventDAOImpl implements EventDAO {
     SessionFactory sessionFactory;
 
     public void save(Event e) {
+
         Session session = sessionFactory.getCurrentSession();
         session.save(e);
     }
