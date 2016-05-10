@@ -47,7 +47,6 @@ public class GoogleTokenServices extends RemoteTokenServices {
         this.tokenConverter = tokenConverter;
         this.authorizationHeaderValue = getAuthorizationHeaderValue(clientId, clientSecret);
         this.restTemplate = new RestTemplate();
-
         this.restTemplate.setErrorHandler(new DefaultResponseErrorHandler() {
             @Override
             public void handleError(ClientHttpResponse response) throws IOException {
@@ -60,7 +59,6 @@ public class GoogleTokenServices extends RemoteTokenServices {
 
     @Override
     public OAuth2Authentication loadAuthentication(final String accessToken) throws AuthenticationException, InvalidTokenException {
-        expect(accessToken, "accessToken").not().toBeBlank().check();
         final Map<String, String> checkTokenResponseMap = postForMap(accessToken);
         final Map<String, String> standardizedResponseMap = getStandardizedResponseMap(checkTokenResponseMap);
         final OAuth2Authentication oAuth2Authentication = tokenConverter.extractAuthentication(standardizedResponseMap);
@@ -68,9 +66,6 @@ public class GoogleTokenServices extends RemoteTokenServices {
     }
 
     private String getAuthorizationHeaderValue(final String clientId, final String clientSecret) {
-        expect(clientId, "clientId").not().toBeBlank().check();
-        expect(clientSecret, "clientSecret").not().toBeBlank().check();
-
         final String credential = String.format("%s:%s", clientId, clientSecret);
 
         try {
@@ -82,7 +77,6 @@ public class GoogleTokenServices extends RemoteTokenServices {
     }
 
     private Map<String, String> postForMap(final String accessToken) {
-        expect(accessToken, "accessToken").not().toBeBlank().check();
         final String url = String.format(checkTokenEndpointUrl, accessToken);
         final MultiValueMap<String, String> formData = new LinkedMultiValueMap<String, String>();
         formData.set("token", accessToken);

@@ -1,8 +1,12 @@
-package com.googleAuthentication;
+package com.serviceLayer.service;
 
 import com.dataLayer.Implementations.GoogleProfileDao;
 import com.google.common.collect.ImmutableSet;
+import com.googleAuthentication.CurrentUserDetails;
 import com.model.Entity.GoogleProfile;
+import com.model.Entity.User;
+import com.model.base.OauthProfile;
+import com.serviceLayer.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +24,7 @@ import static com.github.choonchernlim.betterPreconditions.preconditions.Precond
  * Returns user profile from Google and roles from DB (currently hardcoded).
  */
 @Service
-public class GoogleUserDetailsService implements UserDetailsService {
+public class CurrentUserDetailsService implements UserDetailsService {
     private final String userInfoUrl;
     private final OAuth2RestOperations oauth2RestTemplate;
 
@@ -28,23 +32,25 @@ public class GoogleUserDetailsService implements UserDetailsService {
     GoogleProfileDao googleProfileDao;
 
     @Autowired
-    public GoogleUserDetailsService(@Value("${google.user.info.url}") final String userInfoUrl,
-                                    final OAuth2RestOperations oauth2RestTemplate) {
+    UserService userService;
+
+    @Autowired
+    public CurrentUserDetailsService(@Value("${google.user.info.url}") final String userInfoUrl,
+                                     final OAuth2RestOperations oauth2RestTemplate) {
         this.userInfoUrl = userInfoUrl;
         this.oauth2RestTemplate = oauth2RestTemplate;
     }
 
     @Override
     public UserDetails loadUserByUsername(final String email) throws UsernameNotFoundException {
-        expect(email, "email").not().toBeBlank().check();
-        GoogleProfile googleProfile = googleProfileDao.getGoogleProfileByEmail(email);
-        if(googleProfile == null){
+        User user = userService.getUserByEmail(email);
+        if(user == null){
             final String url = String.format(userInfoUrl, oauth2RestTemplate.getAccessToken());
-            googleProfile = oauth2RestTemplate.getForEntity(url, GoogleProfile.class).getBody();
-            googleProfileDao.save(googleProfile);
+            OauthProfile oauthProfile = oauth2RestTemplate.getForEntity(url, GoogleProfile.class).getBody();
+            user = userService.getUserFromOauthUser(oauthProfile);
+            userService.saveUser(user);
         }
-
-        return new GoogleUserDetails(googleProfile, ImmutableSet.of(
+        return new CurrentUserDetails(user, ImmutableSet.of(
                 new SimpleGrantedAuthority("ROLE_USER"),
                 new SimpleGrantedAuthority("ROLE_ADMIN")
         ));

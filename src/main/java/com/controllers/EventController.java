@@ -2,12 +2,14 @@ package com.controllers;
 
 import com.DTOLayer.DTOEntity.eventDTO.EventDTO;
 import com.DTOLayer.DTOEntity.eventDTO.RequestEventDTO;
+import com.googleAuthentication.CurrentUserDetails;
 import com.model.Entity.Event;
 import com.model.Entity.User;
 import com.serviceLayer.service.EventService;
 import com.serviceLayer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;

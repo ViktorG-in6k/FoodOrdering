@@ -44,12 +44,12 @@
     </bean>
 
     <security:authentication-manager alias="authenticationManager">
-        <security:authentication-provider user-service-ref="googleUserDetailsService">
+        <security:authentication-provider user-service-ref="currentUserDetailsService">
         </security:authentication-provider>
     </security:authentication-manager>
 
     <bean id="userAuthenticationConverter"
           class="org.springframework.security.oauth2.provider.token.DefaultUserAuthenticationConverter">
-        <property name="userDetailsService" ref="googleUserDetailsService"/>
+        <property name="userDetailsService" ref="currentUserDetailsService"/>
     </bean>
 </beans>

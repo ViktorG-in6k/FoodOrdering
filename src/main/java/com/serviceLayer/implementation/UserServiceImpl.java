@@ -2,6 +2,7 @@ package com.serviceLayer.implementation;
 
 import com.dataLayer.DAO.UserDAO;
 import com.model.Entity.User;
+import com.model.base.OauthProfile;
 import com.serviceLayer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,17 @@ public class UserServiceImpl implements UserService {
 
     public List<User> getListOfAllUsers() {
         return userDAO.getListOfAllUsers();
+    }
+
+    @Override
+    public User getUserFromOauthUser(OauthProfile oauthProfile) {
+        User user = new User();
+        user.setName(oauthProfile.getName());
+        user.setEmail(oauthProfile.getEmail());
+        user.setFamilyName(oauthProfile.getFamilyName());
+        user.setGender(oauthProfile.getGender());
+        user.setPicture(oauthProfile.getPicture());
+        return user;
     }
 }
 

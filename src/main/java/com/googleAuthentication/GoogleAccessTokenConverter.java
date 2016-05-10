@@ -33,33 +33,13 @@ public class GoogleAccessTokenConverter extends DefaultAccessTokenConverter {
     @Override
     public OAuth2Authentication extractAuthentication(final Map<String, ?> responseMap) {
         expect(responseMap, "responseMap").not().toBeNull().check();
-
         final Authentication user = userAuthenticationConverter.extractAuthentication(responseMap);
-
         final String clientId = (String) responseMap.get(CLIENT_ID);
-
         final Set<String> scopes = ImmutableSet.copyOf(((String) responseMap.get(SCOPE)).split("\\s"));
-
         final Map<String, String> parameters = ImmutableMap.of(CLIENT_ID, clientId);
-
         final ImmutableSet<String> resourceIds = ImmutableSet.of((String) responseMap.get(AUD));
-
-        LOGGER.debug("BEFORE: map         : {}", responseMap);
-        LOGGER.debug("BEFORE: parameters  : {}", parameters);
-        LOGGER.debug("BEFORE: clientId    : {}", clientId);
-        LOGGER.debug("BEFORE: scopes      : {}", scopes);
-        LOGGER.debug("BEFORE: resourceIds : {}", resourceIds);
-
-        final OAuth2Request request = new OAuth2Request(parameters,
-                                                        clientId,
-                                                        null,
-                                                        true,
-                                                        scopes,
-                                                        resourceIds,
-                                                        null,
-                                                        null,
-                                                        null);
-
+        final OAuth2Request request = new OAuth2Request(parameters, clientId, null, true,
+                                                        scopes, resourceIds, null, null, null);
         return new OAuth2Authentication(request, user);
     }
 }
