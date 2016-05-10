@@ -28,36 +28,37 @@ public class ItemDAOImpl implements ItemDAO {
     public Item getItemById(int id) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from item where id = :id");
-        return (Item) query.setInteger("id",id).uniqueResult();
+        return (Item) query.setInteger("id", id).uniqueResult();
     }
 
     @Override
-    public void updatePrice(int id, BigDecimal price){
+    public void updatePrice(int id, BigDecimal price) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("update item set price=:price where id = :id");
         query
-                .setBigDecimal("price",price)
-                .setInteger("id",id);
+                .setBigDecimal("price", price)
+                .setInteger("id", id);
         query.executeUpdate();
     }
 
     @Override
-    public void updateName(int id, String name){
+    public void updateName(int id, String name) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("update item set name=:name where id = :id");
         query
-                .setString("name",name)
-                .setInteger("id",id);
+                .setString("name", name)
+                .setInteger("id", id);
         query.executeUpdate();
     }
 
     @Override
-    public void updateDescription(int id, String description){
+    public void updateDescription(int id, String description) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("update item set description=:description where id = :id");
         query
-                .setString("description",description)
-                .setInteger("id",id);
+                .setString("description", description)
+                .setInteger("id", id);
         query.executeUpdate();
     }
 }
+

@@ -23,8 +23,6 @@ public class Item extends com.model.base.Entity {
         this.price = price;
     }
 
-
-
     public String getName() {
         return name;
     }

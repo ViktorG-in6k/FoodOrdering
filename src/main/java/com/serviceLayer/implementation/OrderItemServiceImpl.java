@@ -38,30 +38,22 @@ public class OrderItemServiceImpl implements OrderItemService {
     @Override
     public void addOneItemToOrder(HttpSession session, int itemId, int orderId) {
         int userId = (int) session.getAttribute("userId");
-        OrderItem orderInOrderList = orderItemDAO.getOrderItem(userId, itemId, orderId);
-        if (orderInOrderList != null) {
-            orderItemDAO.updateAmount(orderInOrderList, orderInOrderList.getItemAmount() + 1);
-        } else {
-            saveOrderItem(itemId,userId);
-        }
+        int number = orderItemDAO.getOrderItem(userId, itemId, orderId).getItemAmount() + 1;
+        changeItemAmount(userId, itemId, orderId, number);
     }
 
     @Override
     public void updateItemAmountInOrder(HttpSession session, int orderId, int itemId, int number) {
         int userId = (int) session.getAttribute("userId");
+        changeItemAmount(userId, itemId, orderId, number);
+    }
+
+    private void changeItemAmount(int userId, int itemId,int orderId,int number){
         OrderItem orderInOrderList = orderItemDAO.getOrderItem(userId, itemId, orderId);
-        Order order = orderService.getOrderById(orderId);
-        if (order != null) {
-            if (orderInOrderList != null) {
-                orderItemDAO.updateAmount(orderInOrderList, number);
-            } else {
-                saveOrderItem(itemId,userId);
-            }
-        }
-        else{
-            Restaurant restaurant = restaurantService.getRestaurantById((int) session.getAttribute("restaurantId"));
-            Event event = eventService.getEventById((int) session.getAttribute("eventId"));
-            Item item = itemService.getItemById(itemId);
+        if (orderInOrderList != null) {
+            orderItemDAO.updateAmount(orderInOrderList, number);
+        } else {
+            saveOrderItem(itemId, userId);
         }
     }
 }

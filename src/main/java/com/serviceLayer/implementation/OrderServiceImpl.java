@@ -1,7 +1,6 @@
 package com.serviceLayer.implementation;
 
 import com.DTOLayer.DTOEntity.orderDTO.OrderPlacementStatus;
-import com.DTOLayer.DTOEntity.orderItemDTO.OrderItemRequest;
 import com.dataLayer.DAO.OrderDAO;
 import com.model.Entity.*;
 import com.serviceLayer.service.*;
@@ -34,13 +33,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void save(OrderItemRequest itemRequest, HttpSession session) {
-        User user = userService.getUser((int) session.getAttribute("userId"));
-        Item item = itemService.getItemById(itemRequest.getItem().getId());
-        orderDAO.saveOrder(new Order());
-    }
-
-    @Override
     public Order getOrderByEvent(Event event) {
         return orderDAO.getOrderByEventId(event.getId());
     }
@@ -65,9 +57,9 @@ public class OrderServiceImpl implements OrderService {
             Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
             Event event = eventService.getEventById(eventId);
             Status status = statusService.getStatusById(0);
-            Order order1 = new Order(restaurant,event,status);
-            orderDAO.saveOrder(order1);
-            return new OrderPlacementStatus(order1,0,false);
+            Order orderForStatus = new Order(restaurant,event,status);
+            orderDAO.saveOrder(orderForStatus);
+            return new OrderPlacementStatus(orderForStatus,0,false);
         }
     }
 

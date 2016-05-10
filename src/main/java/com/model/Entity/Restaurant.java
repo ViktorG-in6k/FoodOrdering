@@ -22,8 +22,7 @@ public class Restaurant extends com.model.base.Entity {
     }
 
     public Restaurant(String name, String phone, String link) {
-        this.name = name;
-        this.phone = phone;
+        this(name, phone);
         this.link = link;
     }
 

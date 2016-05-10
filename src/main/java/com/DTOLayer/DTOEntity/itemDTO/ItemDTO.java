@@ -22,9 +22,8 @@ public class ItemDTO {
     }
 
     public ItemDTO(Item item) {
-        this.id = item.getId();
+        this(item.getId(),item.getPrice());
         this.name = item.getName();
-        this.price = item.getPrice();
     }
 
     public ItemDTO(int id, BigDecimal price) {
