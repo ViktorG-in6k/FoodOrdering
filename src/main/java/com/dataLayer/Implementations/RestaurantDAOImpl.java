@@ -62,11 +62,11 @@ public class RestaurantDAOImpl implements RestaurantDAO {
     }
 
     @Override
-    public void updateDescription(int id, String description) {
+    public void updateDescription(int id, String phone) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("update restaurant set description=:description where id = :id");
+        Query query = session.createQuery("update restaurant set phone=:description where id = :id");
         query
-                .setString("description", description)
+                .setString("description", phone)
                 .setInteger("id", id);
         query.executeUpdate();
     }

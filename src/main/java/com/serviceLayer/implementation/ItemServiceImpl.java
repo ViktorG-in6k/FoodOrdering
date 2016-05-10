@@ -2,15 +2,16 @@ package com.serviceLayer.implementation;
 
 import com.DTOLayer.DTOEntity.ItemDTO;
 import com.DTOLayer.DTOEntity.RequestItemDTO;
+import com.DTOLayer.DTOEntity.itemDTO.RequestItem;
 import com.dataLayer.DAO.ItemDAO;
 import com.model.Entity.Item;
 import com.model.Entity.Restaurant;
 import com.serviceLayer.service.ItemService;
+import com.serviceLayer.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 
 @Service
@@ -18,28 +19,26 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     ItemDAO itemDAO;
+    @Autowired
+    RestaurantService restaurantService;
 
     @Override
     public void save(Item item) {
-        if (item.getImageURL().equals("")) {
-            item.setImageURL("/resources/image/shief.jpg");
-        }
         itemDAO.save(item);
     }
 
     @Override
-    public void saveByRequest(HttpServletRequest req, HttpSession session) {
+    public void saveByRequest(RequestItem requestItem) {
+        Item item = new Item(requestItem.getName(), requestItem.getPrice(), restaurantService.getRestaurantById(requestItem.getRestaurantId()));
+        itemDAO.save(item);
+    }
+
+    @Override
+    public void saveByRequest(HttpServletRequest req) {
         String name = req.getParameter("name");
-        String description = req.getParameter("discript");
-        String URLimage = req.getParameter("image");
         BigDecimal price = new BigDecimal(req.getParameter("price"));
-
-        Restaurant restaurant = (Restaurant) session.getAttribute("restaurant");
-
-        Item item = new Item(name, description, URLimage, price, restaurant);
-        if (item.getImageURL().equals("")) {
-            item.setImageURL("/resources/image/shief.jpg");
-        }
+        Restaurant restaurant = restaurantService.getRestaurantById(Integer.parseInt(req.getParameter("restaurantId")));
+        Item item = new Item(name, price, restaurant);
         itemDAO.save(item);
     }
 
@@ -61,11 +60,6 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public void updateItemName(RequestItemDTO item) {
         itemDAO.updateName(item.getId(), item.getName());
-    }
-
-    @Override
-    public void updateItemDescription(RequestItemDTO item) {
-        itemDAO.updateDescription(item.getId(), item.getDescription());
     }
 }
 

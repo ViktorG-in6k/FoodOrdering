@@ -1,6 +1,5 @@
 package com.serviceLayer.implementation;
 
-import com.DTOLayer.DTOEntity.EventDTO;
 import com.DTOLayer.DTOEntity.RequestEventDTO;
 import com.dataLayer.DAO.EventDAO;
 import com.model.Entity.Event;
@@ -23,64 +22,69 @@ public class EventServiceImpl implements EventService {
     @Autowired
     UserService userService;
 
+    @Override
     public void save(RequestEventDTO eventDTO) {
-        if (eventDTO.getImageURL().equals("")) {
-            if (eventDTO.getDate().getHour() > 12 && eventDTO.getDate().getHour() < 16) {
-                eventDTO.setImageURL("/resources/image/lanch.jpg");
-            } else if (eventDTO.getDate().getHour() > 16 || (eventDTO.getDate().getHour() > -1 && eventDTO.getDate().getHour() < 5)) {
-                eventDTO.setImageURL("/resources/image/food.jpg");
-            } else {
-                eventDTO.setImageURL("/resources/image/breakfast.jpg");
-            }
-        }
         Event newEvent = new Event(eventDTO);
         eventDAO.save(newEvent);
     }
 
+    @Override
+    public void save(RequestEventDTO eventDTO, int userId) {
+        Event newEvent = new Event(eventDTO);
+        newEvent.setUser(userService.getUser(userId));
+        eventDAO.save(newEvent);
+    }
+
+    @Override
+    public void saveByRequest(HttpServletRequest req) {
+        String name = req.getParameter("name");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime date = LocalDateTime.parse(req.getParameter("date"), formatter);
+
+        Event event = new Event(name, date);
+        eventDAO.save(event);
+    }
+
+    @Override
     public Event getEventById(int id) {
         return eventDAO.getEventById(id);
     }
 
+    @Override
     public Set<Event> getListOfAllEvents() {
         return eventDAO.getListOfAllEvents();
     }
 
+    @Override
     public List<Event> getListOfEvents(String eventName) {
         return eventDAO.getListOfEvents(eventName);
     }
 
+    @Override
     public List<Event> getListOfEventsByDate(LocalDate eventDate) {
         return eventDAO.getListOfEventsByDate(eventDate);
     }
 
+    @Override
     public List<Event> getListOfEventsByNameAndDate(String eventName, LocalDate eventDate) {
         return eventDAO.getListOfEventsByNameAndDate(eventName, eventDate);
     }
 
+    @Override
     public List<Event> getListOfEventsBetweenTwoDates(LocalDate firstDate, LocalDate lastDate) {
         return eventDAO.getListOfEventsBetweenTwoDates(firstDate, lastDate);
     }
 
+    @Override
     public void update(Event event) {
         eventDAO.update(event);
     }
 
+    @Override
     public void setResponsibleUser(int userId, int eventId) {
         Event eventById = getEventById(eventId);
         eventById.setUser(userService.getUser(userId));
         update(eventById);
-    }
-
-    public void saveByRequest(HttpServletRequest req) {
-        String name = req.getParameter("name");
-        String description = req.getParameter("discript");
-
-        String URLimage = req.getParameter("image");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        LocalDateTime date = LocalDateTime.parse(req.getParameter("date"), formatter);
-
-        Event event = new Event(name, description, URLimage, date);
-        eventDAO.save(event);
     }
 }
 

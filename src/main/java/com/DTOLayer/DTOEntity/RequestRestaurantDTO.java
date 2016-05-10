@@ -3,7 +3,7 @@ package com.DTOLayer.DTOEntity;
 public class RequestRestaurantDTO {
     private int id;
     private String name;
-    private String description;
+    private String phone;
 
     public int getId() {
         return id;
@@ -21,12 +21,12 @@ public class RequestRestaurantDTO {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
 

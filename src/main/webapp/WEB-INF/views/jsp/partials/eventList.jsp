@@ -1,76 +1,51 @@
-<div class="col-md-9 " ng-controller="eventController">
-    <div>
-
-        <div ng-repeat="event in events | orderBy:['date.year','date.month','date.dayOfMonth']">
-            <%--<div class="col-sm-5 col-md-5 col-lg-4" style="margin-bottom: 30px">--%>
-            <%--<div class="post">--%>
-            <%--<div class="post-img-content"--%>
-            <%--style="height: 215px; width: 315px; background-image: url('http://cdn.fabulousblogging.com/wp-content/uploads/2012/10/fabric_plaid2.jpg?bcbabf')">--%>
-            <%--<img class="pull-left col-md-12" src=""/>--%>
-
-            <%--<form class="post-title" role="form" action="/addResponsibleUser" method="post" >--%>
-            <%--<a href="/events/event_{{event.id}}#/{{event.id}}">--%>
-            <%--<b style="text-decoration: underline; background-color: rgba(0, 0, 0, 0.58);" class="text-info col-md-6">{{event.name}}</b>--%>
-
-            <%--</a>--%>
-
-            <%--<b style="background-color: rgba(0, 0, 0, 0.58);"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i> {{event.date.dayOfWeek |--%>
-            <%--limitTo: 3}} {{event.date.dayOfMonth}} {{event.date.month | limitTo: 3}}--%>
-            <%--{{event.date.year}} </b>--%>
-
-            <%--<br>--%>
-            <%--<b style="background-color: rgba(0, 0, 0, 0.58);"><i class="glyphicon glyphicon-time" aria-hidden="true"></i>--%>
-            <%--{{event.date.hour}}:{{event.date.minute}}</b><br/>--%>
-            <%--<div ng-if="event.user == null">--%>
-            <%--<b style="background-color: rgba(0, 0, 0, 0.58);"><input type="hidden" value="{{event.id}}" name="eventId">--%>
-            <%--<button type="submit" class="btn btn-success pull-right">Take responsibility--%>
-            <%--</button>--%>
-            <%--</b>--%>
-
-            <%--</div>--%>
-
-            <%--<div ng-if="event.user != null">--%>
-            <%--<b style="background-color: rgba(0, 0, 0, 0.58);"> {{event.user.email}}--%>
-            <%--<a href="#/commonOrder/{{event.id}}">--%>
-            <%--<button ng-if=" event.user.email == event.sessionUser.email" type="button" class="btn btn-success ">Order</button>--%>
-            <%--</a>--%>
-            <%--</b>--%>
-            <%--</div>--%>
-            <%--</form>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <div class="well col-md-9 pull-left">
-
-                <form action="">
-
-                    <img src="" class="img-thumbnail col-md-3 pull-left">
-
-                    <label class="text-info col-md-7"
-                           style="font-size: 19px; color: #000000;"> {{event.name}}</label>
-
-                    <label class="pull-right">
-                        time
-                        {{event.date.dayOfWeek |
-                        limitTo: 3}} {{event.date.dayOfMonth}} {{event.date.month | limitTo: 3}}
-                        {{event.date.hour}}:{{event.date.minute}}
-
-                    </label>
-                    <div class="col-md-9 ">
-
-                        {{event.description}}
-
-                    </div>
-                    <a class="btn btn-primary col-md-offset-7 col-md-2 "
-                       href="">Get
-                        order</a>
-
-
-                    <a class="btn btn-primary col-md-offset-10 col-md-2   "
-                       href="">Participate</a>
-
-                </form>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<div ng-controller="eventController">
+    <div class="col-sm-9 col-md-9 col-xs-9 ">
+        <div ng-if="events.length == 0">
+            <div style="height: 100px;border: 1px solid #BBB4B4;background-color: #F5F5F5">
             </div>
         </div>
+        <div ng-repeat="event in events | orderBy:['date.year','date.monthValue','date.dayOfMonth','date.hour','date.minute']">
+            <div style="height: 100px;border: 1px solid #BBB4B4;background-color: #F5F5F5">
+                <div class="row">
+                    <div class="col-md-12" style="height: 12px"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-7 col-xs-5" style="margin-left: 4%">
+                        <a href="/events/event_{{event.id}}#/{{event.id}}" style="font-size: 25px;">{{event.name}}</a>
+                    </div>
+                    <div class="col-md-4 col-xs-7 pull-right">
+                        <p style="font-size: 25px;padding-left: 140px;">
+                            {{event.date.dayOfMonth}}
+                            {{event.date.month | limitTo: 3| lowercase|capitalize}} <br>
+                        </p>
+                        <p style="font-size: 25px; padding-left: 145px;margin-top: -9px;">
+                            {{event.date.hour}}:{{event.date.minute}}</p>
+                    </div>
+                    <div class="col-md-4 col-xs-4" style="margin-left: 4%">
+                        <p style="color: black">created by user@example.com</p>
+                    </div>
+                </div>
+                <div class="row">
+                </div>
+            </div>
+            <div style="height: 15px"></div>
+        </div>
+    </div>
+    <div class="col-sm-3 col-md-3 col-xs-3 pull-right" ng-controller="createEventController">
+        <form role="form" ng-submit="createEvent(name,date)">
+            <div>
+                <div class="form-group">
+                    <input ng-model="name" type="text" class="form-control" id="name" placeholder="Event title"
+                           name="name" required>
+                </div>
+                <div class="form-group">
+                    <input kendo-date-time-picker ng-model="str" k-ng-model="date"
+                           style="width: 100%;height: 27px;margin-bottom: 1px;"
+                           k-options="dateTimePickerConfig"/>
+                </div>
+                <button type="submit" class="btn btn-success pull-right">Add event</button>
+            </div>
+        </form>
     </div>
 </div>
