@@ -5,6 +5,7 @@ import com.DTOLayer.DTOEntity.itemDTO.ItemDTO;
 import com.DTOLayer.DTOEntity.RequestItemDTO;
 import com.DTOLayer.DTOEntity.itemDTO.ItemRequest;
 import com.model.Entity.Item;
+import org.springframework.security.core.Authentication;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,7 +18,7 @@ public interface ItemService {
 
     public void saveByRequest(HttpServletRequest req);
 
-    RestaurantDTO getItemsByRestaurant(int eventId, int id, HttpSession session);
+    RestaurantDTO getItemsByRestaurant(int eventId, int id, Authentication authentication);
 
     abstract Item getItemById(int id);
 

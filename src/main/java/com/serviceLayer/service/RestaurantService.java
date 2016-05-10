@@ -4,6 +4,7 @@ import com.DTOLayer.DTOEntity.RequestRestaurantDTO;
 import com.DTOLayer.DTOEntity.restaurantDTO.RestaurantDTO;
 import com.model.Entity.Item;
 import com.model.Entity.Restaurant;
+import org.springframework.security.core.Authentication;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,13 +15,13 @@ public interface RestaurantService {
 
     public void saveByRequest(HttpServletRequest req);
 
-    List<RestaurantDTO> getResponseListOfAllRestaurantsByEventId(int eventId, HttpSession session);
+    List<RestaurantDTO> getResponseListOfAllRestaurantsByEventId(int eventId, Authentication authentication);
 
     public List<Restaurant> getListOfAllRestaurant();
 
     public Restaurant getRestaurantById(int id);
 
-    RestaurantDTO getRestaurantDTOById(int eventId, int restaurantId, HttpSession session);
+    RestaurantDTO getRestaurantDTOById(int eventId, int restaurantId, Authentication authentication);
 
     public List<Item> getRestaurantMenuById(int id);
 

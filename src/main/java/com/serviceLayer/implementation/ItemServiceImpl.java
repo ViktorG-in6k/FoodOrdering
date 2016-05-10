@@ -10,6 +10,7 @@ import com.model.Entity.Restaurant;
 import com.serviceLayer.service.ItemService;
 import com.serviceLayer.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,8 +45,8 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public RestaurantDTO getItemsByRestaurant(int eventId, int id, HttpSession session) {
-       return restaurantService.getRestaurantDTOById(eventId, id, session);
+    public RestaurantDTO getItemsByRestaurant(int eventId, int id, Authentication authentication) {
+       return restaurantService.getRestaurantDTOById(eventId, id, authentication);
     }
 
     @Override

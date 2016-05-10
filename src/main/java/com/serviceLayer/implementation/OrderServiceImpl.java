@@ -3,9 +3,11 @@ package com.serviceLayer.implementation;
 import com.DTOLayer.DTOEntity.orderDTO.OrderPlacementStatus;
 import com.DTOLayer.DTOEntity.orderItemDTO.OrderItemRequest;
 import com.dataLayer.DAO.OrderDAO;
+import com.googleAuthentication.CurrentUserDetails;
 import com.model.Entity.*;
 import com.serviceLayer.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,9 +36,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void save(OrderItemRequest itemRequest, HttpSession session) {
-        User user = userService.getUser((int) session.getAttribute("userId"));
-        Item item = itemService.getItemById(itemRequest.getItem().getId());
+    public void save(OrderItemRequest itemRequest) {
         orderDAO.saveOrder(new Order());
     }
 
@@ -52,12 +52,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional
     @Override
-    public OrderPlacementStatus getOrderPlacementStatus(Order order,int restaurantId,int eventId, HttpSession session) {
+    public OrderPlacementStatus getOrderPlacementStatus(Order order,int restaurantId,int eventId, Authentication authentication) {
         Set<User> participants = new HashSet<>();
         boolean isMine;
         if (order != null) {
             order.getOrderItems().forEach(item -> participants.add(item.getUser()));
-            isMine = isMineOrder(order, session);
+            isMine = isMineOrder(order, authentication);
             int participantsAmount = participants.size();
             return new OrderPlacementStatus(order, participantsAmount, isMine);
         }
@@ -77,8 +77,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public boolean isMineOrder(Order order, HttpSession session) {
-        int currentUserId = (int) session.getAttribute("userId");
+    public boolean isMineOrder(Order order, Authentication authentication) {
+        int currentUserId = ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId();
         boolean isMine = false;
 
         for (OrderItem item : order.getOrderItems()) {
