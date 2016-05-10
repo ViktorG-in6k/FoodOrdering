@@ -16,11 +16,5 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
-    @RequestMapping(value = "/add_to_order", method = RequestMethod.POST)
-    public String addToOrder(@RequestBody OrderItemRequest itemRequest, HttpServletRequest req,HttpSession session) {
-        orderService.save(itemRequest, session);
-        String ref = req.getHeader("Referer");
-        return "redirect:" + ref;
-    }
 }
 
