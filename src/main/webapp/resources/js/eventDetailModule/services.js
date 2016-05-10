@@ -117,13 +117,16 @@ services.factory("OrderListService", function ($http, $rootScope) {
 
 services.factory("ItemService", function ($http, $rootScope) {
     var itemService = {};
-    itemService.addNewItem = function (dataForRequest) {
+
+    itemService.addNewItem = function (name, price, restaurantId, eventId) {
         return $http({
             method: 'POST',
-            url: '/new_item',
+            url: '/new_item',            
             params: {
-                dataForRequest: dataForRequest,
-                event_id: $rootScope.eventId
+                name: name,
+                price: price,
+                event_id: eventId,
+                restaurant_id: restaurantId
             }
         });
     };
