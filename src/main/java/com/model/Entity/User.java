@@ -30,6 +30,15 @@ public class User extends com.model.base.Entity {
         this.password = "aaa";
     }
 
+    public User(User user) {
+        this.setId(user.getId());
+        this.setEmail(user.getEmail());
+        this.setName(user.getName());
+        this.setFamilyName(user.getFamilyName());
+        this.setPicture(user.getPicture());
+        this.setGender(user.getGender());
+    }
+
     public String getEmail() {
         return this.email;
     }

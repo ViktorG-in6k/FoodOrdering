@@ -12,6 +12,7 @@ public class CurrentUserDetails extends User implements UserDetails {
 
     public CurrentUserDetails(User user,
                              final Collection<? extends GrantedAuthority> authorities) {
+        super(user);
         this.user = user;
         this.authorities = authorities;
     }
