@@ -111,11 +111,13 @@ controllers.controller("orderList", function (OrderListService, $scope, $rootSco
 controllers.controller("navbarCtrl", function ($http, $scope, $rootScope) {
     $http.get('/eventsJson/').success(function (data){
         $scope.events = data;
-         $http.get("/getCurrentUser").then(function (data) {
-             console.log(data);
-                 $rootScope.user = data;
-         })
     });
+
+
+    $http.get("/getCurrentUser").then(function (data) {
+        console.log(data);
+        $rootScope.user = data;
+    })
 });
 
 controllers.controller("commonOrderList", function ($scope, EventService, $routeParams, $rootScope, OrderListService, RestaurantService, $http) {

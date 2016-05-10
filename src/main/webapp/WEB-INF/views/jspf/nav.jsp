@@ -13,15 +13,17 @@
         </div>
         <div ng-controller="eventController" ng-if="currentRestaurant" >
             <a  class=" navbar-brand" href="{{'#/'+ eventId}}/{{restaurant.id}}">
-            /   &nbsp &nbsp{{restaurant.name}} {{user}}
+            /   &nbsp &nbsp{{restaurant.name}}
             </a>
         </div>
         <div class="navbar-header pull-right" style=" right: 10px;">
             <label class="navbar-brand">
                 Welcome!
             </label>
-            <label class="navbar-brand">
-            <a href="/logout">logout</a>
+            <label class="navbar-brand" style="font-size: 14px;">
+                {{user.data.name}}({{user.data.email}})
+
+            <a href="/logout"> logout</a>
             </label>
 
         </div>
