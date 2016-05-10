@@ -19,8 +19,8 @@ public class StatusDAOImpl implements StatusDAO {
     @Override
     public Status getStatusById(int id) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from status where id =: id");
-        return (Status) query.setInteger("id", id);
+        Query query = session.createQuery("from status where id = :id");
+        return (Status) query.setInteger("id", id).uniqueResult();
     }
 }
 
