@@ -5,20 +5,17 @@ import java.util.List;
 
 @Entity(name = "order_info")
 public class Order extends com.model.base.Entity {
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
-
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "event_id", nullable = false)
     private Event event;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "payer_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User payer;
-
-    @OneToOne
-    @JoinColumn(name = "status_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "status_id")
     private Status status;
 
     @OneToMany(fetch = FetchType.EAGER)
