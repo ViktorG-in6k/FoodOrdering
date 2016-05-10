@@ -99,10 +99,10 @@
         <div ng-controller="orderList">
             <div>
                 <ul class="nav nav-tabs nav-justified" style="margin-top: 10px">
-                    <li role="presentation" ng-class="myItems" ng-click="myItems = 'active'; allItems = ''; updateOrderList()"><a>My
+                    <li style="cursor: pointer; " role="presentation" ng-class="myItems" ng-click="myItems = 'active'; allItems = ''; updateOrderList()"><a>My
                         items</a></li>
 
-                    <li role="presentation" ng-class="allItems" ng-click="allItems = 'active'; myItems = ''; CommonOrder()"><a>All
+                    <li style="cursor: pointer; " role="presentation" ng-class="allItems" ng-click="allItems = 'active'; myItems = ''; CommonOrder()"><a>All
                         items</a></li>
                 </ul>
                 <table class="table">

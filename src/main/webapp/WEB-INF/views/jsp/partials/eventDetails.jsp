@@ -59,7 +59,8 @@
                     <input type="hidden" value="{{event.id}}" name="eventId">
                     <input type="hidden" value="{{restaurant.id}}" name="restaurantId">
 
-                    <button ng-if="restaurant.payer == null" type="submit" class="btn btn-success pull-right" style="margin-top: -5px;">To take responsibility
+                    <button ng-if="restaurant.payer == null" type="submit" class="btn btn-success pull-right" style="    margin-top: -25px;
+    margin-right: 14px;">Take responsibility
 
                     </button>
                     <p ng-if="restaurant.payer" class="pull-right" style="padding-right: 20px" >Responsible for order: {{restaurant.payer.email}} <p ></p></p>
