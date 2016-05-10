@@ -113,9 +113,7 @@ controllers.controller("navbarCtrl", function ($http, $scope, $rootScope) {
         $scope.events = data;
     });
 
-
     $http.get("/getCurrentUser").then(function (data) {
-        console.log(data);
         $rootScope.user = data;
     })
 });
