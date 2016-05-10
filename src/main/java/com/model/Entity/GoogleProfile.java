@@ -1,42 +1,27 @@
 package com.model.Entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.model.base.OauthProfile;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 
-@Entity
-public class GoogleProfile {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
-    private int rowId;
-    @Column
+public class GoogleProfile implements OauthProfile {
     protected String id;
-    @Column
     protected String email;
-    @Column
     @JsonProperty("verified_email")
     protected Boolean verifiedEmail;
-    @Column
     protected String name;
-    @Column
     @JsonProperty("given_name")
     protected String givenName;
-    @Column
     @JsonProperty("family_name")
     protected String familyName;
-    @Column
     protected String link;
-    @Column
     protected String picture;
-    @Column
     protected String gender;
-    @Column
     protected String locale;
-    @Column
     protected String hd;
 
     GoogleProfile() {
@@ -56,51 +41,91 @@ public class GoogleProfile {
         this.hd = googleProfile.hd;
     }
 
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
-
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getEmail() {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Boolean getVerifiedEmail() {
         return verifiedEmail;
+    }
+
+    public void setVerifiedEmail(Boolean verifiedEmail) {
+        this.verifiedEmail = verifiedEmail;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getGivenName() {
         return givenName;
+    }
+
+    public void setGivenName(String givenName) {
+        this.givenName = givenName;
     }
 
     public String getFamilyName() {
         return familyName;
     }
 
+    public void setFamilyName(String familyName) {
+        this.familyName = familyName;
+    }
+
     public String getLink() {
         return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public String getPicture() {
         return picture;
     }
 
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
     public String getGender() {
         return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getLocale() {
         return locale;
     }
 
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
+
     public String getHd() {
         return hd;
+    }
+
+    public void setHd(String hd) {
+        this.hd = hd;
     }
 }
