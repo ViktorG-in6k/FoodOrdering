@@ -25,6 +25,9 @@ public class ItemController {
     RestaurantDTO newItem(Authentication authentication,
                           @RequestBody ItemRequest item,
                           @RequestParam("event_id") int eventId) {
+        System.out.println(item.getName());
+        System.out.println(item.getPrice());
+
         itemService.saveByRequest(item);
         return itemService.getItemsByRestaurant(eventId,item.getRestaurantId(), authentication);
     }
