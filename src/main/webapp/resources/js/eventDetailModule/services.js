@@ -125,6 +125,8 @@ services.factory("ItemService", function ($http, $rootScope) {
     return itemService;
 });
 
+
+
 services.factory("RestaurantService", function ($http, $rootScope) {
     var restaurantService = {};
     restaurantService.getRestaurantById = function (id) {
@@ -143,3 +145,7 @@ services.factory("EventService", function ($http) {
 
     return eventService;
 });
+
+services.factory("myService",function ($http, $rootScope) {
+    
+})
