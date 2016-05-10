@@ -62,11 +62,10 @@ controllers.controller("restaurantController", function ($http, $scope, $routePa
 });
 
 controllers.controller("createItem", function ($scope, ItemService, $filter, $http, $rootScope) {
-    $scope.createItem = function (name, price) {
-        console.log($rootScope.currentRestaurant);
-        var dataForRequest = {"name": name, "price": price, "restaurantId": $rootScope.currentRestaurant};
+    $scope.createItem = function (name, price, restaurantId) {
+        console.log(restaurantId);
 
-        ItemService.addNewItem(dataForRequest).success(function (data) {
+        ItemService.addNewItem(name, price, $rootScope.currentRestaurant, $rootScope.eventId).success(function (data) {
             $rootScope.restaurant = data;
             $scope.name = '';
             $scope.price = '';

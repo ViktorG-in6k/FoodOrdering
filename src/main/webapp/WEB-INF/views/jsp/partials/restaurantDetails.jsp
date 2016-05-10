@@ -13,6 +13,7 @@
                 <br>
                 <div class="col-md-4 pull-right" style="font-size: 13px;padding-top: 8px">
                     Participants Amount: {{restaurant.orderPlacementStatus.participantsAmount}}
+                    {{currentRestaurant}}
                 </div>
                 <br>
                 <div class="col-md-4 pull-right" style="font-size: 13px;padding-top: 8px">

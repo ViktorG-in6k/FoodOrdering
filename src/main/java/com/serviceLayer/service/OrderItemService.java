@@ -4,7 +4,6 @@ import com.DTOLayer.DTOEntity.orderItemDTO.OrderItemDTO;
 import com.model.Entity.OrderItem;
 import org.springframework.security.core.Authentication;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public interface OrderItemService {
@@ -12,7 +11,7 @@ public interface OrderItemService {
 
     void saveOrderItem(int itemId, int userId, int orderId);
 
-    void addOneItemToOrder(HttpSession session, int itemId, int orderId);
+    void addOneItemToOrder(Authentication authentication, int itemId, int orderId);
 
     List<OrderItemDTO> getOrderListByOrderIdAndUserId(int orderId, int userId);
 

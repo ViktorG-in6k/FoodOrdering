@@ -7,6 +7,12 @@ public class ItemRequest {
     private BigDecimal price;
     private int restaurantId;
 
+    public ItemRequest(String name, BigDecimal price, int restaurantId) {
+        this.name = name;
+        this.price = price;
+        this.restaurantId = restaurantId;
+    }
+
     public String getName() {
         return name;
     }

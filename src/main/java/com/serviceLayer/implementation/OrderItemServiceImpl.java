@@ -3,13 +3,15 @@ package com.serviceLayer.implementation;
 import com.DTOLayer.DTOEntity.orderItemDTO.OrderItemDTO;
 import com.dataLayer.DAO.OrderItemDAO;
 import com.googleAuthentication.CurrentUserDetails;
-import com.model.Entity.*;
+import com.model.Entity.Item;
+import com.model.Entity.Order;
+import com.model.Entity.OrderItem;
+import com.model.Entity.User;
 import com.serviceLayer.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,8 +44,8 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
-    public void addOneItemToOrder(HttpSession session, int itemId, int orderId) {
-        int userId = (int) session.getAttribute("userId");
+    public void addOneItemToOrder(Authentication authentication, int itemId, int orderId) {
+        int userId = ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId();
         OrderItem orderInOrderList = orderItemDAO.getOrderItem(userId, itemId, orderId);
         if (orderInOrderList != null) {
             System.out.println(orderInOrderList.getItemAmount() + 1);

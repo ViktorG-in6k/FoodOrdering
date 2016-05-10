@@ -12,7 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 
 @Controller
 public class ItemController {
@@ -23,13 +23,13 @@ public class ItemController {
     public
     @ResponseBody
     RestaurantDTO newItem(Authentication authentication,
-                          @RequestBody ItemRequest item,
+                          @RequestParam("name") String name,
+                          @RequestParam("price") BigDecimal price,
+                          @RequestParam("restaurant_id") int restaurantId,
                           @RequestParam("event_id") int eventId) {
-        System.out.println(item.getName());
-        System.out.println(item.getPrice());
-
+        ItemRequest item = new ItemRequest(name, price, restaurantId);
         itemService.saveByRequest(item);
-        return itemService.getItemsByRestaurant(eventId,item.getRestaurantId(), authentication);
+        return itemService.getItemsByRestaurant(eventId,restaurantId, authentication);
     }
 
     @RequestMapping(value = "/update_name_of_item", method = RequestMethod.POST)

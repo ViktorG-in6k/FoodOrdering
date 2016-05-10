@@ -20,10 +20,10 @@ public class OrderItemController {
     OrderItemService orderItemService;
 
     @RequestMapping(value = "/add_one_item_to_order", method = RequestMethod.POST)
-    public String addOneItemToOrder(HttpServletRequest req, HttpSession session,
+    public String addOneItemToOrder(HttpServletRequest req, Authentication authentication,
                                     @RequestParam("order_id") int orderId,
                                     @RequestParam("item_id") int itemId) {
-        orderItemService.addOneItemToOrder(session, itemId, orderId);
+        orderItemService.addOneItemToOrder(authentication, itemId, orderId);
         String ref = req.getHeader("Referer");
         return "redirect:" + ref;
     }
