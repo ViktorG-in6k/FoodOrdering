@@ -9,7 +9,7 @@
                 <th>Price</th>
                 <th></th>
             </tr>
-            <tr ng-repeat="item in myOrders.myOrderList | orderBy:'restaurant.name'">
+            <tr ng-repeat="item in myOrders.orderList | orderBy:'restaurant.name'">
                 <td>{{item.restaurant.name}}</td>
                 <td>{{item.item.name}}</td>
                 <td>

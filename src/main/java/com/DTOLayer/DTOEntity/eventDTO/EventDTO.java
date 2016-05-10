@@ -1,5 +1,6 @@
-package com.DTOLayer.DTOEntity;
+package com.DTOLayer.DTOEntity.eventDTO;
 
+import com.DTOLayer.DTOEntity.userDTO.UserDTO;
 import com.model.Entity.Event;
 import com.model.Entity.User;
 

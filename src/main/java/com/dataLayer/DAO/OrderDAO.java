@@ -1,27 +1,32 @@
 package com.dataLayer.DAO;
 
 import com.model.Entity.Order;
+import com.model.Entity.Status;
 
 import java.util.List;
 
 public interface OrderDAO {
-    public void save(Order order);
+    void saveOrder(Order order);
 
-    public List<Order> orderListOfUserByEvent(int userId, int eventId);
+    Order getOrderByEventIdAndRestaurantIdAndPayerId(int eventId, int restaurantId, int payerId);
 
-    public List<Order> orderListOfEvent(int eventId);
+    Order getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId);
 
-    public void deleteItemFromOrder(int userId, int eventId, int itemId);
+    Order getOrderByOrderId(int orderId);
 
-    List<Order> selectOrderList(int userId, int eventId, int itemId);
+    List<Order> getOrdersByEventId(int eventId);
 
-    List<Order> selectOrderList(int userId, int eventId);
+    Order getOrderByEventId(int eventId);
 
-    void deleteOneItemFromOrder(int userId, int eventId, int itemId);
+    List<Order> getOrdersByRestaurantId(int restaurantId);
 
-    void deleteOneItemFromOrder(Order order);
+    void setPayer(int orderId, int payerId);
 
-    public void updateOrderedOfOrder(boolean ordered, int eventId, int itemId);
+    void setPayer(int eventId, int restaurantId, int payerId);
 
+    void setStatus(int orderId, int statusId);
+
+    Status getStatus(int statusId);
 }
+
 

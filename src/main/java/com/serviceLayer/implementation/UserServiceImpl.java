@@ -13,16 +13,15 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserDAO userDAO;
 
-    public void saveUser(User person) {
-        if (getUserByEmail(person.getEmail()) == null) {
-            userDAO.save(person);
+    public void saveUser(User user) {
+        if (getUserByEmail(user.getEmail()) == null) {
+            userDAO.save(user);
         }
     }
 
     public void saveUser(String email) {
-        User user = new User(email, "user", true);
-        if (getUserByEmail(user.getEmail()) == null) {
-            userDAO.save(user);
+        if (getUserByEmail(email) == null) {
+            userDAO.save(new User(email));
         }
     }
 
@@ -33,7 +32,6 @@ public class UserServiceImpl implements UserService {
     public User getUserByEmail(String email) {
         return userDAO.getUserByEmail(email);
     }
-
 
     public List<User> getListOfAllUsers() {
         return userDAO.getListOfAllUsers();

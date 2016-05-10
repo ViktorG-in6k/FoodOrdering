@@ -8,7 +8,7 @@ services.factory('EventService', function ($http, $filter) {
         var sentDate = $filter("date")(date, "yyyy-MM-dd HH:mm");
         return  $http({
             url: '/newEvent',
-            method: "GET",
+            method: "POST",
             params: {"name": name,"date":sentDate}
         })
     };
@@ -21,7 +21,6 @@ app.factory("DateTimePicker",function () {
         return {
             format: "dd-MM-yyyy HH:mm",
             timeFormat: "HH:mm",
-            value: new Date(),
             animation: {
                 close: {
                     effects: "fadeOut zoom:out",

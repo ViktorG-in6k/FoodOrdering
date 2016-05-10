@@ -14,7 +14,6 @@ app.controller("createEventController", function ($scope, $rootScope,EventServic
             $scope.name = '';
         });
     };
-    $scope.date = new Date();
     $scope.dateTimePickerConfig = DateTimePicker.getConfig();
 });
 
