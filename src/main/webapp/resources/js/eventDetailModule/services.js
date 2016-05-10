@@ -41,11 +41,17 @@ services.factory("OrderListService", function ($http, $rootScope) {
     orderListService.CommonOrder = function () {
         $http.get("/CommonOrderJson_" + $rootScope.eventId + "/" + $rootScope.currentRestaurant).success(function (data) {
             $rootScope.commonOrders = data;
-        })
+        })       
     };
 
-    orderListService.updateOrderList = function () {
-        $http.get("/MyOrderJson_" + $rootScope.eventId + "/" + $rootScope.currentRestaurant).success(function (data) {
+    orderListService.updateOrderList = function (orderId) {
+        $http({
+            method: 'POST',
+            url: '/order_list_of_user',
+            params: {
+                order_id: orderId
+            }
+        }).success(function (data) {
             $rootScope.myOrders = data;
             $rootScope.commonOrders = data;
         })
@@ -74,18 +80,17 @@ services.factory("OrderListService", function ($http, $rootScope) {
         });
     };
 
-    orderListService.addOneItemToOrder = function (itemId, orderId) {        
+    orderListService.addOneItemToOrder = function (itemId, orderId) {
+        console.log(itemId);
         $http({
             method: 'POST',
             url: '/add_one_item_to_order',
             params: {
                 order_id: orderId,
-                item_id: itemId,
-                restaurant_id: $rootScope.currentRestaurant,
-                event_id: $rootScope.eventId
+                item_id: itemId
             }
         }).finally(function () {
-            orderListService.updateOrderList();
+            orderListService.updateOrderList(orderId);
         });
     };
 
@@ -124,8 +129,6 @@ services.factory("ItemService", function ($http, $rootScope) {
     };
     return itemService;
 });
-
-
 
 services.factory("RestaurantService", function ($http, $rootScope) {
     var restaurantService = {};

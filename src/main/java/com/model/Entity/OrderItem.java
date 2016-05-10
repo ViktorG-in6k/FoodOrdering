@@ -22,9 +22,10 @@ public class OrderItem extends com.model.base.Entity {
     public OrderItem() {
     }
 
-    public OrderItem(User user, Item item) {
+    public OrderItem(User user, Item item, Order order) {
         this.user = user;
         this.item = item;
+        this.order = order;
         this.itemAmount = 1;
     }
 
