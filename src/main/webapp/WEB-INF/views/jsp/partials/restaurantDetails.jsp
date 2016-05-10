@@ -49,7 +49,7 @@
                         <div>{{item.name}}</div>
                     </td>
                     <td>
-                        <div>{{item.price | currency:"&#8372"}}</div>
+                        <div>{{item.price | currency:" "}} &#8372</div>
                     </td>
                     <td style="width: 25%">
                         <div ng-controller="orderList">
@@ -124,16 +124,16 @@
                                     <i style="color:green" class="fa fa-plus" aria-hidden="true"></i></a>
                             </div>
                         </td>
-                        <td>{{item.count * item.item.price|currency:"&#8372"}}</td>
+                        <td>{{item.count * item.item.price|currency:" "}}&#8372</td>
                         <td><a href="" ng-click="removeFromOrder(eventId,item.item.id)"><i style="color:red"
                                                                                            class="fa fa-times"
                                                                                            aria-hidden="true"></i></a>
                         </td>
                     </tr>
                     <tr>
-                        <td>Total</td>
+                        <td><b>Total</b></td>
                         <td></td>
-                        <td>{{getTotal() |currency:"&#8372"}}</td>
+                        <td>{{getTotal() |currency:" "}}&#8372</td>
                     </tr>
                 </table>
             </div>

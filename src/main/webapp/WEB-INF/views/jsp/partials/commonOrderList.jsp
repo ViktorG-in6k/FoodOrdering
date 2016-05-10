@@ -41,17 +41,17 @@
                             <span style="">{{item.count}}</span>
                         </div>
                     </td>
-                    <td>{{item.item.price|currency:"&#8372"}}</td>
+                    <td>{{item.item.price|currency:" "}}&#8372</td>
 
                     <td>
-                    {{item.count * item.item.price|currency:"&#8372"}}
+                    {{item.count * item.item.price|currency:" "}}&#8372
                     </td>
                 </tr>
                 <tr>
                     <td>Total</td>
                     <td></td>
                     <td></td>
-                    <td><div class="">{{getTotal() |currency:"&#8372"}} </div> </td>
+                    <td><div class="">{{getTotal() |currency:" "}}&#8372 </div> </td>
                 </tr>
             </table>
         </div>

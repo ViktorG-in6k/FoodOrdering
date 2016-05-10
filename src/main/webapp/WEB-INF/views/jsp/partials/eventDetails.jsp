@@ -12,7 +12,7 @@
             </div>
             <br/>
             <div class="row"></div>
-            <div class="col-md-6" style="font-size: 15px;">Created by {{event.user.email}}</div>
+            <div class="col-md-6" style="font-size: 15px;">Created by {{event.user.name}}</div>
         </div>
     </div>
 </div>
