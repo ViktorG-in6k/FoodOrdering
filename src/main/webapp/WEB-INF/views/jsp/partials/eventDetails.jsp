@@ -41,7 +41,7 @@
                     </h3>
                 </div>
                 <div class="col-md-4 pull-right" style="font-size: 13px; padding-top: 14px;padding-left: 140px;">
-                    Participants amount: {{restaurant.orderPlacementStatus.participantsAmount}}
+              <%--      Participants amount: {{restaurant.orderPlacementStatus.participantsAmount}}--%>
                 </div>
                 <br>
                 <%--<div class="col-md-4 pull-right" style="font-size: 13px;padding-top: 8px">
@@ -50,7 +50,7 @@
                 <div class="col-md-offset-4 col-md-4">
                     <h2 style="font-size: 15px;" class="col-md-offset-4"></h2>
                 </div>
-                <br/>
+
                 <div class="row"></div>
                 <div ng-if="restaurant.link" class="col-md-8">
 
