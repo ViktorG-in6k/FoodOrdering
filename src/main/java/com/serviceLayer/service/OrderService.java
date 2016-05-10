@@ -19,5 +19,7 @@ public interface OrderService {
 
     OrderPlacementStatus getOrderPlacementStatus(Order order,int restaurantId,int eventId, HttpSession session);
 
+    Order getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId);
+
     boolean isMineOrder(Order order, HttpSession session);
 }

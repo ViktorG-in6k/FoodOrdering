@@ -66,11 +66,14 @@ public class OrderServiceImpl implements OrderService {
             Event event = eventService.getEventById(eventId);
             Status status = statusService.getStatusById(0);
             Order order1 = new Order(restaurant,event,status);
-            System.out.println(restaurant.getName());
-            System.out.println(status.getName());
             orderDAO.saveOrder(order1);
             return new OrderPlacementStatus(order1,0,false);
         }
+    }
+
+    @Override
+    public Order getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId){
+        return orderDAO.getOrdersByEventIdAndRestaurantId(eventId, restaurantId);
     }
 
     @Override

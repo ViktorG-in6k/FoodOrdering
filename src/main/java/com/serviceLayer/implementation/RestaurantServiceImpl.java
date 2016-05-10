@@ -43,15 +43,13 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public List<RestaurantDTO> getResponseListOfAllRestaurantsByEventId(int eventId, HttpSession session){
+    public List<RestaurantDTO> getResponseListOfAllRestaurantsByEventId(int eventId, HttpSession session) {
         List<RestaurantDTO> restaurants = new ArrayList<RestaurantDTO>();
-        Event event = eventService.getEventById(eventId);
-        Order order = orderService.getOrderByEvent(event);
-
-        getListOfAllRestaurant().forEach(restaurant -> restaurants.add(
-                new RestaurantDTO(restaurant,
-                orderService.getOrderPlacementStatus(order,restaurant.getId(),eventId,session))
-        ));
+        Order order;
+        for (Restaurant restaurant : getListOfAllRestaurant()) {
+            order = orderService.getOrdersByEventIdAndRestaurantId(eventId, restaurant.getId());
+            restaurants.add(new RestaurantDTO(restaurant, orderService.getOrderPlacementStatus(order, restaurant.getId(), eventId, session)));
+        }
         return restaurants;
     }
 
@@ -70,8 +68,8 @@ public class RestaurantServiceImpl implements RestaurantService {
         Event event = eventService.getEventById(eventId);
         Order order = orderService.getOrderByEvent(event);
         Restaurant restaurant = restaurantDAO.getRestaurantById(restaurantId);
-        OrderPlacementStatus orderPlacementStatus = orderService.getOrderPlacementStatus(order,restaurantId,eventId,session);
-        return new RestaurantDTO(restaurant,orderPlacementStatus);
+        OrderPlacementStatus orderPlacementStatus = orderService.getOrderPlacementStatus(order, restaurantId, eventId, session);
+        return new RestaurantDTO(restaurant, orderPlacementStatus);
     }
 
     @Override
