@@ -19,7 +19,10 @@ public class OrderDTO {
         this.restaurant = new RestaurantDTO(order.getRestaurant());
         this.event = new EventDTO(order.getEvent());
         this.status = order.getStatus().toString();
-        this.payer = new UserDTO(order.getPayer());
+        if(order.getPayer()!=null) {
+            this.payer = new UserDTO(order.getPayer());
+        }
+
     }
 
     public int getId() {
