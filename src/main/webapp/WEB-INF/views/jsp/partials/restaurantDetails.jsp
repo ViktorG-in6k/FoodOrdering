@@ -12,7 +12,6 @@
                     {{restaurant.name}}
                 <br>
 
-                <br>
                 <a ng-if="restaurant.link" href="{{restaurant.link}}" target="_blank" style="font-size: 13px"><i
                         class="fa fa-link" aria-hidden="true"></i> {{ restaurant.link}}</a>
                 <p style="font-size: 13px"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}</p>
