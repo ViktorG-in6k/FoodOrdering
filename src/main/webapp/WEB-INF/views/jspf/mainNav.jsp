@@ -4,9 +4,6 @@
             <div class="navbar-brand">Food Ordering</div>
         </div>
         <div class="navbar-header pull-right" style=" right: 10px;">
-            <label class="navbar-brand">
-                Welcome!
-            </label>
         </div>
     </div>
 </nav>

@@ -17,10 +17,5 @@ public class MainController {
         return "main";
     }
 
-    @RequestMapping(value = "/sing_out")
-    public String singOut(HttpSession session) {
-        session.setAttribute("userMail", null);
-        return "main";
-    }
 }
 

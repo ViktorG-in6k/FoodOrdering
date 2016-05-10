@@ -20,6 +20,10 @@
             <label class="navbar-brand">
                 Welcome!
             </label>
+            <label class="navbar-brand">
+            <a href="/logout">logout</a>
+            </label>
+
         </div>
     </div>
 </nav>

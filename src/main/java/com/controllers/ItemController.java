@@ -8,6 +8,7 @@ import com.serviceLayer.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,11 +22,11 @@ public class ItemController {
     @RequestMapping(value = "/new_item", method = RequestMethod.POST)
     public
     @ResponseBody
-    RestaurantDTO newItem(HttpSession session,
+    RestaurantDTO newItem(Authentication authentication,
                           @RequestBody ItemRequest item,
                           @RequestParam("event_id") int eventId) {
         itemService.saveByRequest(item);
-        return itemService.getItemsByRestaurant(eventId,item.getRestaurantId(),session);
+        return itemService.getItemsByRestaurant(eventId,item.getRestaurantId(), authentication);
     }
 
     @RequestMapping(value = "/update_name_of_item", method = RequestMethod.POST)

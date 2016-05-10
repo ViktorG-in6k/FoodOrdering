@@ -6,6 +6,7 @@ import com.serviceLayer.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,26 +47,26 @@ public class RestaurantsController {
     @RequestMapping("/event_{event}/restaurants")
     public
     @ResponseBody
-    List<RestaurantDTO> getRestaurants(HttpSession session,
+    List<RestaurantDTO> getRestaurants(Authentication authentication,
                                        @PathVariable("event") int eventId) {
-        return restaurantService.getResponseListOfAllRestaurantsByEventId(eventId,session);
+        return restaurantService.getResponseListOfAllRestaurantsByEventId(eventId, authentication);
     }
 
     @RequestMapping("/event_{event}/restaurant_{id}")
     public
     @ResponseBody
-    RestaurantDTO getRestaurantById(HttpSession session,
+    RestaurantDTO getRestaurantById(Authentication authentication,
                                     @PathVariable("event") int eventId,
                                     @PathVariable("id") int id) {
-        return restaurantService.getRestaurantDTOById(eventId, id, session);
+        return restaurantService.getRestaurantDTOById(eventId, id, authentication);
     }
 
     @RequestMapping(value = "/event_{event}/update_restaurant_name", method = RequestMethod.POST)
-    public ResponseEntity<RestaurantDTO> updateRestaurantName(HttpSession session,
+    public ResponseEntity<RestaurantDTO> updateRestaurantName(Authentication authentication,
                                                               @PathVariable("event") int eventId,
                                                               @RequestBody RequestRestaurantDTO restaurant) {
         restaurantService.updateRestaurantName(restaurant);
-        RestaurantDTO restaurantDTO = getRestaurantById(session,eventId,restaurant.getId());
+        RestaurantDTO restaurantDTO = getRestaurantById(authentication, eventId,restaurant.getId());
         return new ResponseEntity<>(restaurantDTO, HttpStatus.OK);
     }
 }

@@ -1,20 +1,21 @@
 package com.controllers;
 
-import com.DTOLayer.DTOEntity.orderItemDTO.OrderItemRequest;
 import com.serviceLayer.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class OrderController {
     @Autowired
     OrderService orderService;
+
+    @RequestMapping(value = "setResponsibleUser")
+    public String setOrderResponsibleUser(@RequestParam("orderId") int orderId){
+
+    return null;
+    }
 
 }
 
