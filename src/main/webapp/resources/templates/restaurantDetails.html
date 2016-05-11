@@ -99,19 +99,19 @@
                         <th>Price</th>
                         <th></th>
                     </tr>
-                    <tr ng-repeat="item in commonOrders.orderList | orderBy:'restaurant.name'">
+                    <tr ng-repeat="item in myOrders| orderBy:'restaurant.name'">
                         <td>{{item.item.name}}</td>
                         <td>
                             <div>
                                 <a style="margin-right: 5px;" href=""><i style="color:green"
                                                                          ng-click="removeOneItemFromOrder(eventId,item.item.id)"
                                                                          class="fa fa-minus" aria-hidden="true"></i></a>
-                                <span style="">{{item.count}}</span>
+                                <span style="">{{item.itemAmount}}</span>
                                 <a href="" ng-click="addOneItemToOrder(item.item.id,eventId)" style="margin-left: 5px;">
                                     <i style="color:green" class="fa fa-plus" aria-hidden="true"></i></a>
                             </div>
                         </td>
-                        <td>{{item.count * item.item.price|currency:" "}}&#8372</td>
+                        <td>{{item.itemAmount * item.item.price|currency:" "}}&#8372</td>
                         <td><a href="" ng-click="removeFromOrder(eventId,item.item.id)"><i style="color:red"
                                                                                            class="fa fa-times"
                                                                                            aria-hidden="true"></i></a>

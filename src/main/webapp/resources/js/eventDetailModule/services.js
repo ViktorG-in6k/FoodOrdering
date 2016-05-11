@@ -48,8 +48,8 @@ services.factory("OrderListService", function ($http, $rootScope) {
     orderListService.getTotal = function () {
         var total = 0;
         if ($rootScope.myOrders) {
-            for (var i = 0; i < $rootScope.myOrders.orderList.length; i++) {
-                total += $rootScope.myOrders.orderList[i].count * $rootScope.myOrders.orderList[i].item.price;
+            for (var i = 0; i < $rootScope.myOrders.length; i++) {
+                total += $rootScope.myOrders[i].itemAmount * $rootScope.myOrders[i].item.price;
             }
         } else return 0;
         return total;
