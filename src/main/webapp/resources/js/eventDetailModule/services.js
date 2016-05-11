@@ -153,6 +153,4 @@ services.factory("EventService", function ($http) {
     return eventService;
 });
 
-services.factory("myService",function ($http, $rootScope) {
-    
-})
+

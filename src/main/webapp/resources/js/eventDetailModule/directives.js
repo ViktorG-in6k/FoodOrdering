@@ -15,10 +15,3 @@ direcitves.directive('slideToggle', function() {
     };
 });
 
-direcitves.directive('myD',function () {
-    return {
-        link: function($scope){
-
-        }
-    }
-})
