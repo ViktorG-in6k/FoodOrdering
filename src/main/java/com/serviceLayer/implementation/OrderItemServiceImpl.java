@@ -48,10 +48,21 @@ public class OrderItemServiceImpl implements OrderItemService {
         int userId = ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId();
         OrderItem orderInOrderList = orderItemDAO.getOrderItem(userId, itemId, orderId);
         if (orderInOrderList != null) {
-            System.out.println(orderInOrderList.getItemAmount() + 1);
             orderItemDAO.updateAmount(orderInOrderList, orderInOrderList.getItemAmount() + 1);
         } else {
             saveOrderItem(itemId, userId, orderId);
+        }
+    }
+
+    @Override
+    public void remoteOneItemFromOrder(Authentication authentication, int itemId, int orderId) {
+        int userId = ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId();
+        OrderItem orderInOrderList = orderItemDAO.getOrderItem(userId, itemId, orderId);
+        if(orderInOrderList.getItemAmount() - 1 != 0) {
+            orderItemDAO.updateAmount(orderInOrderList, orderInOrderList.getItemAmount() - 1);
+        }
+        else {
+            orderItemDAO.deleteOrderItem(orderInOrderList);
         }
     }
 
@@ -73,7 +84,7 @@ public class OrderItemServiceImpl implements OrderItemService {
 
     @Override
     public void updateItemAmountInOrder(Authentication authentication, int orderId, int itemId, int number) {
-        int userId =  ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId();
+        int userId = ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId();
         OrderItem orderInOrderList = orderItemDAO.getOrderItem(userId, itemId, orderId);
         Order order = orderService.getOrderById(orderId);
         if (order != null) {

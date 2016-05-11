@@ -25,6 +25,15 @@ public class OrderItemController {
         return "redirect:" + ref;
     }
 
+    @RequestMapping(value = "/orders/{orderId}/items/{itemId}", method = RequestMethod.DELETE)
+    public String deleteOneItemToOrder(HttpServletRequest req, Authentication authentication,
+                                    @PathVariable("orderId") int orderId,
+                                    @PathVariable("itemId") int itemId) {
+        orderItemService.remoteOneItemFromOrder(authentication, itemId, orderId);
+        String ref = req.getHeader("Referer");
+        return "redirect:" + ref;
+    }
+
     @RequestMapping(value = "/update_number_item_to_order", method = RequestMethod.POST)
     public String updateNumberItemToOrder(HttpServletRequest req, Authentication authentication,
                                           @RequestParam("number") int number,

@@ -25,21 +25,10 @@ services.factory("OrderListService", function ($http, $rootScope) {
         });
     };
 
-    orderListService.removeOneItemFromOrder = function (eventId, itemId) {
-        $http.delete()
-        $http.put("/orders/"+orderId+"/items/"+itemId).finally(function () {
+    orderListService.removeOneItemFromOrder = function (itemId, orderId) {
+        $http.delete("/orders/"+orderId+"/items/"+itemId).finally(function () {
             orderListService.updateOrderList(orderId);
-        });
-        $http({
-            method: 'PUT',
-            url: '/remote_one_item_from_order',
-            params: {
-                event_id: eventId,
-                item_id: itemId
-            }
-        }).then(function () {
-            orderListService.updateOrderList();
-        });
+        });        
     };
 
     orderListService.CommonOrder = function () {

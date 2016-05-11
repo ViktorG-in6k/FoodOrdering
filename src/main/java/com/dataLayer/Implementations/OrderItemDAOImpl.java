@@ -65,5 +65,11 @@ public class OrderItemDAOImpl implements OrderItemDAO {
                 .setInteger("userId", orderItem.getUser().getId());
         query.executeUpdate();
     }
+
+    @Override
+    public void deleteOrderItem(OrderItem orderItem) {
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(orderItem);
+    }
 }
 
