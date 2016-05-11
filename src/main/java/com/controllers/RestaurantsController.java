@@ -51,13 +51,13 @@ public class RestaurantsController {
         return restaurantService.getResponseListOfAllRestaurantsByEventId(eventId, authentication);
     }
 
-    @RequestMapping("/event_{event}/restaurant_{id}")
+    @RequestMapping("/events/{eventId}/restaurants/{restaurantId}")
     public
     @ResponseBody
     RestaurantDTO getRestaurantById(Authentication authentication,
-                                    @PathVariable("event") int eventId,
-                                    @PathVariable("id") int id) {
-        return restaurantService.getRestaurantDTOById(eventId, id, authentication);
+                                    @PathVariable("eventId") int eventId,
+                                    @PathVariable("restaurantId") int restaurantId) {
+        return restaurantService.getRestaurantDTOById(eventId, restaurantId, authentication);
     }
 
     @RequestMapping(value = "/event_{event}/update_restaurant_name", method = RequestMethod.POST)
