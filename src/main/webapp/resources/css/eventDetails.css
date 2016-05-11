@@ -5,3 +5,59 @@
 .hoverWell:hover .plus {
     color: #337ab7;
 }
+.event-details{
+    margin-top: 30px;
+}
+
+.event-text-size{
+    font-size: 13px;
+}
+
+.restaurant-block{
+    height: 120px;
+    background-color: white;
+    border: 1px solid #BBB4B4;
+    background-color: #F5F5F5
+}
+
+.create-restaurant-form{
+    margin-top: 15px;
+}
+
+.create-restaurant-block{
+    margin-left: -100px;
+}
+
+.take-responsible-btn{
+    margin-top: -25px;
+    margin-right: 14px;
+}
+
+.restaurant-info-size{
+    padding-top: 8px
+}
+
+.event-date-font-size{
+    font-size: 19px
+}
+
+.event-date-font-size > .col-md-offset-4 {
+    padding-right: 5px;
+}
+
+.event-detail-bloc{
+    height: 120px;
+    width: 100%;
+}
+
+.responsible-title{
+    padding-right: 20px;
+}
+
+.create-event-user-text{
+    font-size: 15px;
+}
+
+.participant-title{
+    padding-top: 14px;
+}

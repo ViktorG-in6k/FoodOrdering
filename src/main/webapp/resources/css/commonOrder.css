@@ -12,3 +12,15 @@
 .event-well{
     height: 120px; width: 100%
 }
+
+.restaurant-phone{
+    display: inline;padding-left: 100px
+}
+
+.restaurant-phone-block{
+    margin-bottom: 5px
+}
+
+.common-order-block{
+    margin-top: 30px;
+}

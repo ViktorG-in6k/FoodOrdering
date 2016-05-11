@@ -1,18 +1,17 @@
-<div style=" margin-top: 30px;">
+<div class="restaurant-details">
     <div>
-        <div class="well pull-left" style="height: 120px; width: 100%">
-            <div class="col-md-6 mdTextSize" >
-                    {{restaurant.name}}
-
+        <div class="well pull-left event-detail-block">
+            <div class="col-md-6 md-text">
+                {{restaurant.name}}
                 <br>
-
-                <br>
-                <a ng-if="restaurant.link" href="{{restaurant.link}}" target="_blank" style="font-size: 13px"><i
+                <a ng-if="restaurant.link" href="{{restaurant.link}}" target="_blank" class="xs-text"><i
                         class="fa fa-link" aria-hidden="true"></i> {{ restaurant.link}}</a>
-                <p style="font-size: 13px"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}</p>
+                <p class="xs-text"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}</p>
             </div>
-            <div ng-if="responsible.email" class="col-md-6"><div class="pull-right"> <p >{{responsible.email}}
-                <a href="{{'#/'+ eventId}}/{{restaurant.id}}/order" class="mdTextSize"><p > Make order</p></div>
+            <div ng-if="responsible.email" class="col-md-6">
+                <div class="pull-right"><p>{{responsible.email}}
+                    <a href="{{'#/'+ eventId}}/{{restaurant.id}}/order" class="md-text">
+                    <p> Make order</p></div>
                 </a>
             </div>
             <br/>
@@ -26,8 +25,8 @@
             <table class="table ">
                 <thead>
                 <tr>
-                    <th>name</th>
-                    <th>price</th>
+                    <th>Name</th>
+                    <th>Price</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -39,26 +38,28 @@
                     <td>
                         <div>{{item.price | currency:" "}} &#8372</div>
                     </td>
-                    <td style="width: 25%">
+                    <td class="order-list-block">
                         <div ng-controller="orderList">
-                            <div ng-repeat="itemInOrder in myOrders" style="display: inline;">
-                                <div ng-if="item.id == itemInOrder.item.id" style="display: inline;margin-left: -35px;">
+                            <div ng-repeat="itemInOrder in myOrders" class="inline">
+                                <div ng-if="item.id == itemInOrder.item.id" class="inline">
                                     <a href="">
-                                        <i style="color:green"
-                                           ng-click="removeOneItemFromOrder(item.id, restaurant.orderPlacementStatus.order.id)"
-                                           class="fa fa-minus" aria-hidden="true" >
+                                        <i
+                                                ng-click="removeOneItemFromOrder(item.id, restaurant.orderPlacementStatus.order.id)"
+                                                class="fa fa-minus item-plus-color" aria-hidden="true">
                                         </i>
                                     </a>
-                                    <span style="">
-                                        <input style="width: 40px;margin: 0 8px;height: 24px;" min="1" required type="number"
+                                    <span>
+                                        <input class="item-number" min="1" required type="number"
                                                ng-blur="updateNumberItemToOrder(item.id,restaurant.orderPlacementStatus.order.id,itemInOrder.itemAmount)"
-                                               ng-init="count=itemInOrder.itemAmount" ng-model="itemInOrder.itemAmount"/>
+                                               ng-init="count=itemInOrder.itemAmount"
+                                               ng-model="itemInOrder.itemAmount"/>
                                     </span>
                                 </div>
                             </div>
-                            <div style=" display: inline">
-                                <a href="" ng-click="addOneItemToOrder(item.id,restaurant.orderPlacementStatus.order.id)">
-                                    <i style="color:green" class="fa fa-plus" aria-hidden="true"></i></a>
+                            <div class="inline">
+                                <a href=""
+                                   ng-click="addOneItemToOrder(item.id,restaurant.orderPlacementStatus.order.id)">
+                                    <i class="fa fa-plus item-plus-color" aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </td>
@@ -68,7 +69,7 @@
         </div>
     </div>
     <div class="col-md-3">
-        <form style=" margin-top: 15px;" role="form" ng-controller="createItem" ng-submit="createItem(name,price)">
+        <form class="create-item-form" role="form" ng-controller="createItem" ng-submit="createItem(name,price)">
             <fieldset>
                 <div class="form-group">
                     <input type="text*" placeholder="Name*" class="form-control" ng-model="name" id="name" name="name"
@@ -85,11 +86,13 @@
         </form>
         <div ng-controller="orderList">
             <div>
-                <ul class="nav nav-tabs nav-justified" style="margin-top: 10px">
-                    <li style="cursor: pointer; " role="presentation" ng-class="myItems" ng-click="myItems = 'active'; allItems = ''; updateOrderList()"><a>My
+                <ul class="nav nav-tabs nav-justified">
+                    <li class="pointer" role="presentation" ng-class="myItems"
+                        ng-click="myItems = 'active'; allItems = ''; updateOrderList()"><a>My
                         items</a></li>
 
-                    <li style="cursor: pointer; " role="presentation" ng-class="allItems" ng-click="allItems = 'active'; myItems = ''; CommonOrder()"><a>All
+                    <li class="pointer" role="presentation" ng-class="allItems"
+                        ng-click="allItems = 'active'; myItems = ''; CommonOrder()"><a>All
                         items</a></li>
                 </ul>
                 <table class="table">
@@ -103,18 +106,18 @@
                         <td>{{item.item.name}}</td>
                         <td>
                             <div>
-                                <a style="margin-right: 5px;" href=""><i style="color:green"
-                                                                         ng-click="removeOneItemFromOrder(eventId,item.item.id)"
-                                                                         class="fa fa-minus" aria-hidden="true"></i></a>
+                                <a class="item-minus-margin" href=""><i
+                                        ng-click="removeOneItemFromOrder(eventId,item.item.id)"
+                                        class="fa fa-minus item-plus-color" aria-hidden="true"></i></a>
                                 <span style="">{{item.itemAmount}}</span>
-                                <a href="" ng-click="addOneItemToOrder(item.item.id,eventId)" style="margin-left: 5px;">
-                                    <i style="color:green" class="fa fa-plus" aria-hidden="true"></i></a>
+                                <a href="" ng-click="addOneItemToOrder(item.item.id,eventId)" class="item-minus-margin">
+                                    <i class="fa fa-plus item-plus-color" aria-hidden="true"></i></a>
                             </div>
                         </td>
                         <td>{{item.itemAmount * item.item.price|currency:" "}}&#8372</td>
-                        <td><a href="" ng-click="removeFromOrder(eventId,item.item.id)"><i style="color:red"
-                                                                                           class="fa fa-times"
-                                                                                           aria-hidden="true"></i></a>
+                        <td><a href="" ng-click="removeFromOrder(eventId,item.item.id)"><i
+                                class="fa fa-times item-minus-color"
+                                aria-hidden="true"></i></a>
                         </td>
                     </tr>
                     <tr>
