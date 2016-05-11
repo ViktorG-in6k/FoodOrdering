@@ -41,7 +41,7 @@ services.factory("OrderListService", function ($http, $rootScope) {
     orderListService.CommonOrder = function () {
         $http.get("/CommonOrderJson_" + $rootScope.eventId + "/" + $rootScope.currentRestaurant).success(function (data) {
             $rootScope.commonOrders = data;
-        })       
+        })
     };
 
     orderListService.updateOrderList = function (orderId, restaurant) {
@@ -122,7 +122,7 @@ services.factory("ItemService", function ($http, $rootScope) {
     itemService.addNewItem = function (name, price, restaurantId, eventId) {
         return $http({
             method: 'POST',
-            url: '/new_item',            
+            url: '/new_item',
             params: {
                 name: name,
                 price: price,
@@ -137,26 +137,24 @@ services.factory("ItemService", function ($http, $rootScope) {
 services.factory("RestaurantService", function ($http, $rootScope) {
     var restaurantService = {};
     restaurantService.getRestaurantById = function (id) {
-        return  $http.get("/event_" + $rootScope.eventId +"/restaurant_" + id)
+        return $http.get("/event_" + $rootScope.eventId + "/restaurant_" + id)
     };
-    
+
     return restaurantService;
 });
 
 services.factory("EventService", function ($http) {
-   var eventService = {};
+    var eventService = {};
 
     eventService.getEventById = function (id) {
-       return $http.get("/event_" + id);
+        return $http.get("/event_" + id);
     };
 
     return eventService;
 });
 
-
-
-services.factory("DateTimePicker",function () {
-    var dateTimePicker= {};
+services.factory("DateTimePicker", function () {
+    var dateTimePicker = {};
     dateTimePicker.getConfig = function () {
         return {
             format: "dd-MM-yyyy HH:mm",
