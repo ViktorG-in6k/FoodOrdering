@@ -33,6 +33,15 @@
     <script src="/resources/js/lib/angular-resource.js"></script>
     <script src="/resources/js/eventDetailModule/events/eventsController.js"></script>
     <script src="/resources/js/eventDetailModule/events/eventsService.js"></script>
+
+    <script src="/resources/js/eventDetailModule/items/itemsController.js"></script>
+    <script src="/resources/js/eventDetailModule/items/itemsService.js"></script>
+
+    <script src="/resources/js/eventDetailModule/orders/ordersController.js"></script>
+    <script src="/resources/js/eventDetailModule/orders/ordersService.js"></script>
+
+    <script src="/resources/js/eventDetailModule/restaurants/restaurantsController.js"></script>
+    <script src="/resources/js/eventDetailModule/restaurants/restaurantsService.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true"/>

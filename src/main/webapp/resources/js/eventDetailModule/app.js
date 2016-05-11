@@ -7,7 +7,16 @@ var app = angular.module('eventApp', [
     "ngRoute",
     'ngResource',
     'eventController',
-    'eventService'
+    'eventService',
+    
+    'restaurantController',
+    'restaurantService',
+
+    'orderController',
+    'orderService',
+
+    'itemController',
+    'itemService'
 ]);
 
 app.config(['$routeProvider',
