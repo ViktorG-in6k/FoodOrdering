@@ -19,7 +19,7 @@ app.config(['$routeProvider',
             templateUrl: '/resources/templates/eventDetails.html',
             controller: 'eventController'
         }).when('/:id/:restaurantId', {
-            templateUrl: '/resources/templates/restaurantDetails.html',
+            templateUrl: '/resources/templates/restaurantDetails.css',
             controller: 'restaurantController'
         }).when('/:id/:restaurantId/order', {
             templateUrl: '/resources/templates/commonOrderList.html',
