@@ -13,7 +13,7 @@
         <security:http-basic/>
         <security:anonymous enabled="false"/>
         <security:csrf disabled="true"/>
-        <security:intercept-url pattern="/events" access="isFullyAuthenticated()"/>
+        <security:intercept-url pattern="/app" access="isFullyAuthenticated()"/>
         <security:intercept-url pattern="/" access="permitAll"/>
 
         <security:custom-filter ref="logoutFilter" position="LOGOUT_FILTER"/>
