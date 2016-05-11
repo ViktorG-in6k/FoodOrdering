@@ -76,11 +76,8 @@ controllers.controller("createItem", function ($scope, ItemService, $filter, $ht
 controllers.controller("orderList", function (OrderListService, $scope, $rootScope, $http) {
         $scope.addToOrder = OrderListService.addToOrder;
         $scope.removeFromOrder = OrderListService.removeFromOrder;
-        
         $scope.updateNumberItemToOrder = OrderListService.updateNumberItemToOrder;
-
         $scope.updateOrderList = OrderListService.updateOrderList();
-
         $scope.CommonOrder = OrderListService.CommonOrder();
         $scope.changeItemNumber = OrderListService.changeItemNumber;
         $scope.addOneItemToOrder = OrderListService.addOneItemToOrder;
@@ -92,19 +89,13 @@ controllers.controller("orderList", function (OrderListService, $scope, $rootSco
         };
 
         $scope.getAllItems = function () {
-            console.log($rootScope.restaurant);
-            $http({
-                method: 'POST',
-                url: '/order_list_of_user',
-                params: {
-                    order_id: 11
-                }
-            }).success(function (data) {
+            console.log('a');
+            $http.get("/orders/11").success(function (data) {
                 $rootScope.myOrders = data;
                 $rootScope.commonOrders = data;
             })
         };
-        OrderListService.updateOrderList(orderId, $rootScope.restaurant);
+        OrderListService.updateOrderList( $rootScope.restaurant);
     }
 );
 

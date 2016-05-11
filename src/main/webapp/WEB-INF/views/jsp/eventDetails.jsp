@@ -21,6 +21,7 @@
     <script src="/resources/js/eventDetailModule/directives.js"></script>
     <script src="/resources/js/eventsModule/filters.js"></script>
     <script src="/resources/js/eventDetailModule/app.js"></script>
+    <script src="/resources/js/lib/angular-resource.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true"/>

@@ -27,6 +27,7 @@
     <script src="/resources/js/eventsModule/services.js"></script>
     <script src="/resources/js/eventsModule/filters.js"></script>
     <script src="/resources/js/lib/kendo.js"></script>
+    <script src="/resources/js/lib/angular-resource.js"></script>
 </head>
 <body ng-app="events" >
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true"/>
