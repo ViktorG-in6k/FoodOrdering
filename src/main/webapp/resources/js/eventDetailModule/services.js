@@ -78,16 +78,9 @@ services.factory("OrderListService", function ($http, $rootScope) {
 
     orderListService.addOneItemToOrder = function (itemId, orderId) {
         console.log(itemId);
-        $http({
-            method: 'POST',
-            url: '/add_one_item_to_order',
-            params: {
-                order_id: orderId,
-                item_id: itemId
-            }
-        }).finally(function () {
+        $http.put("/orders/"+orderId+"/items/"+itemId).finally(function () {
             orderListService.updateOrderList(orderId);
-        });
+        });       
     };
 
     orderListService.updateNumberItemToOrder = function (itemId, eventId, number) {
