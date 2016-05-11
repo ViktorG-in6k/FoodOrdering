@@ -10,24 +10,31 @@
     <link href="/resources/css/lib/bootstrapTheme.css" rel="stylesheet">
     <link href="/resources/css/lib/font-awesome-4.6.1/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="/resources/css/commonOrder.css" rel="stylesheet">
+    <link rel="stylesheet" href="/resources/css/lib/kendoLib/kendo.common.min.css"/>
+    <link rel="stylesheet" href="/resources/css/lib/kendoLib/kendo.rtl.css"/>
+    <link rel="stylesheet" href="/resources/css/lib/kendoLib/kendo.silver.css"/>
+    <link rel="stylesheet" href="/resources/css/lib/kendoLib/kengo.modile.css"/>
+
+    <link href="/resources/css/eventsStyle.css" rel="stylesheet"/>
 
     <script src="/resources/js/lib/jquery-2.1.4.min.js"></script>
     <script src="/resources/js/lib/bootstrap.min.js"></script>
     <script src="/resources/js/lib/angular.min.js"></script>
     <script src="/resources/js/lib/angular-route.min.js"></script>
-
     <script src="/resources/js/eventDetailModule/controllers.js"></script>
     <script src="/resources/js/eventDetailModule/services.js"></script>
     <script src="/resources/js/eventDetailModule/directives.js"></script>
     <script src="/resources/js/eventsModule/filters.js"></script>
     <script src="/resources/js/eventDetailModule/app.js"></script>
+    <script src="/resources/js/lib/kendo.js"></script>
+    <script src="/resources/js/lib/angular-resource.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true"/>
 <br/>
 <div>
-    <div class="container-fluid" >
-    <div class="row">
+    <div class="container-fluid">
+    <div class="row app">
         <div ng-view></div>
     </div>
     </div>
