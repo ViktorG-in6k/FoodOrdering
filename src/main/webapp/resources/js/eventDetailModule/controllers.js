@@ -57,7 +57,8 @@ controllers.controller("restaurantController", function ($http, $scope, $routePa
 
     $http.get("/event_" + $rootScope.eventId + "/restaurant_" + $rootScope.currentRestaurant).success(function (data) {
         $rootScope.restaurant = data;
-        $rootScope.orderId = $rootScope.order
+        console.log(data.orderPlacementStatus.order.id);
+        $rootScope.currentOrderId = data.orderPlacementStatus.order.id;
     });
 });
 
@@ -88,9 +89,9 @@ controllers.controller("orderList", function (OrderListService, $scope, $rootSco
             OrderListService.updateOrderList();
         };
 
-        $scope.getAllItems = function () {
+        $scope.getAllItems = function ($rootScope) {
             console.log('a');
-            $http.get("/orders/11").success(function (data) {
+            $http.get("/orders/"+$rootScope.currentOrderId).success(function (data) {
                 $rootScope.myOrders = data;
                 $rootScope.commonOrders = data;
             })

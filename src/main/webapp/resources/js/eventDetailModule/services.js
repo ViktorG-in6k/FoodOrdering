@@ -26,8 +26,12 @@ services.factory("OrderListService", function ($http, $rootScope) {
     };
 
     orderListService.removeOneItemFromOrder = function (eventId, itemId) {
+        $http.delete()
+        $http.put("/orders/"+orderId+"/items/"+itemId).finally(function () {
+            orderListService.updateOrderList(orderId);
+        });
         $http({
-            method: 'POST',
+            method: 'PUT',
             url: '/remote_one_item_from_order',
             params: {
                 event_id: eventId,
@@ -39,15 +43,14 @@ services.factory("OrderListService", function ($http, $rootScope) {
     };
 
     orderListService.CommonOrder = function () {
-        $http.get("/orders/11").success(function (data) {
+        $http.get("/orders/"+$rootScope.currentOrderId).success(function (data) {
             $rootScope.myOrders = data;
             $rootScope.commonOrders = data;
         })
     };
 
     orderListService.updateOrderList = function () {
-        console.log("b");
-        $http.get("/orders/11").success(function (data) {
+        $http.get("/orders/"+$rootScope.currentOrderId).success(function (data) {
             $rootScope.myOrders = data;
             $rootScope.commonOrders = data;
         })
@@ -63,7 +66,7 @@ services.factory("OrderListService", function ($http, $rootScope) {
         return total;
     };
 
-    orderListService.removeNumberItemFromOrder = function (itemId, eventId, number) {
+    orderListService.removeNumberItemFromOrder = function (itemId, eventId) {
         $http({
             method: 'POST',
             url: '/remote_one_item_from_order',
