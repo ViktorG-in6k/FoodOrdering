@@ -13,6 +13,8 @@ public interface OrderItemService {
 
     void addOneItemToOrder(Authentication authentication, int itemId, int orderId);
 
+    void remoteOneItemFromOrder(Authentication authentication, int itemId, int orderId);
+
     List<OrderItemDTO> getOrderListByOrderIdAndUserId(int orderId, int userId);
 
     List<OrderItemDTO> getOrderListByOrderId(int orderId);

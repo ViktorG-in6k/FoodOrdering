@@ -45,7 +45,7 @@
                                 <div ng-if="item.id == itemInOrder.item.id" style="display: inline;margin-left: -35px;">
                                     <a href="">
                                         <i style="color:green"
-                                           ng-click="removeOneItemFromOrder(eventId, item.id)"
+                                           ng-click="removeOneItemFromOrder(item.id, restaurant.orderPlacementStatus.order.id)"
                                            class="fa fa-minus" aria-hidden="true" >
                                         </i>
                                     </a>
