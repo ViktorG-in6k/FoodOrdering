@@ -92,18 +92,19 @@ controllers.controller("orderList", function (OrderListService, $scope, $rootSco
         };
 
         $scope.getAllItems = function () {
+            console.log($rootScope.restaurant);
             $http({
                 method: 'POST',
                 url: '/order_list_of_user',
                 params: {
-                    order_id: $rootScope.restaurant.orderPlacementStatus.order.id
+                    order_id: 11
                 }
             }).success(function (data) {
                 $rootScope.myOrders = data;
                 $rootScope.commonOrders = data;
             })
         };
-        OrderListService.updateOrderList();
+        OrderListService.updateOrderList(orderId, $rootScope.restaurant);
     }
 );
 
@@ -125,7 +126,6 @@ controllers.controller("commonOrderList", function ($scope, EventService, $route
     });
     RestaurantService.getRestaurantById($rootScope.currentRestaurant).success(function (data) {
         $rootScope.restaurant = data;
-
     });
     $rootScope.order = "Order";
     $rootScope.currentRestaurant = $routeParams.restaurantId;

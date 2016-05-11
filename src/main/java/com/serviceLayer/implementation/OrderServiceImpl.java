@@ -1,6 +1,7 @@
 package com.serviceLayer.implementation;
 
 import com.DTOLayer.DTOEntity.orderDTO.OrderPlacementStatus;
+import com.DTOLayer.DTOEntity.orderItemDTO.OrderItemDTO;
 import com.DTOLayer.DTOEntity.orderItemDTO.OrderItemRequest;
 import com.dataLayer.DAO.OrderDAO;
 import com.googleAuthentication.CurrentUserDetails;
@@ -11,8 +12,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpSession;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -21,6 +22,8 @@ public class OrderServiceImpl implements OrderService {
     OrderDAO orderDAO;
     @Autowired
     UserService userService;
+    @Autowired
+    OrderItemService orderItemService;
     @Autowired
     EventService eventService;
     @Autowired
@@ -56,7 +59,14 @@ public class OrderServiceImpl implements OrderService {
         Set<User> participants = new HashSet<>();
         boolean isMine;
         if (order != null) {
-            order.getOrderItems().forEach(item -> participants.add(item.getUser()));
+            List<OrderItemDTO> orderItems = orderItemService.getOrderListByOrderId(order.getId());
+
+                for(OrderItemDTO itemDTO : orderItems) {
+
+                        participants.add(userService.getUser(itemDTO.getUser().getId()));
+
+                }
+
             isMine = isMineOrder(order, authentication);
             int participantsAmount = participants.size();
             return new OrderPlacementStatus(order, participantsAmount, isMine);

@@ -12,14 +12,15 @@ public class OrderDTO {
     private String status;
     private UserDTO payer;
 
-    public OrderDTO(){}
+    public OrderDTO() {
+    }
 
-    public OrderDTO(Order order){
+    public OrderDTO(Order order) {
         this.id = order.getId();
         this.restaurant = new RestaurantDTO(order.getRestaurant());
         this.event = new EventDTO(order.getEvent());
         this.status = order.getStatus().toString();
-        if(order.getPayer()!=null) {
+        if (order.getPayer() != null) {
             this.payer = new UserDTO(order.getPayer());
         }
 

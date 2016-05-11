@@ -11,7 +11,7 @@ public class OrderPlacementStatus {
     private OrderDTO order;
 
     public OrderPlacementStatus(Order order, int participantsAmount, boolean isMineOrder) {
-        if(order.getPayer()!=null) {
+        if (order.getPayer() != null) {
             this.payer = new UserDTO(order.getPayer());
         }
         this.participantsAmount = participantsAmount;

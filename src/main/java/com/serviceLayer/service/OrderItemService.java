@@ -15,5 +15,7 @@ public interface OrderItemService {
 
     List<OrderItemDTO> getOrderListByOrderIdAndUserId(int orderId, int userId);
 
+    List<OrderItemDTO> getOrderListByOrderId(int orderId);
+
     void updateItemAmountInOrder(Authentication authentication, int orderId, int itemId, int number);
 }
