@@ -16,10 +16,10 @@ public class OrderItemController {
     @Autowired
     OrderItemService orderItemService;
 
-    @RequestMapping(value = "/order_item", method = RequestMethod.PUT)
+    @RequestMapping(value = "/orders/{orderId}/items/{itemId}", method = RequestMethod.PUT)
     public String addOneItemToOrder(HttpServletRequest req, Authentication authentication,
-                                    @RequestParam("order_id") int orderId,
-                                    @RequestParam("item_id") int itemId) {
+                                    @PathVariable("orderId") int orderId,
+                                    @PathVariable("itemId") int itemId) {
         orderItemService.addOneItemToOrder(authentication, itemId, orderId);
         String ref = req.getHeader("Referer");
         return "redirect:" + ref;
