@@ -1,4 +1,3 @@
-
 <div class="event-details">
     <div>
         <div class="well pull-left event-detail-bloc">
@@ -17,12 +16,10 @@
         </div>
     </div>
 </div>
-
 <div class="col-md-offset-1 col-sm-offset-1 col-md-8 col-sm-8">
     <div class="panel-group col-md-offset-1 col-sm-offset-1 col-md-10 col-sm-11" id="accordion" role="tablist"
          aria-multiselectable="true">
-        <div ng-repeat="restaurant in restaurants | orderBy: 'name'" class="panel panel-default create-restaurant-form"
-             >
+        <div ng-repeat="restaurant in restaurants | orderBy: 'name'" class="panel panel-default create-restaurant-form">
             <div class="restaurant-block">
                 <div class=" col-md-4">
                     <h3>
@@ -36,11 +33,11 @@
                     Participants amount: {{restaurant.orderPlacementStatus.participantsAmount}}
                 </div>
                 <br>
-            <div class="col-md-4 pull-right event-text-size restaurant-info-size">
+                <div class="col-md-4 pull-right event-text-size restaurant-info-size">
                     OrderID: {{restaurant.orderPlacementStatus.order.id}}
                 </div>
                 <div class="col-md-offset-4 col-md-4 ">
-                    <h2  class="col-md-offset-4 create-event-user-text"></h2>
+                    <h2 class="col-md-offset-4 create-event-user-text"></h2>
                 </div>
                 <br/>
                 <div class="row"></div>
@@ -53,36 +50,37 @@
                 <div ng-if="restaurant.phone" class="col-md-4 pull-left xs-text restaurant-info-size">
                     <i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}
                 </div>
-
-
-
                 <form class="post-title" role="form" action="/addResponsibleUser" method="post">
                     <input type="hidden" value="{{event.id}}" name="eventId">
                     <input type="hidden" value="{{restaurant.id}}" name="restaurantId">
-
-                    <button ng-if="restaurant.payer == null" type="submit" class="btn btn-success pull-right take-responsible-btn">Take responsibility
-
+                    <button ng-if="restaurant.payer == null" type="submit"
+                            class="btn btn-success pull-right take-responsible-btn">Take responsibility
                     </button>
-                    <p ng-if="restaurant.payer" class="pull-right responsible-title"  >Responsible for order: {{restaurant.payer.email}} <p ></p></p>
+                    <p ng-if="restaurant.payer" class="pull-right responsible-title">Responsible for order:
+                        {{restaurant.payer.email}}
+                    <p></p></p>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<div class=" col-md-offset-0 col-md-2 create-restaurant-block" style="margin-left: -100px;" >
-<form class="create-restaurant-form" role="form" ng-submit="createRestaurant(restaurant,eventId)" >
-    <fieldset>
-        <div class="form-group">
-            <input type="text*" placeholder="Name*" ng-model="restaurant.title" class="form-control" id="name" name="name" required>
-        </div>
-        <div class="form-group">
-            <input placeholder="Link" type="url" ng-model="restaurant.link"  class="form-control" id="link" name="link">
-        </div>
-        <div class="form-group">
-            <input placeholder="Phone*" type="number" ng-model="restaurant.phone" class="form-control" id="phone" name="phone" required>
-        </div>
-        <input hidden type="text" name="eventId" value="{{eventId}}">
-        <button type="submit" class="btn btn-success pull-right">Add restaurant</button>
-    </fieldset>
-</form>
+<div class=" col-md-offset-0 col-md-2 create-restaurant-block" style="margin-left: -100px;">
+    <form class="create-restaurant-form" role="form" ng-submit="createRestaurant(restaurant,eventId)">
+        <fieldset>
+            <div class="form-group">
+                <input type="text*" placeholder="Name*" ng-model="restaurant.title" class="form-control" id="name"
+                       name="name" required>
+            </div>
+            <div class="form-group">
+                <input placeholder="Link" type="url" ng-model="restaurant.link" class="form-control" id="link"
+                       name="link">
+            </div>
+            <div class="form-group">
+                <input placeholder="Phone*" type="number" ng-model="restaurant.phone" class="form-control" id="phone"
+                       name="phone" required>
+            </div>
+            <input hidden type="text" name="eventId" value="{{eventId}}">
+            <button type="submit" class="btn btn-success pull-right">Add restaurant</button>
+        </fieldset>
+    </form>
 </div>
