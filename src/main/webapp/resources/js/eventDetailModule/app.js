@@ -2,6 +2,7 @@ var app = angular.module('eventApp', [
     'eventApp.services',
     'eventApp.controllers',
     'eventApp.directives',
+    'ngResource',
     'events.filter',
     "ngRoute"
 ]);
