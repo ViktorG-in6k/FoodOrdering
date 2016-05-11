@@ -39,67 +39,6 @@ controllers.controller("eventController", function ($http, $scope, $routeParams,
     }
 );
 
-controllers.controller("restaurantController", function ($http, $scope, $routeParams, $rootScope, OrderListService) {
-    $rootScope.currentRestaurant = $routeParams.restaurantId;
-    $rootScope.eventId = $routeParams.id;
-
-    $http.get("/CommonOrderJson_" + $rootScope.eventId + "/" + $rootScope.currentRestaurant).success(function (data) {
-        $rootScope.responsible = data.userResponsibility;
-    });
-    $scope.addToOrder = OrderListService.addToOrder;
-    $scope.removeFromOrder = OrderListService.removeFromOrder;
-    $scope.removeOneItemFromOrder = OrderListService.removeOneItemFromOrder;
-    $scope.getTotal = OrderListService.getTotal;
-
-    $http.get("/event_" + $rootScope.eventId + "/restaurants").success(function (data) {
-        $scope.restaurants = data;
-    });
-
-    $http.get("/event_" + $rootScope.eventId + "/restaurant_" + $rootScope.currentRestaurant).success(function (data) {
-        $rootScope.restaurant = data;
-        console.log(data.orderPlacementStatus.order.id);
-        $rootScope.currentOrderId = data.orderPlacementStatus.order.id;
-    });
-});
-
-controllers.controller("createItem", function ($scope, ItemService, $filter, $http, $rootScope) {
-    $scope.createItem = function (name, price, restaurantId) {
-        console.log(restaurantId);
-
-        ItemService.addNewItem(name, price, $rootScope.currentRestaurant, $rootScope.eventId).success(function (data) {
-            $rootScope.restaurant = data;
-            $scope.name = '';
-            $scope.price = '';
-        });
-    };
-});
-
-controllers.controller("orderList", function (OrderListService, $scope, $rootScope, $http) {
-        $scope.addToOrder = OrderListService.addToOrder;
-        $scope.removeFromOrder = OrderListService.removeFromOrder;
-        $scope.updateNumberItemToOrder = OrderListService.updateNumberItemToOrder;
-        $scope.updateOrderList = OrderListService.updateOrderList();
-        $scope.CommonOrder = OrderListService.CommonOrder();
-        $scope.changeItemNumber = OrderListService.changeItemNumber;
-        $scope.addOneItemToOrder = OrderListService.addOneItemToOrder;
-        $scope.removeOneItemFromOrder = OrderListService.removeOneItemFromOrder;
-        $scope.myItems = 'active';
-
-        $scope.getMyItems = function () {
-            OrderListService.updateOrderList();
-        };
-
-        $scope.getAllItems = function ($rootScope) {
-            console.log('a');
-            $http.get("/orders/"+$rootScope.currentOrderId).success(function (data) {
-                $rootScope.myOrders = data;
-                $rootScope.commonOrders = data;
-            })
-        };
-        OrderListService.updateOrderList( $rootScope.restaurant);
-    }
-);
-
 controllers.controller("navbarCtrl", function ($http, $scope, $rootScope) {
     $http.get('/eventsJson/').success(function (data){
         $scope.events = data;
@@ -110,22 +49,3 @@ controllers.controller("navbarCtrl", function ($http, $scope, $rootScope) {
     })
 });
 
-controllers.controller("commonOrderList", function ($scope, EventService, $routeParams, $rootScope, OrderListService, RestaurantService, $http) {
-    $rootScope.eventId = $routeParams.id;
-    $rootScope.currentRestaurant = $routeParams.restaurantId;
-    EventService.getEventById($scope.eventId).success(function (data) {
-        $scope.event = data;
-    });
-    RestaurantService.getRestaurantById($rootScope.currentRestaurant).success(function (data) {
-        $rootScope.restaurant = data;
-    });
-    $rootScope.order = "Order";
-    $rootScope.currentRestaurant = $routeParams.restaurantId;
-
-    $scope.getTotal = OrderListService.getTotal;
-
-    $http.get("/CommonOrderJson_" + $rootScope.eventId + "/" + $rootScope.currentRestaurant).success(function (data) {
-        $rootScope.myOrders = data;
-        $rootScope.commonOrders = data;
-    })
-});
