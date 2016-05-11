@@ -70,18 +70,17 @@ services.factory("OrderListService", function ($http, $rootScope) {
 
     orderListService.addOneItemToOrder = function (itemId, orderId) {
         console.log(itemId);
-        $http.put("/orders/"+orderId+"/items/"+itemId).finally(function () {
+        $http.post("/orders/"+orderId+"/items/"+itemId).finally(function () {
             orderListService.updateOrderList(orderId);
         });       
     };
 
-    orderListService.updateNumberItemToOrder = function (itemId, eventId, number) {
+    orderListService.updateNumberItemToOrder = function (itemId, orderId, number) {
+        
         $http({
-            method: 'POST',
-            url: '/update_number_item_to_order',
+            method: 'PUT',
+            url: "/orders/"+orderId+"/items/"+itemId,
             params: {
-                order_id: eventId,
-                item_id: itemId,
                 number: number
             }
         }).finally(function () {

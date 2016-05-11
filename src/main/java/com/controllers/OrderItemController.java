@@ -16,7 +16,7 @@ public class OrderItemController {
     @Autowired
     OrderItemService orderItemService;
 
-    @RequestMapping(value = "/orders/{orderId}/items/{itemId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/orders/{orderId}/items/{itemId}", method = RequestMethod.POST)
     public String addOneItemToOrder(HttpServletRequest req, Authentication authentication,
                                     @PathVariable("orderId") int orderId,
                                     @PathVariable("itemId") int itemId) {
@@ -27,19 +27,19 @@ public class OrderItemController {
 
     @RequestMapping(value = "/orders/{orderId}/items/{itemId}", method = RequestMethod.DELETE)
     public String deleteOneItemToOrder(HttpServletRequest req, Authentication authentication,
-                                    @PathVariable("orderId") int orderId,
-                                    @PathVariable("itemId") int itemId) {
+                                       @PathVariable("orderId") int orderId,
+                                       @PathVariable("itemId") int itemId) {
         orderItemService.remoteOneItemFromOrder(authentication, itemId, orderId);
         String ref = req.getHeader("Referer");
         return "redirect:" + ref;
     }
 
-    @RequestMapping(value = "/update_number_item_to_order", method = RequestMethod.POST)
+    @RequestMapping(value = "/orders/{orderId}/items/{itemId}", method = RequestMethod.PUT)
     public String updateNumberItemToOrder(HttpServletRequest req, Authentication authentication,
                                           @RequestParam("number") int number,
-                                          @RequestParam("event_id") int eventId,
-                                          @RequestParam("item_id") int itemId) {
-        orderItemService.updateItemAmountInOrder(authentication, eventId, itemId, number);
+                                          @PathVariable("orderId") int orderId,
+                                          @PathVariable("itemId") int itemId) {
+        orderItemService.updateItemAmountInOrder(authentication, orderId, itemId, number);
         String ref = req.getHeader("Referer");
         return "redirect:" + ref;
     }
