@@ -17,6 +17,8 @@
 
     <link href="/resources/css/eventsStyle.css" rel="stylesheet"/>
 
+    <link href="/resources/css/restaurantDetails.css" rel="stylesheet">
+
     <script src="/resources/js/lib/jquery-2.1.4.min.js"></script>
     <script src="/resources/js/lib/bootstrap.min.js"></script>
     <script src="/resources/js/lib/angular.min.js"></script>

@@ -16,13 +16,13 @@ app.config(['$routeProvider',
             templateUrl: '/resources/templates/eventsList.html',
             controller: 'eventListController'
         }).when('/events/:id', {
-            templateUrl: '/partials/eventDetails',
+            templateUrl: '/resources/templates/eventDetails.html',
             controller: 'eventController'
         }).when('/:id/:restaurantId', {
-            templateUrl: '/partials/restaurantDetails',
+            templateUrl: '/resources/templates/restaurantDetails.css',
             controller: 'restaurantController'
         }).when('/:id/:restaurantId/order', {
-            templateUrl: '/partials/commonOrderList',
+            templateUrl: '/resources/templates/commonOrderList.html',
             controller: 'commonOrderList'
         }).otherwise({
             redirectTo: '/events'
