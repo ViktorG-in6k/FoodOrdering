@@ -26,6 +26,7 @@
     <script src="/resources/js/eventDetailModule/directives.js"></script>
     <script src="/resources/js/eventsModule/filters.js"></script>
     <script src="/resources/js/eventDetailModule/app.js"></script>
+
     <script src="/resources/js/lib/kendo.js"></script>
     <script src="/resources/js/lib/angular-resource.js"></script>
     <script src="/resources/js/eventDetailModule/events/eventsController.js"></script>
