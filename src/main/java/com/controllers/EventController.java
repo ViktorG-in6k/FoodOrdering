@@ -12,6 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -24,15 +25,8 @@ public class EventController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/new_event", method = RequestMethod.POST)
-    public
-    @ResponseBody
-    Set<EventDTO> newEvent(@RequestBody RequestEventDTO event, Authentication authentication) {
-        eventService.save(event, getCurrentUserId(authentication));
-        return getComingEvents(authentication);
-    }
 
-    @RequestMapping("/eventsJson/")
+    @RequestMapping(value = "/events", method = RequestMethod.GET)
     public
     @ResponseBody
     Set<EventDTO> getComingEvents(Authentication authentication) {
@@ -40,7 +34,7 @@ public class EventController {
         User user = (CurrentUserDetails) authentication.getPrincipal();
         System.out.println(user.getEmail());
         for (Event event : eventService.getListOfAllEvents()) {
-                EventDTOs.add(new EventDTO(event, user));
+            EventDTOs.add(new EventDTO(event, user));
         }
         return EventDTOs;
     }
@@ -54,28 +48,16 @@ public class EventController {
     }
 
     @RequestMapping(value = "/events", method = RequestMethod.POST)
-    public String events() {
-        return "events";
-    }
-
-    @RequestMapping(value = "/events")
-    public String events(HttpSession session) {
-        session.setAttribute("allEvents", eventService.getListOfAllEvents());
-        session.setAttribute("backPage", "/events");
-        return "events";
-    }
-
-    @RequestMapping(value = "/newEvent", method = RequestMethod.POST)
     public
     @ResponseBody
-    Set<EventDTO> createEvent(HttpSession session, @RequestParam("name") String name,Authentication authentication,
+    Set<EventDTO> createEvent( @RequestParam("name") String name, Authentication authentication,
                               @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") LocalDateTime localDateTime) {
         int userId = getCurrentUserId(authentication);
         eventService.save(new RequestEventDTO(name, localDateTime), userId);
         return getComingEvents(authentication);
     }
 
-    private int getCurrentUserId(Authentication authentication){
+    private int getCurrentUserId(Authentication authentication) {
         return ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId();
     }
 }

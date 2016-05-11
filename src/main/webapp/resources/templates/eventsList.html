@@ -1,4 +1,7 @@
 <div ng-controller="eventController">
+    <div class="events">
+        <div class="container" >
+            <div class="row">
     <div class="col-sm-9 col-md-9 col-xs-9 ">
         <div ng-if="events.length == 0">
             <div class="event-well">
@@ -8,7 +11,7 @@
             <div class="event-well">
                 <div class="row event-detail">
                     <div class="col-md-7 col-xs-5 margin-left-4">
-                        <a href="/events/event_{{event.id}}#/{{event.id}}" class="event-title">{{event.name}}</a>
+                        <a href="#/events/{{event.id}}" class="event-title">{{event.name}}</a>
                     </div>
                     <div class="col-md-5 col-xs-7 pull-right">
                         <p class="event-date">
@@ -39,5 +42,8 @@
                 <button type="submit" class="btn btn-success pull-right">Add event</button>
             </div>
         </form>
+    </div>
+</div>
+</div>
     </div>
 </div>

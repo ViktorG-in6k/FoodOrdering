@@ -23,8 +23,16 @@ public class MainController {
     }
 
     @RequestMapping(value = "/getCurrentUser")
-    public @ResponseBody User getCurrentUserEmail(Authentication authentication) {
-       return ((User) authentication.getPrincipal());
+    public
+    @ResponseBody
+    User getCurrentUserEmail(Authentication authentication) {
+        return ((User) authentication.getPrincipal());
+    }
+
+    @RequestMapping(value = "/app")
+    public String events() {
+        return "app";
     }
 }
+
 

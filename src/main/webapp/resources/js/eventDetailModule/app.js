@@ -2,14 +2,20 @@ var app = angular.module('eventApp', [
     'eventApp.services',
     'eventApp.controllers',
     'eventApp.directives',
-    'ngResource',
     'events.filter',
-    "ngRoute"
+    "kendo.directives",
+    "ngRoute",
+    'ngResource',
+    'eventController',
+    'eventService'
 ]);
 
 app.config(['$routeProvider',
     function ($routeProvider) {
-        $routeProvider.when('/:id', {
+        $routeProvider.when('/events', {
+            templateUrl: '/resources/templates/eventsList.html',
+            controller: 'eventListController'
+        }).when('/events/:id', {
             templateUrl: '/partials/eventDetails',
             controller: 'eventController'
         }).when('/:id/:restaurantId', {
@@ -19,7 +25,7 @@ app.config(['$routeProvider',
             templateUrl: '/partials/commonOrderList',
             controller: 'commonOrderList'
         }).otherwise({
-            redirectTo: '/AllEvents'
+            redirectTo: '/events'
         });
     }]);
 

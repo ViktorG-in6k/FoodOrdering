@@ -129,8 +129,3 @@ controllers.controller("commonOrderList", function ($scope, EventService, $route
         $rootScope.commonOrders = data;
     })
 });
-
-controllers.controller("myCtrl", function ($scope, myService) {
-    $scope.word = "lol";
-});
-

@@ -7,7 +7,7 @@
         <div class="col-md-4"></div>
         <div class="col-md-4" >
             <div class="well" >
-                <form  action="/events" method="post" >
+                <form  action="/app" method="post" >
                         <button class="loginBtn loginBtn--google text-center " id="google-btn">
                             Login with Google
                         </button>

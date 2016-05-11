@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -33,7 +32,7 @@ public class RestaurantsController {
         session.setAttribute("eventId", id);
         session.setAttribute("allRestaurants", restaurantService.getListOfAllRestaurant());
         session.setAttribute("backPage", "/events");
-        return "eventDetails";
+        return "app";
     }
 
     @RequestMapping(value = "/events/event_{event}/restaurant_{id}")
