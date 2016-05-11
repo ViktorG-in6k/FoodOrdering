@@ -13,6 +13,8 @@
         <div class="well pull-left" style="height: 120px; width: 100%">
             <div class="col-md-6" style="font-size: 25px;">
                 {{event.name}}
+
+
             </div>
             <div class="col-md-offset-10" style="font-size: 19px;">
                 <div class="col-md-offset-4" style="padding-right: 5px">
@@ -37,6 +39,7 @@
                     <h3>
                         <a href="{{'#/'+ eventId}}/{{restaurant.id}}" style="font-size: 25px;">
                             {{restaurant.name}}
+                            {{restaurant.orderPlacementStatus.order.id}}
                         </a>
                     </h3>
                 </div>

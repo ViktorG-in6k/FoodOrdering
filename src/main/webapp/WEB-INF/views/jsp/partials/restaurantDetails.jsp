@@ -10,6 +10,7 @@
         <div class="well pull-left" style="height: 120px; width: 100%">
             <div class="col-md-6" style="font-size: 25px;">
                     {{restaurant.name}}
+
                 <br>
 
                 <br>
@@ -47,7 +48,7 @@
                     </td>
                     <td style="width: 25%">
                         <div ng-controller="orderList">
-                            <div ng-repeat="itemInOrder in myOrders.orderList" style="display: inline;">
+                            <div ng-repeat="itemInOrder in myOrders" style="display: inline;">
                                 <div ng-if="item.id == itemInOrder.item.id" style="display: inline;margin-left: -35px;">
                                     <a href="">
                                         <i style="color:green"
@@ -57,8 +58,8 @@
                                     </a>
                                     <span style="">
                                         <input style="width: 40px;margin: 0 8px;height: 24px;" min="1" required type="number"
-                                               ng-blur="updateNumberItemToOrder( eventId, item.id,itemInOrder.count)"
-                                               ng-init="count=itemInOrder.count" ng-model="itemInOrder.count"/>
+                                               ng-blur="updateNumberItemToOrder( eventId, item.id,itemInOrder.itemAmount)"
+                                               ng-init="count=itemInOrder.itemAmount" ng-model="itemInOrder.itemAmount"/>
                                     </span>
                                 </div>
                             </div>
