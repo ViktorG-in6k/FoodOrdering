@@ -14,7 +14,7 @@ controllers.controller("eventController", function ($http, $scope, $routeParams,
         $http.get("/event_" + $rootScope.eventId).success(function (data) {
             $scope.event = data;
         });
-
+        $scope.takeResponsibility = OrderListService.takeResponsibility;
         $scope.restaurant = {};
         $scope.restaurant.link = '';
 

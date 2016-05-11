@@ -23,7 +23,6 @@ public class OrderDTO {
         if (order.getPayer() != null) {
             this.payer = new UserDTO(order.getPayer());
         }
-
     }
 
     public int getId() {

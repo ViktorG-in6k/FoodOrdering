@@ -44,6 +44,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public void setPayerById(int orderId, int payerId) {
+        orderDAO.setPayer(orderId,payerId);
+    }
+
+    @Override
     public Order getOrderByEvent(Event event) {
         return orderDAO.getOrderByEventId(event.getId());
     }

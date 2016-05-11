@@ -12,7 +12,7 @@ public class Order extends com.model.base.Entity {
     @JoinColumn(name = "event_id", nullable = false)
     private Event event;
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "payer_id")
     private User payer;
     @ManyToOne
     @JoinColumn(name = "status_id")

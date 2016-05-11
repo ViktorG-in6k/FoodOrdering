@@ -16,6 +16,12 @@ services.factory("OrderListService", function ($http, $rootScope) {
         });
     };
 
+    orderListService.takeResponsibility = function (orderId) {
+        $http.post("/orders/" + orderId + "/responsibility").success(function () {
+            orderListService.updateOrderList();
+        })
+    };
+
     orderListService.removeFromOrder = function (eventId, itemId) {
         $http({
             method: 'GET',
@@ -26,20 +32,20 @@ services.factory("OrderListService", function ($http, $rootScope) {
     };
 
     orderListService.removeOneItemFromOrder = function (itemId, orderId) {
-        $http.delete("/orders/"+orderId+"/items/"+itemId).finally(function () {
+        $http.delete("/orders/" + orderId + "/items/" + itemId).finally(function () {
             orderListService.updateOrderList(orderId);
-        });        
+        });
     };
 
     orderListService.CommonOrder = function () {
-        $http.get("/orders/"+$rootScope.currentOrderId).success(function (data) {
+        $http.get("/orders/" + $rootScope.currentOrderId).success(function (data) {
             $rootScope.myOrders = data;
             $rootScope.commonOrders = data;
         })
     };
 
     orderListService.updateOrderList = function () {
-        $http.get("/orders/"+$rootScope.currentOrderId).success(function (data) {
+        $http.get("/orders/" + $rootScope.currentOrderId).success(function (data) {
             $rootScope.myOrders = data;
             $rootScope.commonOrders = data;
         })
@@ -70,16 +76,16 @@ services.factory("OrderListService", function ($http, $rootScope) {
 
     orderListService.addOneItemToOrder = function (itemId, orderId) {
         console.log(itemId);
-        $http.post("/orders/"+orderId+"/items/"+itemId).finally(function () {
+        $http.post("/orders/" + orderId + "/items/" + itemId).finally(function () {
             orderListService.updateOrderList(orderId);
-        });       
+        });
     };
 
     orderListService.updateNumberItemToOrder = function (itemId, orderId, number) {
 
         $http({
             method: 'POST',
-            url: "/orders/"+orderId+"/items/"+itemId+'/'+number,
+            url: "/orders/" + orderId + "/items/" + itemId + '/' + number,
             params: {
                 number: number
             }
