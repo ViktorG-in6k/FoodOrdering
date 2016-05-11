@@ -39,20 +39,15 @@ services.factory("OrderListService", function ($http, $rootScope) {
     };
 
     orderListService.CommonOrder = function () {
-        $http.get("/CommonOrderJson_" + $rootScope.eventId + "/" + $rootScope.currentRestaurant).success(function (data) {
+        $http.get("/orders/11").success(function (data) {
+            $rootScope.myOrders = data;
             $rootScope.commonOrders = data;
-        })       
+        })
     };
 
-    orderListService.updateOrderList = function (orderId, restaurant) {
-        console.log(restaurant);
-        $http({
-            method: 'POST',
-            url: '/order_list_of_user',
-            params: {
-                order_id: 11
-            }
-        }).success(function (data) {
+    orderListService.updateOrderList = function () {
+        console.log("b");
+        $http.get("/orders/11").success(function (data) {
             $rootScope.myOrders = data;
             $rootScope.commonOrders = data;
         })
