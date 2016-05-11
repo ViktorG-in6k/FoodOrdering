@@ -104,7 +104,7 @@ controllers.controller("orderList", function (OrderListService, $scope, $rootSco
                 $rootScope.commonOrders = data;
             })
         };
-        OrderListService.updateOrderList(orderId, $rootScope.restaurant);
+        OrderListService.updateOrderList($rootScope.orderId, $rootScope.restaurant);
     }
 );
 
@@ -136,25 +136,4 @@ controllers.controller("commonOrderList", function ($scope, EventService, $route
         $rootScope.myOrders = data;
         $rootScope.commonOrders = data;
     })
-});
-
-controllers.controller("myCtrl", function ($scope, myService) {
-    $scope.word = "lol";
-});
-
-controllers.controller('eventListController', function ($scope, EventService,$rootScope) {
-    EventService.getEvents().success(function (data) {
-        $rootScope.events = data;
-    });
-});
-
-controllers.controller("createEventController", function ($scope, $rootScope,EventService, DateTimePicker) {
-    $scope.createEvent = function (name, date) {
-        EventService.saveEvent(name,date).then(function (response) {
-            $rootScope.events = response.data;
-            $scope.date = new Date();
-            $scope.name = '';
-        });
-    };
-    $scope.dateTimePickerConfig = DateTimePicker.getConfig();
 });

@@ -153,23 +153,6 @@ services.factory("EventService", function ($http) {
     return eventService;
 });
 
-
-services.factory('EventService', function ($http, $filter) {
-    var events = {};
-    events.getEvents = function () {
-        return $http.get('/eventsJson/');
-    };
-    events.saveEvent = function (name, date) {
-        var sentDate = $filter("date")(date, "yyyy-MM-dd HH:mm");
-        return  $http({
-            url: '/newEvent',
-            method: "POST",
-            params: {"name": name,"date":sentDate}
-        })
-    };
-    return events;
-});
-
 services.factory("DateTimePicker",function () {
     var dateTimePicker= {};
     dateTimePicker.getConfig = function () {

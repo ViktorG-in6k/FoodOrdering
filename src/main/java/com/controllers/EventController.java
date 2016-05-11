@@ -25,15 +25,8 @@ public class EventController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/new_event", method = RequestMethod.POST)
-    public
-    @ResponseBody
-    Set<EventDTO> newEvent(@RequestBody RequestEventDTO event, Authentication authentication) {
-        eventService.save(event, getCurrentUserId(authentication));
-        return getComingEvents(authentication);
-    }
 
-    @RequestMapping("/eventsJson/")
+    @RequestMapping(value = "/events", method = RequestMethod.GET)
     public
     @ResponseBody
     Set<EventDTO> getComingEvents(Authentication authentication) {
@@ -54,10 +47,10 @@ public class EventController {
         return new EventDTO(eventService.getEventById(eventId), user);
     }
 
-    @RequestMapping(value = "/newEvent", method = RequestMethod.POST)
+    @RequestMapping(value = "/events", method = RequestMethod.POST)
     public
     @ResponseBody
-    Set<EventDTO> createEvent(HttpSession session, @RequestParam("name") String name, Authentication authentication,
+    Set<EventDTO> createEvent( @RequestParam("name") String name, Authentication authentication,
                               @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm") LocalDateTime localDateTime) {
         int userId = getCurrentUserId(authentication);
         eventService.save(new RequestEventDTO(name, localDateTime), userId);

@@ -5,7 +5,9 @@ var app = angular.module('eventApp', [
     'events.filter',
     "kendo.directives",
     "ngRoute",
-    'ngResource'
+    'ngResource',
+    'eventController',
+    'eventService'
 ]);
 
 app.config(['$routeProvider',
