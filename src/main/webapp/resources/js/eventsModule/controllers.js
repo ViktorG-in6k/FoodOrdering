@@ -14,14 +14,17 @@ app.controller("createEventController", function ($scope, $rootScope,EventServic
             $scope.name = '';
         });
     };
-    $scope.date = new Date();
     $scope.dateTimePickerConfig = DateTimePicker.getConfig();
 });
 
-app.controller("navbarCtrl", function ($http, $scope) {
+app.controller("navbarCtrl", function ($http, $scope, $rootScope) {
     $http.get('/eventsJson/').success(function (data) {
         $scope.events = data;
     });
+
+    $http.get("/getCurrentUser").then(function (data) {
+        $rootScope.user = data;
+    })
 });
 
 

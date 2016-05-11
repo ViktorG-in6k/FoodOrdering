@@ -1,0 +1,67 @@
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+.md-text{
+    font-size: 25px;
+}
+
+.xs-text{
+    font-size: 13px
+}
+
+.event-detail-block{
+    height: 120px;
+    width: 100%;
+}
+
+.item-number{
+    width: 40px;
+    margin: 0 8px;
+    height: 24px;
+}
+
+.restaurant-details{
+   margin-top: 30px;
+}
+
+.order-list-block{
+    width: 25%;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.item-plus-color {
+   color:green;
+}
+
+.item-minus-color {
+    color:red;
+}
+
+.inline{
+    display: inline;
+}
+
+.create-item-form{
+    margin-top: 15px;
+}
+
+.nav-justified{
+    margin-top: 10px
+}
+
+.item-minus-margin{
+    margin-right: 5px;
+}
+
+.item-plus-margin{
+    margin-right: 5px;
+}

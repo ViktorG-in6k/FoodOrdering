@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @Transactional
 public class ItemDAOImpl implements ItemDAO {
     @Autowired
-    SessionFactory sessionFactory ;
+    SessionFactory sessionFactory;
 
     @Override
     public void save(Item item) {
@@ -27,14 +27,14 @@ public class ItemDAOImpl implements ItemDAO {
     @Override
     public Item getItemById(int id) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from menu where id = :id");
+        Query query = session.createQuery("from item where id = :id");
         return (Item) query.setInteger("id",id).uniqueResult();
     }
 
     @Override
     public void updatePrice(int id, BigDecimal price){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("update menu set price=:price where id = :id");
+        Query query = session.createQuery("update item set price=:price where id = :id");
         query
                 .setBigDecimal("price",price)
                 .setInteger("id",id);
@@ -44,7 +44,7 @@ public class ItemDAOImpl implements ItemDAO {
     @Override
     public void updateName(int id, String name){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("update menu set name=:name where id = :id");
+        Query query = session.createQuery("update item set name=:name where id = :id");
         query
                 .setString("name",name)
                 .setInteger("id",id);
@@ -54,7 +54,7 @@ public class ItemDAOImpl implements ItemDAO {
     @Override
     public void updateDescription(int id, String description){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("update menu set description=:description where id = :id");
+        Query query = session.createQuery("update item set description=:description where id = :id");
         query
                 .setString("description",description)
                 .setInteger("id",id);

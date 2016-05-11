@@ -1,49 +1,41 @@
 package com.model.Entity;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Entity(name = "order_list")
+@Entity(name = "order_info")
 public class Order extends com.model.base.Entity {
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    private Restaurant restaurant;
+    @ManyToOne
+    @JoinColumn(name = "event_id", nullable = false)
+    private Event event;
+    @ManyToOne
+    @JoinColumn(name = "payer_id")
+    private User payer;
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private Status status;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<OrderItem> orderItems;
+
+    public Order(Restaurant restaurant, Event event, Status status) {
+        this.restaurant = restaurant;
+        this.event = event;
+        this.status = status;
+    }
 
     public Order() {
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "item_id", nullable = false)
-    private Item item;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "event_id", nullable = false)
-    private Event event;
-
-    @Column
-    private boolean ordered;
-
-    public Order(User user, Item item, Event event) {
-        this.user = user;
-        this.item = item;
-        this.event = event;
-        this.ordered = false;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     public Event getEvent() {
@@ -54,12 +46,28 @@ public class Order extends com.model.base.Entity {
         this.event = event;
     }
 
-    public boolean isOrdered() {
-        return ordered;
+    public User getPayer() {
+        return payer;
     }
 
-    public void setOrdered(boolean ordered) {
-        this.ordered = ordered;
+    public void setPayer(User payer) {
+        this.payer = payer;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }
 

@@ -1,0 +1,39 @@
+body
+{
+    padding-top: 20px;
+}
+ .event-well{
+     height: 100px;
+     border: 1px solid #BBB4B4;
+     background-color: #F5F5F5;
+     margin-bottom: 14px;
+ }
+
+ .event-detail{
+     margin-top: 12px;
+ }
+
+ .event-date{
+     padding-left: 160px;
+     margin-top: -36px;
+     font-size: 22px;
+     padding-top: 3px;
+ }
+.event-creator{
+    color: black;margin-top: 5px
+}
+
+.event-title {
+    font-size: 25px;
+}
+
+.margin-left-4{
+    margin-left: 4%
+}
+
+.events{
+    margin-top: 50px
+}
+.app{
+    margin-top: -14px;
+}

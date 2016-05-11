@@ -1,6 +1,6 @@
 package com.serviceLayer.implementation;
 
-import com.DTOLayer.DTOEntity.RequestEventDTO;
+import com.DTOLayer.DTOEntity.eventDTO.RequestEventDTO;
 import com.dataLayer.DAO.EventDAO;
 import com.model.Entity.Event;
 import com.serviceLayer.service.EventService;

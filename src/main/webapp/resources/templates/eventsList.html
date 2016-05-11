@@ -1,0 +1,50 @@
+<div ng-controller="eventController">
+    <div class="events">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9 col-md-9 col-xs-9 ">
+                    <div ng-if="events.length == 0">
+                        <div class="event-well">
+                        </div>
+                    </div>
+                    <div ng-repeat="event in events | orderBy:['-date.year','-date.monthValue','-date.dayOfMonth','-date.hour','-date.minute']">
+                        <div class="event-well">
+                            <div class="row event-detail">
+                                <div class="col-md-7 col-xs-5 margin-left-4">
+                                    <a href="#/events/{{event.id}}" class="event-title">{{event.name}}</a>
+                                </div>
+                                <div class="col-md-5 col-xs-7 pull-right">
+                                    <p class="event-date">
+                                        {{event.date.dayOfMonth}}
+                                        {{event.date.month | limitTo: 3 | lowercase | capitalize}}
+                                        {{event.date.hour|toMinute}}:{{event.date.minute|toMinute}}</p><br>
+                                    </p>
+                                </div>
+                                <div class="col-md-4 col-xs-4 margin-left-4">
+                                    <p class="event-creator">created by {{event.user.name}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-md-3 col-xs-3 pull-right" ng-controller="createEventController">
+                    <form role="form" ng-submit="createEvent(name,date)">
+                        <div>
+                            <div class="form-group">
+                                <input ng-model="name" type="text" class="form-control" id="name"
+                                       placeholder="Event title*"
+                                       name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <input kendo-date-time-picker ng-model="str" k-ng-model="date"
+                                       style="width: 100%;height: 27px;margin-bottom: 1px;"
+                                       k-options="dateTimePickerConfig" required placeholder="   Event date*"/>
+                            </div>
+                            <button type="submit" class="btn btn-success pull-right">Add event</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

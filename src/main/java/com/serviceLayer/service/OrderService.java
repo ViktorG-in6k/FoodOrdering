@@ -1,30 +1,28 @@
 package com.serviceLayer.service;
 
-import com.DTOLayer.DTOEntity.orderDTO.OrderDTOList;
-import com.DTOLayer.DTOEntity.orderDTO.OrderDTOListOfEachUser;
+import com.DTOLayer.DTOEntity.orderDTO.OrderPlacementStatus;
+import com.DTOLayer.DTOEntity.orderItemDTO.OrderItemRequest;
+import com.model.Entity.Event;
 import com.model.Entity.Order;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.List;
+import org.springframework.security.core.Authentication;
 
 public interface OrderService {
-    public void save(Order order);
 
-    public void saveByRequest(HttpServletRequest req, HttpSession session);
+    void save(Order order);
 
-    public OrderDTOList orderListOfUserByEvent(int userId, int eventId);
+    void save(OrderItemRequest req);
 
-    public OrderDTOList orderListOfEvent(int eventId);
+    void setPayerById(int orderId, int payerId);
 
-    OrderDTOList orderListOfUserByRestaurant(int eventId, int restaurantId);
+    Order getOrderByEvent(Event event);
 
-    public void deleteItemFromOrder(int userId, int eventId, int itemId);
+    Order getOrderById(int orderId);
 
-    public void deleteOneItemFromOrder(int userId, int eventId, int itemId);
+    OrderPlacementStatus getOrderPlacementStatus(Order order, int restaurantId, int eventId, Authentication authentication);
 
-    public void updateOrderedOfOrder(boolean ordered, int eventId, int itemId);
+    Order getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId);
 
-    public List<OrderDTOListOfEachUser> orderDTOListOfEachUser(int eventId);
+    boolean isMineOrder(Order order, Authentication authentication);
+
+
 }
-
