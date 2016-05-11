@@ -1,26 +1,30 @@
-<div style=" margin-top: 30px;">
-    <div>
-        <div class="well pull-left event-well" >
-            <div class="col-md-6" style="font-size: 25px;">
-                {{event.name}}
-            </div>
-            <div class="col-md-offset-10 event-date" >
-                <div class="col-md-offset-4">
-                    {{event.date.dayOfMonth}} {{event.date.month | limitTo: 3}}
-                    {{event.date.hour|toMinute}}:{{event.date.minute|toMinute}}
+<div class="common-order-block">
+
+
+        <div>
+            <div class="well pull-left event-detail-bloc">
+                <div class="col-md-6 md-text">
+                    {{event.name}}
                 </div>
+                <div class="col-md-offset-10 event-date-font-size">
+                    <div class="col-md-offset-4">
+                        {{event.date.dayOfMonth}} {{event.date.month | limitTo: 3}}
+                        {{event.date.hour|toMinute}}:{{event.date.minute|toMinute}}
+                    </div>
+                </div>
+                <br/>
+                <div class="row"></div>
+                <div class="col-md-6 create-event-user-text">Created by {{event.user.name}}</div>
             </div>
-            <div class="row"></div>
-            <div class="col-md-6 event create-event-user-text"  >Created by {{event.user.email}}</div>
         </div>
-    </div>
+
 </div>
 <div class="container">
     <div class="row">
     <div class="col-md-12"><h1 class="text-center">Order list</h1></div>
         <div>
-            <div class="col-md-12" style="margin-bottom: 5px">
-            <h1 style="display: inline">{{restaurant.name}}</h1> <h3  style=" display: inline;padding-left: 100px"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}</h3>
+            <div class="col-md-12 restaurant-phone-block">
+            <h1 class="inline">{{restaurant.name}}</h1> <h3 class="restaurant-phone"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}</h3>
             </div>
         </div>
     </div>
