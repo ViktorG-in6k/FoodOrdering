@@ -15,10 +15,10 @@
                 Food Ordering</div>
         </div>
         <div class="navbar-header">
-            <a class="navbar-brand" href="/events">Events</a>
+            <a class="navbar-brand" href="/app">Events</a>
         </div>
         <div  ng-controller="eventController" ng-if="eventId">
-            <a  class=" navbar-brand" href="/events/event_{{event.id}}#/{{event.id}}">
+            <a  class=" navbar-brand" href="app#/events/{{event.id}}">
              /   &nbsp &nbsp{{event.name}}
             </a>
         </div>
