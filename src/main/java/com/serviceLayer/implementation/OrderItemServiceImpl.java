@@ -57,7 +57,7 @@ public class OrderItemServiceImpl implements OrderItemService {
 
     @Override
     public List<OrderItemDTO> getOrderListByOrderIdAndUserId(int orderId, int userId) {
-        List<OrderItem> orderItems = orderItemDAO.getOrderListByOrderIdAndUserId(orderId, userId);
+        List<OrderItem> orderItems = orderItemDAO.getOrderListByOrderIdAndUserId(userId, orderId);
         List<OrderItemDTO> orderItemsDTO = new ArrayList<>();
         orderItems.forEach(orderItem -> orderItemsDTO.add(new OrderItemDTO(orderItem)));
         return orderItemsDTO;
