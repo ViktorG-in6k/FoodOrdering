@@ -34,9 +34,9 @@ public class OrderItemController {
         return "redirect:" + ref;
     }
 
-    @RequestMapping(value = "/orders/{orderId}/items/{itemId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/orders/{orderId}/items/{itemId}/{number}", method = RequestMethod.POST)
     public String updateNumberItemToOrder(HttpServletRequest req, Authentication authentication,
-                                          @RequestParam("number") int number,
+                                          @PathVariable("number") int number,
                                           @PathVariable("orderId") int orderId,
                                           @PathVariable("itemId") int itemId) {
         orderItemService.updateItemAmountInOrder(authentication, orderId, itemId, number);

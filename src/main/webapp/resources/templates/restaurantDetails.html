@@ -51,7 +51,7 @@
                                     </a>
                                     <span style="">
                                         <input style="width: 40px;margin: 0 8px;height: 24px;" min="1" required type="number"
-                                               ng-blur="updateNumberItemToOrder( eventId, item.id,itemInOrder.itemAmount)"
+                                               ng-blur="updateNumberItemToOrder(item.id,restaurant.orderPlacementStatus.order.id,itemInOrder.itemAmount)"
                                                ng-init="count=itemInOrder.itemAmount" ng-model="itemInOrder.itemAmount"/>
                                     </span>
                                 </div>

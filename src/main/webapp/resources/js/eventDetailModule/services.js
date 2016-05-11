@@ -76,10 +76,10 @@ services.factory("OrderListService", function ($http, $rootScope) {
     };
 
     orderListService.updateNumberItemToOrder = function (itemId, orderId, number) {
-        
+
         $http({
-            method: 'PUT',
-            url: "/orders/"+orderId+"/items/"+itemId,
+            method: 'POST',
+            url: "/orders/"+orderId+"/items/"+itemId+'/'+number,
             params: {
                 number: number
             }
