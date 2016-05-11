@@ -34,14 +34,14 @@
     <script src="/resources/js/eventDetailModule/events/eventsController.js"></script>
     <script src="/resources/js/eventDetailModule/events/eventsService.js"></script>
 
-    <script src="/resources/js/eventDetailModule/items/itemsController.js"></script>
-    <script src="/resources/js/eventDetailModule/items/itemsService.js"></script>
+    <script src="/resources/js/eventDetailModule/items/itemController.js"></script>
+    <script src="/resources/js/eventDetailModule/items/itemService.js"></script>
 
-    <script src="/resources/js/eventDetailModule/orders/ordersController.js"></script>
-    <script src="/resources/js/eventDetailModule/orders/ordersService.js"></script>
+    <script src="/resources/js/eventDetailModule/orders/orderController.js"></script>
+    <script src="/resources/js/eventDetailModule/orders/orderService.js"></script>
 
-    <script src="/resources/js/eventDetailModule/restaurants/restaurantsController.js"></script>
-    <script src="/resources/js/eventDetailModule/restaurants/restaurantsService.js"></script>
+    <script src="/resources/js/eventDetailModule/restaurants/restaurantController.js"></script>
+    <script src="/resources/js/eventDetailModule/restaurants/restaurantService.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true"/>

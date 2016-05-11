@@ -6,6 +6,7 @@ var app = angular.module('eventApp', [
     "kendo.directives",
     "ngRoute",
     'ngResource',
+    
     'eventController',
     'eventService',
     
@@ -32,7 +33,7 @@ app.config(['$routeProvider',
             controller: 'restaurantController'
         }).when('/:id/:restaurantId/order', {
             templateUrl: '/resources/templates/commonOrderList.html',
-            controller: 'commonOrderList'
+            controller:'commonOrderList'
         }).otherwise({
             redirectTo: '/events'
         });
