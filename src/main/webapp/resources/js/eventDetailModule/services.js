@@ -145,13 +145,15 @@ services.factory("RestaurantService", function ($http, $rootScope) {
 
 services.factory("EventService", function ($http) {
    var eventService = {};
-git
+
     eventService.getEventById = function (id) {
        return $http.get("/event_" + id);
     };
 
     return eventService;
 });
+
+
 
 services.factory("DateTimePicker",function () {
     var dateTimePicker= {};
