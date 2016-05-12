@@ -1,5 +1,6 @@
-package com.DTOLayer.DTOEntity;
+package com.DTOLayer.DTOEntity.eventDTO;
 
+import com.DTOLayer.DTOEntity.userDTO.UserDTO;
 import com.model.Entity.Event;
 import com.model.Entity.User;
 
@@ -20,10 +21,7 @@ public class EventDTO {
     }
 
     public EventDTO(Event event, User user) {
-        this.id = event.getId();
-        this.name = event.getName();
-        this.date = event.getDate();
-        this.user = event.getUser();
+        this(event);
         this.sessionUser = new UserDTO(user);
     }
 

@@ -1,7 +1,7 @@
 package com.controllers;
 
-import com.DTOLayer.DTOEntity.EventDTO;
-import com.DTOLayer.DTOEntity.RequestEventDTO;
+import com.DTOLayer.DTOEntity.eventDTO.EventDTO;
+import com.DTOLayer.DTOEntity.eventDTO.RequestEventDTO;
 import com.model.Entity.Event;
 import com.model.Entity.User;
 import com.serviceLayer.service.EventService;
@@ -57,14 +57,12 @@ public class EventController {
         String email = req.getParameter("email");
         session.setAttribute("backPage", "/");
         userService.saveUser(email);
-
         session.setAttribute("userId", userService.getUserByEmail(req.getParameter("email")).getId());
         return "events";
     }
 
     @RequestMapping(value = "/events")
     public String events(HttpSession session) {
-
         session.setAttribute("allEvents", eventService.getListOfAllEvents());
         session.setAttribute("backPage", "/events");
         return "events";

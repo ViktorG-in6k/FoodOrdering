@@ -1,10 +1,9 @@
 package com.dataLayer.Implementations;
 
 import com.dataLayer.DAO.OrderDAO;
-import com.model.Entity.Event;
-import com.model.Entity.Item;
 import com.model.Entity.Order;
-import com.model.Entity.User;
+import com.model.Entity.OrderItem;
+import com.model.Entity.Status;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,206 +21,104 @@ public class OrderDAOImpl implements OrderDAO {
     SessionFactory sessionFactory;
 
     @Override
-    public void save(Order order) {
+    public void saveOrder(Order order) {
         Session session = sessionFactory.getCurrentSession();
         session.save(order);
     }
 
     @Override
-    public Order getOrderFromOrderList(Order order) {
+    public Order getOrderByEventIdAndRestaurantIdAndPayerId(int eventId, int restaurantId, int payerId) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from order_list where event_id=:eventId and user_id=:userId and item_id=:itemId");
-        return (Order) query
-                .setInteger("eventId", order.getEvent().getId())
-                .setInteger("userId", order.getUser().getId())
-                .setInteger("itemId", order.getItem().getId()).uniqueResult();
-    }
-
-    @Override
-    public Order getOrderFromOrderList(int userId, int itemId, int eventId) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from order_list where event_id=:eventId and user_id=:userId and item_id=:itemId");
+        Query query = session.createQuery("from order_info where event_id = :eventId and restaurant_id = :restaurantId and payer_id = :payerId");
         return (Order) query
                 .setInteger("eventId", eventId)
-                .setInteger("userId", userId)
-                .setInteger("itemId", itemId)
+                .setInteger("restaurantId", restaurantId)
+                .setInteger("payerId", payerId)
                 .uniqueResult();
     }
 
     @Override
-    public void updateAmount(Order order, int amount) {
+    public Order getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("update order_list SET item_amount=:amount where event_id=:eventId and item_id=:itemId and user_id=:userId");
-        query
-                .setInteger("amount", amount)
-                .setInteger("eventId", order.getEvent().getId())
-                .setInteger("itemId", order.getItem().getId())
-                .setInteger("userId", order.getUser().getId());
-        query.executeUpdate();
+        Query query = session.createQuery("from order_info where event_id = :eventId and restaurant_id = :restaurantId");
+        return (Order) query
+                .setInteger("eventId", eventId)
+                .setInteger("restaurantId", restaurantId)
+                .uniqueResult();
     }
 
     @Override
-    public void addAmount(Order order, int amount) {
+    public Order getOrderByOrderId(int orderId) {
         Session session = sessionFactory.getCurrentSession();
-        int currentAmount = getOrderFromOrderList(order).getItemAmount();
-        Query query;
-        if (currentAmount + amount != 0) {
-            query = session.createQuery("update order_list SET item_amount=:amount where event_id=:eventId and item_id=:itemId and user_id=:userId");
-            query
-                    .setInteger("amount", currentAmount + amount)
-                    .setInteger("eventId", order.getEvent().getId())
-                    .setInteger("itemId", order.getItem().getId())
-                    .setInteger("userId", order.getUser().getId());
-        } else {
-            query = session.createQuery("delete from order_list where event_id=:eventId and user_id=:userId and item_id=:itemId");
-            query
-                    .setInteger("eventId", order.getEvent().getId())
-                    .setInteger("itemId", order.getItem().getId())
-                    .setInteger("userId", order.getUser().getId());
-        }
-        query.executeUpdate();
+        Query query = session.createQuery("from order_info where id = :orderId");
+        return (Order) query
+                .setInteger("orderId", orderId)
+                .uniqueResult();
     }
 
     @Override
-    public void updateAmount(Order order) {
+    public List<Order> getOrdersByEventId(int eventId) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("update order_list SET item_amount=:amount where event_id=:eventId and item_id=:itemId and user_id=:userId");
-        query
-                .setInteger("amount", order.getItemAmount())
-                .setInteger("eventId", order.getEvent().getId())
-                .setInteger("itemId", order.getItem().getId())
-                .setInteger("userId", order.getUser().getId());
-
-        query.executeUpdate();
-    }
-
-    @Override
-    public List<Order> getUserResponsibilityOrderList(Order order) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from order_list where event_id=:eventId and restaurant_id=:restaurantId");
+        Query query = session.createQuery("from order_info where event_id = :eventId");
         return (List<Order>) query
-                .setLong("restaurantId", order.getRestaurant().getId())
-                .setLong("eventId", order.getEvent().getId())
+                .setInteger("eventId", eventId)
                 .list();
     }
 
     @Override
-    public List<Order> orderListOfUserByEvent(int userId, int eventId) {
+    public Order getOrderByEventId(int eventId) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from order_list where user_id = :userId and event_id=:eventId");
+        Query query = session.createQuery("from order_info where event_id = :eventId");
+        return (Order) query
+                .setInteger("eventId", eventId)
+                .uniqueResult();
+    }
+
+    @Override
+    public List<Order> getOrdersByRestaurantId(int restaurantId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from order_info where restaurant_id = :restaurantId");
         return (List<Order>) query
-                .setLong("userId", userId)
-                .setLong("eventId", eventId)
+                .setInteger("restaurantId", restaurantId)
                 .list();
     }
 
     @Override
-    public List<Order> orderListOfUserByRestaurantInEvent(int userId, int eventId, int restaurantId) {
+    public void setPayer(int orderId, int payerId) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from order_list where user_id = :userId and event_id=:eventId and restaurant_id=:restaurantId");
-        return (List<Order>) query
-                .setLong("restaurantId", restaurantId)
-                .setLong("userId", userId)
-                .setLong("eventId", eventId)
-                .list();
-    }
-
-    @Override
-    public List<Order> orderListOfEvent(int eventId) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from order_list where event_id=:eventId");
-        return (List<Order>) query
-                .setLong("eventId", eventId)
-                .list();
-    }
-
-    @Override
-    public List<Order> selectOrderList(int userId, int eventId, int itemId) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from order_list where event_id=:eventId and user_id=:userId and item_id=:itemId");
-        return (List<Order>) query
-                .setInteger("eventId", eventId)
-                .setInteger("userId", userId)
-                .setInteger("itemId", itemId).list();
-    }
-
-    @Override
-    public List<Order> selectOrderList(int userId, int eventId) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from order_list where event_id=:eventId and user_id=:userId");
-        return (List<Order>) query
-                .setInteger("eventId", eventId)
-                .setInteger("userId", userId)
-                .list();
-    }
-
-    @Override
-    public void deleteOneItemFromOrder(int userId, int eventId, int itemId) {
-        Session session = sessionFactory.getCurrentSession();
-        Order order = selectOrderList(userId, eventId, itemId).get(0);
-        session.delete(order);
-    }
-
-    @Override
-    public void deleteItemFromOrder(int userId, int eventId, int itemId) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("delete from order_list where event_id=:eventId and user_id=:userId and item_id=:itemId");
+        Query query = session.createQuery("update order_info set payer_id=:payerId where id = :orderId");
         query
-                .setInteger("eventId", eventId)
-                .setInteger("userId", userId)
-                .setInteger("itemId", itemId);
+                .setInteger("orderId", orderId)
+                .setInteger("payerId", payerId);
         query.executeUpdate();
     }
 
     @Override
-    public void deleteOneItemFromOrder(Order order) {
+    public void setPayer(int eventId, int restaurantId, int payerId) {
         Session session = sessionFactory.getCurrentSession();
-        session.delete(order);
-    }
-
-    @Override
-    public void updateOrderedOfOrder(boolean ordered, int eventId, int itemId) {
-        Session session = sessionFactory.getCurrentSession();
-
-        Query query = session.createQuery("update order_list SET ordered=:ordered where event_id=:eventId and item_id=:itemId");
+        Query query = session.createQuery("update order_info set payer_id=:payerId where event_id = :eventId and restaurant_id = :restaurantId");
         query
-                .setBoolean("ordered", ordered)
+                .setInteger("restaurantId", restaurantId)
                 .setInteger("eventId", eventId)
-                .setInteger("itemId", itemId);
+                .setInteger("payerId", payerId);
         query.executeUpdate();
     }
 
     @Override
-    public void setResponsibleUser(int userId, int eventId, int restaurantId) {
+    public void setStatus(int orderId, int statusId) {
         Session session = sessionFactory.getCurrentSession();
-
-        Query query = session.createQuery("update order_list SET responsibility_user_id=:userId where event_id=:eventId and restaurant_id=:restaurantId");
+        Query query = session.createQuery("update order_info set status_id=:statusId where id = :orderId");
         query
-                .setInteger("userId", userId)
-                .setInteger("eventId", eventId)
-                .setInteger("restaurantId", restaurantId);
+                .setInteger("statusId", statusId)
+                .setInteger("orderId", orderId);
         query.executeUpdate();
     }
 
     @Override
-    public void addOneItemToOrder(User user, Item item, Event event, int number) {
+    public Status getStatus(int orderId) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("update order_list SET item_amount=:amount where event_id=:eventId and item_id=:itemId and user_id=:userId");
-        query
-                .setInteger("amount", number)
-                .setInteger("eventId", event.getId())
-                .setInteger("itemId", item.getId())
-                .setInteger("userId", user.getId());
-        query.executeUpdate();
-    }
-
-    @Override
-    public void deleteNumberItemFromOrder(int userId, int eventId, int itemId, int number) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createSQLQuery("DELETE FROM order_list WHERE id IN (SELECT id from (select id\n" +
-                "            FROM order_list WHERE event_id = " + eventId + " and item_id = " + itemId + " AND order_list.user_id = " + userId +
-                "            LIMIT " + number + ") x)");
-        query.executeUpdate();
+        Query query = session.createQuery("from order_info where id = :orderId");
+        return (Status) query.setInteger("orderId", orderId);
     }
 }
 

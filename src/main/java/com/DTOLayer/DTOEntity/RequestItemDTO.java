@@ -11,20 +11,6 @@ public class RequestItemDTO {
     public RequestItemDTO() {
     }
 
-    public RequestItemDTO(int id, BigDecimal price, int eventId) {
-        this.id = id;
-        this.price = price;
-        this.eventId = eventId;
-        this.name = null;
-    }
-
-    public RequestItemDTO(int id, String name, int eventId) {
-        this.id = id;
-        this.name = name;
-        this.eventId = eventId;
-        this.price = null;
-    }
-
     public int getId() {
         return id;
     }
