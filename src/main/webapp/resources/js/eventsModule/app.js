@@ -6,7 +6,7 @@ var app = angular.module('events', ["events.controllers", "events.services", "ev
 app.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.when('/AllEvents', {
-            templateUrl: '/partials/eventList',
+            templateUrl: '/resources/templates/eventsList.html',
             controller: 'eventController'
         }).otherwise({
             redirectTo: '/AllEvents'

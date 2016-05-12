@@ -3,31 +3,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
     <title>Events</title>
-    <link href="/resources/css/xeditable.css" rel="stylesheet"/>
-    <link href="/resources/core/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/resources/css/test.css" rel="stylesheet"/>
-    <link href="/resources/css/bootstrapTheme.css" rel="stylesheet">
-    <link rel="stylesheet" href="/resources/css/kendoLib/kendo.common.min.css"/>
-    <link rel="stylesheet" href="/resources/css/kendoLib/kendo.rtl.css"/>
-    <link rel="stylesheet" href="/resources/css/kendoLib/kendo.silver.css"/>
-    <link rel="stylesheet" href="/resources/css/kendoLib/kengo.modile.css"/>
+    <link href="/resources/css/lib/bootstrap.min.css" rel="stylesheet"/>
 
-    <script src="/resources/core/js/jquery-2.1.4.min.js"></script>
-    <script src="/resources/js/angular.min.js"></script>
-    <script src="/resources/js/angular-route.min.js"></script>
-    <script src="/resources/js/xeditable.min.js"></script>
-    <script src="/resources/js/ui-bootstrap-tpls-1.3.2.min.js"></script>
-    <script src="/resources/js/moment.js"></script>
-    <script src="/resources/js/bootstrap.js"></script>
-    <script src="/resources/js/angular-touch.js"></script>
+    <link href="/resources/css/lib/bootstrapTheme.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="/resources/css/lib/kendoLib/kendo.common.min.css"/>
+    <link rel="stylesheet" href="/resources/css/lib/kendoLib/kendo.rtl.css"/>
+    <link rel="stylesheet" href="/resources/css/lib/kendoLib/kendo.silver.css"/>
+    <link rel="stylesheet" href="/resources/css/lib/kendoLib/kengo.modile.css"/>
+
+    <link href="/resources/css/eventsStyle.css" rel="stylesheet"/>
+
+
+    <script src="/resources/js/lib/jquery-2.1.4.min.js"></script>
+    <script src="/resources/js/lib/angular.min.js"></script>
+    <script src="/resources/js/lib/angular-route.min.js"></script>
+    <script src="/resources/js/lib/bootstrap.js"></script>
+    <script src="/resources/js/lib/angular-touch.js"></script>
     <script src="/resources/js/eventsModule/app.js"></script>
     <script src="/resources/js/eventsModule/controllers.js"></script>
     <script src="/resources/js/eventsModule/services.js"></script>
     <script src="/resources/js/eventsModule/filters.js"></script>
-
-    <script src="/resources/js/kendo.js"></script>
+    <script src="/resources/js/lib/kendo.js"></script>
 </head>
 <body ng-app="events" >
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true"/>

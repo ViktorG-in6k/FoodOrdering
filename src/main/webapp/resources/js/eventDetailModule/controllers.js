@@ -14,6 +14,28 @@ controllers.controller("eventController", function ($http, $scope, $routeParams,
         $http.get("/event_" + $rootScope.eventId).success(function (data) {
             $scope.event = data;
         });
+
+    $scope.restaurant={};
+    $scope.restaurant.link = '';
+
+    $scope.createRestaurant = function (restaurant, eventId) {
+            $http({
+                url:"/new_restaurant",
+                method:"POST",
+                params:{
+                    name: restaurant.title,
+                    link: restaurant.link,
+                    phone: restaurant.phone,
+                    eventId: eventId
+                }
+            }).success(function () {
+                $scope.restaurant={};
+                $scope.restaurant.link = '';
+                $http.get("/restaurants_by_event_" + $rootScope.eventId).success(function (data) {
+                    $scope.restaurants = data;
+                });
+            })
+    }
     }
 );
 
