@@ -1,12 +1,12 @@
 package com.serviceLayer.implementation;
 
-import com.DTOLayer.DTOEntity.orderItemDTO.OrderItemDTO;
-import com.dataLayer.DAO.OrderItemDAO;
-import com.googleAuthentication.CurrentUserDetails;
-import com.model.Entity.Item;
-import com.model.Entity.Order;
-import com.model.Entity.OrderItem;
-import com.model.Entity.User;
+import com.dataLayer.entity.DTO.orderItemDTO.OrderItemDTO;
+import com.dataLayer.DAO.Interfaces.OrderItemDAO;
+import com.serviceLayer.googleAuthentication.CurrentUserDetails;
+import com.dataLayer.entity.Item;
+import com.dataLayer.entity.Order;
+import com.dataLayer.entity.OrderItem;
+import com.dataLayer.entity.User;
 import com.serviceLayer.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

@@ -48,8 +48,8 @@ class OAuth2SecurityConfig {
     @Bean
     @Scope(value = "session", proxyMode = ScopedProxyMode.INTERFACES)
     public OAuth2RestTemplate oauth2RestTemplate() {
-        OAuth2RestTemplate template =new OAuth2RestTemplate(googleResource(), new DefaultOAuth2ClientContext(accessTokenRequest));
+        OAuth2RestTemplate template = new OAuth2RestTemplate(googleResource(), new DefaultOAuth2ClientContext(accessTokenRequest));
         return template;
     }
-
 }
+

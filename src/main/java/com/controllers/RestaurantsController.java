@@ -1,6 +1,6 @@
 package com.controllers;
 
-import com.DTOLayer.DTOEntity.restaurantDTO.RestaurantDTO;
+import com.dataLayer.entity.DTO.restaurantDTO.RestaurantDTO;
 import com.serviceLayer.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

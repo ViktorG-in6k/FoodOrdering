@@ -1,8 +1,7 @@
 package com.serviceLayer.service;
 
-import com.model.Entity.GoogleProfile;
-import com.model.Entity.User;
-import com.model.base.OauthProfile;
+import com.dataLayer.entity.User;
+import com.dataLayer.entity.base.OauthProfile;
 
 import java.util.List;
 

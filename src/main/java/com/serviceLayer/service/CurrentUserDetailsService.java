@@ -1,14 +1,11 @@
 package com.serviceLayer.service;
 
-import com.dataLayer.Implementations.GoogleProfileDao;
+import com.dataLayer.DAO.Implementations.GoogleProfileDao;
 import com.google.common.collect.ImmutableSet;
-import com.googleAuthentication.CurrentUserDetails;
-import com.model.Entity.GoogleProfile;
-import com.model.Entity.User;
-import com.model.base.OauthProfile;
-import com.serviceLayer.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.serviceLayer.googleAuthentication.CurrentUserDetails;
+import com.dataLayer.entity.GoogleProfile;
+import com.dataLayer.entity.User;
+import com.dataLayer.entity.base.OauthProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

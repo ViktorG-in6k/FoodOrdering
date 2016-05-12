@@ -1,7 +1,7 @@
 package com.serviceLayer.service;
 
-import com.DTOLayer.DTOEntity.eventDTO.RequestEventDTO;
-import com.model.Entity.Event;
+import com.dataLayer.entity.DTO.eventDTO.RequestEventDTO;
+import com.dataLayer.entity.Event;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;

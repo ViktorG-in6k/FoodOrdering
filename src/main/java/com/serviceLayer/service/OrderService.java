@@ -1,9 +1,9 @@
 package com.serviceLayer.service;
 
-import com.DTOLayer.DTOEntity.orderDTO.OrderPlacementStatus;
-import com.DTOLayer.DTOEntity.orderItemDTO.OrderItemRequest;
-import com.model.Entity.Event;
-import com.model.Entity.Order;
+import com.dataLayer.entity.DTO.orderDTO.OrderPlacementStatus;
+import com.dataLayer.entity.DTO.orderItemDTO.OrderItemRequest;
+import com.dataLayer.entity.Event;
+import com.dataLayer.entity.Order;
 import org.springframework.security.core.Authentication;
 
 public interface OrderService {
