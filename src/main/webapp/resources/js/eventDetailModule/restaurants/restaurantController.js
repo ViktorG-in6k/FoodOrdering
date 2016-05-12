@@ -1,13 +1,13 @@
 var restaurantController = angular.module('restaurantController', []);
 
-restaurantController.controller("restaurantController", function ($http, $scope, $routeParams, $rootScope, Restaurants) {
+restaurantController.controller("restaurantController", function ($http, $scope, $routeParams, $rootScope, Restaurants,Restaurant) {
     $rootScope.currentRestaurant = $routeParams.restaurantId;
     $rootScope.eventId = $routeParams.id;
+    $rootScope.orderId = $routeParams.orderId;
 
     $scope.restaurants = Restaurants.query();
-    
-    $http.get("/events/" + $rootScope.eventId + "/restaurants/" + $rootScope.currentRestaurant).success(function (data) {
-        $rootScope.restaurant = data;
-        $rootScope.currentOrderId = data.orderPlacementStatus.order.id;
+    $rootScope.restaurant = Restaurant.get({
+        eventId: $rootScope.eventId,
+        restaurantId: $rootScope.currentRestaurant
     });
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              });
+});

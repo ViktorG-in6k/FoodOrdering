@@ -14,8 +14,5 @@ restaurantService.factory("RestaurantService", function ($http, $rootScope) {
 });
 
 restaurantService.factory("Restaurant", ['$resource', function ($resource) {
-    return $resource('/events/:eventId/restaurants/:restaurantId',{
-        eventId: 3,
-        restaurantId: 4
-    });
+    return $resource('/events/:eventId/restaurants/:restaurantId');
 }]);
