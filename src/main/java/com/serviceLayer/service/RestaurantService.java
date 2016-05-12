@@ -1,13 +1,12 @@
 package com.serviceLayer.service;
 
-import com.DTOLayer.DTOEntity.RequestRestaurantDTO;
-import com.DTOLayer.DTOEntity.restaurantDTO.RestaurantDTO;
-import com.model.Entity.Item;
-import com.model.Entity.Restaurant;
+import com.dataLayer.entity.DTO.RequestRestaurantDTO;
+import com.dataLayer.entity.DTO.restaurantDTO.RestaurantDTO;
+import com.dataLayer.entity.Item;
+import com.dataLayer.entity.Restaurant;
 import org.springframework.security.core.Authentication;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public interface RestaurantService {

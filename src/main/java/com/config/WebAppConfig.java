@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableWebMvc
 @Configuration
 @ImportResource("classpath:spring-security.xml")
-@ComponentScan(basePackages = {"com", "com.controllers", "com.dataLayer.Implementations", "com.serviceLayer.service", "com.googleAuthentication"})
+@ComponentScan(basePackages = {"com", "com.controllers", "com.dataLayer.DAO.Implementations", "com.serviceLayer.service", "com.serviceLayer.googleAuthentication"})
 public class WebAppConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

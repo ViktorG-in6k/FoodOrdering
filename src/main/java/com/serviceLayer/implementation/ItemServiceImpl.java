@@ -1,12 +1,12 @@
 package com.serviceLayer.implementation;
 
-import com.DTOLayer.DTOEntity.restaurantDTO.RestaurantDTO;
-import com.DTOLayer.DTOEntity.itemDTO.ItemDTO;
-import com.DTOLayer.DTOEntity.RequestItemDTO;
-import com.DTOLayer.DTOEntity.itemDTO.ItemRequest;
-import com.dataLayer.DAO.ItemDAO;
-import com.model.Entity.Item;
-import com.model.Entity.Restaurant;
+import com.dataLayer.entity.DTO.restaurantDTO.RestaurantDTO;
+import com.dataLayer.entity.DTO.itemDTO.ItemDTO;
+import com.dataLayer.entity.DTO.RequestItemDTO;
+import com.dataLayer.entity.DTO.itemDTO.ItemRequest;
+import com.dataLayer.DAO.Interfaces.ItemDAO;
+import com.dataLayer.entity.Item;
+import com.dataLayer.entity.Restaurant;
 import com.serviceLayer.service.ItemService;
 import com.serviceLayer.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 
 @Service

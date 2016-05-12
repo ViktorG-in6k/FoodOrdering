@@ -1,7 +1,7 @@
 package com.controllers;
 
-import com.DTOLayer.DTOEntity.orderItemDTO.OrderItemDTO;
-import com.googleAuthentication.CurrentUserDetails;
+import com.dataLayer.entity.DTO.orderItemDTO.OrderItemDTO;
+import com.serviceLayer.googleAuthentication.CurrentUserDetails;
 import com.serviceLayer.service.OrderItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

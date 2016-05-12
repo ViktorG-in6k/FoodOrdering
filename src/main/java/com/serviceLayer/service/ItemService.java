@@ -1,14 +1,13 @@
 package com.serviceLayer.service;
 
-import com.DTOLayer.DTOEntity.restaurantDTO.RestaurantDTO;
-import com.DTOLayer.DTOEntity.itemDTO.ItemDTO;
-import com.DTOLayer.DTOEntity.RequestItemDTO;
-import com.DTOLayer.DTOEntity.itemDTO.ItemRequest;
-import com.model.Entity.Item;
+import com.dataLayer.entity.DTO.restaurantDTO.RestaurantDTO;
+import com.dataLayer.entity.DTO.itemDTO.ItemDTO;
+import com.dataLayer.entity.DTO.RequestItemDTO;
+import com.dataLayer.entity.DTO.itemDTO.ItemRequest;
+import com.dataLayer.entity.Item;
 import org.springframework.security.core.Authentication;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 
 public interface ItemService {

@@ -1,7 +1,7 @@
 package com.serviceLayer.implementation;
 
-import com.dataLayer.DAO.StatusDAO;
-import com.model.Entity.Status;
+import com.dataLayer.DAO.Interfaces.StatusDAO;
+import com.dataLayer.entity.Status;
 import com.serviceLayer.service.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

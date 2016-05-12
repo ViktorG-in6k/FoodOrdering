@@ -1,6 +1,6 @@
 package com.controllers;
 
-import com.googleAuthentication.CurrentUserDetails;
+import com.serviceLayer.googleAuthentication.CurrentUserDetails;
 import com.serviceLayer.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

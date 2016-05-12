@@ -1,9 +1,9 @@
 package com.controllers;
 
-import com.DTOLayer.DTOEntity.RequestItemDTO;
-import com.DTOLayer.DTOEntity.itemDTO.ItemDTO;
-import com.DTOLayer.DTOEntity.itemDTO.ItemRequest;
-import com.DTOLayer.DTOEntity.restaurantDTO.RestaurantDTO;
+import com.dataLayer.entity.DTO.RequestItemDTO;
+import com.dataLayer.entity.DTO.itemDTO.ItemDTO;
+import com.dataLayer.entity.DTO.itemDTO.ItemRequest;
+import com.dataLayer.entity.DTO.restaurantDTO.RestaurantDTO;
 import com.serviceLayer.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

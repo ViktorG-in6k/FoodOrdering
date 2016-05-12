@@ -1,7 +1,7 @@
 package com.serviceLayer.service;
 
-import com.DTOLayer.DTOEntity.orderItemDTO.OrderItemDTO;
-import com.model.Entity.OrderItem;
+import com.dataLayer.entity.DTO.orderItemDTO.OrderItemDTO;
+import com.dataLayer.entity.OrderItem;
 import org.springframework.security.core.Authentication;
 
 import java.util.List;

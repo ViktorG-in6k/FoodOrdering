@@ -1,8 +1,8 @@
 package com.serviceLayer.implementation;
 
-import com.DTOLayer.DTOEntity.eventDTO.RequestEventDTO;
-import com.dataLayer.DAO.EventDAO;
-import com.model.Entity.Event;
+import com.dataLayer.entity.DTO.eventDTO.RequestEventDTO;
+import com.dataLayer.DAO.Interfaces.EventDAO;
+import com.dataLayer.entity.Event;
 import com.serviceLayer.service.EventService;
 import com.serviceLayer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
