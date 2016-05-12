@@ -44,13 +44,13 @@
                                 <div ng-if="item.id == itemInOrder.item.id" class="inline">
                                     <a href="">
                                         <i
-                                                ng-click="removeOneItemFromOrder(item.id, restaurant.orderPlacementStatus.order.id)"
+                                                ng-click="orderService.removeOneItemFromOrder(item.id, restaurant.orderPlacementStatus.order.id)"
                                                 class="fa fa-minus item-plus-color" aria-hidden="true">
                                         </i>
                                     </a>
                                     <span>
                                         <input class="item-number" min="1" required type="number"
-                                               ng-blur="updateNumberItemToOrder(item.id,restaurant.orderPlacementStatus.order.id,itemInOrder.itemAmount)"
+                                               ng-blur="orderService.updateNumberItemToOrder(item.id,restaurant.orderPlacementStatus.order.id,itemInOrder.itemAmount)"
                                                ng-init="count=itemInOrder.itemAmount"
                                                ng-model="itemInOrder.itemAmount"/>
                                     </span>
@@ -58,7 +58,7 @@
                             </div>
                             <div class="inline">
                                 <a href=""
-                                   ng-click="addOneItemToOrder(item.id,restaurant.orderPlacementStatus.order.id)">
+                                   ng-click="orderService.addOneItemToOrder(item.id,restaurant.orderPlacementStatus.order.id)">
                                     <i class="fa fa-plus item-plus-color" aria-hidden="true"></i></a>
                             </div>
                         </div>
@@ -108,17 +108,17 @@
                         <td>
                             <div>
                                 <a class="item-minus-margin" href=""><i
-                                        ng-click="removeOneItemFromOrder(item.item.id, restaurant.orderPlacementStatus.order.id)"
+                                        ng-click="orderService.removeOneItemFromOrder(item.item.id, restaurant.orderPlacementStatus.order.id)"
                                         class="fa fa-minus item-plus-color" aria-hidden="true"></i></a>
                                 <span style="">{{item.itemAmount}}</span>
                                 <a href=""
-                                   ng-click="addOneItemToOrder(item.item.id,restaurant.orderPlacementStatus.order.id)"
+                                   ng-click="orderService.addOneItemToOrder(item.item.id,restaurant.orderPlacementStatus.order.id)"
                                    class="item-minus-margin">
                                     <i class="fa fa-plus item-plus-color" aria-hidden="true"></i></a>
                             </div>
                         </td>
                         <td>{{item.itemAmount * item.item.price|currency:" "}}&#8372</td>
-                        <td><a href="" ng-click="removeFromOrder(eventId,item.item.id)"><i
+                        <td><a href="" ng-click="orderService.removeFromOrder(restaurant.orderPlacementStatus.order.id,item.item.id)"><i
                                 class="fa fa-times item-minus-color"
                                 aria-hidden="true"></i></a>
                         </td>
