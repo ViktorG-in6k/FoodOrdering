@@ -9,6 +9,17 @@ public class ItemDTO {
     private String name;
     private BigDecimal price;
 
+    public ItemDTO(Item item) {
+        this.id = item.getId();
+        this.name = item.getName();
+        this.price = item.getPrice();
+    }
+
+    public ItemDTO(int id, BigDecimal price) {
+        this.id = id;
+        this.price = price;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -18,17 +29,6 @@ public class ItemDTO {
     }
 
     public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public ItemDTO(Item item) {
-        this.id = item.getId();
-        this.name = item.getName();
-        this.price = item.getPrice();
-    }
-
-    public ItemDTO(int id, BigDecimal price) {
-        this.id = id;
         this.price = price;
     }
 

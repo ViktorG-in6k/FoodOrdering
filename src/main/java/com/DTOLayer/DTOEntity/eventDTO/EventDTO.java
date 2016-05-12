@@ -13,19 +13,16 @@ public class EventDTO {
     private UserDTO sessionUser;
     private LocalDateTime date;
 
+    public EventDTO(Event event, User user) {
+        this(event);
+        this.sessionUser = new UserDTO(user);
+    }
+
     public EventDTO(Event event) {
         this.id = event.getId();
         this.name = event.getName();
         this.date = event.getDate();
         this.user = event.getUser();
-    }
-
-    public EventDTO(Event event, User user) {
-        this.id = event.getId();
-        this.name = event.getName();
-        this.date = event.getDate();
-        this.user = event.getUser();
-        this.sessionUser = new UserDTO(user);
     }
 
     public String getName() {
