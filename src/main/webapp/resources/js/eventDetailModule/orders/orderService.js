@@ -17,14 +17,8 @@ orderService.factory("OrderListService", function ($http, $rootScope) {
     };
 
     orderListService.updateNumberItemToOrder = function (itemId, orderId, number) {
-        $http({
-            method: 'POST',
-            url: "/orders/" + orderId + "/items/" + itemId + '/' + number,
-            params: {
-                number: number
-            }
-        }).finally(function () {
-            orderListService.updateOrderList();
+        $http.put("/orders/" + orderId + "/items/" + itemId + '/' + number).finally(function () {
+            orderListService.updateOrderList(orderId);
         });
     };
 
@@ -34,24 +28,21 @@ orderService.factory("OrderListService", function ($http, $rootScope) {
         })
     };
 
-    orderListService.removeFromOrder = function (eventId, itemId) {
-        $http({
-            method: 'GET',
-            url: "/remote_from_order" + itemId + "_" + eventId
-        }).then(function () {
-            orderListService.updateOrderList();
+    orderListService.removeFromOrder = function (orderId, itemId) {
+        $http.delete("/orders/" + orderId + "/items/" + itemId + "/all").finally(function () {
+            orderListService.updateOrderList(orderId);
         });
     };    
 
     orderListService.CommonOrder = function () {
-        $http.get("/orders/" + $rootScope.currentOrderId).success(function (data) {
+        $http.get("/orders/" + $rootScope.orderId).success(function (data) {
             $rootScope.myOrders = data;
             $rootScope.commonOrders = data;
         })
     };
 
     orderListService.updateOrderList = function () {
-        $http.get("/orders/" + $rootScope.currentOrderId).success(function (data) {
+        $http.get("/orders/" + $rootScope.orderId).success(function (data) {
             $rootScope.myOrders = data;
             $rootScope.commonOrders = data;
         })
@@ -71,5 +62,5 @@ orderService.factory("OrderListService", function ($http, $rootScope) {
 });
 
 orderService.factory('Order', ['$resource', function ($resource) {
-    return $resource('/order/:id');
+    return $resource('/orders/:id');
 }]);
