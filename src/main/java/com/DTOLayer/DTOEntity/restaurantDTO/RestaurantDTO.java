@@ -16,12 +16,8 @@ public class RestaurantDTO {
     private List<ItemDTO> itemList = new ArrayList<ItemDTO>();
 
     public RestaurantDTO(Restaurant restaurant, OrderPlacementStatus orderPlacementStatus) {
-        this.id = restaurant.getId();
-        this.name = restaurant.getName();
-        this.phone = restaurant.getPhone();
-        this.link = restaurant.getLink();
+        this(restaurant);
         this.orderPlacementStatus = orderPlacementStatus;
-        restaurant.getItem().forEach(item -> this.itemList.add(new ItemDTO(item)));
     }
 
     public RestaurantDTO(Restaurant restaurant) {
@@ -29,7 +25,6 @@ public class RestaurantDTO {
         this.name = restaurant.getName();
         this.phone = restaurant.getPhone();
         this.link = restaurant.getLink();
-        this.orderPlacementStatus = null;
         restaurant.getItem().forEach(item -> this.itemList.add(new ItemDTO(item)));
     }
 
