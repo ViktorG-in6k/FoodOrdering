@@ -67,6 +67,13 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
+    public void remotePositionFromOrder(Authentication authentication, int itemId, int orderId) {
+        int userId = ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId();
+        OrderItem orderInOrderList = orderItemDAO.getOrderItem(userId, itemId, orderId);
+        orderItemDAO.deleteOrderItem(orderInOrderList);
+    }
+
+    @Override
     public List<OrderItemDTO> getOrderListByOrderIdAndUserId(int orderId, int userId) {
         List<OrderItem> orderItems = orderItemDAO.getOrderListByOrderIdAndUserId(userId, orderId);
         List<OrderItemDTO> orderItemsDTO = new ArrayList<>();

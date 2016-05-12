@@ -15,6 +15,8 @@ public interface OrderItemService {
 
     void remoteOneItemFromOrder(Authentication authentication, int itemId, int orderId);
 
+    void remotePositionFromOrder(Authentication authentication, int itemId, int orderId);
+
     List<OrderItemDTO> getOrderListByOrderIdAndUserId(int orderId, int userId);
 
     List<OrderItemDTO> getOrderListByOrderId(int orderId);
