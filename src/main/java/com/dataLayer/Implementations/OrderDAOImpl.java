@@ -86,7 +86,7 @@ public class OrderDAOImpl implements OrderDAO {
     @Override
     public void setPayer(int orderId, int payerId) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("update order_info set payer_id=:payerId where id = :orderId");
+        Query query = session.createQuery("update order_info set payer_id = :payerId where id = :orderId");
         query
                 .setInteger("orderId", orderId)
                 .setInteger("payerId", payerId);
@@ -96,29 +96,12 @@ public class OrderDAOImpl implements OrderDAO {
     @Override
     public void setPayer(int eventId, int restaurantId, int payerId) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("update order_info set payer_id=:payerId where event_id = :eventId and restaurant_id = :restaurantId");
+        Query query = session.createQuery("update order_info set payer_id = :payerId where event_id = :eventId and restaurant_id = :restaurantId");
         query
                 .setInteger("restaurantId", restaurantId)
                 .setInteger("eventId", eventId)
                 .setInteger("payerId", payerId);
         query.executeUpdate();
-    }
-
-    @Override
-    public void setStatus(int orderId, int statusId) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("update order_info set status_id=:statusId where id = :orderId");
-        query
-                .setInteger("statusId", statusId)
-                .setInteger("orderId", orderId);
-        query.executeUpdate();
-    }
-
-    @Override
-    public Status getStatus(int orderId) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from order_info where id = :orderId");
-        return (Status) query.setInteger("orderId", orderId);
     }
 }
 
