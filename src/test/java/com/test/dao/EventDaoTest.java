@@ -1,4 +1,4 @@
-package com.test;
+package com.test.dao;
 
 import com.config.TestHibernateConfig;
 import com.dataLayer.DAO.EventDAO;
