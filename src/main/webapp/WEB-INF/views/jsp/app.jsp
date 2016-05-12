@@ -42,6 +42,8 @@
 
     <script src="/resources/js/eventDetailModule/restaurants/restaurantController.js"></script>
     <script src="/resources/js/eventDetailModule/restaurants/restaurantService.js"></script>
+
+    <script src="/resources/js/eventDetailModule/responsible/responsibleService.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true"/>

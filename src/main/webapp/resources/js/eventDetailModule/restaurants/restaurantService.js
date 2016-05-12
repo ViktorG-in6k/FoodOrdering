@@ -9,7 +9,6 @@ restaurantService.factory("RestaurantService", function ($http, $rootScope) {
     restaurantService.getRestaurantById = function (id) {
         return $http.get("/events/" + $rootScope.eventId + "/restaurants/" + id)
     };
-
     return restaurantService;
 });
 

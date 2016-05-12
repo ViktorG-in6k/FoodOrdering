@@ -1,6 +1,7 @@
 var controllers = angular.module('eventApp.controllers', []);
 
-controllers.controller("eventController", function ($http, $scope, $routeParams, $rootScope) {
+controllers.controller("eventController", function ($http, $scope, $routeParams, $rootScope,
+                                                    TakeResponsibilityService) {
         $rootScope.eventId = $routeParams.id;
 
         $http.get("/events/" + $rootScope.eventId).success(function (data) {
@@ -10,7 +11,16 @@ controllers.controller("eventController", function ($http, $scope, $routeParams,
         $http.get("/events/" + $rootScope.eventId + "/restaurants").success(function (data) {
             $scope.restaurants = data;
         });
-
+    
+        $rootScope.takeResponsibility = function(orderId){
+            console.log("aaa");
+            TakeResponsibilityService.takeResponsibility(orderId).then(
+                $http.get("/events/" + $rootScope.eventId + "/restaurants").success(function (data) {
+                    $scope.restaurants = data;
+                })
+            )
+        };
+    
         $scope.restaurant = {};
         $scope.restaurant.link = '';
 

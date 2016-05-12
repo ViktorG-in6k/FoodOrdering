@@ -1,6 +1,6 @@
 var orderService = angular.module('orderService', []);
 
-orderService.factory("OrderListService", function ($http, $rootScope) {
+orderService.factory("OrderListService", function ($http, $rootScope, RestaurantService) {
     var orderListService = {};
 
     orderListService.addOneItemToOrder = function (itemId, orderId) {
@@ -20,13 +20,7 @@ orderService.factory("OrderListService", function ($http, $rootScope) {
         $http.put("/orders/" + orderId + "/items/" + itemId + '/' + number).finally(function () {
             orderListService.updateOrderList(orderId);
         });
-    };
-
-    orderListService.takeResponsibility = function (orderId) {
-        $http.post("/orders/" + orderId + "/responsibility").success(function () {
-            orderListService.updateOrderList();
-        })
-    };
+    };    
 
     orderListService.removeFromOrder = function (orderId, itemId) {
         $http.delete("/orders/" + orderId + "/items/" + itemId + "/all").finally(function () {
@@ -47,6 +41,7 @@ orderService.factory("OrderListService", function ($http, $rootScope) {
             $rootScope.commonOrders = data;
         })
     };
+  
 
     orderListService.getTotal = function () {
         var total = 0;

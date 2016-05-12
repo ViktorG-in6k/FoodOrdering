@@ -59,7 +59,6 @@
                      class="btn btn-success pull-right"
                      ng-click="takeResponsibility(restaurant.orderPlacementStatus.order.id)">
                     {{restaurant.orderPlacementStatus.order.id}}
-
                 </div>
                 <div ng-if="restaurant.orderPlacementStatus.payer != null">
                     <p ng-if="restaurant.orderPlacementStatus.payer" class="pull-right" style="padding-right: 20px">
@@ -67,6 +66,7 @@
                         {{restaurant.orderPlacementStatus.payer.email}}
                     <p>
                 </div>
+
             </div>
         </div>
     </div>
