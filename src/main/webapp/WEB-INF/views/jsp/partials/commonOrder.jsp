@@ -16,7 +16,7 @@
                         <th>Cost</th>
                         <th>Ordered</th>
                     </tr>
-                    <tr ng-repeat="item in eventOrderList.myOrderList | orderBy:'restaurant.name'">
+                    <tr ng-repeat="item in eventOrderList.orderList | orderBy:'restaurant.name'">
                         <td> {{item.restaurant.name}}</td>
                         <td><div ng-controller="Ctrl">
                             <a href="#" editable-text="item.item.name" onbeforesave="updateName($data,item.item.id,eventOrderList.eventId)">{{item.item.name}}</a>

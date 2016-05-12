@@ -20,6 +20,12 @@ public class User extends com.model.base.Entity {
         this.enabled = enabled;
     }
 
+    public User(String email) {
+        this.email = email;
+        this.password = "aaa";
+        this.enabled = true;
+    }
+
     public String getEmail() {
         return this.email;
     }

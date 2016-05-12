@@ -1,7 +1,7 @@
 package com.controllers;
 
-import com.DTOLayer.DTOEntity.EventDTO;
-import com.DTOLayer.DTOEntity.RequestEventDTO;
+import com.DTOLayer.DTOEntity.eventDTO.EventDTO;
+import com.DTOLayer.DTOEntity.eventDTO.RequestEventDTO;
 import com.model.Entity.Event;
 import com.model.Entity.User;
 import com.serviceLayer.service.EventService;
@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
@@ -21,16 +20,8 @@ import java.util.Set;
 public class EventController {
     @Autowired
     EventService eventService;
-
     @Autowired
     UserService userService;
-
-    @RequestMapping(value = "/addResponsibleUser", method = RequestMethod.POST)
-    public String setResponsibleUser(HttpSession session, @RequestParam("eventId") int eventId) {
-        int userId = (int) session.getAttribute("userId");
-        eventService.setResponsibleUser(userId, eventId);
-        return "redirect:/events/";
-    }
 
     @RequestMapping(value = "/new_event", method = RequestMethod.POST)
     public
@@ -48,9 +39,7 @@ public class EventController {
         Set<EventDTO> EventDTOs = new HashSet<>();
         User user = userService.getUser((int) session.getAttribute("userId"));
         for (Event event : eventService.getListOfAllEvents()) {
-            if (event.getDate().isAfter(LocalDateTime.now().minusMinutes(10))) {
                 EventDTOs.add(new EventDTO(event, user));
-            }
         }
         return EventDTOs;
     }
@@ -68,20 +57,18 @@ public class EventController {
         String email = req.getParameter("email");
         session.setAttribute("backPage", "/");
         userService.saveUser(email);
-
         session.setAttribute("userId", userService.getUserByEmail(req.getParameter("email")).getId());
         return "events";
     }
 
     @RequestMapping(value = "/events")
     public String events(HttpSession session) {
-
         session.setAttribute("allEvents", eventService.getListOfAllEvents());
         session.setAttribute("backPage", "/events");
         return "events";
     }
 
-    @RequestMapping(value = "/newEvent", method = RequestMethod.GET)
+    @RequestMapping(value = "/newEvent", method = RequestMethod.POST)
     public
     @ResponseBody
     Set<EventDTO> createEvent(HttpSession session, @RequestParam("name") String name,

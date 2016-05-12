@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import java.math.BigDecimal;
 
-@Entity(name = "menu")
+@Entity(name = "item")
 public class Item extends com.model.base.Entity {
     @Column
     private String name;

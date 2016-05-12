@@ -1,30 +1,22 @@
 package com.serviceLayer.service;
 
-import com.DTOLayer.DTOEntity.orderDTO.OrderDTOList;
-import com.DTOLayer.DTOEntity.orderDTO.OrderDTOListOfEachUser;
+import com.DTOLayer.DTOEntity.orderDTO.OrderPlacementStatus;
+import com.model.Entity.Event;
 import com.model.Entity.Order;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 public interface OrderService {
-    public void save(Order order);
 
-    public void saveByRequest(HttpServletRequest req, HttpSession session);
+    void save(Order order);
 
-    public OrderDTOList orderListOfUserByEvent(int userId, int eventId);
+    Order getOrderByEvent(Event event);
 
-    public OrderDTOList orderListOfEvent(int eventId);
+    Order getOrderById(int orderId);
 
-    OrderDTOList orderListOfUserByRestaurant(int eventId, int restaurantId);
+    OrderPlacementStatus getOrderPlacementStatus(Order order,int restaurantId,int eventId, HttpSession session);
 
-    public void deleteItemFromOrder(int userId, int eventId, int itemId);
+    Order getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId);
 
-    public void deleteOneItemFromOrder(int userId, int eventId, int itemId);
-
-    public void updateOrderedOfOrder(boolean ordered, int eventId, int itemId);
-
-    public List<OrderDTOListOfEachUser> orderDTOListOfEachUser(int eventId);
+    boolean isMineOrder(Order order, HttpSession session);
 }
-

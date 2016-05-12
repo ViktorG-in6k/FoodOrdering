@@ -2,7 +2,7 @@ package com.DTOLayer.DTOEntity.itemDTO;
 
 import java.math.BigDecimal;
 
-public class RequestItem {
+public class ItemRequest {
     private String name;
     private BigDecimal price;
     private int restaurantId;
