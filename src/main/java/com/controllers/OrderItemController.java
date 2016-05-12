@@ -27,8 +27,8 @@ public class OrderItemController {
 
     @RequestMapping(value = "/orders/{orderId}/items/{itemId}", method = RequestMethod.DELETE)
     public String deleteOneItemFromOrder(HttpServletRequest req, Authentication authentication,
-                                       @PathVariable("orderId") int orderId,
-                                       @PathVariable("itemId") int itemId) {
+                                         @PathVariable("orderId") int orderId,
+                                         @PathVariable("itemId") int itemId) {
         orderItemService.remoteOneItemFromOrder(authentication, itemId, orderId);
         String ref = req.getHeader("Referer");
         return "redirect:" + ref;
@@ -36,8 +36,8 @@ public class OrderItemController {
 
     @RequestMapping(value = "/orders/{orderId}/items/{itemId}/all", method = RequestMethod.DELETE)
     public String deletePositionFromOrder(HttpServletRequest req, Authentication authentication,
-                                       @PathVariable("orderId") int orderId,
-                                       @PathVariable("itemId") int itemId) {
+                                          @PathVariable("orderId") int orderId,
+                                          @PathVariable("itemId") int itemId) {
         orderItemService.remotePositionFromOrder(authentication, itemId, orderId);
         String ref = req.getHeader("Referer");
         return "redirect:" + ref;
@@ -62,3 +62,4 @@ public class OrderItemController {
                 ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId());
     }
 }
+
