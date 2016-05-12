@@ -24,7 +24,8 @@
             <div class="restaurant-block">
                 <div class=" col-md-4">
                     <h3>
-                        <a href="{{'#/'+ eventId}}/{{restaurant.id}}/{{restaurant.orderPlacementStatus.order.id}}" class="md-text">
+                        <a href="{{'#/'+ eventId}}/{{restaurant.id}}/{{restaurant.orderPlacementStatus.order.id}}"
+                           class="md-text">
                             {{restaurant.name}}
                             {{restaurant.orderPlacementStatus.order.id}}
                         </a>
@@ -70,26 +71,28 @@
         </div>
     </div>
 </div>
+<div ng-controller="restaurantController">
+    <div class=" col-md-offset-0 col-md-2 create-restaurant-block" style="margin-left: -100px;">
 
-<div class=" col-md-offset-0 col-md-2 create-restaurant-block" style="margin-left: -100px;">
-    <form class="create-restaurant-form" role="form" ng-submit="createRestaurant(restaurant,eventId)">
+        <form class="create-restaurant-form" role="form" ng-submit="addNewRestaurant(restaurant,eventId)">
 
-        <fieldset>
-            <div class="form-group">
-                <input type="text*" placeholder="Name*" ng-model="restaurant.title" class="form-control" id="name"
-                       name="name" required>
+            <div>
+                <div class="form-group">
+                    <input type="text*" placeholder="Name*" ng-model="restaurant.title" class="form-control" id="name"
+                           name="name" required>
+                </div>
+                <div class="form-group">
+                    <input placeholder="Link" type="url" ng-model="restaurant.link" class="form-control" id="link"
+                           name="link">
+                </div>
+                <div class="form-group">
+                    <input placeholder="Phone*" type="number" ng-model="restaurant.phone" class="form-control"
+                           id="phone"
+                           name="phone" required>
+                </div>
+                <input hidden type="text" name="eventId" value="{{eventId}}">
+                <button type="submit" class="btn btn-success pull-right">Add restaurant</button>
             </div>
-            <div class="form-group">
-                <input placeholder="Link" type="url" ng-model="restaurant.link" class="form-control" id="link"
-                       name="link">
-            </div>
-            <div class="form-group">
-                <input placeholder="Phone*" type="number" ng-model="restaurant.phone" class="form-control"
-                       id="phone"
-                       name="phone" required>
-            </div>
-            <input hidden type="text" name="eventId" value="{{eventId}}">
-            <button type="submit" class="btn btn-success pull-right">Add restaurant</button>
-        </fieldset>
-    </form>
+        </form>
+    </div>
 </div>

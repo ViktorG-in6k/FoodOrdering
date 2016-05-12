@@ -12,7 +12,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,7 +22,6 @@ public class EventController {
     EventService eventService;
     @Autowired
     UserService userService;
-
 
     @RequestMapping(value = "/events", method = RequestMethod.GET)
     public
@@ -38,10 +36,10 @@ public class EventController {
         return EventDTOs;
     }
 
-    @RequestMapping("/event_{id}")
+    @RequestMapping("/events/{eventId}")
     public
     @ResponseBody
-    EventDTO getEventById(@PathVariable("id") int eventId, Authentication authentication) {
+    EventDTO getEventById(@PathVariable("eventId") int eventId, Authentication authentication) {
         User user = (User) authentication.getPrincipal();
         return new EventDTO(eventService.getEventById(eventId), user);
     }
@@ -60,5 +58,4 @@ public class EventController {
         return ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId();
     }
 }
-
 
