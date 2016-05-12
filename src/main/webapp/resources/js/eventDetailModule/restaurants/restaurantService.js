@@ -1,7 +1,7 @@
 var restaurantService = angular.module('restaurantService', []);
 
 restaurantService.factory("Restaurants", ['$resource', function ($resource) {
-    return $resource('/event_:eventId/restaurants');
+    return $resource('/events/:eventId/restaurants');
 }]);
 
 restaurantService.factory("RestaurantService", function ($http, $rootScope) {

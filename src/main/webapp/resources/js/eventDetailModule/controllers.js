@@ -7,7 +7,7 @@ controllers.controller("eventController", function ($http, $scope, $routeParams,
         $scope.removeFromOrder = OrderListService.removeFromOrder;
         $scope.removeOneItemFromOrder = OrderListService.removeOneItemFromOrder;
         $scope.getTotal = OrderListService.getTotal;
-        $http.get("/event_" + $rootScope.eventId + "/restaurants").success(function (data) {
+        $http.get("/events/" + $rootScope.eventId + "/restaurants").success(function (data) {
             $scope.restaurants = data;
         });
 
@@ -20,7 +20,7 @@ controllers.controller("eventController", function ($http, $scope, $routeParams,
 
         $scope.createRestaurant = function (restaurant, eventId) {
             $http({
-                url: "/new_restaurant",
+                url: "/restaurants",
                 method: "POST",
                 params: {
                     name: restaurant.title,
