@@ -1,8 +1,6 @@
 package com.serviceLayer.service;
 
-import com.dataLayer.entity.DTO.RequestRestaurantDTO;
 import com.dataLayer.entity.DTO.restaurantDTO.RestaurantDTO;
-import com.dataLayer.entity.Item;
 import com.dataLayer.entity.Restaurant;
 import org.springframework.security.core.Authentication;
 
@@ -21,11 +19,5 @@ public interface RestaurantService {
     public Restaurant getRestaurantById(int id);
 
     RestaurantDTO getRestaurantDTOById(int eventId, int restaurantId, Authentication authentication);
-
-    public List<Item> getRestaurantMenuById(int id);
-
-    void updateRestaurantName(RequestRestaurantDTO restaurant);
-
-    void updateRestaurantDescription(RequestRestaurantDTO restaurant);
 }
 

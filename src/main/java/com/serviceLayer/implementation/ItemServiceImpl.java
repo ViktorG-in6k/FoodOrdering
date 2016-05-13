@@ -35,20 +35,6 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void saveByRequest(HttpServletRequest req) {
-        String name = req.getParameter("name");
-        BigDecimal price = new BigDecimal(req.getParameter("price"));
-        Restaurant restaurant = restaurantService.getRestaurantById(Integer.parseInt(req.getParameter("restaurantId")));
-        Item item = new Item(name, price, restaurant);
-        itemDAO.save(item);
-    }
-
-    @Override
-    public RestaurantDTO getItemsByRestaurant(int eventId, int id, Authentication authentication) {
-       return restaurantService.getRestaurantDTOById(eventId, id, authentication);
-    }
-
-    @Override
     public Item getItemById(int id) {
         return itemDAO.getItemById(id);
     }

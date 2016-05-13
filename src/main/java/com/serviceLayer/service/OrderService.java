@@ -2,7 +2,6 @@ package com.serviceLayer.service;
 
 import com.dataLayer.entity.DTO.orderDTO.OrderPlacementStatus;
 import com.dataLayer.entity.DTO.orderItemDTO.OrderItemRequest;
-import com.dataLayer.entity.Event;
 import com.dataLayer.entity.Order;
 import org.springframework.security.core.Authentication;
 
@@ -15,8 +14,6 @@ public interface OrderService {
     void setPayerById(int orderId, int payerId);
 
     void removePayer(int orderId);
-
-    Order getOrderByEvent(Event event);
 
     Order getOrderById(int orderId);
 

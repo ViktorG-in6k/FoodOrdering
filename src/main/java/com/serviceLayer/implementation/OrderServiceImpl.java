@@ -44,11 +44,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order getOrderByEvent(Event event) {
-        return orderDAO.getOrderByEventId(event.getId());
-    }
-
-    @Override
     public Order getOrderById(int orderId) {
         return orderDAO.getOrderByOrderId(orderId);
     }

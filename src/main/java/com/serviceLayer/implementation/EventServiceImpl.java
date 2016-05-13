@@ -36,16 +36,6 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public void saveByRequest(HttpServletRequest req) {
-        String name = req.getParameter("name");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        LocalDateTime date = LocalDateTime.parse(req.getParameter("date"), formatter);
-
-        Event event = new Event(name, date);
-        eventDAO.save(event);
-    }
-
-    @Override
     public Event getEventById(int id) {
         return eventDAO.getEventById(id);
     }
@@ -56,35 +46,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> getListOfEvents(String eventName) {
-        return eventDAO.getListOfEvents(eventName);
-    }
-
-    @Override
-    public List<Event> getListOfEventsByDate(LocalDate eventDate) {
-        return eventDAO.getListOfEventsByDate(eventDate);
-    }
-
-    @Override
-    public List<Event> getListOfEventsByNameAndDate(String eventName, LocalDate eventDate) {
-        return eventDAO.getListOfEventsByNameAndDate(eventName, eventDate);
-    }
-
-    @Override
-    public List<Event> getListOfEventsBetweenTwoDates(LocalDate firstDate, LocalDate lastDate) {
-        return eventDAO.getListOfEventsBetweenTwoDates(firstDate, lastDate);
-    }
-
-    @Override
     public void update(Event event) {
         eventDAO.update(event);
-    }
-
-    @Override
-    public void setResponsibleUser(int userId, int eventId) {
-        Event eventById = getEventById(eventId);
-        eventById.setUser(userService.getUser(userId));
-        update(eventById);
     }
 }
 

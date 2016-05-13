@@ -34,10 +34,6 @@ public class UserServiceImpl implements UserService {
         return userDAO.getUserByEmail(email);
     }
 
-    public List<User> getListOfAllUsers() {
-        return userDAO.getListOfAllUsers();
-    }
-
     @Override
     public User getUserFromOauthUser(OauthProfile oauthProfile) {
         User user = new User();

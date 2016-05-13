@@ -68,20 +68,5 @@ public class RestaurantServiceImpl implements RestaurantService {
         OrderPlacementStatus orderPlacementStatus = orderService.getOrderPlacementStatus(order, restaurantId, eventId, authentication);
         return new RestaurantDTO(restaurant, orderPlacementStatus);
     }
-
-    @Override
-    public List<Item> getRestaurantMenuById(int id) {
-        return restaurantDAO.getRestaurantMenuById(id);
-    }
-
-    @Override
-    public void updateRestaurantName(RequestRestaurantDTO restaurant) {
-        restaurantDAO.updateName(restaurant.getId(), restaurant.getName());
-    }
-
-    @Override
-    public void updateRestaurantDescription(RequestRestaurantDTO restaurant) {
-        restaurantDAO.updateDescription(restaurant.getId(), restaurant.getPhone());
-    }
 }
 
