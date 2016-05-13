@@ -44,16 +44,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void setPayerById(int orderId, int payerId) {
-        orderDAO.setPayer(orderId,payerId);
-    }
-
-    @Override
-    public void removePayer(int orderId) {
-        orderDAO.removePayer(orderId);
-    }
-
-    @Override
     public Order getOrderByEvent(Event event) {
         return orderDAO.getOrderByEventId(event.getId());
     }
@@ -63,51 +53,55 @@ public class OrderServiceImpl implements OrderService {
         return orderDAO.getOrderByOrderId(orderId);
     }
 
-    @Transactional
     @Override
-    public OrderPlacementStatus getOrderPlacementStatus(Order order,int restaurantId,int eventId, Authentication authentication) {
-        Set<User> participants = new HashSet<>();
-        boolean isMine;
-        if (order != null) {
-            List<OrderItemDTO> orderItems = orderItemService.getOrderListByOrderId(order.getId());
-
-                for(OrderItemDTO itemDTO : orderItems) {
-
-                        participants.add(userService.getUser(itemDTO.getUser().getId()));
-
-                }
-
-            isMine = isMineOrder(order, authentication);
-            int participantsAmount = participants.size();
-            return new OrderPlacementStatus(order, participantsAmount, isMine);
-        }
-        else{
-            Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
-            Event event = eventService.getEventById(eventId);
-            Status status = statusService.getStatusById(0);
-            Order order1 = new Order(restaurant,event,status);
-            orderDAO.saveOrder(order1);
-            return new OrderPlacementStatus(order1,0,false);
-        }
+    public Order getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId) {
+        return orderDAO.getOrdersByEventIdAndRestaurantId(eventId, restaurantId);
     }
 
     @Override
-    public Order getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId){
-        return orderDAO.getOrdersByEventIdAndRestaurantId(eventId, restaurantId);
+    public void setPayerById(int orderId, int payerId) {
+        orderDAO.setPayer(orderId, payerId);
+    }
+
+    @Override
+    public void removePayer(int orderId) {
+        orderDAO.removePayer(orderId);
+    }
+
+    @Transactional
+    @Override
+    public OrderPlacementStatus getOrderPlacementStatus(Order order, int restaurantId, int eventId, Authentication authentication) {
+        Set<User> participants = new HashSet<>();
+        boolean isMine = isMineOrder(order, authentication);
+        if (order != null) {
+            List<OrderItemDTO> orderItems = orderItemService.getOrderListByOrderId(order.getId());
+
+            for (OrderItemDTO itemDTO : orderItems) {
+                participants.add(userService.getUser(itemDTO.getUser().getId()));
+            }
+
+            int participantsAmount = participants.size();
+            return new OrderPlacementStatus(order, participantsAmount, isMine);
+        } else {
+            Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
+            Event event = eventService.getEventById(eventId);
+            Status status = statusService.getStatusById(0);
+            Order newOrder = new Order(restaurant, event, status);
+            orderDAO.saveOrder(newOrder);
+            return new OrderPlacementStatus(newOrder, 0, false);
+        }
     }
 
     @Override
     public boolean isMineOrder(Order order, Authentication authentication) {
         int currentUserId = ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId();
-        boolean isMine = false;
 
         for (OrderItem item : order.getOrderItems()) {
             if (item.getUser().getId() == currentUserId) {
-                isMine = true;
-                break;
+                return true;
             }
         }
-        return isMine;
+        return false;
     }
 }
 
