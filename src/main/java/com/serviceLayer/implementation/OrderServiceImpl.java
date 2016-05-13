@@ -29,8 +29,6 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     ItemService itemService;
     @Autowired
-    StatusService statusService;
-    @Autowired
     RestaurantService restaurantService;
 
     @Override
@@ -44,6 +42,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+
     public Order getOrderById(int orderId) {
         return orderDAO.getOrderByOrderId(orderId);
     }
@@ -67,7 +66,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderPlacementStatus getOrderPlacementStatus(Order order, int restaurantId, int eventId, Authentication authentication) {
         Set<User> participants = new HashSet<>();
-        boolean isMine = isMineOrder(order, authentication);
         if (order != null) {
             List<OrderItemDTO> orderItems = orderItemService.getOrderListByOrderId(order.getId());
 
@@ -76,14 +74,14 @@ public class OrderServiceImpl implements OrderService {
             }
 
             int participantsAmount = participants.size();
-            return new OrderPlacementStatus(order, participantsAmount, isMine);
+            return new OrderPlacementStatus(order, participantsAmount, isMineOrder(order, authentication));
         } else {
             Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
             Event event = eventService.getEventById(eventId);
-            Status status = statusService.getStatusById(0);
-            Order newOrder = new Order(restaurant, event, status);
-            orderDAO.saveOrder(newOrder);
-            return new OrderPlacementStatus(newOrder, 0, false);
+            Status status = Status.PENDING;
+            Order order1 = new Order(restaurant, event, status);
+            orderDAO.saveOrder(order1);
+            return new OrderPlacementStatus(order1, 0, false);
         }
     }
 
@@ -97,6 +95,11 @@ public class OrderServiceImpl implements OrderService {
             }
         }
         return false;
+    }
+
+    @Override
+    public void changeOrderStatus(int orderId, Status status) {
+        orderDAO.changeOrderStatus(orderId, status);
     }
 }
 

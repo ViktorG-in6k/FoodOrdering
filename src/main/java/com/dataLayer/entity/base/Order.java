@@ -14,13 +14,12 @@ public class Order extends com.dataLayer.entity.base.Entity {
     @ManyToOne
     @JoinColumn(name = "payer_id")
     private User payer;
-    @ManyToOne
-    @JoinColumn(name = "status_id")
-    private Status status;
-    @Column (name = "bill_id")
-    private Integer billId;
     @OneToMany(fetch = FetchType.EAGER)
     private List<OrderItem> orderItems;
+    @Enumerated(EnumType.STRING)
+    private Status status;
+    @Column(name = "bill_id")
+    private Integer billId;
 
     public Order(Restaurant restaurant, Event event, Status status) {
         this.restaurant = restaurant;

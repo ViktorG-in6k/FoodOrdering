@@ -1,6 +1,8 @@
 package com.dataLayer.DAO.Interfaces;
 
+
 import com.dataLayer.entity.base.Order;
+import com.dataLayer.entity.base.Status;
 
 import java.util.List;
 
@@ -24,5 +26,7 @@ public interface OrderDAO {
     void removePayer(int orderId);
 
     void setPayer(int eventId, int restaurantId, int payerId);
+
+    void changeOrderStatus(int orderId, Status status);
 }
 

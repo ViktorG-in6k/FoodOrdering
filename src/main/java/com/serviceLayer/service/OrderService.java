@@ -3,10 +3,10 @@ package com.serviceLayer.service;
 import com.dataLayer.entity.DTO.orderDTO.OrderPlacementStatus;
 import com.dataLayer.entity.DTO.orderItemDTO.OrderItemRequest;
 import com.dataLayer.entity.base.Order;
+import com.dataLayer.entity.base.Status;
 import org.springframework.security.core.Authentication;
 
 public interface OrderService {
-
     void save(Order order);
 
     void save(OrderItemRequest req);
@@ -23,5 +23,6 @@ public interface OrderService {
 
     boolean isMineOrder(Order order, Authentication authentication);
 
-
+    void changeOrderStatus(int orderId, Status status);
 }
+

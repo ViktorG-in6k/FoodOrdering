@@ -13,10 +13,15 @@ public class Event extends com.dataLayer.entity.base.Entity {
     private String name;
     @Column
     private LocalDateTime date;
-    @Column (name = "split_bill_id")
+    @Column(name = "split_bill_id")
     private Integer splitBillId;
     @OneToOne
     private User user;
+
+    public Event(LocalDateTime date, String name) {
+        this.date = date;
+        this.name = name;
+    }
 
     public Event(RequestEventDTO eventDTO) {
         this.name = eventDTO.getName();
@@ -48,6 +53,14 @@ public class Event extends com.dataLayer.entity.base.Entity {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Integer getSplitBillId() {
+        return splitBillId;
+    }
+
+    public void setSplitBillId(Integer splitBillId) {
+        this.splitBillId = splitBillId;
     }
 }
 

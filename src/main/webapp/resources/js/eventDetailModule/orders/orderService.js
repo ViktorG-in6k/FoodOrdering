@@ -41,7 +41,11 @@ orderService.factory("OrderListService", function ($http, $rootScope, Restaurant
             $rootScope.commonOrders = data;
         })
     };
-  
+
+    orderListService.getOrder = function(orderId){
+        return $http.get("/api/orders/"+orderId);
+
+    };
 
     orderListService.getTotal = function () {
         var total = 0;
@@ -52,6 +56,14 @@ orderService.factory("OrderListService", function ($http, $rootScope, Restaurant
         } else return 0;
         return total;
     };          
+
+    orderListService.freezeOrder = function(orderId){
+       return $http({
+            url: "orders/" + orderId + "/status",
+            method: "PUT",
+            params: {status: "FREEZE"}
+        })
+    };
 
     return orderListService;
 });
