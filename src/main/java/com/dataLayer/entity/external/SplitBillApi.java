@@ -50,13 +50,19 @@ public class SplitBillApi {
     }
 
     public void newProduct(ProductRequestJSON productRequestJSON) throws IOException {
-        System.out.println("token = " + token);
-        System.out.println("billId = " + billId);
         Response<ProductResponseJSON> execute = productSplitBillService.addProduct(productRequestJSON, billId, token).execute();
     }
 
     public String getToken() {
         return token;
+    }
+
+    public int getBillId() {
+        return billId;
+    }
+
+    public void setBillId(int billId) {
+        this.billId = billId;
     }
 
     public void createEvent(String eventTitle, String eventDate) throws IOException {
