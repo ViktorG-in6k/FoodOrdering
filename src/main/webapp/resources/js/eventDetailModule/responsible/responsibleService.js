@@ -9,3 +9,13 @@ responsibleService.factory("TakeResponsibilityService", function ($http) {
     
     return service;
 });
+
+responsibleService.factory("RemoveResponsibilityService", function ($http) {
+    var service = {};
+
+    service.removeResponsibility = function (orderId) {
+        return $http.delete("/orders/" + orderId + "/responsibility");
+    };
+
+    return service;
+});
