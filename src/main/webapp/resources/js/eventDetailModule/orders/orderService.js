@@ -65,6 +65,14 @@ orderService.factory("OrderListService", function ($http, $rootScope, Restaurant
         })
     };
 
+    orderListService.billOrder = function(orderId){
+        return $http({
+            url: "orders/" + orderId + "/status",
+            method: "PUT",
+            params: {status: "SPLIT_BILL"}
+        })
+    };
+
     return orderListService;
 });
 
