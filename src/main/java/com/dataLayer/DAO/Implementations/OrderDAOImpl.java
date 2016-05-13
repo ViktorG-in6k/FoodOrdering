@@ -114,6 +114,16 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
+    public void setSplitBillId(int orderId, int billId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("update order_info set bill_id = :billId where id = :orderId");
+        query
+                .setInteger("orderId", orderId)
+                .setInteger("billId", billId);
+        query.executeUpdate();
+    }
+
+    @Override
     public void changeOrderStatus(int orderId, Status status) {
         Session session = sessionFactory.getCurrentSession();
         Order order = session.get(Order.class, orderId);

@@ -27,6 +27,8 @@ public interface OrderDAO {
 
     void setPayer(int eventId, int restaurantId, int payerId);
 
+    void setSplitBillId(int orderId, int billId);
+
     void changeOrderStatus(int orderId, Status status);
 }
 
