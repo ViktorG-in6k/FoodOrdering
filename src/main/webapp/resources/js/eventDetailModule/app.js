@@ -33,7 +33,7 @@ app.config(['$routeProvider',
         }).when('/:id/:restaurantId/:orderId', {
             templateUrl: '/resources/templates/restaurantDetails.html',
             controller: 'restaurantController'
-        }).when('/:id/:restaurantId/order', {
+        }).when('/:id/:restaurantId/:orderId/order', {
             templateUrl: '/resources/templates/commonOrderList.html',
             controller:'commonOrderList'
         }).otherwise({
