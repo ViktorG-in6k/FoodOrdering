@@ -21,6 +21,8 @@ public interface OrderDAO {
 
     void setPayer(int orderId, int payerId);
 
+    void removePayer(int orderId);
+
     void setPayer(int eventId, int restaurantId, int payerId);
 }
 

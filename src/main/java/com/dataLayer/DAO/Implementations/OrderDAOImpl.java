@@ -92,6 +92,16 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
+    public void removePayer(int orderId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("update order_info set payer_id = :payerId where id = :orderId");
+        query
+                .setInteger("orderId", orderId)
+                .setString("payerId", null);
+        query.executeUpdate();
+    }
+
+    @Override
     public void setPayer(int eventId, int restaurantId, int payerId) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("update order_info set payer_id = :payerId where event_id = :eventId and restaurant_id = :restaurantId");
