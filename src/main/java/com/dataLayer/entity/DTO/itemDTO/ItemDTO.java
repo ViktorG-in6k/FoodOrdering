@@ -1,6 +1,6 @@
 package com.dataLayer.entity.DTO.itemDTO;
 
-import com.dataLayer.entity.Item;
+import com.dataLayer.entity.base.Item;
 
 import java.math.BigDecimal;
 

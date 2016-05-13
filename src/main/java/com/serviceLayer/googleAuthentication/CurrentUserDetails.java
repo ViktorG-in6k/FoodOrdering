@@ -1,6 +1,6 @@
 package com.serviceLayer.googleAuthentication;
 
-import com.dataLayer.entity.User;
+import com.dataLayer.entity.base.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;

@@ -1,7 +1,7 @@
 package com.serviceLayer.spliBillServices;
 
-import com.splitBill.splitBillDTO.user.UserLoginResponceJSON;
-import com.splitBill.splitBillDTO.user.UserLoginRequestJSON;
+import com.dataLayer.splitBillDTO.user.UserLoginResponceJSON;
+import com.dataLayer.splitBillDTO.user.UserLoginRequestJSON;
 import retrofit.Call;
 import retrofit.http.*;
 

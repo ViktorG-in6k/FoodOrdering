@@ -2,7 +2,7 @@ package com.dataLayer.entity.DTO.restaurantDTO;
 
 import com.dataLayer.entity.DTO.itemDTO.ItemDTO;
 import com.dataLayer.entity.DTO.orderDTO.OrderPlacementStatus;
-import com.dataLayer.entity.Restaurant;
+import com.dataLayer.entity.base.Restaurant;
 
 import java.util.ArrayList;
 import java.util.List;

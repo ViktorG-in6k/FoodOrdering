@@ -1,7 +1,7 @@
 package com.serviceLayer.service;
 
-import com.dataLayer.entity.User;
-import com.dataLayer.entity.base.OauthProfile;
+import com.dataLayer.entity.base.User;
+import com.dataLayer.entity.external.OauthProfile;
 
 public interface UserService {
     public void saveUser(User person);

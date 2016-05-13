@@ -1,12 +1,10 @@
 package com.serviceLayer.implementation;
 
-import com.dataLayer.entity.DTO.RequestRestaurantDTO;
 import com.dataLayer.entity.DTO.orderDTO.OrderPlacementStatus;
 import com.dataLayer.entity.DTO.restaurantDTO.RestaurantDTO;
 import com.dataLayer.DAO.Interfaces.RestaurantDAO;
-import com.dataLayer.entity.Item;
-import com.dataLayer.entity.Order;
-import com.dataLayer.entity.Restaurant;
+import com.dataLayer.entity.base.Order;
+import com.dataLayer.entity.base.Restaurant;
 import com.serviceLayer.service.EventService;
 import com.serviceLayer.service.OrderService;
 import com.serviceLayer.service.RestaurantService;

@@ -2,7 +2,7 @@ package com.dataLayer.entity.DTO.orderItemDTO;
 
 import com.dataLayer.entity.DTO.userDTO.UserDTO;
 import com.dataLayer.entity.DTO.itemDTO.ItemDTO;
-import com.dataLayer.entity.OrderItem;
+import com.dataLayer.entity.base.OrderItem;
 
 public class OrderItemDTO {
     private ItemDTO item;

@@ -1,6 +1,6 @@
 package com.serviceLayer.spliBillServices;
 
-import com.splitBill.splitBillDTO.bill.BillResponceJSON;
+import com.dataLayer.splitBillDTO.bill.BillResponceJSON;
 import retrofit.Call;
 import retrofit.http.Header;
 import retrofit.http.Headers;

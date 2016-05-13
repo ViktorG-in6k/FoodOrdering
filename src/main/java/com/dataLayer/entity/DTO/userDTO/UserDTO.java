@@ -1,6 +1,6 @@
 package com.dataLayer.entity.DTO.userDTO;
 
-import com.dataLayer.entity.User;
+import com.dataLayer.entity.base.User;
 
 public class UserDTO {
     protected int id;

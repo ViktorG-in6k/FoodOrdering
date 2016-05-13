@@ -1,6 +1,6 @@
 package com.dataLayer.DAO.Interfaces;
 
-import com.dataLayer.entity.User;
+import com.dataLayer.entity.base.User;
 
 import java.util.List;
 

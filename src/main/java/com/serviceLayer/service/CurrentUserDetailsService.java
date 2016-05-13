@@ -1,9 +1,9 @@
 package com.serviceLayer.service;
 
 import com.dataLayer.DAO.Implementations.GoogleProfileDao;
-import com.dataLayer.entity.GoogleProfile;
-import com.dataLayer.entity.User;
-import com.dataLayer.entity.base.OauthProfile;
+import com.dataLayer.entity.external.GoogleProfile;
+import com.dataLayer.entity.base.User;
+import com.dataLayer.entity.external.OauthProfile;
 import com.google.common.collect.ImmutableSet;
 import com.serviceLayer.googleAuthentication.CurrentUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;

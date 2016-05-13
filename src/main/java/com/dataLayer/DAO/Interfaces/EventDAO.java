@@ -1,6 +1,6 @@
 package com.dataLayer.DAO.Interfaces;
 
-import com.dataLayer.entity.Event;
+import com.dataLayer.entity.base.Event;
 
 import java.time.LocalDate;
 import java.util.List;

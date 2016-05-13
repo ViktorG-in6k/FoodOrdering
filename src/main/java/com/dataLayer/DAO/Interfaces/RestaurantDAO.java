@@ -1,7 +1,7 @@
 package com.dataLayer.DAO.Interfaces;
 
-import com.dataLayer.entity.Item;
-import com.dataLayer.entity.Restaurant;
+import com.dataLayer.entity.base.Item;
+import com.dataLayer.entity.base.Restaurant;
 
 import java.util.List;
 

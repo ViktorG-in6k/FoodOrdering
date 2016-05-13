@@ -3,7 +3,7 @@ package com.dataLayer.entity.DTO.orderDTO;
 import com.dataLayer.entity.DTO.eventDTO.EventDTO;
 import com.dataLayer.entity.DTO.restaurantDTO.RestaurantDTO;
 import com.dataLayer.entity.DTO.userDTO.UserDTO;
-import com.dataLayer.entity.Order;
+import com.dataLayer.entity.base.Order;
 
 public class OrderDTO {
     private int id;

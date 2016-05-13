@@ -4,7 +4,7 @@ import com.dataLayer.entity.DTO.orderDTO.OrderPlacementStatus;
 import com.dataLayer.entity.DTO.orderItemDTO.OrderItemDTO;
 import com.dataLayer.entity.DTO.orderItemDTO.OrderItemRequest;
 import com.dataLayer.DAO.Interfaces.OrderDAO;
-import com.dataLayer.entity.*;
+import com.dataLayer.entity.base.*;
 import com.serviceLayer.googleAuthentication.CurrentUserDetails;
 import com.serviceLayer.service.*;
 import org.springframework.beans.factory.annotation.Autowired;

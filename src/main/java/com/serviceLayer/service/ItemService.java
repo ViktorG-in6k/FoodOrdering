@@ -3,7 +3,7 @@ package com.serviceLayer.service;
 import com.dataLayer.entity.DTO.RequestItemDTO;
 import com.dataLayer.entity.DTO.itemDTO.ItemDTO;
 import com.dataLayer.entity.DTO.itemDTO.ItemRequest;
-import com.dataLayer.entity.Item;
+import com.dataLayer.entity.base.Item;
 
 
 public interface ItemService {

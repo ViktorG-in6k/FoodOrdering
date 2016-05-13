@@ -1,7 +1,7 @@
 package com.serviceLayer.spliBillServices;
 
-import com.splitBill.splitBillDTO.event.EventRequestDTO;
-import com.splitBill.splitBillDTO.event.EventResponseDTO;
+import com.dataLayer.splitBillDTO.event.EventRequestDTO;
+import com.dataLayer.splitBillDTO.event.EventResponseDTO;
 import retrofit.Call;
 import retrofit.http.Body;
 import retrofit.http.Header;

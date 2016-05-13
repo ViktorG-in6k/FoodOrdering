@@ -1,13 +1,11 @@
 package com.serviceLayer.implementation;
 
 import com.dataLayer.DAO.Interfaces.UserDAO;
-import com.dataLayer.entity.User;
-import com.dataLayer.entity.base.OauthProfile;
+import com.dataLayer.entity.base.User;
+import com.dataLayer.entity.external.OauthProfile;
 import com.serviceLayer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {

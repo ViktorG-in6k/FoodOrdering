@@ -1,7 +1,7 @@
 package com.serviceLayer.service;
 
 import com.dataLayer.entity.DTO.eventDTO.RequestEventDTO;
-import com.dataLayer.entity.Event;
+import com.dataLayer.entity.base.Event;
 
 import java.util.Set;
 

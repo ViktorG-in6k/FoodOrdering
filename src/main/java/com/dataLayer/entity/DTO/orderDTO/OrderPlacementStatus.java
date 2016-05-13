@@ -1,7 +1,7 @@
 package com.dataLayer.entity.DTO.orderDTO;
 
 import com.dataLayer.entity.DTO.userDTO.UserDTO;
-import com.dataLayer.entity.Order;
+import com.dataLayer.entity.base.Order;
 
 public class OrderPlacementStatus {
     private UserDTO payer;

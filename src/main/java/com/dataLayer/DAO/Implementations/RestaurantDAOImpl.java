@@ -1,8 +1,8 @@
 package com.dataLayer.DAO.Implementations;
 
 import com.dataLayer.DAO.Interfaces.RestaurantDAO;
-import com.dataLayer.entity.Item;
-import com.dataLayer.entity.Restaurant;
+import com.dataLayer.entity.base.Item;
+import com.dataLayer.entity.base.Restaurant;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

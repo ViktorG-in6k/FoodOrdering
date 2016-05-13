@@ -1,8 +1,8 @@
 package com.dataLayer.entity.DTO.eventDTO;
 
 import com.dataLayer.entity.DTO.userDTO.UserDTO;
-import com.dataLayer.entity.Event;
-import com.dataLayer.entity.User;
+import com.dataLayer.entity.base.Event;
+import com.dataLayer.entity.base.User;
 
 import java.time.LocalDateTime;
 

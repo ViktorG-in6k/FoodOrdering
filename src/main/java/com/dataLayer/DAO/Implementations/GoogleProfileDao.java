@@ -1,6 +1,6 @@
 package com.dataLayer.DAO.Implementations;
 ;
-import com.dataLayer.entity.GoogleProfile;
+import com.dataLayer.entity.external.GoogleProfile;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

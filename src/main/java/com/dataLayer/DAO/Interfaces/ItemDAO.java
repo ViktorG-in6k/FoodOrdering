@@ -1,6 +1,6 @@
 package com.dataLayer.DAO.Interfaces;
 
-import com.dataLayer.entity.Item;
+import com.dataLayer.entity.base.Item;
 
 import java.math.BigDecimal;
 

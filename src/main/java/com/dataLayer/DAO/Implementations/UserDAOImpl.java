@@ -1,7 +1,7 @@
 package com.dataLayer.DAO.Implementations;
 
 import com.dataLayer.DAO.Interfaces.UserDAO;
-import com.dataLayer.entity.User;
+import com.dataLayer.entity.base.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

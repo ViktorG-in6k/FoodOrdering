@@ -1,7 +1,7 @@
 package com.serviceLayer.service;
 
 import com.dataLayer.entity.DTO.restaurantDTO.RestaurantDTO;
-import com.dataLayer.entity.Restaurant;
+import com.dataLayer.entity.base.Restaurant;
 import org.springframework.security.core.Authentication;
 
 import javax.servlet.http.HttpServletRequest;

@@ -1,10 +1,10 @@
 package com.controllers;
 
-import com.dataLayer.entity.User;
+import com.dataLayer.entity.base.User;
 import com.serviceLayer.googleAuthentication.CurrentUserDetails;
 import com.serviceLayer.service.UserService;
-import com.splitBill.SplitBillApi;
-import com.splitBill.splitBillDTO.product.ProductRequestJSON;
+import com.dataLayer.entity.external.SplitBillApi;
+import com.dataLayer.splitBillDTO.product.ProductRequestJSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;

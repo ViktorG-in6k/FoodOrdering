@@ -1,7 +1,7 @@
 package com.dataLayer.DAO.Implementations;
 
 import com.dataLayer.DAO.Interfaces.StatusDAO;
-import com.dataLayer.entity.Status;
+import com.dataLayer.entity.base.Status;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
