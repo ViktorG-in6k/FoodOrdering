@@ -19,11 +19,9 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
-
 import static com.github.choonchernlim.betterPreconditions.preconditions.PreconditionFactory.expect;
 
 @Service
@@ -42,7 +40,6 @@ public class GoogleTokenServices extends RemoteTokenServices {
         this.tokenConverter = tokenConverter;
         this.authorizationHeaderValue = getAuthorizationHeaderValue(clientId, clientSecret);
         this.restTemplate = new RestTemplate();
-
         this.restTemplate.setErrorHandler(new DefaultResponseErrorHandler() {
             @Override
             public void handleError(ClientHttpResponse response) throws IOException {
@@ -55,7 +52,6 @@ public class GoogleTokenServices extends RemoteTokenServices {
 
     @Override
     public OAuth2Authentication loadAuthentication(final String accessToken) throws AuthenticationException, InvalidTokenException {
-        expect(accessToken, "accessToken").not().toBeBlank().check();
         final Map<String, String> checkTokenResponseMap = postForMap(accessToken);
         final Map<String, String> standardizedResponseMap = getStandardizedResponseMap(checkTokenResponseMap);
         final OAuth2Authentication oAuth2Authentication = tokenConverter.extractAuthentication(standardizedResponseMap);
@@ -76,17 +72,14 @@ public class GoogleTokenServices extends RemoteTokenServices {
     }
 
     private Map<String, String> postForMap(final String accessToken) {
-        expect(accessToken, "accessToken").not().toBeBlank().check();
         final String url = String.format(checkTokenEndpointUrl, accessToken);
         final MultiValueMap<String, String> formData = new LinkedMultiValueMap<String, String>();
         formData.set("token", accessToken);
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         headers.set("Authorization", authorizationHeaderValue);
-
         final ParameterizedTypeReference<Map<String, String>> map = new ParameterizedTypeReference<Map<String, String>>() {
         };
-
         final Map<String, String> checkTokenEndpointResponse = ImmutableMap.copyOf(
                 restTemplate
                         .exchange(url,
@@ -97,12 +90,10 @@ public class GoogleTokenServices extends RemoteTokenServices {
         if (checkTokenEndpointResponse.containsKey("error")) {
             throw new InvalidTokenException(checkTokenEndpointResponse.get("error"));
         }
-
         return checkTokenEndpointResponse;
     }
 
     private Map<String, String> getStandardizedResponseMap(final Map<String, String> responseMap) {
-        expect(responseMap, "responseMap").not().toBeNull().check();
         final Map<String, String> transformedResponseMap = ImmutableMap.<String, String>builder()
                 .putAll(responseMap)
                 .put("client_id", responseMap.get("issued_to"))
