@@ -14,6 +14,8 @@ public interface OrderService {
 
     void setPayerById(int orderId, int payerId);
 
+    void removePayer(int orderId);
+
     Order getOrderByEvent(Event event);
 
     Order getOrderById(int orderId);

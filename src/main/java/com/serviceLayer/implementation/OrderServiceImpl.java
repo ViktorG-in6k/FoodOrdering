@@ -49,6 +49,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public void removePayer(int orderId) {
+        orderDAO.removePayer(orderId);
+    }
+
+    @Override
     public Order getOrderByEvent(Event event) {
         return orderDAO.getOrderByEventId(event.getId());
     }
