@@ -1,26 +1,33 @@
 var controllers = angular.module('eventApp.controllers', []);
 
 controllers.controller("eventController", function ($http, $scope, $routeParams, $rootScope,
-                                                    TakeResponsibilityService) {
+                                                    TakeResponsibilityService, RemoveResponsibilityService) {
         $rootScope.eventId = $routeParams.id;
 
         $http.get("/events/" + $rootScope.eventId).success(function (data) {
             $scope.event = data;
         });
-    
+
         $http.get("/events/" + $rootScope.eventId + "/restaurants").success(function (data) {
             $scope.restaurants = data;
         });
-    
-        $rootScope.takeResponsibility = function(orderId){
-            console.log("aaa");
+
+        $rootScope.takeResponsibility = function (orderId) {
             TakeResponsibilityService.takeResponsibility(orderId).then(
                 $http.get("/events/" + $rootScope.eventId + "/restaurants").success(function (data) {
                     $scope.restaurants = data;
                 })
             )
         };
-    
+
+        $rootScope.removeResponsibility = function (orderId) {
+            RemoveResponsibilityService.removeResponsibility(orderId).then(
+                $http.get("/events/" + $rootScope.eventId + "/restaurants").success(function (data) {
+                    $scope.restaurants = data;
+                })
+            )
+        };
+
         $scope.restaurant = {};
         $scope.restaurant.link = '';
 
