@@ -1,10 +1,12 @@
 package com.serviceLayer.implementation;
 
+import com.dataLayer.DAO.Interfaces.OrderDAO;
 import com.dataLayer.entity.DTO.orderDTO.OrderPlacementStatus;
 import com.dataLayer.entity.DTO.orderItemDTO.OrderItemDTO;
 import com.dataLayer.entity.DTO.orderItemDTO.OrderItemRequest;
-import com.dataLayer.DAO.Interfaces.OrderDAO;
 import com.dataLayer.entity.base.*;
+import com.dataLayer.entity.external.SplitBillApi;
+import com.dataLayer.splitBillDTO.product.ProductRequestJSON;
 import com.serviceLayer.googleAuthentication.CurrentUserDetails;
 import com.serviceLayer.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -42,7 +45,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-
     public Order getOrderById(int orderId) {
         return orderDAO.getOrderByOrderId(orderId);
     }
@@ -98,8 +100,32 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void changeOrderStatus(int orderId, Status status) {
+    public void changeOrderStatus(int orderId, Status status) throws IOException {
         orderDAO.changeOrderStatus(orderId, status);
+        if (status.equals(Status.SPLIT_BILL)) {
+            sendOrderToSplitBill(orderId);
+        }
+    }
+
+    @Override
+    public void sendOrderToSplitBill(int orderId) throws IOException {
+        SplitBillApi splitBillApi = new SplitBillApi();
+        Order order = getOrderById(orderId);
+        List<OrderItemDTO> orders = orderItemService.getOrderListByOrderId(orderId);
+        splitBillApi.login(order.getPayer().getEmail());
+
+        splitBillApi.newBill(831);
+
+        orderDAO.setSplitBillId(orderId, splitBillApi.getBillId());
+
+        for (OrderItemDTO orderItem : orders) {
+            ProductRequestJSON productRequestJSON = new ProductRequestJSON(
+                    orderItem.getItemAmount(),
+                    orderItem.getItem().getName(),
+                    orderItem.getItem().getPrice()
+            );
+            splitBillApi.newProduct(productRequestJSON);
+        }
     }
 }
 
