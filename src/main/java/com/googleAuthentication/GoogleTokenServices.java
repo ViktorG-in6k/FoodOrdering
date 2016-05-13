@@ -26,13 +26,8 @@ import java.util.Map;
 
 import static com.github.choonchernlim.betterPreconditions.preconditions.PreconditionFactory.expect;
 
-/**
- * Performs a POST on check token endpoint URL.
- */
 @Service
 public class GoogleTokenServices extends RemoteTokenServices {
-    private static Logger LOGGER = LoggerFactory.getLogger(GoogleTokenServices.class);
-
     private final String checkTokenEndpointUrl;
     private final AccessTokenConverter tokenConverter;
     private final RestTemplate restTemplate;
@@ -75,8 +70,7 @@ public class GoogleTokenServices extends RemoteTokenServices {
 
         try {
             return "Basic " + new String(Base64.encode(credential.getBytes("UTF-8")));
-        }
-        catch (UnsupportedEncodingException e) {
+        } catch (UnsupportedEncodingException e) {
             throw new IllegalStateException("Could not convert String");
         }
     }
@@ -96,9 +90,9 @@ public class GoogleTokenServices extends RemoteTokenServices {
         final Map<String, String> checkTokenEndpointResponse = ImmutableMap.copyOf(
                 restTemplate
                         .exchange(url,
-                                  HttpMethod.POST,
-                                  new HttpEntity<MultiValueMap<String, String>>(formData, headers),
-                                  map)
+                                HttpMethod.POST,
+                                new HttpEntity<MultiValueMap<String, String>>(formData, headers),
+                                map)
                         .getBody());
         if (checkTokenEndpointResponse.containsKey("error")) {
             throw new InvalidTokenException(checkTokenEndpointResponse.get("error"));
@@ -118,3 +112,4 @@ public class GoogleTokenServices extends RemoteTokenServices {
         return transformedResponseMap;
     }
 }
+

@@ -2,8 +2,6 @@ package com.googleAuthentication;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -15,14 +13,8 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 import java.util.Set;
 
-import static com.github.choonchernlim.betterPreconditions.preconditions.PreconditionFactory.expect;
-
-/**
- * Generates OAuth2Authentication.
- */
 @Service
 public class GoogleAccessTokenConverter extends DefaultAccessTokenConverter {
-    private static Logger LOGGER = LoggerFactory.getLogger(GoogleAccessTokenConverter.class);
     private final UserAuthenticationConverter userAuthenticationConverter;
 
     @Autowired
@@ -32,8 +24,6 @@ public class GoogleAccessTokenConverter extends DefaultAccessTokenConverter {
 
     @Override
     public OAuth2Authentication extractAuthentication(final Map<String, ?> responseMap) {
-        expect(responseMap, "responseMap").not().toBeNull().check();
-
         final Authentication user = userAuthenticationConverter.extractAuthentication(responseMap);
 
         final String clientId = (String) responseMap.get(CLIENT_ID);
@@ -44,22 +34,11 @@ public class GoogleAccessTokenConverter extends DefaultAccessTokenConverter {
 
         final ImmutableSet<String> resourceIds = ImmutableSet.of((String) responseMap.get(AUD));
 
-        LOGGER.debug("BEFORE: map         : {}", responseMap);
-        LOGGER.debug("BEFORE: parameters  : {}", parameters);
-        LOGGER.debug("BEFORE: clientId    : {}", clientId);
-        LOGGER.debug("BEFORE: scopes      : {}", scopes);
-        LOGGER.debug("BEFORE: resourceIds : {}", resourceIds);
 
-        final OAuth2Request request = new OAuth2Request(parameters,
-                                                        clientId,
-                                                        null,
-                                                        true,
-                                                        scopes,
-                                                        resourceIds,
-                                                        null,
-                                                        null,
-                                                        null);
+        final OAuth2Request request = new OAuth2Request(parameters, clientId, null, true, scopes,
+                resourceIds, null, null, null);
 
         return new OAuth2Authentication(request, user);
     }
 }
+

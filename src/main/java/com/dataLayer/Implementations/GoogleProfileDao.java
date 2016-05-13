@@ -1,4 +1,5 @@
 package com.dataLayer.Implementations;
+
 ;
 import com.model.Entity.GoogleProfile;
 import org.hibernate.Query;
@@ -12,9 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public class GoogleProfileDao {
-
     @Autowired
-    SessionFactory sessionFactory ;
+    SessionFactory sessionFactory;
 
     public void save(GoogleProfile googleProfile) {
         Session session = sessionFactory.getCurrentSession();
@@ -24,7 +24,8 @@ public class GoogleProfileDao {
     public GoogleProfile getGoogleProfileByEmail(String email) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from GoogleProfile where email = :email");
-        query.setString("email",email);
+        query.setString("email", email);
         return (GoogleProfile) query.uniqueResult();
     }
 }
+

@@ -3,8 +3,6 @@ package com.googleAuthentication;
 import com.dataLayer.Implementations.GoogleProfileDao;
 import com.google.common.collect.ImmutableSet;
 import com.model.Entity.GoogleProfile;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,9 +14,6 @@ import org.springframework.stereotype.Service;
 
 import static com.github.choonchernlim.betterPreconditions.preconditions.PreconditionFactory.expect;
 
-/**
- * Returns user profile from Google and roles from DB (currently hardcoded).
- */
 @Service
 public class GoogleUserDetailsService implements UserDetailsService {
     private final String userInfoUrl;
@@ -38,7 +33,7 @@ public class GoogleUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(final String email) throws UsernameNotFoundException {
         expect(email, "email").not().toBeBlank().check();
         GoogleProfile googleProfile = googleProfileDao.getGoogleProfileByEmail(email);
-        if(googleProfile == null){
+        if (googleProfile == null) {
             final String url = String.format(userInfoUrl, oauth2RestTemplate.getAccessToken());
             googleProfile = oauth2RestTemplate.getForEntity(url, GoogleProfile.class).getBody();
             googleProfileDao.save(googleProfile);
@@ -50,3 +45,4 @@ public class GoogleUserDetailsService implements UserDetailsService {
         ));
     }
 }
+
