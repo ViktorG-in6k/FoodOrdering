@@ -28,6 +28,9 @@
                 <button class="order-status-btn" ng-if="order.status == 'PENDING'"
                         ng-click="changeOrderStatusToFreeze(orderId)">freeze order
                 </button>
+                <button class="order-status-btn" ng-if="order.status == 'FREEZE'"
+                        ng-click="changeOrderStatusToBill(orderId)">bill order
+                </button>
             </div>
         </div>
     </div>
