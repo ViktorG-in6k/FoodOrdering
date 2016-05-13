@@ -14,8 +14,8 @@ public class Order extends com.dataLayer.entity.base.Entity {
     @ManyToOne
     @JoinColumn(name = "payer_id")
     private User payer;
-    @ManyToOne
-    @JoinColumn(name = "status_id")
+
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @OneToMany(fetch = FetchType.EAGER)

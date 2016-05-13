@@ -2,6 +2,7 @@ package com.dataLayer.DAO.Implementations;
 
 import com.dataLayer.DAO.Interfaces.OrderDAO;
 import com.dataLayer.entity.Order;
+import com.dataLayer.entity.Status;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -100,6 +101,11 @@ public class OrderDAOImpl implements OrderDAO {
                 .setInteger("eventId", eventId)
                 .setInteger("payerId", payerId);
         query.executeUpdate();
+    }
+
+    @Override
+    public void changeOrderStatus(int orderId, Status status) {
+
     }
 }
 

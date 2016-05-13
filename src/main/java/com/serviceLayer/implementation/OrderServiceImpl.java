@@ -29,8 +29,6 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     ItemService itemService;
     @Autowired
-    StatusService statusService;
-    @Autowired
     RestaurantService restaurantService;
 
     @Override
@@ -79,7 +77,7 @@ public class OrderServiceImpl implements OrderService {
         else{
             Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
             Event event = eventService.getEventById(eventId);
-            Status status = statusService.getStatusById(0);
+            Status status = Status.PENDING;
             Order order1 = new Order(restaurant,event,status);
             orderDAO.saveOrder(order1);
             return new OrderPlacementStatus(order1,0,false);
