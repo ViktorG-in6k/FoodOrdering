@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 @Controller
 public class OrderController {
@@ -39,7 +40,7 @@ public class OrderController {
     @RequestMapping(value = "orders/{orderId}/status", method = RequestMethod.PUT)
     public
     @ResponseBody
-    String changeOrderStatus(@PathVariable int orderId, @RequestParam("status") Status status) {
+    String changeOrderStatus(@PathVariable int orderId, @RequestParam("status") Status status) throws IOException {
         orderService.changeOrderStatus(orderId, status);
         return "{\"status\":\"ok\"}";
     }
