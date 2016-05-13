@@ -6,16 +6,12 @@
 
     <security:http  pattern="/resources/**" security="none"/>
     <security:http pattern="/" security="none" />
-
-
-
     <security:http  use-expressions="true" entry-point-ref="clientAuthenticationEntryPoint">
         <security:http-basic/>
         <security:anonymous enabled="false"/>
         <security:csrf disabled="true"/>
         <security:intercept-url pattern="/events" access="isFullyAuthenticated()"/>
         <security:intercept-url pattern="/" access="permitAll"/>
-
         <security:custom-filter ref="logoutFilter" position="LOGOUT_FILTER"/>
         <security:custom-filter ref="oauth2ClientContextFilter" after="EXCEPTION_TRANSLATION_FILTER"/>
         <security:custom-filter ref="oAuth2AuthenticationProcessingFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
@@ -32,7 +28,6 @@
           class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
         <constructor-arg value="${google.redirect.uri}"/>
     </bean>
-
 
     <bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
         <constructor-arg name="logoutSuccessUrl" value="/"/>
