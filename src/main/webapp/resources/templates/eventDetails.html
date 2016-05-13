@@ -35,11 +35,6 @@
                     Participants amount: {{restaurant.orderPlacementStatus.participantsAmount}}
                 </div>
                 <br>
-
-                <div class="col-md-4 pull-right event-text-size restaurant-info-size">
-
-                    OrderID: {{restaurant.orderPlacementStatus.order.id}}
-                </div>
                 <div class="col-md-offset-4 col-md-4 ">
                     <h2 class="col-md-offset-4 create-event-user-text"></h2>
                 </div>
@@ -58,13 +53,18 @@
                 <div ng-if="restaurant.orderPlacementStatus.payer == null"
                      class="btn btn-success pull-right"
                      ng-click="takeResponsibility(restaurant.orderPlacementStatus.order.id)">
-                    {{restaurant.orderPlacementStatus.order.id}}
+                    Take Responsibility
                 </div>
                 <div ng-if="restaurant.orderPlacementStatus.payer != null">
-                    <p ng-if="restaurant.orderPlacementStatus.payer" class="pull-right" style="padding-right: 20px">
+                    <p ng-if="restaurant.orderPlacementStatus.payer.email != user.data.email" class="pull-right" style="padding-right: 20px">
                         Responsible for order:
                         {{restaurant.orderPlacementStatus.payer.email}}
                     <p>
+                    <div ng-if="restaurant.orderPlacementStatus.payer.email == user.data.email"
+                         class="btn btn-success pull-right"
+                         ng-click="removeResponsibility(restaurant.orderPlacementStatus.order.id)">
+                        Remove responsibility
+                    </div>
                 </div>
 
             </div>
