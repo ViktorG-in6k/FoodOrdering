@@ -24,6 +24,8 @@
                 <h1 class="inline">{{restaurant.name}}</h1>
                 <h3 class="restaurant-phone"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}
                 </h3>
+                <h3 ng-if="order.status == 'FREEZE'" class="inline restaurant-phone">Order status: freeze</h3>
+                <button class="order-status-btn" ng-if="order.status == 'PENDING'" ng-click="changeOrderStatusToFreeze(orderId)">freeze order</button>
             </div>
         </div>
     </div>
@@ -36,17 +38,16 @@
                     <th>Price</th>
                     <th>Cost</th>
                 </tr>
-                <tr ng-repeat="item in myOrders.orderList | orderBy:'restaurant.name'">
+                <tr ng-repeat="item in myOrders| orderBy:'restaurant.name'">
                     <td>{{item.item.name}}</td>
                     <td>
                         <div>
-                            <span>{{item.count}}</span>
+                            <span>{{item.itemAmount}}</span>
                         </div>
                     </td>
                     <td>{{item.item.price|currency:" "}}&#8372</td>
-
                     <td>
-                        {{item.count * item.item.price|currency:" "}}&#8372
+                        {{item.itemAmount * item.item.price|currency:" "}}&#8372
                     </td>
                 </tr>
                 <tr>
