@@ -43,7 +43,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void setPayerById(int orderId, int payerId) {
-        orderDAO.setPayer(orderId,payerId);
+        orderDAO.setPayer(orderId, payerId);
     }
 
     @Override
@@ -58,34 +58,33 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional
     @Override
-    public OrderPlacementStatus getOrderPlacementStatus(Order order,int restaurantId,int eventId, Authentication authentication) {
+    public OrderPlacementStatus getOrderPlacementStatus(Order order, int restaurantId, int eventId, Authentication authentication) {
         Set<User> participants = new HashSet<>();
         boolean isMine;
         if (order != null) {
             List<OrderItemDTO> orderItems = orderItemService.getOrderListByOrderId(order.getId());
 
-                for(OrderItemDTO itemDTO : orderItems) {
+            for (OrderItemDTO itemDTO : orderItems) {
 
-                        participants.add(userService.getUser(itemDTO.getUser().getId()));
+                participants.add(userService.getUser(itemDTO.getUser().getId()));
 
-                }
+            }
 
             isMine = isMineOrder(order, authentication);
             int participantsAmount = participants.size();
             return new OrderPlacementStatus(order, participantsAmount, isMine);
-        }
-        else{
+        } else {
             Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
             Event event = eventService.getEventById(eventId);
             Status status = Status.PENDING;
-            Order order1 = new Order(restaurant,event,status);
+            Order order1 = new Order(restaurant, event, status);
             orderDAO.saveOrder(order1);
-            return new OrderPlacementStatus(order1,0,false);
+            return new OrderPlacementStatus(order1, 0, false);
         }
     }
 
     @Override
-    public Order getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId){
+    public Order getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId) {
         return orderDAO.getOrdersByEventIdAndRestaurantId(eventId, restaurantId);
     }
 
@@ -101,6 +100,11 @@ public class OrderServiceImpl implements OrderService {
             }
         }
         return isMine;
+    }
+
+    @Override
+    public void changeOrderStatus(int orderId, Status status) {
+        orderDAO.changeOrderStatus(orderId, status);
     }
 }
 

@@ -4,6 +4,7 @@ import com.dataLayer.entity.DTO.orderDTO.OrderPlacementStatus;
 import com.dataLayer.entity.DTO.orderItemDTO.OrderItemRequest;
 import com.dataLayer.entity.Event;
 import com.dataLayer.entity.Order;
+import com.dataLayer.entity.Status;
 import org.springframework.security.core.Authentication;
 
 public interface OrderService {
@@ -24,5 +25,5 @@ public interface OrderService {
 
     boolean isMineOrder(Order order, Authentication authentication);
 
-
+    void changeOrderStatus(int orderId, Status status);
 }
