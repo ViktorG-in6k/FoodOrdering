@@ -105,7 +105,10 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public void changeOrderStatus(int orderId, Status status) {
-
+        Session session = sessionFactory.getCurrentSession();
+        Order order = session.get(Order.class, orderId);
+        order.setStatus(status);
+        session.update(order);
     }
 }
 
