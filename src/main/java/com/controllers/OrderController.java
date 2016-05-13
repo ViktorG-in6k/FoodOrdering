@@ -18,8 +18,16 @@ public class OrderController {
 
     @RequestMapping(value = "/orders/{orderId}/responsibility", method = RequestMethod.POST)
     public String setResponsibleUser(HttpServletRequest req, Authentication authentication,
-                                       @PathVariable("orderId") int orderId) {
+                                     @PathVariable("orderId") int orderId) {
         orderService.setPayerById(orderId, getCurrentUserId(authentication));
+        String ref = req.getHeader("Referer");
+        return "redirect:" + ref;
+    }
+
+    @RequestMapping(value = "/orders/{orderId}/responsibility", method = RequestMethod.DELETE)
+    public String removeResponsibleUser(HttpServletRequest req,
+                                        @PathVariable("orderId") int orderId) {
+        orderService.removePayer(orderId);
         String ref = req.getHeader("Referer");
         return "redirect:" + ref;
     }
