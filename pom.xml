@@ -48,6 +48,16 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.squareup.retrofit</groupId>
+            <artifactId>retrofit</artifactId>
+            <version>2.0.0-beta2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.retrofit</groupId>
+            <artifactId>converter-jackson</artifactId>
+            <version>2.0.0-beta2</version>
+        </dependency>
         <!-- begin test tool -->
         <dependency>
             <groupId>junit</groupId>
