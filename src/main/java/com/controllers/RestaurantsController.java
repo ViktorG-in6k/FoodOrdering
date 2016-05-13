@@ -1,10 +1,7 @@
 package com.controllers;
 
 import com.DTOLayer.DTOEntity.RequestRestaurantDTO;
-import com.DTOLayer.DTOEntity.RestaurantDTO;
-import com.DTOLayer.DTOEntity.orderDTO.OrderDTOList;
-import com.model.Entity.Restaurant;
-import com.serviceLayer.service.OrderService;
+import com.DTOLayer.DTOEntity.restaurantDTO.RestaurantDTO;
 import com.serviceLayer.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,15 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class RestaurantsController {
     @Autowired
     RestaurantService restaurantService;
-    @Autowired
-    OrderService orderService;
 
     @RequestMapping(value = "/new_restaurant", method = RequestMethod.POST)
     public String newRestaurant(HttpServletRequest req, @RequestParam("name")String name, @RequestParam("eventId") int eventId) throws UnsupportedEncodingException {
@@ -48,48 +42,30 @@ public class RestaurantsController {
         return "menu";
     }
 
-    @RequestMapping("/restaurants")
+    @RequestMapping("/event_{event}/restaurants")
     public
     @ResponseBody
-    List<RestaurantDTO> getRestaurants() {
-        List<RestaurantDTO> RestaurantDTOs = new ArrayList<RestaurantDTO>();
-        for (Restaurant restaurant : restaurantService.getListOfAllRestaurant()) {
-            RestaurantDTOs.add(new RestaurantDTO(restaurant));
-        }
-        return RestaurantDTOs;
+    List<RestaurantDTO> getRestaurants(HttpSession session,
+                                       @PathVariable("event") int eventId) {
+        return restaurantService.getResponseListOfAllRestaurantsByEventId(eventId,session);
     }
 
-    @RequestMapping(value = "/restaurants_by_event_{eventId}", method = RequestMethod.GET)
+    @RequestMapping("/event_{event}/restaurant_{id}")
     public
     @ResponseBody
-    List<RestaurantDTO> getRestaurantsByEvent(@PathVariable("eventId") int eventId) {
-        List<RestaurantDTO> RestaurantDTOs = new ArrayList<RestaurantDTO>();
-        for (Restaurant restaurant : restaurantService.getListOfAllRestaurant()) {
-            OrderDTOList orderDTOList = orderService.orderListOfUserByRestaurant(eventId,restaurant.getId());
-            RestaurantDTOs.add(new RestaurantDTO(restaurant,orderDTOList.getUserResponsibility()));
-        }
-        return RestaurantDTOs;
+    RestaurantDTO getRestaurantById(HttpSession session,
+                                    @PathVariable("event") int eventId,
+                                    @PathVariable("id") int id) {
+        return restaurantService.getRestaurantDTOById(eventId, id, session);
     }
 
-    @RequestMapping("/restaurant_{id}")
-    public
-    @ResponseBody
-    RestaurantDTO getRestaurantById(@PathVariable("id") int id) {
-        return restaurantService.getRestaurantDTOById(id);
-    }
-
-    @RequestMapping(value = "/update_restaurant_name", method = RequestMethod.POST)
-    public ResponseEntity<RestaurantDTO> updateRestaurantName(@RequestBody RequestRestaurantDTO restaurant) {
+    @RequestMapping(value = "/event_{event}/update_restaurant_name", method = RequestMethod.POST)
+    public ResponseEntity<RestaurantDTO> updateRestaurantName(HttpSession session,
+                                                              @PathVariable("event") int eventId,
+                                                              @RequestBody RequestRestaurantDTO restaurant) {
         restaurantService.updateRestaurantName(restaurant);
-        RestaurantDTO restaurantDTO = getRestaurantById(restaurant.getId());
-        return new ResponseEntity<RestaurantDTO>(restaurantDTO, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/update_restaurant_description", method = RequestMethod.POST)
-    public ResponseEntity<RestaurantDTO> updateRestaurantDescription(@RequestBody RequestRestaurantDTO restaurant) {
-        restaurantService.updateRestaurantDescription(restaurant);
-        RestaurantDTO restaurantDTO = getRestaurantById(restaurant.getId());
-        return new ResponseEntity<RestaurantDTO>(restaurantDTO, HttpStatus.OK);
+        RestaurantDTO restaurantDTO = getRestaurantById(session,eventId,restaurant.getId());
+        return new ResponseEntity<>(restaurantDTO, HttpStatus.OK);
     }
 }
 

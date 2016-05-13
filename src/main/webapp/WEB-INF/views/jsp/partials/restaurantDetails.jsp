@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                             <div style=" display: inline">
-                                <a href="" ng-click="addOneItemToOrder(item.id,eventId)">
+                                <a href="" ng-click="addOneItemToOrder(item.id,orderId)">
                                     <i style="color:green" class="fa fa-plus" aria-hidden="true"></i></a>
                             </div>
                         </div>

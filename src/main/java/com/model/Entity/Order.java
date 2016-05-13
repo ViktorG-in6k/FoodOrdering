@@ -1,58 +1,33 @@
 package com.model.Entity;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Entity(name = "order_list")
+@Entity(name = "order_info")
 public class Order extends com.model.base.Entity {
-
-    public Order() {
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "item_id", nullable = false)
-    private Item item;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "responsibility_user_id")
-    private User responsibilityUser;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "event_id", nullable = false)
-    private Event event;
-
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
+    @ManyToOne
+    @JoinColumn(name = "event_id", nullable = false)
+    private Event event;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User payer;
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private Status status;
 
-    @Column(name = "item_amount", nullable = false)
-    private int itemAmount;
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<OrderItem> orderItems;
 
-    public Order(User user, Item item, Event event) {
-        this.user = user;
-        this.item = item;
+    public Order(Restaurant restaurant, Event event, Status status) {
+        this.restaurant = restaurant;
         this.event = event;
-        this.restaurant = item.getRestaurant();
-        this.itemAmount = 1;
+        this.status = status;
     }
 
-    public Order(User user, Item item, Event event, int itemAmount) {
-        this.user = user;
-        this.item = item;
-        this.event = event;
-        this.restaurant = item.getRestaurant();
-        this.itemAmount = itemAmount;
-    }
-
-    public User getResponsibilityUser() {
-        return responsibilityUser;
-    }
-
-    public void setResponsibilityUser(User responsibilityUser) {
-        this.responsibilityUser = responsibilityUser;
+    public Order() {
     }
 
     public Restaurant getRestaurant() {
@@ -63,22 +38,6 @@ public class Order extends com.model.base.Entity {
         this.restaurant = restaurant;
     }
 
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Event getEvent() {
         return event;
     }
@@ -87,12 +46,28 @@ public class Order extends com.model.base.Entity {
         this.event = event;
     }
 
-    public int getItemAmount() {
-        return itemAmount;
+    public User getPayer() {
+        return payer;
     }
 
-    public void setItemAmount(int itemAmount) {
-        this.itemAmount = itemAmount;
+    public void setPayer(User payer) {
+        this.payer = payer;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }
 

@@ -67,20 +67,22 @@ services.factory("OrderListService", function ($http, $rootScope) {
             url: '/remote_one_item_from_order',
             params: {
                 event_id: eventId,
-                item_id: itemId,
+                item_id: itemId
             }
         }).finally(function () {
             orderListService.updateOrderList();
         });
     };
 
-    orderListService.addOneItemToOrder = function (itemId, eventId) {        
+    orderListService.addOneItemToOrder = function (itemId, orderId) {        
         $http({
             method: 'POST',
             url: '/add_one_item_to_order',
             params: {
-                event_id: eventId,
-                item_id: itemId
+                order_id: orderId,
+                item_id: itemId,
+                restaurant_id: $rootScope.currentRestaurant,
+                event_id: $rootScope.eventId
             }
         }).finally(function () {
             orderListService.updateOrderList();
@@ -92,7 +94,7 @@ services.factory("OrderListService", function ($http, $rootScope) {
             method: 'POST',
             url: '/update_number_item_to_order',
             params: {
-                event_id: eventId,
+                order_id: eventId,
                 item_id: itemId,
                 number: number
             }
@@ -108,18 +110,27 @@ services.factory("OrderListService", function ($http, $rootScope) {
     return orderListService;
 });
 
-services.factory("ItemService", function ($http) {
+services.factory("ItemService", function ($http, $rootScope) {
     var itemService = {};
     itemService.addNewItem = function (dataForRequest) {
-        return $http.post('/new_item', dataForRequest)
+        return $http({
+            method: 'POST',
+            url: '/new_item',
+            params: {
+                dataForRequest: dataForRequest,
+                event_id: $rootScope.eventId
+            }
+        });
     };
     return itemService;
 });
 
-services.factory("RestaurantService", function ($http) {
+
+
+services.factory("RestaurantService", function ($http, $rootScope) {
     var restaurantService = {};
     restaurantService.getRestaurantById = function (id) {
-        return  $http.get("/restaurant_" + id)
+        return  $http.get("/event_" + $rootScope.eventId +"/restaurant_" + id)
     };
     
     return restaurantService;

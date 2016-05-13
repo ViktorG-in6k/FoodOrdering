@@ -1,4 +1,4 @@
-package com.springConfig;
+package com.config;
 
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
