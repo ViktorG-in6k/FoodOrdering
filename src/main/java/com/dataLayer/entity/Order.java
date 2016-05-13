@@ -17,7 +17,8 @@ public class Order extends com.dataLayer.entity.base.Entity {
     @ManyToOne
     @JoinColumn(name = "status_id")
     private Status status;
-
+    @Column (name = "bill_id")
+    private Integer billId;
     @OneToMany(fetch = FetchType.EAGER)
     private List<OrderItem> orderItems;
 
@@ -25,6 +26,11 @@ public class Order extends com.dataLayer.entity.base.Entity {
         this.restaurant = restaurant;
         this.event = event;
         this.status = status;
+    }
+
+    public Order(Restaurant restaurant, Event event, Status status, int billId) {
+        this(restaurant, event, status);
+        this.billId = billId;
     }
 
     public Order() {
@@ -68,6 +74,14 @@ public class Order extends com.dataLayer.entity.base.Entity {
 
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
+    }
+
+    public int getBillId() {
+        return billId;
+    }
+
+    public void setBillId(int billId) {
+        this.billId = billId;
     }
 }
 

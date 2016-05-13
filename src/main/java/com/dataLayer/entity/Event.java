@@ -13,13 +13,10 @@ public class Event extends com.dataLayer.entity.base.Entity {
     private String name;
     @Column
     private LocalDateTime date;
+    @Column (name = "split_bill_id")
+    private Integer splitBillId;
     @OneToOne
     private User user;
-
-    public Event(String name, LocalDateTime date) {
-        this.name = name;
-        this.date = date;
-    }
 
     public Event(RequestEventDTO eventDTO) {
         this.name = eventDTO.getName();
