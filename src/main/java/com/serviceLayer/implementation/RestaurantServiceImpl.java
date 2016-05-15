@@ -11,6 +11,7 @@ import com.serviceLayer.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +32,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public List<RestaurantDTO> getResponseListOfAllRestaurantsByEventId(int eventId, Authentication authentication) {
-        List<RestaurantDTO> restaurants = new ArrayList<RestaurantDTO>();
-        Order order;
+        List<RestaurantDTO> restaurants = new ArrayList<>();
         for (Restaurant restaurant : getListOfAllRestaurant()) {
-            order = orderService.getOrdersByEventIdAndRestaurantId(eventId, restaurant.getId());
-            restaurants.add(new RestaurantDTO(restaurant, orderService.getOrderPlacementStatus(order, restaurant.getId(), eventId, authentication)));
+            restaurants.add(getRestaurantDTOById(eventId, restaurant.getId(), authentication));
         }
         return restaurants;
     }
@@ -52,9 +51,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public RestaurantDTO getRestaurantDTOById(int eventId, int restaurantId, Authentication authentication) {
-        Order order = orderService.getOrdersByEventIdAndRestaurantId(eventId,restaurantId);
         Restaurant restaurant = restaurantDAO.getRestaurantById(restaurantId);
-        OrderPlacementStatus orderPlacementStatus = orderService.getOrderPlacementStatus(order, restaurantId, eventId, authentication);
+        List<Order> orders = orderService.getOrdersByEventIdAndRestaurantId(eventId, restaurantId);
+        OrderPlacementStatus orderPlacementStatus = null;
+        if (orders.size() > 0) {
+            orderPlacementStatus = orderService.getOrderPlacementStatus(orders.get(0), restaurantId, eventId, authentication);
+        }
         return new RestaurantDTO(restaurant, orderPlacementStatus);
     }
 }

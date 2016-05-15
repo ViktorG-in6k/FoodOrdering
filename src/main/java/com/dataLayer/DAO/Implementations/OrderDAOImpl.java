@@ -36,14 +36,15 @@ public class OrderDAOImpl implements OrderDAO {
                 .uniqueResult();
     }
 
+
     @Override
-    public Order getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId) {
+    public List<Order> getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from order_info where event_id = :eventId and restaurant_id = :restaurantId");
-        return (Order) query
+        return  query
                 .setInteger("eventId", eventId)
                 .setInteger("restaurantId", restaurantId)
-                .uniqueResult();
+                .list();
     }
 
     @Override

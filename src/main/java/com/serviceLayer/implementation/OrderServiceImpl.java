@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId) {
+    public List<Order> getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId) {
         return orderDAO.getOrdersByEventIdAndRestaurantId(eventId, restaurantId);
     }
 
@@ -77,14 +76,7 @@ public class OrderServiceImpl implements OrderService {
 
             int participantsAmount = participants.size();
             return new OrderPlacementStatus(order, participantsAmount, isMineOrder(order, authentication));
-        } else {
-            Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
-            Event event = eventService.getEventById(eventId);
-            Status status = Status.PENDING;
-            Order order1 = new Order(restaurant, event, status);
-            orderDAO.saveOrder(order1);
-            return new OrderPlacementStatus(order1, 0, false);
-        }
+        } return null;
     }
 
     @Override

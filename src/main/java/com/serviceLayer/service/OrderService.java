@@ -7,6 +7,7 @@ import com.dataLayer.entity.base.Status;
 import org.springframework.security.core.Authentication;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface OrderService {
     void save(Order order);
@@ -23,7 +24,7 @@ public interface OrderService {
 
     OrderPlacementStatus getOrderPlacementStatus(Order order, int restaurantId, int eventId, Authentication authentication);
 
-    Order getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId);
+    List<Order> getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId);
 
     boolean isMineOrder(Order order, Authentication authentication);
 

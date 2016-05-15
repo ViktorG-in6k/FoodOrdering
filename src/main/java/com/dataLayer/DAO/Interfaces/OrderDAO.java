@@ -1,17 +1,16 @@
 package com.dataLayer.DAO.Interfaces;
 
-
 import com.dataLayer.entity.base.Order;
 import com.dataLayer.entity.base.Status;
-
 import java.util.List;
 
 public interface OrderDAO {
+
     void saveOrder(Order order);
 
     Order getOrderByEventIdAndRestaurantIdAndPayerId(int eventId, int restaurantId, int payerId);
 
-    Order getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId);
+    List<Order> getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId);
 
     Order getOrderByOrderId(int orderId);
 
