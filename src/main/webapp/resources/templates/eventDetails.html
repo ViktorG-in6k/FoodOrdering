@@ -1,3 +1,4 @@
+<div ng-controller="eventController">
 <div class="event-details">
     <div>
         <div class="well pull-left event-detail-bloc">
@@ -56,7 +57,8 @@
                     Take Responsibility
                 </div>
                 <div ng-if="restaurant.orderPlacementStatus.payer != null">
-                    <p ng-if="restaurant.orderPlacementStatus.payer.email != user.data.email" class="pull-right" style="padding-right: 20px">
+                    <p ng-if="restaurant.orderPlacementStatus.payer.email != user.data.email" class="pull-right"
+                       style="padding-right: 20px">
                         Responsible for order:
                         {{restaurant.orderPlacementStatus.payer.email}}
                     <p>
@@ -71,10 +73,8 @@
         </div>
     </div>
 </div>
-<div ng-controller="restaurantController">
     <div class=" col-md-offset-0 col-md-2 create-restaurant-block" style="margin-left: -100px;">
-
-        <form class="create-restaurant-form" role="form" ng-submit="addNewRestaurant(restaurant,eventId)">
+        <form class="create-restaurant-form" role="form" ng-submit="createRestaurant(restaurant)">
 
             <div>
                 <div class="form-group">
@@ -90,7 +90,6 @@
                            id="phone"
                            name="phone" required>
                 </div>
-                <input hidden type="text" name="eventId" value="{{eventId}}">
                 <button type="submit" class="btn btn-success pull-right">Add restaurant</button>
             </div>
         </form>

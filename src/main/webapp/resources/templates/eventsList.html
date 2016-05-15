@@ -1,4 +1,3 @@
-<div ng-controller="eventController">
     <div class="events">
         <div class="container">
             <div class="row">
@@ -17,7 +16,7 @@
                                     <p class="event-date">
                                         {{event.date.dayOfMonth}}
                                         {{event.date.month | limitTo: 3 | lowercase | capitalize}}
-                                        {{event.date.hour|toMinute}}:{{event.date.minute|toMinute}}</p><br>
+                                       <p class="event-date event-year"> {{event.date.year}}</p>
                                     </p>
                                 </div>
                                 <div class="col-md-4 col-xs-4 margin-left-4">
@@ -31,14 +30,14 @@
                     <form role="form" ng-submit="createEvent(name,date)">
                         <div>
                             <div class="form-group">
-                                <input ng-model="name" type="text" class="form-control" id="name"
+                                <input ng-model="name" type="text" class="form-control event-name-input" id="name"
                                        placeholder="Event title*"
                                        name="name" required>
                             </div>
                             <div class="form-group">
-                                <input kendo-date-time-picker ng-model="str" k-ng-model="date"
+                                <input kendo-date-picker class="form-control" type="text" ng-model="str" k-ng-model="date"
                                        style="width: 100%;height: 27px;margin-bottom: 1px;"
-                                       k-options="dateTimePickerConfig" required placeholder="   Event date*"/>
+                                       k-options="dateTimePickerConfig" required placeholder="Event date*"/>
                             </div>
                             <button type="submit" class="btn btn-success pull-right">Add event</button>
                         </div>
@@ -47,4 +46,3 @@
             </div>
         </div>
     </div>
-</div>

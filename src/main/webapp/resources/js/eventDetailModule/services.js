@@ -1,7 +1,5 @@
 var services = angular.module('eventApp.services', []);
 
-
-
 services.factory("EventService", function ($http) {
     var eventService = {};
 
@@ -16,7 +14,7 @@ services.factory("DateTimePicker", function () {
     var dateTimePicker = {};
     dateTimePicker.getConfig = function () {
         return {
-            format: "dd-MM-yyyy HH:mm",
+            format: "dd MMM yyyy",
             timeFormat: "HH:mm",
             animation: {
                 close: {
