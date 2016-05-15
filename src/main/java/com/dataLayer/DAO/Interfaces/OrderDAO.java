@@ -29,5 +29,6 @@ public interface OrderDAO {
     void setSplitBillId(int orderId, int billId);
 
     void changeOrderStatus(int orderId, Status status);
+
 }
 

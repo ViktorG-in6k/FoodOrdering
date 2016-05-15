@@ -100,6 +100,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Order createOrder(int eventId, int restaurantId) {
+        Event event = eventService.getEventById(eventId);
+        Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
+        Order order = new Order(restaurant, event, Status.PENDING);
+        save(order);
+        return order;
+    }
+
+    @Override
     public void sendOrderToSplitBill(int orderId) throws IOException {
         SplitBillApi splitBillApi = new SplitBillApi();
         Order order = getOrderById(orderId);

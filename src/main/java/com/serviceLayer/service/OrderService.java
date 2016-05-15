@@ -29,5 +29,8 @@ public interface OrderService {
     boolean isMineOrder(Order order, Authentication authentication);
 
     void changeOrderStatus(int orderId, Status status) throws IOException;
+
+    Order createOrder(int eventId, int restaurantId);
 }
+
 

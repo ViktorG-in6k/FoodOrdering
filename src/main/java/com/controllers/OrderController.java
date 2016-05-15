@@ -1,6 +1,7 @@
 package com.controllers;
 
 import com.dataLayer.entity.DTO.orderDTO.OrderDTO;
+import com.dataLayer.entity.base.Order;
 import com.dataLayer.entity.base.Status;
 import com.serviceLayer.googleAuthentication.CurrentUserDetails;
 import com.serviceLayer.service.OrderService;
@@ -35,6 +36,14 @@ public class OrderController {
     @RequestMapping(value = "api/orders/{id}", method = RequestMethod.GET)
     public OrderDTO getOrderById(@PathVariable("id") int id) {
         return new OrderDTO(orderService.getOrderById(id));
+    }
+
+    @RequestMapping(value = "api/orders", method = RequestMethod.POST)
+    public OrderDTO createOrder(@RequestParam("eventId") int eventId, @RequestParam("restaurantId") int restaurantId,
+                              Authentication authentication) {
+        Order order = orderService.createOrder(eventId, restaurantId);
+        setResponsibleUser(authentication, order.getId());
+        return new OrderDTO(order);
     }
 
     private int getCurrentUserId(Authentication authentication) {
