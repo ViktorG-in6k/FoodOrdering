@@ -1,54 +1,44 @@
 var controllers = angular.module('eventApp.controllers', []);
 
 controllers.controller("eventController", function ($http, $scope, $routeParams, $rootScope,
-                                                    TakeResponsibilityService, RemoveResponsibilityService) {
+                                                    ResponsibilityService, RestaurantService, Restaurants) {
         $rootScope.eventId = $routeParams.id;
+        $scope.updateRestaurantList();
+        $scope.restaurant = {};
+        $scope.restaurant.link = '';
 
         $http.get("/events/" + $rootScope.eventId).success(function (data) {
             $scope.event = data;
         });
 
-        $http.get("/events/" + $rootScope.eventId + "/restaurants").success(function (data) {
-            $scope.restaurants = data;
-        });
-
-        $rootScope.takeResponsibility = function (orderId) {
-            TakeResponsibilityService.takeResponsibility(orderId).then(
-                $http.get("/events/" + $rootScope.eventId + "/restaurants").success(function (data) {
-                    $scope.restaurants = data;
-                })
-            )
+        $scope.updateRestaurantList = function () {
+            $http.get("/events/" + $rootScope.eventId + "/restaurants").success(function (data) {
+                $scope.restaurants = data;
+            });
         };
 
-        $rootScope.removeResponsibility = function (orderId) {
-            RemoveResponsibilityService.removeResponsibility(orderId).then(
-                $http.get("/events/" + $rootScope.eventId + "/restaurants").success(function (data) {
-                    $scope.restaurants = data;
-                })
-            )
+        $scope.updateRestaurantList();
+
+        $scope.takeResponsibility = function (orderId) {
+            ResponsibilityService.takeResponsibility(orderId).success(function () {
+                $scope.updateRestaurantList();
+            })
         };
 
-        $scope.restaurant = {};
-        $scope.restaurant.link = '';
+        $scope.removeResponsibility = function (orderId) {
+            ResponsibilityService.removeResponsibility(orderId).success(function () {
+                $scope.updateRestaurantList();
+            })
+        };
 
-        $scope.createRestaurant = function (restaurant, eventId) {
-            $http({
-                url: "/restaurants",
-                method: "POST",
-                params: {
-                    name: restaurant.title,
-                    link: restaurant.link,
-                    phone: restaurant.phone,
-                    eventId: eventId
-                }
-            }).success(function () {
+        $scope.createRestaurant = function (restaurant) {
+            RestaurantService.createRestaurant(restaurant).success(function () {
                 $scope.restaurant = {};
                 $scope.restaurant.link = '';
-                $http.get("/events/" + $rootScope.eventId + "/restaurants").success(function (data) {
-                    $scope.restaurants = data;
-                });
+                $scope.updateRestaurantList();
             })
-        }
+        };
+        $scope.updateRestaurantList();
     }
 );
 

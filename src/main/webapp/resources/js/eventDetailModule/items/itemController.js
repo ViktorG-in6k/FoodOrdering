@@ -6,6 +6,6 @@ itemController.controller("createItem", function ($scope, ItemService, $filter, 
             ItemService.updateItemsList();
             $scope.name = '';
             $scope.price = '';
-        });;
+        });
     };
 });
