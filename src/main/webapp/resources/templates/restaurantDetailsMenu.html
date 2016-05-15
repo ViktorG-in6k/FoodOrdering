@@ -1,0 +1,48 @@
+<div class="restaurant-details">
+    <div>
+        <div class="well pull-left event-detail-block">
+            <div class="col-md-6 md-text">
+                {{restaurant.name}}
+                <br>
+                <a ng-if="restaurant.link" href="{{restaurant.link}}" target="_blank" class="xs-text"><i
+                        class="fa fa-link" aria-hidden="true"></i> {{ restaurant.link}}</a>
+                <p class="xs-text"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}</p>
+            </div>
+            <div ng-if="responsible.email" class="col-md-6">
+                <div class="pull-right"><p>{{responsible.email}}
+                    <a href="{{'#/'+ eventId}}/{{restaurant.id}}/order" class="md-text">
+                    <p> Make order</p></div>
+                </a>
+            </div>
+            <br/>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="col-md-8 col-sm-8">
+        <div class="panel-group col-md-offset-1 col-sm-offset-1 col-md-11 col-sm-11" id="accordion" role="tablist"
+             aria-multiselectable="true">
+            <div class="span7 text-center"><button class="text-center" ng-click="createOrder()">Create order</button></div>
+            <table class="table ">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in restaurant.itemList | orderBy: 'name'">
+                    <td>
+                        <div>{{item.name}}</div>
+                    </td>
+                    <td>
+                        <div>{{item.price | currency:" "}} &#8372</div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-3">
+    </div>
+</div>

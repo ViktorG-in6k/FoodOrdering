@@ -33,6 +33,9 @@ app.config(['$routeProvider',
         }).when('/:id/:restaurantId/:orderId', {
             templateUrl: '/resources/templates/restaurantDetails.html',
             controller: 'restaurantController'
+        }).when('/:id/restaurant/:restaurantId/menu', {
+            templateUrl: '/resources/templates/restaurantDetailsMenu.html',
+            controller: 'restaurantMenu'
         }).when('/:id/:restaurantId/:orderId/order', {
             templateUrl: '/resources/templates/commonOrderList.html',
             controller:'commonOrderList'
