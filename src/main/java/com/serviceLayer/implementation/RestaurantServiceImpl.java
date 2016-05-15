@@ -30,15 +30,6 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public void saveByRequest(HttpServletRequest req) {
-        String name = req.getParameter("name");
-        String phone = req.getParameter("phone");
-        String link = req.getParameter("link");
-        Restaurant restaurant = new Restaurant(name, phone, link);
-        restaurantDAO.save(restaurant);
-    }
-
-    @Override
     public List<RestaurantDTO> getResponseListOfAllRestaurantsByEventId(int eventId, Authentication authentication) {
         List<RestaurantDTO> restaurants = new ArrayList<RestaurantDTO>();
         Order order;
