@@ -3,7 +3,6 @@ var controllers = angular.module('eventApp.controllers', []);
 controllers.controller("eventController", function ($http, $scope, $routeParams, $rootScope,
                                                     ResponsibilityService, RestaurantService, Restaurants) {
         $rootScope.eventId = $routeParams.id;
-        $scope.updateRestaurantList();
         $scope.restaurant = {};
         $scope.restaurant.link = '';
 
