@@ -4,7 +4,6 @@ orderService.factory("OrderListService", function ($http, $rootScope, Restaurant
     var orderListService = {};
 
     orderListService.addOneItemToOrder = function (itemId, orderId) {
-        console.log(itemId);
         $http.post("/orders/" + orderId + "/items/" + itemId).finally(function () {
             orderListService.updateOrderList(orderId);
         });
@@ -44,7 +43,6 @@ orderService.factory("OrderListService", function ($http, $rootScope, Restaurant
 
     orderListService.getOrder = function(orderId){
         return $http.get("/api/orders/"+orderId);
-
     };
 
     orderListService.getTotal = function () {
