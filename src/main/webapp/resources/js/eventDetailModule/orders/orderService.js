@@ -19,13 +19,13 @@ orderService.factory("OrderListService", function ($http, $rootScope, Restaurant
         $http.put("/orders/" + orderId + "/items/" + itemId + '/' + number).finally(function () {
             orderListService.updateOrderList(orderId);
         });
-    };    
+    };
 
     orderListService.removeFromOrder = function (orderId, itemId) {
         $http.delete("/orders/" + orderId + "/items/" + itemId + "/all").finally(function () {
             orderListService.updateOrderList(orderId);
         });
-    };    
+    };
 
     orderListService.CommonOrder = function () {
         $http.get("/orders/" + $rootScope.orderId).success(function (data) {
@@ -41,8 +41,8 @@ orderService.factory("OrderListService", function ($http, $rootScope, Restaurant
         })
     };
 
-    orderListService.getOrder = function(orderId){
-        return $http.get("/api/orders/"+orderId);
+    orderListService.getOrder = function (orderId) {
+        return $http.get("/api/orders/" + orderId);
     };
 
     orderListService.getTotal = function () {
@@ -53,17 +53,17 @@ orderService.factory("OrderListService", function ($http, $rootScope, Restaurant
             }
         } else return 0;
         return total;
-    };          
+    };
 
-    orderListService.freezeOrder = function(orderId){
-       return $http({
+    orderListService.freezeOrder = function (orderId) {
+        return $http({
             url: "orders/" + orderId + "/status",
             method: "PUT",
             params: {status: "FREEZE"}
         })
     };
 
-    orderListService.billOrder = function(orderId){
+    orderListService.billOrder = function (orderId) {
         return $http({
             url: "orders/" + orderId + "/status",
             method: "PUT",
@@ -74,6 +74,19 @@ orderService.factory("OrderListService", function ($http, $rootScope, Restaurant
     return orderListService;
 });
 
-orderService.factory('Order', ['$resource', function ($resource) {
-    return $resource('/orders/:id');
-}]);
+orderService.factory('Order', function ($http, $location) {
+    var order = {};
+    order.createOrder = function (eventId, restaurantId) {
+         $http({
+            url: "api/orders",
+            method: "POST",
+            params: {
+                eventId: eventId,
+                restaurantId: restaurantId
+            }}).success(function (order) {
+                var path = '/' + eventId + '/' + restaurantId + '/' + order.id;
+                $location.url(path);
+        })
+    };
+    return order;
+});

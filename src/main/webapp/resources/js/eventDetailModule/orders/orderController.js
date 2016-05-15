@@ -1,6 +1,6 @@
 var orderController = angular.module('orderController', []);
 
-orderController.controller("orderList", function (OrderListService, Order, $scope, $routeParams, $rootScope, $http) {
+orderController.controller("orderList", function (OrderListService, $scope, $routeParams, $rootScope) {
     $rootScope.orderId = $routeParams.orderId;
     $scope.orderService = OrderListService;
     OrderListService.updateOrderList();
