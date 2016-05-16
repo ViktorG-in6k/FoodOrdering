@@ -5,13 +5,11 @@
                 {{event.name}}
             </div>
             <div class="col-md-offset-10 event-date-font-size">
-                <div class="col-md-offset-4">
+                <div class="col-md-offset-5">
                     {{event.date.dayOfMonth}} {{event.date.month | limitTo: 3}}
-                    {{event.date.hour|toMinute}}:{{event.date.minute|toMinute}}
+                    <p style="padding-left: 12px"> {{event.date.year}}</p>
                 </div>
             </div>
-            <br/>
-            <div class="row"></div>
             <div class="col-md-6 create-event-user-text">Created by {{event.user.name}}</div>
         </div>
     </div>
@@ -31,6 +29,11 @@
                 <button class="order-status-btn" ng-if="order.status == 'FREEZE'"
                         ng-click="changeOrderStatusToBill(orderId)">bill order
                 </button>
+                <h2 class="inline order-status-btn" ng-if="order.status == 'SPLIT_BILL'">
+                    Order send to spit-bill
+                </h2>
+
+
             </div>
         </div>
     </div>

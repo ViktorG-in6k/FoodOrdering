@@ -41,5 +41,17 @@ public class OrderItemDTO {
     public void setItemAmount(int itemAmount) {
         this.itemAmount = itemAmount;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OrderItemDTO)) return false;
+        return item.getId() == ((OrderItemDTO) o).getItem().getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return item != null ? item.hashCode() : 0;
+    }
 }
 

@@ -1,6 +1,7 @@
 package com.controllers;
 
 import com.dataLayer.entity.DTO.orderDTO.OrderDTO;
+import com.dataLayer.entity.DTO.orderDTO.OrderPlacementStatus;
 import com.dataLayer.entity.base.Order;
 import com.dataLayer.entity.base.Status;
 import com.serviceLayer.googleAuthentication.CurrentUserDetails;
@@ -48,6 +49,12 @@ public class OrderController {
 
     private int getCurrentUserId(Authentication authentication) {
         return ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId();
+    }
+
+    @RequestMapping("api/orderPlacementStatus/{orderId}")
+    private OrderPlacementStatus getOrderPlacementStatus(@PathVariable("orderId") int orderId, Authentication authentication){
+        Order order = orderService.getOrderById(orderId);
+        return orderService.getOrderPlacementStatusByOrderId(order, authentication);
     }
 }
 

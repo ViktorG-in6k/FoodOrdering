@@ -8,128 +8,162 @@
                         class="fa fa-link" aria-hidden="true"></i> {{ restaurant.link}}</a>
                 <p class="xs-text"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}</p>
             </div>
-            <div ng-if="responsible.email" class="col-md-6">
-                <div class="pull-right"><p>{{responsible.email}}
-                    <a href="{{'#/'+ eventId}}/{{restaurant.id}}/order" class="md-text">
-                    <p> Make order</p></div>
-                </a>
-            </div>
-            <br/>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="col-md-8 col-sm-8">
-        <div class="panel-group col-md-offset-1 col-sm-offset-1 col-md-11 col-sm-11" id="accordion" role="tablist"
-             aria-multiselectable="true">
-            <table class="table ">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="item in restaurant.itemList | orderBy: 'name'">
-                    <td>
-                        <div>{{item.name}}</div>
-                    </td>
-                    <td>
-                        <div>{{item.price | currency:" "}} &#8372</div>
-                    </td>
-                    <td class="order-list-block">
-                        <div ng-controller="orderList">
-                            <div ng-repeat="itemInOrder in myOrders" class="inline">
-                                <div ng-if="item.id == itemInOrder.item.id" class="inline">
-                                    <a href="">
-                                        <i
-                                                ng-click="orderService.removeOneItemFromOrder(item.id, restaurant.orderPlacementStatus.order.id)"
-                                                class="fa fa-minus item-plus-color" aria-hidden="true">
-                                        </i>
-                                    </a>
-                                    <span>
-                                        <input class="item-number" min="1" required type="number"
-                                               ng-blur="orderService.updateNumberItemToOrder(item.id,restaurant.orderPlacementStatus.order.id,itemInOrder.itemAmount)"
-                                               ng-init="count=itemInOrder.itemAmount"
-                                               ng-model="itemInOrder.itemAmount"/>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="inline">
-                                <a href=""
-                                   ng-click="orderService.addOneItemToOrder(item.id,restaurant.orderPlacementStatus.order.id)">
-                                    <i class="fa fa-plus item-plus-color" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <form class="create-item-form" role="form" ng-controller="createItem" ng-submit="createItem(name,price)">
-            <fieldset>
-                <div class="form-group">
-                    <input type="text*" placeholder="Name*" class="form-control" ng-model="name" id="name"
-                           name="name"
-                           required>
-                </div>
-                <div class="form-group">
-                    <input placeholder="Price*" type="text" class="form-control" ng-model="price" id="price"
-                           name="price"
-                           required>
-                </div>
-                <input hidden type="text" name="restaurantId" value="{{restaurantId}}">
-                <button type="submit" class="btn btn-success pull-right">Add item</button>
-            </fieldset>
-        </form>
-        <div ng-controller="orderList">
-            <div>
-                <ul class="nav nav-tabs nav-justified">
-                    <li class="pointer" role="presentation" ng-class="myItems"
-                        ng-click="myItems = 'active'; allItems = ''; updateOrderList()"><a>My
-                        items</a></li>
 
-                    <li class="pointer" role="presentation" ng-class="allItems"
-                        ng-click="allItems = 'active'; myItems = ''; CommonOrder()"><a>All
-                        items</a></li>
-                </ul>
-                <table class="table">
+            <div class="col-md-6">
+                <div class="pull-right" ng-if='orderPlacementStatus.payer.email == user.data.email'><p>
+                    {{responsible.email}}
+                    <p>You are responsible for making order</p>
+                    <a href="{{'#/'+ eventId}}/{{currentRestaurant}}/{{orderId}}/order" class="md-text">
+                        <p> Make order</p>
+                        <div ng-if="orderPlacementStatus.payer.email == user.data.email"
+                             class="btn btn-success pull-right inline"
+                             ng-click="removeResponsibility(orderPlacementStatus.order.id)">
+                            Remove responsibility
+                        </div>
+                    </a>
+                </div>
+                <div class="pull-right">
+                    <div ng-if="orderPlacementStatus.payer == null"
+                         class="btn btn-success pull-right"
+                         ng-click="takeResponsibility(orderPlacementStatus.order.id)">
+                        Take Responsibility
+                    </div>
+
+                    <div ng-if="orderPlacementStatus.payer != null">
+                        <p ng-if="orderPlacementStatus.payer.email != user.data.email" class="pull-right"
+                           style="padding-right: 20px">
+                            Responsible for order:
+                            {{restaurant.orderPlacementStatus.payer.email}}
+                        <p>
+
+                    </div>
+                </div>
+                <br/>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="col-md-8 col-sm-8">
+            <div class="panel-group col-md-offset-1 col-sm-offset-1 col-md-11 col-sm-11" id="accordion" role="tablist"
+                 aria-multiselectable="true">
+                <table class="table ">
+                    <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Amount</th>
                         <th>Price</th>
                         <th></th>
                     </tr>
-                    <tr ng-repeat="item in myOrders| orderBy:'restaurant.name'">
-                        <td>{{item.item.name}}</td>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in restaurant.itemList | orderBy: 'name'">
                         <td>
-                            <div>
-                                <a class="item-minus-margin" href=""><i
-                                        ng-click="orderService.removeOneItemFromOrder(item.item.id, restaurant.orderPlacementStatus.order.id)"
-                                        class="fa fa-minus item-plus-color" aria-hidden="true"></i></a>
-                                <span style="">{{item.itemAmount}}</span>
-                                <a href=""
-                                   ng-click="orderService.addOneItemToOrder(item.item.id,restaurant.orderPlacementStatus.order.id)"
-                                   class="item-minus-margin">
-                                    <i class="fa fa-plus item-plus-color" aria-hidden="true"></i></a>
+                            <div style="padding-left: 12px">{{item.name}}</div>
+                        </td>
+                        <td>
+                            <div  style="padding-left: 12px">{{item.price | currency:" "}} &#8372</div>
+                        </td>
+
+                        <td class="order-list-block">
+                            <div ng-controller="orderList">
+                                <div ng-repeat="itemInOrder in myOrders" class="inline">
+                                    <div ng-if="item.id == itemInOrder.item.id" class="inline">
+                                        <a href="">
+                                            <i ng-if="orderPlacementStatus.order.status != 'FREEZE' && orderPlacementStatus.order.status != 'SPLIT_BILL' "
+                                               ng-click="orderService.removeOneItemFromOrder(item.id, restaurant.orderPlacementStatus.order.id)"
+                                               class="fa fa-minus item-plus-color" aria-hidden="true">
+                                            </i>
+                                        </a>
+                                    <span>
+                                        <input class="item-number" min="1" required type="number"
+                                               ng-if="orderPlacementStatus.order.status != 'FREEZE' && orderPlacementStatus.order.status != 'SPLIT_BILL' "
+                                               ng-blur="orderService.updateNumberItemToOrder(item.id,restaurant.orderPlacementStatus.order.id,itemInOrder.itemAmount)"
+                                               ng-init="count=itemInOrder.itemAmount"
+                                               ng-model="itemInOrder.itemAmount"/>
+                                        <p ng-if="orderPlacementStatus.order.status != 'PENDING'">
+                                            {{itemInOrder.itemAmount}}</p>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="inline">
+                                    <a href=""
+                                       ng-if="orderPlacementStatus.order.status != 'FREEZE' && orderPlacementStatus.order.status != 'SPLIT_BILL' "
+                                       ng-click="orderService.addOneItemToOrder(item.id,restaurant.orderPlacementStatus.order.id)">
+                                        <i class="fa fa-plus item-plus-color" aria-hidden="true"></i></a>
+                                </div>
                             </div>
-                        </td>
-                        <td>{{item.itemAmount * item.item.price|currency:" "}}&#8372</td>
-                        <td><a href="" ng-click="orderService.removeFromOrder(restaurant.orderPlacementStatus.order.id,item.item.id)"><i
-                                class="fa fa-times item-minus-color"
-                                aria-hidden="true"></i></a>
+
                         </td>
                     </tr>
-                    <tr>
-                        <td><b>Total</b></td>
-                        <td></td>
-                        <td>{{getTotal() |currency:" "}}&#8372</td>
+                    <tr ng-controller="createItem"  ng-controller="createItem" style="padding-top: 10px">
+                            <td>
+                                <input type="text*" placeholder="Name*" class="form-control" ng-model="name" id="name"
+                                       name="name"
+                                       required>
+                            </td>
+                            <td>
+                                <input placeholder="Price*" type="text" class="form-control" ng-model="price" id="price"
+                                       name="price"
+                                       required>
+                            </td>
+                            <td>
+                                <input hidden type="text" name="restaurantId"  value="{{restaurantId}}">
+                                <button type="submit" class="btn btn-success" data-ng-click="createItem(name, price)">Add item</button>
+                            </td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
+        <div class="col-md-3">
+            <div ng-controller="orderList">
+                <div>
+                    <ul class="nav nav-tabs nav-justified">
+                        <li class="pointer" role="presentation" ng-class="myItems"
+                            ng-click="myItems = 'active'; allItems = ''; updateOrderList()"><a>My
+                            items</a></li>
+
+                        <li class="pointer" role="presentation" ng-class="allItems"
+                            ng-click="allItems = 'active'; myItems = ''; CommonOrder()"><a>All
+                            items</a></li>
+                    </ul>
+                    <table class="table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Price</th>
+                            <th></th>
+                        </tr>
+                        <tr ng-repeat="item in myOrders| orderBy:'restaurant.name'">
+                            <td>{{item.item.name}}</td>
+                            <td>
+                                <div>
+                                    <a class="item-minus-margin" href=""><i
+                                            ng-if="orderPlacementStatus.order.status != 'FREEZE' && orderPlacementStatus.order.status != 'SPLIT_BILL' "
+                                            ng-click="orderService.removeOneItemFromOrder(item.item.id, restaurant.orderPlacementStatus.order.id)"
+                                            class="fa fa-minus item-plus-color" aria-hidden="true"></i></a>
+                                    <span style="">{{item.itemAmount}}</span>
+                                    <a href=""
+                                       ng-click="orderService.addOneItemToOrder(item.item.id,restaurant.orderPlacementStatus.order.id)"
+                                       class="item-minus-margin">
+                                        <i ng-if="orderPlacementStatus.order.status != 'FREEZE' && orderPlacementStatus.order.status != 'SPLIT_BILL' "
+                                           class="fa fa-plus item-plus-color" aria-hidden="true"></i></a>
+                                </div>
+                            </td>
+                            <td>{{item.itemAmount * item.item.price|currency:" "}}&#8372</td>
+                            <td><a href=""
+                                   ng-click="orderService.removeFromOrder(restaurant.orderPlacementStatus.order.id,item.item.id)"><i
+                                    ng-if="orderPlacementStatus.order.status != 'FREEZE' && orderPlacementStatus.order.status != 'SPLIT_BILL' "
+                                    class="fa fa-times item-minus-color"
+                                    aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Total</b></td>
+                            <td></td>
+                            <td>{{getTotal() |currency:" "}}&#8372</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-</div>

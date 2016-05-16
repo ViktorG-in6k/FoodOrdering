@@ -7,8 +7,8 @@
             </div>
             <div class="col-md-offset-10 event-date-font-size">
                 <div class="col-md-offset-4">
-                    {{event.date.dayOfMonth}} {{event.date.month | limitTo: 3}}
-                    {{event.date.hour|toMinute}}:{{event.date.minute|toMinute}}
+                    {{event.date.dayOfMonth}} {{event.date.month | limitTo: 3}}<br>
+                   <p style="padding-left: 12px"> {{event.date.year}}</p>
                 </div>
             </div>
             <br/>
@@ -36,7 +36,7 @@
                     </h3>
                 </div>
                 <div class="col-md-4 pull-right event-text-size participant-title">
-                    Participants amount: {{restaurant.orderPlacementStatus.participantsAmount}}
+                   <p style="padding-right: 2px" class="pull-right"> Participants amount: {{restaurant.orderPlacementStatus.participantsAmount}}</p>
                 </div>
                 <br>
                 <div class="col-md-offset-4 col-md-4 ">
@@ -54,25 +54,29 @@
                     <i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}
                 </div>
 
-                <div ng-if="restaurant.orderPlacementStatus.payer == null"
-                     class="btn btn-success pull-right"
-                     ng-click="takeResponsibility(restaurant.orderPlacementStatus.order.id)">
-                    Take Responsibility
-                </div>
                 <div ng-if="restaurant.orderPlacementStatus.payer != null">
-                    <p ng-if="restaurant.orderPlacementStatus.payer.email != user.data.email" class="pull-right"
+                    <p ng-if="restaurant.orderPlacementStatus.payer.email != user.data.email"  class="pull-right"
                        style="padding-right: 20px">
                         Responsible for order:
                         {{restaurant.orderPlacementStatus.payer.email}}
                     <p>
-                    <div ng-if="restaurant.orderPlacementStatus.payer.email == user.data.email"
-                         class="btn btn-success pull-right"
-                         ng-click="removeResponsibility(restaurant.orderPlacementStatus.order.id)">
-                        Remove responsibility
-                    </div>
                 </div>
 
-            </div>
+                <div ng-if="restaurant.orderPlacementStatus.payer != null">
+                    <p ng-if="restaurant.orderPlacementStatus.payer.email == user.data.email" class="pull-right"
+                       style="padding-right: 20px">
+                       You are responsible for making order
+                    <p>
+                </div>
+
+
+                <div ng-if="restaurant.orderPlacementStatus.payer == null">
+                    <p ng-if="restaurant.orderPlacementStatus.payer.email != user.data.email" class="pull-right"
+                       style="padding-right: 20px">
+                       <p class="pull-right"> No one responsible for order yet</p>
+                    <p>
+                </div>
+              </div>
         </div>
     </div>
 </div>

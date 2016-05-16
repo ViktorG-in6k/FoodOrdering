@@ -26,6 +26,8 @@ public interface OrderService {
 
     List<Order> getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId);
 
+    OrderPlacementStatus getOrderPlacementStatusByOrderId(Order order, Authentication authentication);
+
     boolean isMineOrder(Order order, Authentication authentication);
 
     void changeOrderStatus(int orderId, Status status) throws IOException;

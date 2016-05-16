@@ -10,7 +10,6 @@ itemService.factory("ItemService", function ($http, $rootScope, Restaurant) {
             params: {
                 name: name,
                 price: price,
-                event_id: eventId,
                 restaurant_id: restaurantId
             }
         })

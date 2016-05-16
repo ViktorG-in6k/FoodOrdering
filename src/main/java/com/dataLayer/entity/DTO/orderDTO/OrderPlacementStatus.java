@@ -20,6 +20,14 @@ public class OrderPlacementStatus {
         this.order = new OrderDTO(order);
     }
 
+
+    public OrderPlacementStatus(OrderDTO order, boolean isMineOrder, int participantsAmount, UserDTO payer) {
+        this.order = order;
+        this.isMineOrder = isMineOrder;
+        this.participantsAmount = participantsAmount;
+        this.payer = payer;
+    }
+
     public UserDTO getPayer() {
         return payer;
     }

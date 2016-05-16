@@ -9,11 +9,14 @@ import com.dataLayer.entity.external.SplitBillApi;
 import com.dataLayer.splitBillDTO.product.ProductRequestJSON;
 import com.serviceLayer.googleAuthentication.CurrentUserDetails;
 import com.serviceLayer.service.*;
+import org.infinispan.factories.AutoInstantiableFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -76,8 +79,24 @@ public class OrderServiceImpl implements OrderService {
 
             int participantsAmount = participants.size();
             return new OrderPlacementStatus(order, participantsAmount, isMineOrder(order, authentication));
-        } return null;
+        }
+        return null;
     }
+
+    @Override
+    public OrderPlacementStatus getOrderPlacementStatusByOrderId(Order order, Authentication authentication){
+        Set<User> participants = new HashSet<>();
+
+            List<OrderItemDTO> orderItems = orderItemService.getOrderListByOrderId(order.getId());
+
+            for (OrderItemDTO itemDTO : orderItems) {
+                participants.add(userService.getUser(itemDTO.getUser().getId()));
+            }
+
+            int participantsAmount = participants.size();
+            return new OrderPlacementStatus(order, participantsAmount, isMineOrder(order, authentication));
+    }
+
 
     @Override
     public boolean isMineOrder(Order order, Authentication authentication) {
@@ -112,14 +131,26 @@ public class OrderServiceImpl implements OrderService {
     public void sendOrderToSplitBill(int orderId) throws IOException {
         SplitBillApi splitBillApi = new SplitBillApi();
         Order order = getOrderById(orderId);
+
         List<OrderItemDTO> orders = orderItemService.getOrderListByOrderId(orderId);
+        List<OrderItemDTO> commonOrders = new ArrayList<>();
+
+        for (OrderItemDTO orderItemDTO : orders) {
+            if (commonOrders.contains(orderItemDTO)) {
+                for (OrderItemDTO orderItem : commonOrders) {
+                    if (orderItem.getItem().getId() == orderItemDTO.getItem().getId()) {
+                        orderItem.setItemAmount(orderItem.getItemAmount() + orderItemDTO.getItemAmount());
+                    }
+                }
+            } else commonOrders.add(orderItemDTO);
+        }
+
         splitBillApi.login(order.getPayer().getEmail());
 
-        splitBillApi.newBill(831);
-
+        splitBillApi.newBill(1111);
         orderDAO.setSplitBillId(orderId, splitBillApi.getBillId());
 
-        for (OrderItemDTO orderItem : orders) {
+        for (OrderItemDTO orderItem : commonOrders) {
             ProductRequestJSON productRequestJSON = new ProductRequestJSON(
                     orderItem.getItemAmount(),
                     orderItem.getItem().getName(),

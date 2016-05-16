@@ -3,11 +3,9 @@ package com.test.dao;
 import com.config.TestHibernateConfig;
 import com.dataLayer.DAO.Interfaces.EventDAO;
 import com.dataLayer.DAO.Interfaces.OrderDAO;
+import com.dataLayer.DAO.Interfaces.OrderItemDAO;
 import com.dataLayer.DAO.Interfaces.RestaurantDAO;
-import com.dataLayer.entity.base.Event;
-import com.dataLayer.entity.base.Order;
-import com.dataLayer.entity.base.Restaurant;
-import com.dataLayer.entity.base.Status;
+import com.dataLayer.entity.base.*;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,6 +31,8 @@ public class OrderDaoTest {
     EventDAO eventDAO;
     @Autowired
     RestaurantDAO restaurantDAO;
+    @Autowired
+    OrderItemDAO orderItemDAO;
 
     @Test
     public void change_order_status_from_PENDING_to_FREEZE(){
