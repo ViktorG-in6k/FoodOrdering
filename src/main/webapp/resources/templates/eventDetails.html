@@ -7,11 +7,14 @@
             </div>
             <div class="col-md-offset-10 event-date-font-size">
                 <div class="col-md-offset-4">
-                    {{event.date.dayOfMonth}} {{event.date.month | limitTo: 3}}<br>
-                   <p style="padding-left: 12px"> {{event.date.year}}</p>
+                    <div class="event-list-date pull-right">
+                        <p class="row">
+                        <p class="text-center" style="font-size: 30px">{{event.date.dayOfMonth}}</p>
+                        <p class="text-center" style="font-size: 24px"> {{event.date.month | limitTo: 3 | lowercase | capitalize}}</p>
+                        <p style="font-size: 22px"> {{event.date.year}}</p>
+                    </div>
                 </div>
             </div>
-            <br/>
             <div class="row"></div>
             <div class="col-md-6 create-event-user-text">Created by {{event.user.name}}</div>
         </div>
@@ -36,7 +39,7 @@
                     </h3>
                 </div>
                 <div class="col-md-4 pull-right event-text-size participant-title">
-                   <p style="padding-right: 2px" class="pull-right"> Participants amount: {{restaurant.orderPlacementStatus.participantsAmount}}</p>
+                   <p style="padding-right: 4px;padding-top: 2px" class="pull-right" data-ng-if="restaurant.orderPlacementStatus.participantsAmount"> Participants amount: {{restaurant.orderPlacementStatus.participantsAmount}}</p>
                 </div>
                 <br>
                 <div class="col-md-offset-4 col-md-4 ">
@@ -73,7 +76,7 @@
                 <div ng-if="restaurant.orderPlacementStatus.payer == null">
                     <p ng-if="restaurant.orderPlacementStatus.payer.email != user.data.email" class="pull-right"
                        style="padding-right: 20px">
-                       <p class="pull-right"> No one responsible for order yet</p>
+                       <p class="pull-right"> No one responsible for order</p>
                     <p>
                 </div>
               </div>

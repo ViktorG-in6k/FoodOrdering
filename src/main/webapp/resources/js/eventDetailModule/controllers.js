@@ -8,7 +8,9 @@ controllers.controller("eventController", function ($http, $scope, $routeParams,
 
         $http.get("/events/" + $rootScope.eventId).success(function (data) {
             $scope.event = data;
+            $rootScope.eventName = data.name;
         });
+
 
         $scope.updateRestaurantList = function () {
             $http.get("/events/" + $rootScope.eventId + "/restaurants").success(function (data) {
@@ -37,6 +39,7 @@ controllers.controller("eventController", function ($http, $scope, $routeParams,
                 $scope.updateRestaurantList();
             })
         };
+
         $scope.updateRestaurantList();
     }
 );

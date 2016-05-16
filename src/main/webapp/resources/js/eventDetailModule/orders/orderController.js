@@ -26,14 +26,18 @@ orderController.controller("commonOrderList", function ($scope, EventService, $r
         })
     };
 
-    $scope.changeOrderStatusToBill = function (orderId) {
-        OrderListService.billOrder(orderId).then(function(){
+    $scope.changeOrderStatusToBill = function (orderId, splitBillId) {
+        OrderListService.billOrder(orderId, splitBillId).then(function(){
             $scope.order.status = "SPLIT_BILL";
         })
     };
 
     OrderListService.getOrder($routeParams.orderId).success(function(data){
         $scope.order = data;
+    });
+
+    $http.get("api/orders/"+ $rootScope.orderId +"/list").success(function(data){
+        $scope.myOrders = data;
     });
 
     OrderListService.CommonOrder()

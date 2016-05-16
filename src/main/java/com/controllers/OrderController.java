@@ -29,8 +29,8 @@ public class OrderController {
     }
 
     @RequestMapping(value = "orders/{orderId}/status", method = RequestMethod.PUT)
-    public String changeOrderStatus(@PathVariable int orderId, @RequestParam("status") Status status) throws IOException {
-        orderService.changeOrderStatus(orderId, status);
+    public String changeOrderStatus(@PathVariable int orderId, @RequestParam("status") Status status, @RequestParam("splitBillId") int splitBillId) throws IOException {
+        orderService.changeOrderStatus(orderId, status, splitBillId);
         return "{\"status\":\"200\"}";
     }
 

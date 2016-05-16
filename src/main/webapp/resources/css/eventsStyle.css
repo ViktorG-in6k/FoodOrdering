@@ -14,7 +14,7 @@ body
  }
 
  .event-date{
-     padding-left: 160px;
+     padding-left: 230px;
      margin-top: -36px;
      font-size: 22px;
      padding-top: 3px;
@@ -44,5 +44,16 @@ body
 
 .event-year{
     padding-top: 21px;
-    padding-left: 170px;
+    padding-left: 240px;
+}
+
+.event-list-date{
+    padding-right: 50px;
+    font-size: 22px;
+    line-height: 70%;
+    margin-top: -15px;
+}
+
+.event-list-date >p{
+    padding: 2px;
 }

@@ -12,12 +12,11 @@
                                 <div class="col-md-7 col-xs-5 margin-left-4">
                                     <a href="#/events/{{event.id}}" class="event-title">{{event.name}}</a>
                                 </div>
-                                <div class="col-md-5 col-xs-7 pull-right">
-                                    <p class="event-date">
-                                        {{event.date.dayOfMonth}}
-                                        {{event.date.month | limitTo: 3 | lowercase | capitalize}}
-                                       <p class="event-date event-year"> {{event.date.year}}</p>
-                                    </p>
+                                <div class="event-list-date pull-right">
+                                    <p class="row">
+                                       <p class="text-center" style="font-size: 30px">{{event.date.dayOfMonth}}</p>
+                                       <p class="text-center" style="font-size: 24px"> {{event.date.month | limitTo: 3 | lowercase | capitalize}}</p>
+                                       <p style="font-size: 22px"> {{event.date.year}}</p>
                                 </div>
                                 <div class="col-md-4 col-xs-4 margin-left-4">
                                     <p class="event-creator">created by {{event.user.name}}</p>

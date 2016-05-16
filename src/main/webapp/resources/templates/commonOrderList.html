@@ -6,8 +6,12 @@
             </div>
             <div class="col-md-offset-10 event-date-font-size">
                 <div class="col-md-offset-5">
-                    {{event.date.dayOfMonth}} {{event.date.month | limitTo: 3}}
-                    <p style="padding-left: 12px"> {{event.date.year}}</p>
+                    <div class="event-list-date pull-right">
+                        <p class="row">
+                        <p class="text-center" style="font-size: 30px">{{event.date.dayOfMonth}}</p>
+                        <p class="text-center" style="font-size: 24px"> {{event.date.month | limitTo: 3 | lowercase | capitalize}}</p>
+                        <p style="font-size: 22px"> {{event.date.year}}</p>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6 create-event-user-text">Created by {{event.user.name}}</div>
@@ -16,19 +20,22 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-12"><h1 class="text-center">Order list</h1></div>
+        <div class="col-md-12" style="padding-bottom: 20px"><h1 class="text-center">Order details</h1></div>
         <div>
             <div class="col-md-12 restaurant-phone-block">
                 <h1 class="inline">{{restaurant.name}}</h1>
                 <h3 class="restaurant-phone"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}
                 </h3>
-                <h3 ng-if="order.status == 'FREEZE'" class="inline restaurant-phone">Order status: freeze</h3>
-                <button class="order-status-btn" ng-if="order.status == 'PENDING'"
+                <h3 ng-if="order.status == 'FREEZE'" class="inline restaurant-phone">Order status: frozen </h3>
+                <button class="order-status-btn btn btn btn-primary" style="margin-top: -22px;" ng-if="order.status == 'PENDING'"
                         ng-click="changeOrderStatusToFreeze(orderId)">freeze order
                 </button>
-                <button class="order-status-btn" ng-if="order.status == 'FREEZE'"
-                        ng-click="changeOrderStatusToBill(orderId)">bill order
+                <form class="inline" style="margin-top: -22px;" ng-if="order.status == 'FREEZE'">
+                    <input ng-model="splitBillId" class="form-control inline" placeholder="split-bill event id" type="text" style="width: 150px; margin-left: 40px" required>
+                <button class=" btn btn-primary"
+                        ng-click="changeOrderStatusToBill(orderId, splitBillId)">Split-bill
                 </button>
+                </form>
                 <h2 class="inline order-status-btn" ng-if="order.status == 'SPLIT_BILL'">
                     Order send to spit-bill
                 </h2>

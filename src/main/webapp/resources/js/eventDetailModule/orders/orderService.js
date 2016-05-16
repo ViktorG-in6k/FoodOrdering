@@ -47,6 +47,7 @@ orderService.factory("OrderListService", function ($http, $rootScope, Restaurant
 
     orderListService.getTotal = function () {
         var total = 0;
+
         if ($rootScope.myOrders) {
             for (var i = 0; i < $rootScope.myOrders.length; i++) {
                 total += $rootScope.myOrders[i].itemAmount * $rootScope.myOrders[i].item.price;
@@ -59,15 +60,15 @@ orderService.factory("OrderListService", function ($http, $rootScope, Restaurant
         return $http({
             url: "orders/" + orderId + "/status",
             method: "PUT",
-            params: {status: "FREEZE"}
+            params: {status: "FREEZE", splitBillId: 3}
         })
     };
 
-    orderListService.billOrder = function (orderId) {
+    orderListService.billOrder = function (orderId, splitBillId) {
         return $http({
             url: "orders/" + orderId + "/status",
             method: "PUT",
-            params: {status: "SPLIT_BILL"}
+            params: {status: "SPLIT_BILL", splitBillId: splitBillId}
         })
     };
 
@@ -77,15 +78,16 @@ orderService.factory("OrderListService", function ($http, $rootScope, Restaurant
 orderService.factory('Order', function ($http, $location) {
     var order = {};
     order.createOrder = function (eventId, restaurantId) {
-         $http({
+        $http({
             url: "api/orders",
             method: "POST",
             params: {
                 eventId: eventId,
                 restaurantId: restaurantId
-            }}).success(function (order) {
-                var path = '/' + eventId + '/' + restaurantId + '/' + order.id;
-                $location.url(path);
+            }
+        }).success(function (order) {
+            var path = '/' + eventId + '/' + restaurantId + '/' + order.id;
+            $location.url(path);
         })
     };
     return order;

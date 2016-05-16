@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -61,5 +60,11 @@ public class OrderItemController {
         return orderItemService.getOrderListByOrderIdAndUserId(orderId,
                 ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId());
     }
+
+    @RequestMapping(value = "api/orders/{orderId}/list",method = RequestMethod.GET)
+    public @ResponseBody List<OrderItemDTO> getCommonOrderList(@PathVariable("orderId") int orderId){
+        return orderItemService.getOrderCommonListById(orderId);
+    }
 }
+
 

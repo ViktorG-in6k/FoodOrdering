@@ -2,6 +2,7 @@ var eventController = angular.module('eventController', []);
 
 eventController.controller('eventListController', function ($rootScope, Event) {
     $rootScope.events = Event.query();
+     delete $rootScope.eventName;
 });
 
 controllers.controller("createEventController", function ($scope, $rootScope, CreateEventService, DateTimePicker) {

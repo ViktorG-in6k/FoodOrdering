@@ -102,5 +102,21 @@ public class OrderItemServiceImpl implements OrderItemService {
             }
         }
     }
+
+    @Override
+    public List<OrderItemDTO> getOrderCommonListById(int orderId){
+        List<OrderItemDTO> commonOrders = new ArrayList<>();
+        for (OrderItemDTO orderItemDTO : getOrderListByOrderId(orderId)) {
+            if (commonOrders.contains(orderItemDTO)) {
+                for (OrderItemDTO orderItem : commonOrders) {
+                    if (orderItem.getItem().getId() == orderItemDTO.getItem().getId()) {
+                        orderItem.setItemAmount(orderItem.getItemAmount() + orderItemDTO.getItemAmount());
+                    }
+                }
+            } else commonOrders.add(orderItemDTO);
+        }
+        return commonOrders;
+    }
+
 }
 

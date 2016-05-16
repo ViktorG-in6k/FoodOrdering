@@ -14,7 +14,7 @@ public interface OrderService {
 
     void save(OrderItemRequest req);
 
-    void sendOrderToSplitBill(int orderId) throws IOException;
+
 
     void setPayerById(int orderId, int payerId);
 
@@ -30,9 +30,11 @@ public interface OrderService {
 
     boolean isMineOrder(Order order, Authentication authentication);
 
-    void changeOrderStatus(int orderId, Status status) throws IOException;
+    void changeOrderStatus(int orderId, Status status, int splitBillId) throws IOException;
 
     Order createOrder(int eventId, int restaurantId);
+
+    void sendOrderToSplitBill(int orderId, int splitBillId) throws IOException;
 }
 
 

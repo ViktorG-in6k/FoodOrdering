@@ -9,43 +9,15 @@
                 <p class="xs-text"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}</p>
             </div>
 
-            <div class="col-md-6">
-                <div class="pull-right" ng-if='orderPlacementStatus.payer.email == user.data.email'><p>
-                    {{responsible.email}}
-                    <p>You are responsible for making order</p>
-                    <a href="{{'#/'+ eventId}}/{{currentRestaurant}}/{{orderId}}/order" class="md-text">
-                        <p> Make order</p>
-                        <div ng-if="orderPlacementStatus.payer.email == user.data.email"
-                             class="btn btn-success pull-right inline"
-                             ng-click="removeResponsibility(orderPlacementStatus.order.id)">
-                            Remove responsibility
-                        </div>
-                    </a>
-                </div>
-                <div class="pull-right">
-                    <div ng-if="orderPlacementStatus.payer == null"
-                         class="btn btn-success pull-right"
-                         ng-click="takeResponsibility(orderPlacementStatus.order.id)">
-                        Take Responsibility
-                    </div>
 
-                    <div ng-if="orderPlacementStatus.payer != null">
-                        <p ng-if="orderPlacementStatus.payer.email != user.data.email" class="pull-right"
-                           style="padding-right: 20px">
-                            Responsible for order:
-                            {{restaurant.orderPlacementStatus.payer.email}}
-                        <p>
-
-                    </div>
-                </div>
-                <br/>
-            </div>
         </div>
     </div>
     <div class="container">
         <div class="col-md-8 col-sm-8">
             <div class="panel-group col-md-offset-1 col-sm-offset-1 col-md-11 col-sm-11" id="accordion" role="tablist"
                  aria-multiselectable="true">
+
+
                 <table class="table ">
                     <thead>
                     <tr>
@@ -116,6 +88,39 @@
         </div>
         <div class="col-md-3">
             <div ng-controller="orderList">
+                <div class="col-md-12" style="margin-bottom: 20px;padding: 0">
+                    <div  ng-if='orderPlacementStatus.payer.email == user.data.email'><p>
+                        <div class="alert alert-warning" role="alert"><p>You are responsible for making order</p></div>
+                        <a href="{{'#/'+ eventId}}/{{currentRestaurant}}/{{orderId}}/order" class="md-text">
+                            <p style="margin-top: -15px"> Order details</p>
+                        </a>
+                            <div ng-if="orderPlacementStatus.payer.email == user.data.email"
+                                 class="btn btn-danger"
+                                 ng-click="removeResponsibility(orderPlacementStatus.order.id)" style="width: 100%; margin-top: -20px">
+                                Unassign                            </div>
+                    </div>
+                    <div ng-if="orderPlacementStatus.payer == null">
+                        <div class="alert alert-danger" role="alert" style="padding: 12px">There are no responsible for order</div>
+                        <div ng-if="orderPlacementStatus.payer == null"
+                             class="btn btn-success "
+                             ng-click="takeResponsibility(orderPlacementStatus.order.id)" style="width: 100%;margin-top: -12px;">
+                            Take Responsibility
+                        </div>
+                    </div>
+
+                    <div class="pull-right">
+
+                        <div ng-if="orderPlacementStatus.payer != null">
+                            <p ng-if="orderPlacementStatus.payer.email != user.data.email" class="pull-right"
+                               style="padding-right: 20px">
+                                Responsible for order:
+                                {{restaurant.orderPlacementStatus.payer.email}}
+                            <p>
+
+                        </div>
+                    </div>
+                    <br/>
+                </div>
                 <div>
                     <ul class="nav nav-tabs nav-justified">
                         <li class="pointer" role="presentation" ng-class="myItems"

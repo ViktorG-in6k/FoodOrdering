@@ -8,12 +8,6 @@
                         class="fa fa-link" aria-hidden="true"></i> {{ restaurant.link}}</a>
                 <p class="xs-text"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}</p>
             </div>
-            <div ng-if="responsible.email" class="col-md-6">
-                <div class="pull-right"><p>{{responsible.email}}
-                    <a href="{{'#/'+ eventId}}/{{restaurant.id}}/order" class="md-text">
-                    <p> Make order</p></div>
-                </a>
-            </div>
             <br/>
         </div>
     </div>
@@ -22,7 +16,15 @@
     <div class="col-md-8 col-sm-8">
         <div class="panel-group col-md-offset-1 col-sm-offset-1 col-md-11 col-sm-11" id="accordion" role="tablist"
              aria-multiselectable="true">
-            <div class="span7 text-center"><button class="text-center" ng-click="createOrder()">Create order</button></div>
+            <div class="bs-callout bs-callout-info"  style="margin-bottom: 30px">
+
+            <p class="bg-danger" style="padding: 15px;">There is no active order</p>
+                <div class="text-center">
+                <button class="btn btn-success" ng-click="createOrder()">Create order</button>
+                </div>
+
+            </div>
+
             <table class="table ">
                 <thead>
                 <tr>
@@ -37,6 +39,22 @@
                     </td>
                     <td>
                         <div>{{item.price | currency:" "}} &#8372</div>
+                    </td>
+                </tr>
+                <tr ng-controller="createItem"  ng-controller="createItem" style="padding-top: 10px">
+                    <td>
+                        <input type="text*" placeholder="Name*" class="form-control" ng-model="name" id="name"
+                               name="name"
+                               required>
+                    </td>
+                    <td>
+                        <input placeholder="Price*" type="text" class="form-control" ng-model="price" id="price"
+                               name="price"
+                               required>
+                    </td>
+                    <td>
+                        <input hidden type="text" name="restaurantId"  value="{{restaurantId}}">
+                        <button type="submit" class="btn btn-success" data-ng-click="createItem(name, price)">Add item</button>
                     </td>
                 </tr>
                 </tbody>

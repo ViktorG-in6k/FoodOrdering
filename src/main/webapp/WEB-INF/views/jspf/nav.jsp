@@ -19,14 +19,14 @@
         </div>
         <div  ng-controller="eventController" ng-if="eventId">
             <a  class=" navbar-brand" href="app#/events/{{event.id}}">
-             /   &nbsp &nbsp{{event.name}}
+             /   &nbsp &nbsp{{eventName}}
             </a>
         </div>
-        <div ng-controller="eventController" ng-if="currentRestaurant" >
+     <%--   <div ng-controller="eventController" ng-if="currentRestaurant" >
             <a  class=" navbar-brand" href="{{'#/'+ eventId}}/{{restaurant.id}}">
-            /   &nbsp &nbsp{{restaurant.name}}
+            /   &nbsp &nbsp{{restaurantName}}
             </a>
-        </div>
+        </div>--%>
         <div class="navbar-header pull-right" style=" right: 10px;">
             <label class="navbar-brand" style="font-size: 14px;">
 

@@ -111,10 +111,10 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void changeOrderStatus(int orderId, Status status) throws IOException {
+    public void changeOrderStatus(int orderId, Status status, int splitBillId) throws IOException {
         orderDAO.changeOrderStatus(orderId, status);
         if (status.equals(Status.SPLIT_BILL)) {
-            sendOrderToSplitBill(orderId);
+            sendOrderToSplitBill(orderId, splitBillId);
         }
     }
 
@@ -128,7 +128,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void sendOrderToSplitBill(int orderId) throws IOException {
+    public void sendOrderToSplitBill(int orderId, int splitBillId) throws IOException {
         SplitBillApi splitBillApi = new SplitBillApi();
         Order order = getOrderById(orderId);
 
@@ -147,7 +147,7 @@ public class OrderServiceImpl implements OrderService {
 
         splitBillApi.login(order.getPayer().getEmail());
 
-        splitBillApi.newBill(1111);
+        splitBillApi.newBill(splitBillId);
         orderDAO.setSplitBillId(orderId, splitBillApi.getBillId());
 
         for (OrderItemDTO orderItem : commonOrders) {
