@@ -5,39 +5,40 @@
 .hoverWell:hover .plus {
     color: #337ab7;
 }
-.event-details{
+
+.event-details {
     margin-top: 30px;
 }
 
-.event-text-size{
+.event-text-size {
     font-size: 13px;
 }
 
-.restaurant-block{
+.restaurant-block {
     height: 120px;
     background-color: white;
     border: 1px solid #BBB4B4;
     background-color: #F5F5F5
 }
 
-.create-restaurant-form{
+.create-restaurant-form {
     margin-top: 15px;
 }
 
-.create-restaurant-block{
+.create-restaurant-block {
     margin-left: -100px;
 }
 
-.take-responsible-btn{
+.take-responsible-btn {
     margin-top: -25px;
     margin-right: 14px;
 }
 
-.restaurant-info-size{
+.restaurant-info-size {
     padding-top: 8px
 }
 
-.event-date-font-size{
+.event-date-font-size {
     font-size: 19px
 }
 
@@ -45,21 +46,21 @@
     padding-right: 5px;
 }
 
-.event-detail-bloc{
+.event-detail-bloc {
     height: 120px;
     width: 100%;
 }
 
-.responsible-title{
+.responsible-title {
     padding-right: 20px;
 }
 
-.create-event-user-text{
+.create-event-user-text {
     font-size: 15px;
     margin-top: 20px;
 }
 
-.participant-title{
+.participant-title {
     padding-top: 14px;
 }
 
@@ -68,6 +69,16 @@
 }
 
 .responsible-user {
-padding-right: 20px;
-margin-top: -15px;
+    padding-right: 20px;
+    margin-top: -15px;
+
+}
+
+.no-responsible {
+    padding-top: 18px;
+}
+
+.responsible-user-email {
+    padding-right: 20px;
+    margin-top: 14px;
 }
