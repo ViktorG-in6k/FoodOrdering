@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@SuppressWarnings("unchecked")
 @Repository
 @Transactional
 public class OrderItemDAOImpl implements OrderItemDAO {
