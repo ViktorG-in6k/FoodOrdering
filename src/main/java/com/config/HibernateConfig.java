@@ -35,20 +35,6 @@ public class HibernateConfig {
     }
 
     @Bean
-    @Profile("production")
-    public DataSource dataSourceHeroku(
-            @Value("jdbc:mysql://ivgz2rnl5rh7sphb.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/vw9i9thqd6ahzzl7") String url,
-            @Value("a1cz5y3jut8ha1hs") String username,
-            @Value("kie1l00fuojkesi8") String password
-    ) throws SQLException {
-        DriverManagerDataSource source = new DriverManagerDataSource(
-                url, username, password
-        );
-        source.setDriverClassName("com.mysql.jdbc.Driver");
-        return source;
-    }
-
-    @Bean
     public LocalSessionFactoryBean sessionFactory(DataSource dataSource) {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
