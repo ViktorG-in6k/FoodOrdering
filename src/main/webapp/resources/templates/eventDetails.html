@@ -19,65 +19,66 @@
         </div>
     </div>
 </div>
-<div class="col-md-offset-1 col-sm-offset-1 col-md-8 col-sm-8">
-    <div class="panel-group col-md-offset-1 col-sm-offset-1 col-md-10 col-sm-11" id="accordion" role="tablist"
-         aria-multiselectable="true">
-        <div ng-repeat="restaurant in restaurants | orderBy: 'name'"
-             class="panel panel-default create-restaurant-form">
+
+
+<div class="container">
+    <div class="row">
+<div class="col-md-9 col-xs-12">
+        <div ng-repeat="restaurant in restaurants | orderBy: 'name'" class="panel panel-default create-restaurant-form">
             <div class="restaurant-block">
-                <div class=" col-md-4 col-xs-3">
-                    <h3>
-                        <a ng-if="restaurant.orderPlacementStatus" href="{{'#/'+ eventId}}/{{restaurant.id}}/{{restaurant.orderPlacementStatus.order.id}}"
-                           class="md-text">
-                            {{restaurant.name}}
+                <div class="row">
+                    <div class=" col-md-7 col-xs-7">
+                        <h3>
+                            <a ng-if="restaurant.orderPlacementStatus" href="{{'#/'+ eventId}}/{{restaurant.id}}/{{restaurant.orderPlacementStatus.order.id}}"
+                               class="restaurant-name">
+                                {{restaurant.name}}
+                            </a>
+                            <a ng-if="!restaurant.orderPlacementStatus" href="{{'#/'+ eventId}}/restaurant/{{restaurant.id}}/menu"
+                               class="restaurant-name">
+                                {{restaurant.name}}
+                            </a>
+                        </h3>
+                        <div>
+                        <a target="_blank" style="padding-bottom: 0" href="{{restaurant.link}}" class="restaurant-contact">
+                            <i ng-if="restaurant.link"  class="fa fa-link" aria-hidden="true"></i> {{restaurant.link}}
                         </a>
-                        <a ng-if="!restaurant.orderPlacementStatus" href="{{'#/'+ eventId}}/restaurant/{{restaurant.id}}/menu"
-                           class="md-text">
-                            {{restaurant.name}}
-                        </a>
-                    </h3>
-                </div>
-                <div class="col-md-4 pull-right event-text-size participant-title">
-                    <p class="pull-right active-order-amount" >{{restaurant.activeOrderAmountByRestaurant ? 'Active orders: ' + restaurant.activeOrderAmountByRestaurant :'There is no active orders' }}</p>
-                   <p class="pull-right participant-amount" data-ng-if="restaurant.orderPlacementStatus.participantsAmount"> Participants amount: {{restaurant.orderPlacementStatus.participantsAmount}}</p>
+                        <p ng-if="restaurant.phone" class="restaurant-contact"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class=" event-text-size participant-title">
+                            <p class="active-order-amount" >{{restaurant.activeOrderAmountByRestaurant ? 'Active orders: ' + restaurant.activeOrderAmountByRestaurant :'There is no active orders' }}</p>
+                            <p class="participant-amount" data-ng-if="restaurant.orderPlacementStatus.participantsAmount"> Participants amount: {{restaurant.orderPlacementStatus.participantsAmount}}</p>
+                        </div>
 
-                </div>
-                <div class="row"></div>
-                <div  class="col-md-5">
-                    <a target="_blank" href="{{restaurant.link}}" class="xs-text">
-                        <i ng-if="restaurant.link"  class="fa fa-link" aria-hidden="true"></i> {{restaurant.link}}
-                    </a>
-                    <p ng-if="restaurant.phone" style="padding-top: 10px"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}</p>
-                </div>
-                <div ng-if="restaurant.orderPlacementStatus.payer != null" style="padding-bottom: 5px">
-                    <p ng-if="restaurant.orderPlacementStatus.payer.email != user.data.email"  class="pull-right responsible-user-email">
-                        Responsible for order:
-                        {{restaurant.orderPlacementStatus.payer.email}}
-                    <p>
-                </div>
+                        <div ng-if="restaurant.orderPlacementStatus.payer != null">
+                            <p ng-if="restaurant.orderPlacementStatus.payer.email != user.data.email" >
+                                Responsible for order:
+                                {{restaurant.orderPlacementStatus.payer.email}}
+                            <p>
+                        </div>
 
-                <div ng-if="restaurant.orderPlacementStatus.payer != null">
-                    <p ng-if="restaurant.orderPlacementStatus.payer.email == user.data.email" class="pull-right responsible-user">
-                       You are responsible for making order
-                    <p>
+                        <div ng-if="restaurant.orderPlacementStatus.payer != null">
+                            <p ng-if="restaurant.orderPlacementStatus.payer.email == user.data.email" >
+                                You are responsible for making order
+                            <p>
+                        </div>
+                        <div ng-if="restaurant.orderPlacementStatus.payer == null">
+                            <p ng-if="restaurant.orderPlacementStatus.payer.email != user.data.email">
+                            <p> No one responsible for order</p>
+                            <p>
+                        </div>
+                    </div>
                 </div>
 
-                <div ng-if="restaurant.orderPlacementStatus.payer == null">
-                    <p ng-if="restaurant.orderPlacementStatus.payer.email != user.data.email" class="pull-right"
-                       style="padding-right: 20px">
-                       <p class="pull-right no-responsible" > No one responsible for order</p>
-                    <p>
-                </div>
               </div>
         </div>
-    </div>
 </div>
-    <div class=" col-md-offset-0 col-md-2 create-restaurant-block" style="margin-left: -100px;">
-        <form class="create-restaurant-form" role="form" ng-submit="createRestaurant(restaurant)">
 
-            <div>
+    <div class=" col-md-3 col-xs-12 create-restaurant-block pull-right" >
+        <form class="create-restaurant-form" role="form" ng-submit="createRestaurant(restaurant)">
                 <div class="form-group">
-                    <input type="text*" placeholder="Name*" ng-model="restaurant.title" class="form-control" id="name"
+                    <input type="text" placeholder="Name*" ng-model="restaurant.title" class="form-control" id="name"
                            name="name" required>
                 </div>
                 <div class="form-group">
@@ -90,7 +91,11 @@
                            name="phone" required>
                 </div>
                 <button type="submit" class="btn btn-success pull-right">Add restaurant</button>
-            </div>
         </form>
     </div>
 </div>
+
+
+</div>
+</div>
+

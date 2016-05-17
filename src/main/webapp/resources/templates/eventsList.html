@@ -17,6 +17,12 @@
                                        <p class="text-center" style="font-size: 30px">{{event.date.dayOfMonth}}</p>
                                        <p class="text-center" style="font-size: 24px"> {{event.date.month | limitTo: 3 | lowercase | capitalize}}</p>
                                        <p style="font-size: 22px"> {{event.date.year}}</p>
+                                    <time datetime="2014-09-24" class="date-as-calendar position-em size1_5x">
+                                        <span class="weekday">Wednesday</span>
+                                        <span class="day">24</span>
+                                        <span class="month">September</span>
+                                        <span class="year">2014</span>
+                                    </time>
                                 </div>
                                 <div class="col-md-4 col-xs-4 margin-left-4">
                                     <p class="event-creator">created by {{event.user.name}}</p>
