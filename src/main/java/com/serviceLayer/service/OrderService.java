@@ -14,8 +14,6 @@ public interface OrderService {
 
     void save(OrderItemRequest req);
 
-
-
     void setPayerById(int orderId, int payerId);
 
     void removePayer(int orderId);
@@ -25,6 +23,8 @@ public interface OrderService {
     OrderPlacementStatus getOrderPlacementStatus(Order order, int restaurantId, int eventId, Authentication authentication);
 
     List<Order> getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId);
+
+    List<Order> getOrdersByEventIdAndRestaurantIdAndStatus(int eventId, int restaurantId, Status status);
 
     OrderPlacementStatus getOrderPlacementStatusByOrderId(Order order, Authentication authentication);
 

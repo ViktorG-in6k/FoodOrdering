@@ -57,6 +57,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Order> getOrdersByEventIdAndRestaurantIdAndStatus(int eventId, int restaurantId, Status status) {
+        return orderDAO.getOrderByEventIdAndRestaurantIdAndStatus(eventId, restaurantId, status);
+    }
+
+    @Override
     public void setPayerById(int orderId, int payerId) {
         orderDAO.setPayer(orderId, payerId);
     }
