@@ -3,9 +3,7 @@ package com.serviceLayer.implementation;
 import com.dataLayer.entity.DTO.orderDTO.OrderPlacementStatus;
 import com.dataLayer.entity.DTO.restaurantDTO.RestaurantDTO;
 import com.dataLayer.DAO.Interfaces.RestaurantDAO;
-import com.dataLayer.entity.base.Order;
-import com.dataLayer.entity.base.Restaurant;
-import com.dataLayer.entity.base.Status;
+import com.dataLayer.entity.base.*;
 import com.serviceLayer.service.EventService;
 import com.serviceLayer.service.OrderService;
 import com.serviceLayer.service.RestaurantService;
@@ -13,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -54,13 +51,25 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public RestaurantDTO getRestaurantDTOById(int eventId, int restaurantId, Authentication authentication) {
         Restaurant restaurant = restaurantDAO.getRestaurantById(restaurantId);
-        List<Order> orders = orderService.getOrdersByEventIdAndRestaurantId(eventId, restaurantId);
+        List<Order> orders = orderService.getOrdersByEventIdAndRestaurantIdAndStatus(eventId, restaurantId, Status.PENDING);
         OrderPlacementStatus orderPlacementStatus = null;
-        if (orders.size() > 0) {
-            orderPlacementStatus = orderService.getOrderPlacementStatus(orders.get(0), restaurantId, eventId, authentication);
+        if (!orders.isEmpty()) {
+            Order order = getOrderWhereUserMakeOrder(orders, (User) authentication.getPrincipal());
+            orderPlacementStatus = orderService.getOrderPlacementStatus(order, authentication);
         }
         int pendingOrders = orders.stream().filter(p -> p.getStatus().equals(Status.PENDING)).collect(Collectors.toList()).size();
         return new RestaurantDTO(restaurant, orderPlacementStatus, pendingOrders);
     }
+
+    private Order getOrderWhereUserMakeOrder(List<Order> orders, User user) {
+        for (Order order : orders) {
+            for (OrderItem orderItem : order.getOrderItems()) {
+                if (orderItem.getUser().getId() == user.getId())
+                    return orderItem.getOrder();
+            }
+        }
+        return orders.get(0);
+    }
 }
+
 
