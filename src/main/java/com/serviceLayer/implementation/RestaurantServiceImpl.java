@@ -5,6 +5,7 @@ import com.dataLayer.entity.DTO.restaurantDTO.RestaurantDTO;
 import com.dataLayer.DAO.Interfaces.RestaurantDAO;
 import com.dataLayer.entity.base.Order;
 import com.dataLayer.entity.base.Restaurant;
+import com.dataLayer.entity.base.Status;
 import com.serviceLayer.service.EventService;
 import com.serviceLayer.service.OrderService;
 import com.serviceLayer.service.RestaurantService;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
@@ -57,7 +59,8 @@ public class RestaurantServiceImpl implements RestaurantService {
         if (orders.size() > 0) {
             orderPlacementStatus = orderService.getOrderPlacementStatus(orders.get(0), restaurantId, eventId, authentication);
         }
-        return new RestaurantDTO(restaurant, orderPlacementStatus, orders.size());
+        int pendingOrders = orders.stream().filter(p -> p.getStatus().equals(Status.PENDING)).collect(Collectors.toList()).size();
+        return new RestaurantDTO(restaurant, orderPlacementStatus, pendingOrders);
     }
 }
 
