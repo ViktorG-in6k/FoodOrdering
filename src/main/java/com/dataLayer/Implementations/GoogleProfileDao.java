@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-@SuppressWarnings("unchecked")
 @Repository
 @Transactional
 public class GoogleProfileDao {
