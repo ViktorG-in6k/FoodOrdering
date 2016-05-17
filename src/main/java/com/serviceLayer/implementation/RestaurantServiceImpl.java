@@ -57,7 +57,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         if (orders.size() > 0) {
             orderPlacementStatus = orderService.getOrderPlacementStatus(orders.get(0), restaurantId, eventId, authentication);
         }
-        return new RestaurantDTO(restaurant, orderPlacementStatus);
+        return new RestaurantDTO(restaurant, orderPlacementStatus, orders.size());
     }
 }
 
