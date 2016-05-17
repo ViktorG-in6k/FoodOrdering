@@ -57,3 +57,8 @@ body
 .event-list-date >p{
     padding: 2px;
 }
+
+.participant-amount {
+    padding-right: 4px;
+    padding-top: 1px
+}

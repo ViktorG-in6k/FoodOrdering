@@ -15,7 +15,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row"></div>
             <div class="col-md-6 create-event-user-text">Created by {{event.user.name}}</div>
         </div>
     </div>
@@ -26,7 +25,7 @@
         <div ng-repeat="restaurant in restaurants | orderBy: 'name'"
              class="panel panel-default create-restaurant-form">
             <div class="restaurant-block">
-                <div class=" col-md-4">
+                <div class=" col-md-4 col-xs-3">
                     <h3>
                         <a ng-if="restaurant.orderPlacementStatus" href="{{'#/'+ eventId}}/{{restaurant.id}}/{{restaurant.orderPlacementStatus.order.id}}"
                            class="md-text">
@@ -39,13 +38,10 @@
                     </h3>
                 </div>
                 <div class="col-md-4 pull-right event-text-size participant-title">
-                   <p style="padding-right: 4px;padding-top: 2px" class="pull-right" data-ng-if="restaurant.orderPlacementStatus.participantsAmount"> Participants amount: {{restaurant.orderPlacementStatus.participantsAmount}}</p>
+                    <p class="pull-right active-order-amount" >{{restaurant.activeOrderAmountByRestaurant ? 'Active orders ' + restaurant.activeOrderAmountByRestaurant :'There is no active orders' }}</p>
+                   <p class="pull-right participant-amount" data-ng-if="restaurant.orderPlacementStatus.participantsAmount"> Participants amount: {{restaurant.orderPlacementStatus.participantsAmount}}</p>
                 </div>
-                <br>
-                <div class="col-md-offset-4 col-md-4 ">
-                    <h2 class="col-md-offset-4 create-event-user-text"></h2>
-                </div>
-                <br/>
+
                 <div class="row"></div>
                 <div ng-if="restaurant.link" class="col-md-8">
                     <a href="{{restaurant.link}}" target="_blank" class="xs-text">
@@ -66,12 +62,11 @@
                 </div>
 
                 <div ng-if="restaurant.orderPlacementStatus.payer != null">
-                    <p ng-if="restaurant.orderPlacementStatus.payer.email == user.data.email" class="pull-right"
-                       style="padding-right: 20px">
+                    <p ng-if="restaurant.orderPlacementStatus.payer.email == user.data.email" class="pull-right responsible-user"
+                       >
                        You are responsible for making order
                     <p>
                 </div>
-
 
                 <div ng-if="restaurant.orderPlacementStatus.payer == null">
                     <p ng-if="restaurant.orderPlacementStatus.payer.email != user.data.email" class="pull-right"
