@@ -4,6 +4,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
@@ -18,7 +19,9 @@ import java.util.Properties;
 @PropertySource("classpath:properties/database.properties")
 @EnableTransactionManagement
 public class HibernateConfig {
+
     @Bean
+    @Profile("dev")
     public DataSource dataSource(
             @Value("jdbc:mysql://localhost:3306/food_order_db") String url,
             @Value("root") String username,

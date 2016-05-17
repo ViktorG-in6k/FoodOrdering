@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <security:http  pattern="/resources/**" security="none"/>
+    <security:http pattern="/" security="none" />
+    <security:http  use-expressions="true" entry-point-ref="clientAuthenticationEntryPoint">
+        <security:http-basic/>
+        <security:anonymous enabled="false"/>
+        <security:csrf disabled="true"/>
+        <security:intercept-url pattern="/events" access="isFullyAuthenticated()"/>
+        <security:intercept-url pattern="/" access="permitAll"/>
+        <security:custom-filter ref="logoutFilter" position="LOGOUT_FILTER"/>
+        <security:custom-filter ref="oauth2ClientContextFilter" after="EXCEPTION_TRANSLATION_FILTER"/>
+        <security:custom-filter ref="oAuth2AuthenticationProcessingFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
+    </security:http>
+
+    <bean id="oAuth2AuthenticationProcessingFilter"
+          class="org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter">
+        <constructor-arg name="defaultFilterProcessesUrl" value="${google.redirect.uri}"/>
+        <property name="restTemplate" ref="oauth2RestTemplate"/>
+        <property name="tokenServices" ref="googleTokenServices"/>
+    </bean>
+
+    <bean id="clientAuthenticationEntryPoint"
+          class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+        <constructor-arg value="${google.redirect.uri}"/>
+    </bean>
+
+    <bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+        <constructor-arg name="logoutSuccessUrl" value="/"/>
+        <constructor-arg name="handlers">
+            <list>
+                <bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <security:authentication-manager alias="authenticationManager">
+        <security:authentication-provider user-service-ref="googleUserDetailsService">
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <bean id="userAuthenticationConverter"
+          class="org.springframework.security.oauth2.provider.token.DefaultUserAuthenticationConverter">
+        <property name="userDetailsService" ref="googleUserDetailsService"/>
+    </bean>
+</beans>
