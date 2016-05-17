@@ -3,7 +3,6 @@ package com.dataLayer.entity.DTO.restaurantDTO;
 import com.dataLayer.entity.DTO.itemDTO.ItemDTO;
 import com.dataLayer.entity.DTO.orderDTO.OrderPlacementStatus;
 import com.dataLayer.entity.base.Restaurant;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,10 +13,12 @@ public class RestaurantDTO {
     protected String link;
     private OrderPlacementStatus orderPlacementStatus;
     private List<ItemDTO> itemList = new ArrayList<ItemDTO>();
+    private int activeOrderAmountByRestaurant;
 
-    public RestaurantDTO(Restaurant restaurant, OrderPlacementStatus orderPlacementStatus) {
+    public RestaurantDTO(Restaurant restaurant, OrderPlacementStatus orderPlacementStatus, int activeOrderAmountByRestaurant) {
         this(restaurant);
         this.orderPlacementStatus = orderPlacementStatus;
+        this.activeOrderAmountByRestaurant = activeOrderAmountByRestaurant;
     }
 
     public RestaurantDTO(Restaurant restaurant) {
@@ -74,6 +75,14 @@ public class RestaurantDTO {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public int getActiveOrderAmountByRestaurant() {
+        return activeOrderAmountByRestaurant;
+    }
+
+    public void setActiveOrderAmountByRestaurant(int activeOrderAmountByRestaurant) {
+        this.activeOrderAmountByRestaurant = activeOrderAmountByRestaurant;
     }
 }
 
