@@ -20,7 +20,7 @@ public interface OrderService {
 
     Order getOrderById(int orderId);
 
-    OrderPlacementStatus getOrderPlacementStatus(Order order, int restaurantId, int eventId, Authentication authentication);
+    OrderPlacementStatus getOrderPlacementStatus(Order order, Authentication authentication);
 
     List<Order> getOrdersByEventIdAndRestaurantId(int eventId, int restaurantId);
 
@@ -35,6 +35,8 @@ public interface OrderService {
     Order createOrder(int eventId, int restaurantId);
 
     void sendOrderToSplitBill(int orderId, int splitBillId) throws IOException;
+
+    List<OrderPlacementStatus> getOrderPlacementStatusByEventIdAndRestaurantId(int eventId, int restaurantId, Authentication authentication);
 }
 
 

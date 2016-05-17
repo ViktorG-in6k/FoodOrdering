@@ -9,17 +9,16 @@ import com.dataLayer.entity.external.SplitBillApi;
 import com.dataLayer.splitBillDTO.product.ProductRequestJSON;
 import com.serviceLayer.googleAuthentication.CurrentUserDetails;
 import com.serviceLayer.service.*;
-import org.infinispan.factories.AutoInstantiableFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -73,7 +72,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional
     @Override
-    public OrderPlacementStatus getOrderPlacementStatus(Order order, int restaurantId, int eventId, Authentication authentication) {
+    public OrderPlacementStatus getOrderPlacementStatus(Order order, Authentication authentication) {
         Set<User> participants = new HashSet<>();
         if (order != null) {
             List<OrderItemDTO> orderItems = orderItemService.getOrderListByOrderId(order.getId());
@@ -163,6 +162,12 @@ public class OrderServiceImpl implements OrderService {
             );
             splitBillApi.newProduct(productRequestJSON);
         }
+    }
+
+    @Override
+    public List<OrderPlacementStatus> getOrderPlacementStatusByEventIdAndRestaurantId(int eventId, int restaurantId, Authentication authentication) {
+        List<Order> orders = orderDAO.getOrdersByEventIdAndRestaurantId(eventId, restaurantId);
+        return  orders.stream().map(order -> getOrderPlacementStatus(order, authentication)).collect(Collectors.toList());
     }
 }
 
