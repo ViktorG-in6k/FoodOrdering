@@ -30,5 +30,7 @@ public interface OrderDAO {
 
     void changeOrderStatus(int orderId, Status status);
 
+    List<Order> getOrderByEventIdAndRestaurantIdAndStatus(int eventId, int restaurantId, Status status);
+
 }
 

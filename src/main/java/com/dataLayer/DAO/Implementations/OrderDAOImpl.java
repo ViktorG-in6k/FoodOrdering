@@ -131,5 +131,17 @@ public class OrderDAOImpl implements OrderDAO {
         order.setStatus(status);
         session.update(order);
     }
+
+    @Override
+    public List<Order> getOrderByEventIdAndRestaurantIdAndStatus(int eventId, int restaurantId, Status status) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from order_info where event_id = :eventId and restaurant_id = :restaurantId and status = :status");
+        return  query
+                .setInteger("eventId", eventId)
+                .setInteger("restaurantId", restaurantId)
+                .setString("status", status.toString())
+                .list();
+    }
 }
+
 
