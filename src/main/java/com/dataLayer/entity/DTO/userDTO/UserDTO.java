@@ -3,12 +3,16 @@ package com.dataLayer.entity.DTO.userDTO;
 import com.dataLayer.entity.base.User;
 
 public class UserDTO {
-    protected int id;
-    protected String email;
+    private int id;
+    private String email;
+    private String name;
+    private String familyName;
 
     public UserDTO(User user) {
         this.id = user.getId();
         this.email = user.getEmail();
+        this.name = user.getName();
+        this.familyName = user.getFamilyName();
     }
 
     public String getEmail() {
@@ -17,6 +21,30 @@ public class UserDTO {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getFamilyName() {
+        return familyName;
+    }
+
+    public void setFamilyName(String familyName) {
+        this.familyName = familyName;
     }
 
     @Override
