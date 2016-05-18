@@ -58,10 +58,9 @@ public class OrderItemServiceImpl implements OrderItemService {
     public void remoteOneItemFromOrder(Authentication authentication, int itemId, int orderId) {
         int userId = ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId();
         OrderItem orderInOrderList = orderItemDAO.getOrderItem(userId, itemId, orderId);
-        if(orderInOrderList.getItemAmount() - 1 != 0) {
+        if (orderInOrderList.getItemAmount() - 1 != 0) {
             orderItemDAO.updateAmount(orderInOrderList, orderInOrderList.getItemAmount() - 1);
-        }
-        else {
+        } else {
             orderItemDAO.deleteOrderItem(orderInOrderList);
         }
     }
@@ -82,7 +81,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
-    public List<OrderItemDTO> getOrderListByOrderId(int orderId) {
+    public List<OrderItemDTO> getOrderItemListDTOByOrderId(int orderId) {
         List<OrderItem> orderItems = orderItemDAO.getOrderListByOrderId(orderId);
         List<OrderItemDTO> orderItemsDTO = new ArrayList<>();
         orderItems.forEach(orderItem -> orderItemsDTO.add(new OrderItemDTO(orderItem)));
@@ -104,9 +103,9 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
-    public List<OrderItemDTO> getOrderCommonListById(int orderId){
+    public List<OrderItemDTO> getOrderCommonListById(int orderId) {
         List<OrderItemDTO> commonOrders = new ArrayList<>();
-        for (OrderItemDTO orderItemDTO : getOrderListByOrderId(orderId)) {
+        for (OrderItemDTO orderItemDTO : getOrderItemListDTOByOrderId(orderId)) {
             if (commonOrders.contains(orderItemDTO)) {
                 for (OrderItemDTO orderItem : commonOrders) {
                     if (orderItem.getItem().getId() == orderItemDTO.getItem().getId()) {
@@ -118,5 +117,10 @@ public class OrderItemServiceImpl implements OrderItemService {
         return commonOrders;
     }
 
+    @Override
+    public List<OrderItem> getOrderListByOrderId(int orderId) {
+        return orderItemDAO.getOrderListByOrderId(orderId);
+    }
 }
+
 

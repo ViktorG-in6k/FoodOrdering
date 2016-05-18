@@ -75,7 +75,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderPlacementStatus getOrderPlacementStatus(Order order, Authentication authentication) {
         Set<User> participants = new HashSet<>();
         if (order != null) {
-            List<OrderItemDTO> orderItems = orderItemService.getOrderListByOrderId(order.getId());
+            List<OrderItemDTO> orderItems = orderItemService.getOrderItemListDTOByOrderId(order.getId());
 
             for (OrderItemDTO itemDTO : orderItems) {
                 participants.add(userService.getUser(itemDTO.getUser().getId()));
@@ -91,7 +91,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderPlacementStatus getOrderPlacementStatusByOrderId(Order order, Authentication authentication){
         Set<User> participants = new HashSet<>();
 
-            List<OrderItemDTO> orderItems = orderItemService.getOrderListByOrderId(order.getId());
+            List<OrderItemDTO> orderItems = orderItemService.getOrderItemListDTOByOrderId(order.getId());
 
             for (OrderItemDTO itemDTO : orderItems) {
                 participants.add(userService.getUser(itemDTO.getUser().getId()));
@@ -136,7 +136,7 @@ public class OrderServiceImpl implements OrderService {
         SplitBillApi splitBillApi = new SplitBillApi();
         Order order = getOrderById(orderId);
 
-        List<OrderItemDTO> orders = orderItemService.getOrderListByOrderId(orderId);
+        List<OrderItemDTO> orders = orderItemService.getOrderItemListDTOByOrderId(orderId);
         List<OrderItemDTO> commonOrders = new ArrayList<>();
 
         for (OrderItemDTO orderItemDTO : orders) {
