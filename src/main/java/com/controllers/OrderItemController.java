@@ -65,6 +65,12 @@ public class OrderItemController {
     public @ResponseBody List<OrderItemDTO> getCommonOrderList(@PathVariable("orderId") int orderId){
         return orderItemService.getOrderCommonListById(orderId);
     }
+
+    @RequestMapping(value = "api/orders/{orderId}/items/{itemId}",method = RequestMethod.GET)
+    public @ResponseBody List<OrderItemDTO> getItemList(@PathVariable("orderId") int orderId, @PathVariable("itemId") int itemId){
+        return orderItemService.getOrderItemDtoSortedByUser(orderId, itemId);
+    }
 }
+
 
 

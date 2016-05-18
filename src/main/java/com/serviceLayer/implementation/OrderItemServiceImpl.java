@@ -11,9 +11,9 @@ import com.serviceLayer.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderItemServiceImpl implements OrderItemService {
@@ -120,6 +120,12 @@ public class OrderItemServiceImpl implements OrderItemService {
     @Override
     public List<OrderItem> getOrderListByOrderId(int orderId) {
         return orderItemDAO.getOrderListByOrderId(orderId);
+    }
+
+    @Override
+    public List<OrderItemDTO> getOrderItemDtoSortedByUser(int orderId, int itemId) {
+        List<OrderItemDTO> orderItems = getOrderItemListDTOByOrderId(orderId);
+        return orderItems.stream().filter(orderItemDTO -> orderItemDTO.getItem().getId() == itemId ).collect(Collectors.toList());
     }
 }
 

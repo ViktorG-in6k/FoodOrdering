@@ -26,4 +26,6 @@ public interface OrderItemService {
     List<OrderItemDTO> getOrderCommonListById(int orderId);
 
     List<OrderItem> getOrderListByOrderId(int id);
+
+    List<OrderItemDTO> getOrderItemDtoSortedByUser(int orderId, int itemId);
 }
