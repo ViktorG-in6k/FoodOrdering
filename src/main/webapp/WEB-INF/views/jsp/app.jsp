@@ -20,14 +20,13 @@
     <link href="/resources/css/restaurantDetails.css" rel="stylesheet">
 
     <script src="/resources/js/lib/jquery-2.1.4.min.js"></script>
-    <script src="/resources/js/lib/bootstrap.min.js"></script>
     <script src="/resources/js/lib/angular.min.js"></script>
     <script src="/resources/js/lib/angular-route.min.js"></script>
     <script src="/resources/js/eventDetailModule/controllers.js"></script>
     <script src="/resources/js/eventDetailModule/services.js"></script>
     <script src="/resources/js/eventDetailModule/directives.js"></script>
     <script src="/resources/js/eventsModule/filters.js"></script>
-    <script src="/resources/js/eventDetailModule/app.js"></script>
+
 
     <script src="/resources/js/lib/kendo.js"></script>
     <script src="/resources/js/lib/angular-resource.js"></script>
@@ -39,6 +38,7 @@
 
     <script src="/resources/js/eventDetailModule/orders/orderController.js"></script>
     <script src="/resources/js/eventDetailModule/orders/orderService.js"></script>
+    <script src="/resources/js/eventDetailModule/orders/changeItemAmountDirective.js"></script>
     <script src="/resources/js/eventDetailModule/orderPlacementStatus/orderPlacementStatusController.js"></script>
     <script src="/resources/js/eventDetailModule/orderPlacementStatus/orderPlacementStatusServce.js"></script>
 
@@ -46,6 +46,11 @@
     <script src="/resources/js/eventDetailModule/restaurants/restaurantService.js"></script>
 
     <script src="/resources/js/eventDetailModule/responsible/responsibleService.js"></script>
+
+    <script src="/resources/js/lib/ui-bootstrap-tpls-1.3.2.min.js"></script>
+    <script src="/resources/js/lib/angular-touch.js"></script>
+    <script src="/resources/js/lib/angular-animate.js"></script>
+    <script src="/resources/js/eventDetailModule/app.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true"/>
