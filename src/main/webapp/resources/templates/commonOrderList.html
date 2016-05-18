@@ -46,6 +46,7 @@
     </div>
     <div>
         <div>
+
             <table class="table table-bordered table-responsive">
                 <tr>
                     <th>Name</th>
@@ -56,9 +57,8 @@
                 <tr ng-repeat="item in myOrders| orderBy:'restaurant.name'">
                     <td>{{item.item.name}}</td>
                     <td>
-                        <div>
-                            <span><a href="aa" style="text-decoration: underline">{{item.itemAmount}}</a></span>
-                        </div>
+                        {{item.itemAmount}}
+                        <change-item-amount-directive amount="item.itemAmount" item-id ="{{item.item.id}}"  order-id = "{{orderId}}"></change-item-amount-directive>
                     </td>
                     <td>{{item.item.price|currency:" "}}&#8372</td>
                     <td>
@@ -77,4 +77,8 @@
         </div>
     </div>
 </div>
+
+
+
+
 
