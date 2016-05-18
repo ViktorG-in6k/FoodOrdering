@@ -4,7 +4,7 @@ public interface OauthProfile {
 
     public String getEmail();
 
-    public String getName();
+    public String getGivenName();
 
     public void setName(String name);
 

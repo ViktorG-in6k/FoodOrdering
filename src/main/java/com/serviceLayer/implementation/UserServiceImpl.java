@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserFromOauthUser(OauthProfile oauthProfile) {
         User user = new User();
-        user.setName(oauthProfile.getName());
+        user.setName(oauthProfile.getGivenName());
         user.setEmail(oauthProfile.getEmail());
         user.setFamilyName(oauthProfile.getFamilyName());
         user.setGender(oauthProfile.getGender());
