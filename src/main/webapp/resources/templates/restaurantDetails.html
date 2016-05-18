@@ -45,14 +45,14 @@
                                     <div ng-if="item.id == itemInOrder.item.id" class="inline">
                                         <a href="">
                                             <i ng-if="orderPlacementStatus.order.status != 'FREEZE' && orderPlacementStatus.order.status != 'SPLIT_BILL' "
-                                               ng-click="orderService.removeOneItemFromOrder(item.id, restaurant.orderPlacementStatus.order.id)"
+                                               ng-click="orderService.removeOneItemFromOrder(item.id, orderId)"
                                                class="fa fa-minus item-plus-color" aria-hidden="true">
                                             </i>
                                         </a>
                                     <span>
                                         <input class="item-number" min="1" required type="number"
                                                ng-if="orderPlacementStatus.order.status != 'FREEZE' && orderPlacementStatus.order.status != 'SPLIT_BILL' "
-                                               ng-blur="orderService.updateNumberItemToOrder(item.id,restaurant.orderPlacementStatus.order.id,itemInOrder.itemAmount)"
+                                               ng-blur="orderService.updateNumberItemToOrder(item.id, orderId, itemInOrder.itemAmount)"
                                                ng-init="count=itemInOrder.itemAmount"
                                                ng-model="itemInOrder.itemAmount"/>
                                         <p ng-if="orderPlacementStatus.order.status != 'PENDING'">
@@ -63,7 +63,7 @@
                                 <div class="inline">
                                     <a href=""
                                        ng-if="orderPlacementStatus.order.status != 'FREEZE' && orderPlacementStatus.order.status != 'SPLIT_BILL' "
-                                       ng-click="orderService.addOneItemToOrder(item.id,restaurant.orderPlacementStatus.order.id)">
+                                       ng-click="orderService.addOneItemToOrder(item.id, orderId)">
                                         <i class="fa fa-plus item-plus-color" aria-hidden="true"></i></a>
                                 </div>
                             </div>
@@ -146,11 +146,11 @@
                                 <div>
                                     <a class="item-minus-margin" href=""><i
                                             ng-if="orderPlacementStatus.order.status != 'FREEZE' && orderPlacementStatus.order.status != 'SPLIT_BILL' "
-                                            ng-click="orderService.removeOneItemFromOrder(item.item.id, restaurant.orderPlacementStatus.order.id)"
+                                            ng-click="orderService.removeOneItemFromOrder(item.item.id, orderId)"
                                             class="fa fa-minus item-plus-color" aria-hidden="true"></i></a>
                                     <span style="">{{item.itemAmount}}</span>
                                     <a href=""
-                                       ng-click="orderService.addOneItemToOrder(item.item.id,restaurant.orderPlacementStatus.order.id)"
+                                       ng-click="orderService.addOneItemToOrder(item.item.id, orderId)"
                                        class="item-minus-margin">
                                         <i ng-if="orderPlacementStatus.order.status != 'FREEZE' && orderPlacementStatus.order.status != 'SPLIT_BILL' "
                                            class="fa fa-plus item-plus-color" aria-hidden="true"></i></a>
@@ -158,7 +158,7 @@
                             </td>
                             <td>{{item.itemAmount * item.item.price|currency:" "}}&#8372</td>
                             <td><a href=""
-                                   ng-click="orderService.removeFromOrder(restaurant.orderPlacementStatus.order.id,item.item.id)"><i
+                                   ng-click="orderService.removeFromOrder(orderId, item.item.id)"><i
                                     ng-if="orderPlacementStatus.order.status != 'FREEZE' && orderPlacementStatus.order.status != 'SPLIT_BILL' "
                                     class="fa fa-times item-minus-color"
                                     aria-hidden="true"></i></a>

@@ -39,7 +39,8 @@
 
     <script src="/resources/js/eventDetailModule/orders/orderController.js"></script>
     <script src="/resources/js/eventDetailModule/orders/orderService.js"></script>
-    <script src="/resources/js/eventDetailModule/orders/orderPlacementStatusController.js"></script>
+    <script src="/resources/js/eventDetailModule/orderPlacementStatus/orderPlacementStatusController.js"></script>
+    <script src="/resources/js/eventDetailModule/orderPlacementStatus/orderPlacementStatusServce.js"></script>
 
     <script src="/resources/js/eventDetailModule/restaurants/restaurantController.js"></script>
     <script src="/resources/js/eventDetailModule/restaurants/restaurantService.js"></script>
