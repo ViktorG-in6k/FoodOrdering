@@ -5,6 +5,7 @@ import com.dataLayer.entity.DTO.restaurantDTO.RestaurantDTO;
 import com.dataLayer.DAO.Interfaces.RestaurantDAO;
 import com.dataLayer.entity.base.*;
 import com.serviceLayer.service.EventService;
+import com.serviceLayer.service.OrderItemService;
 import com.serviceLayer.service.OrderService;
 import com.serviceLayer.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class RestaurantServiceImpl implements RestaurantService {
     OrderService orderService;
     @Autowired
     EventService eventService;
+    @Autowired
+    OrderItemService orderItemService;
 
     @Override
     public void save(Restaurant restaurant) {
@@ -63,7 +66,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     private Order getOrderWhereUserMakeOrder(List<Order> orders, User user) {
         for (Order order : orders) {
-            for (OrderItem orderItem : order.getOrderItems()) {
+            for (OrderItem orderItem : orderItemService.getOrderListByOrderId(order.getId())) {
                 if (orderItem.getUser().getId() == user.getId())
                     return orderItem.getOrder();
             }
