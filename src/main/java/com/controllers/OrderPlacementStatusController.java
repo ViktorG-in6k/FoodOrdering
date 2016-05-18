@@ -16,7 +16,7 @@ public class OrderPlacementStatusController {
     @Autowired
     OrderService orderService;
 
-    @RequestMapping(value = "/orderPlacementStatus/", method = RequestMethod.GET)
+    @RequestMapping(value = "api/orderPlacementStatus/", method = RequestMethod.GET)
     public List<OrderPlacementStatus> getOrderPlacementStatus(Authentication authentication, @RequestParam("eventId") int evenId,
                                                               @RequestParam("restaurantId") int restaurantId) {
         return orderService.getOrderPlacementStatusByEventIdAndRestaurantId(evenId, restaurantId, authentication);
