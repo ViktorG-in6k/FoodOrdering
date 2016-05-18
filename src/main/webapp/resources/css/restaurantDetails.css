@@ -71,3 +71,20 @@ input[type=number]::-webkit-outer-spin-button {
     border-left-width: 5px;
     border-radius: 3px;
 }
+
+.head > th div {
+    padding-left: 12px;
+}
+
+.order-select {
+    margin-right: 13px;
+    margin-top: 19px;
+}
+
+.order-select select{
+    padding: 7px;
+}
+
+.responsible-for-order {
+    margin-top: 10px;
+}
