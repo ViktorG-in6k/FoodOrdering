@@ -12,18 +12,22 @@
 
         </div>
     </div>
+
     <div class="container">
         <div class="col-md-8 col-sm-8">
+            <div class="form-group pull-right order-select" ng-controller="orderPlacementStatus" style="margin-left: 10px">
+                <select name="repeatSelect" id="repeatSelect" ng-model="currentOrder" ng-change="changeOrder(currentOrder)">
+                    <option class="form-control" ng-repeat="order in orderPlacementStatus" value="{{order.order.id}}">{{order.payer.name +' '+ order.payer.familyName}}</option>
+                </select>
+                <button class="btn btn-success" ng-click="createOrder()">Create new order</button>
+            </div>
             <div class="panel-group col-md-offset-1 col-sm-offset-1 col-md-11 col-sm-11" id="accordion" role="tablist"
                  aria-multiselectable="true">
-
-
                 <table class="table ">
                     <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th></th>
+                    <tr class="head">
+                        <th><div>Name</div></th>
+                        <th><div>Price</div></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -109,14 +113,12 @@
                     </div>
 
                     <div class="pull-right">
-
-                        <div ng-if="orderPlacementStatus.payer != null">
-                            <p ng-if="orderPlacementStatus.payer.email != user.data.email" class="pull-right"
-                               style="padding-right: 20px">
-                                Responsible for order:
-                                {{restaurant.orderPlacementStatus.payer.email}}
+                        <div ng-if="orderPlacementStatus.payer != null" style="margin-top: 10px;">
+                            <p class="pull-right" style="padding-right: 20px">
+                                <div  ng-if="orderPlacementStatus.payer.email != user.data.email"  class="alert alert-warning" role="alert">
+                            <p>Responsible for order:
+                            {{restaurant.orderPlacementStatus.payer.email}}</p></div>
                             <p>
-
                         </div>
                     </div>
                     <br/>
