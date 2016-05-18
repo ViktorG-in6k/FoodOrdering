@@ -4,7 +4,7 @@ restaurantController.controller("restaurantController", function ($http,OrderLis
     $rootScope.currentRestaurant = $routeParams.restaurantId;
     $rootScope.eventId = $routeParams.id;
     $rootScope.orderId = $routeParams.orderId;
-    console.log($rootScope.currentRestaurant);
+
     $rootScope.restaurant = Restaurant.get({
         eventId: $rootScope.eventId,
         restaurantId: $rootScope.currentRestaurant

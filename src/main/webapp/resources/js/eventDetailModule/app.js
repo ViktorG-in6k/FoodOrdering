@@ -19,7 +19,9 @@ var app = angular.module('eventApp', [
     'itemController',
     'itemService',
 
-    'responsibleService'
+    'responsibleService',
+    'orderPlacementStatusController',
+    'orderPlacementStatusService'
 ]);
 
 app.config(['$routeProvider',
