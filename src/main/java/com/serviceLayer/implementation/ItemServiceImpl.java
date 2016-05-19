@@ -9,6 +9,7 @@ import com.serviceLayer.service.ItemService;
 import com.serviceLayer.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.math.BigDecimal;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -39,8 +40,8 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void updateItemPrice(RequestItemDTO item) {
-        itemDAO.updatePrice(item.getId(), item.getPrice());
+    public void updateItemPrice(int id, double price) {
+        itemDAO.updatePrice(id,new BigDecimal(price));
     }
 
     @Override

@@ -15,7 +15,7 @@ public interface ItemService {
 
     public ItemDTO getItemDTOById(int id);
 
-    void updateItemPrice(RequestItemDTO item);
+    void updateItemPrice(int id, double price);
 
     void updateItemName(RequestItemDTO item);
 }
