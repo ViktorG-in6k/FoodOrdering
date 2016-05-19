@@ -15,6 +15,16 @@ itemService.factory("ItemService", function ($http, $rootScope, Restaurant) {
         })
     };
 
+    itemService.updateItemPrice = function(itemId, price){
+        return $http({
+            method: 'PUT',
+            url: 'api/items/'+itemId+'/price',
+            params: {
+                price: price
+            }
+        })
+    };
+
     itemService.updateItemsList = function () {
         $rootScope.restaurant = Restaurant.get({
             eventId: $rootScope.eventId,
