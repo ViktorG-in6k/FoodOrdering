@@ -1,9 +1,34 @@
-<div uib-popover-template='"MyPopoverTemplate.html"' popover-title="title" popover-placement="right">
-    <span>
+<div style="position:relative"  ng-init="showPopover = false">
+    <div class="inline">
         <p>
-              amount = {{amount}} <br>
-              itemId = {{itemId}} <br>
-              orderId = {{orderId}}
-    </p>
-    </span>
+        <p data-ng-click="showPopover = !showPopover" class="cursor item-amount">{{amount}}</p>
+        </p>
+    </div>
+
+    <div class="popover show right inline popover-style" data-ng-show="showPopover">
+        <div class="arrow"></div>
+        <div class="panel panel-default">
+            <div class="panel-heading">{{itemName}}<div class="pull-right" data-ng-click="showPopover = !showPopover" ><p><i  class="fa fa-times cursor"></i></p></div></div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Purchaser</th>
+                    <th>Amount</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-ng-repeat="i in itemList">
+                    <td>{{i.user.name + ' '}}{{ i.user.familyName}}</td>
+                    <td>
+                        <i data-ng-click="removeOneItemFromUserOrder(i.user.id)" class="fa fa-minus item-minus-margin item-minus-color cursor item-remove fa-style"></i>
+                        {{i.itemAmount}}
+                        <i data-ng-click="addOneItemToUserOrder(i.user.id)" style="margin-left: 5px" class="fa fa-plus item-plus-color cursor fa-style"></i>
+                        <i  data-ng-click="removeItemFromUserOrder(i.user.id, i.itemAmount)" class="fa fa-times item-minus-color item-delete cursor fa-style"></i>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
