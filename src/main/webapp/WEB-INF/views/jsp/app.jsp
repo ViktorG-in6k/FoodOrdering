@@ -5,6 +5,7 @@
 <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
     <title>Restaurants</title>
+    <link href="/resources/css/lib/xeditable.min.css" rel="stylesheet">
     <link href="/resources/css/lib/bootstrap.min.css" rel="stylesheet"/>
     <link href="/resources/css/eventDetails.css" rel="stylesheet">
     <link href="/resources/css/lib/bootstrapTheme.css" rel="stylesheet">
@@ -41,6 +42,7 @@
     <script src="/resources/js/eventDetailModule/orders/changeItemAmountDirective.js"></script>
     <script src="/resources/js/eventDetailModule/orderPlacementStatus/orderPlacementStatusController.js"></script>
     <script src="/resources/js/eventDetailModule/orderPlacementStatus/orderPlacementStatusServce.js"></script>
+    <script src="/resources/js/eventDetailModule/orders/commonOrderService.js"></script>
 
     <script src="/resources/js/eventDetailModule/restaurants/restaurantController.js"></script>
     <script src="/resources/js/eventDetailModule/restaurants/restaurantService.js"></script>
@@ -51,6 +53,7 @@
     <script src="/resources/js/lib/angular-touch.js"></script>
     <script src="/resources/js/lib/angular-animate.js"></script>
     <script src="/resources/js/eventDetailModule/app.js"></script>
+    <script src="/resources/js/lib/x-editable.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true"/>

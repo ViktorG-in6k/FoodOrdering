@@ -24,7 +24,9 @@ var app = angular.module('eventApp', [
     'orderPlacementStatusService',
     'ngAnimate',
     'ui.bootstrap',
-    'orderItemAmount'
+    'orderItemAmount',
+    'commonOrder',
+    'xeditable'
 ]);
 
 app.config(['$routeProvider',
