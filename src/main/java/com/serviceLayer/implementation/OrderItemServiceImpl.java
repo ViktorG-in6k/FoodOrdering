@@ -44,8 +44,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
-    public void addOneItemToOrder(Authentication authentication, int itemId, int orderId) {
-        int userId = ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId();
+    public void addOneItemToOrder(int userId, int itemId, int orderId) {
         OrderItem orderInOrderList = orderItemDAO.getOrderItem(userId, itemId, orderId);
         if (orderInOrderList != null) {
             orderItemDAO.updateAmount(orderInOrderList, orderInOrderList.getItemAmount() + 1);
@@ -55,8 +54,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
-    public void remoteOneItemFromOrder(Authentication authentication, int itemId, int orderId) {
-        int userId = ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId();
+    public void remoteOneItemFromOrder(int userId, int itemId, int orderId) {
         OrderItem orderInOrderList = orderItemDAO.getOrderItem(userId, itemId, orderId);
         if (orderInOrderList.getItemAmount() - 1 != 0) {
             orderItemDAO.updateAmount(orderInOrderList, orderInOrderList.getItemAmount() - 1);
@@ -66,8 +64,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
-    public void remotePositionFromOrder(Authentication authentication, int itemId, int orderId) {
-        int userId = ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId();
+    public void remotePositionFromOrder(int userId, int itemId, int orderId) {
         OrderItem orderInOrderList = orderItemDAO.getOrderItem(userId, itemId, orderId);
         orderItemDAO.deleteOrderItem(orderInOrderList);
     }

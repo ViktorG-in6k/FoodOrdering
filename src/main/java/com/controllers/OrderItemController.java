@@ -19,7 +19,7 @@ public class OrderItemController {
     public String addOneItemToOrder(HttpServletRequest req, Authentication authentication,
                                     @PathVariable("orderId") int orderId,
                                     @PathVariable("itemId") int itemId) {
-        orderItemService.addOneItemToOrder(authentication, itemId, orderId);
+        orderItemService.addOneItemToOrder(getCurrentUserId(authentication), itemId, orderId);
         String ref = req.getHeader("Referer");
         return "redirect:" + ref;
     }
@@ -28,7 +28,7 @@ public class OrderItemController {
     public String deleteOneItemFromOrder(HttpServletRequest req, Authentication authentication,
                                          @PathVariable("orderId") int orderId,
                                          @PathVariable("itemId") int itemId) {
-        orderItemService.remoteOneItemFromOrder(authentication, itemId, orderId);
+        orderItemService.remoteOneItemFromOrder(getCurrentUserId(authentication), itemId, orderId);
         String ref = req.getHeader("Referer");
         return "redirect:" + ref;
     }
@@ -37,7 +37,7 @@ public class OrderItemController {
     public String deletePositionFromOrder(HttpServletRequest req, Authentication authentication,
                                           @PathVariable("orderId") int orderId,
                                           @PathVariable("itemId") int itemId) {
-        orderItemService.remotePositionFromOrder(authentication, itemId, orderId);
+        orderItemService.remotePositionFromOrder(getCurrentUserId(authentication), itemId, orderId);
         String ref = req.getHeader("Referer");
         return "redirect:" + ref;
     }
@@ -66,9 +66,45 @@ public class OrderItemController {
         return orderItemService.getOrderCommonListById(orderId);
     }
 
+
     @RequestMapping(value = "api/orders/{orderId}/items/{itemId}",method = RequestMethod.GET)
-    public @ResponseBody List<OrderItemDTO> getItemList(@PathVariable("orderId") int orderId, @PathVariable("itemId") int itemId){
+    public @ResponseBody List<OrderItemDTO> getItemListByUser(@PathVariable("orderId") int orderId, @PathVariable("itemId") int itemId){
         return orderItemService.getOrderItemDtoSortedByUser(orderId, itemId);
+    }
+
+    private int getCurrentUserId(Authentication authentication) {
+        return ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId();
+    }
+
+
+
+
+
+
+    @RequestMapping(value = "/orders/{orderId}/items/{itemId}/{userId}", method = RequestMethod.POST)
+    public @ResponseBody String addOneItemToUserOrder(@PathVariable("userId") int userId,
+                                    @PathVariable("orderId") int orderId,
+                                    @PathVariable("itemId") int itemId) {
+        orderItemService.addOneItemToOrder(userId, itemId, orderId);
+        return "{\"status\":\"200\"}";
+    }
+
+
+    @RequestMapping(value = "/orders/{orderId}/items/{itemId}/{userId}", method = RequestMethod.DELETE)
+    public @ResponseBody String deleteOneItemFromUserOrder(@PathVariable("userId") int userId,
+                                         @PathVariable("orderId") int orderId,
+                                         @PathVariable("itemId") int itemId) {
+        orderItemService.remoteOneItemFromOrder(userId, itemId, orderId);
+
+        return "{\"status\":\"200\"}";
+    }
+
+    @RequestMapping(value = "/orders/{orderId}/items/{itemId}/all/{userId}", method = RequestMethod.DELETE)
+    public @ResponseBody String deletePositionFromUserOrder(@PathVariable("userId") int userId,
+                                          @PathVariable("orderId") int orderId,
+                                          @PathVariable("itemId") int itemId) {
+        orderItemService.remotePositionFromOrder(userId, itemId, orderId);
+        return "{\"status\":\"200\"}";
     }
 }
 

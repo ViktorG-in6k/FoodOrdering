@@ -11,11 +11,11 @@ public interface OrderItemService {
 
     void saveOrderItem(int itemId, int userId, int orderId);
 
-    void addOneItemToOrder(Authentication authentication, int itemId, int orderId);
+    void addOneItemToOrder(int userId, int itemId, int orderId);
 
-    void remoteOneItemFromOrder(Authentication authentication, int itemId, int orderId);
+    void remoteOneItemFromOrder(int userId, int itemId, int orderId);
 
-    void remotePositionFromOrder(Authentication authentication, int itemId, int orderId);
+    void remotePositionFromOrder(int userId, int itemId, int orderId);
 
     List<OrderItemDTO> getOrderListByOrderIdAndUserId(int orderId, int userId);
 
