@@ -15,7 +15,10 @@
 
     <div class="container">
         <div class="col-md-8 col-sm-8">
+            <div class="alert alert-info freeze-alert" role="alert" ng-if="orderPlacementStatus.order.status == 'FREEZE'">This order is frozen you can not change order list</div>
+            <input  type="text" class="pull-left form-control search-input" placeholder="Search" ng-model="searchItem">
             <div class="form-group pull-right order-select" ng-controller="orderPlacementStatus" style="margin-left: 10px">
+
                 <select name="repeatSelect" id="repeatSelect" ng-model="currentOrder" ng-change="changeOrder(currentOrder)">
                     <option class="form-control" ng-repeat="order in orderPlacementStatus" value="{{order.order.id}}">{{order.payer.name +' '+ order.payer.familyName}}</option>
                 </select>
@@ -31,7 +34,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="item in restaurant.itemList | orderBy: 'name'">
+                    <tr ng-repeat="item in restaurant.itemList | orderBy: 'name'|filter:searchItem">
                         <td>
                             <div style="padding-left: 12px">{{item.name}}</div>
                         </td>
