@@ -1,8 +1,6 @@
 <div style="position:relative"  ng-init="showPopover = false">
     <div class="inline">
-        <p>
         <p data-ng-click="showPopover = !showPopover" class="cursor item-amount">{{amount}}</p>
-        </p>
     </div>
 
     <div class="popover show right inline popover-style" data-ng-show="showPopover">
@@ -22,7 +20,7 @@
                     <td>
                         <i data-ng-click="removeOneItemFromUserOrder(i.user.id)" class="fa fa-minus item-minus-margin item-minus-color cursor item-remove fa-style"></i>
                         {{i.itemAmount}}
-                        <i data-ng-click="addOneItemToUserOrder(i.user.id)" style="margin-left: 5px" class="fa fa-plus item-plus-color cursor fa-style"></i>
+                        <i data-ng-click="addOneItemToUserOrder(i.user.id)" style="margin-left: 2px;padding:7px" class="fa fa-plus item-plus-color cursor fa-style"></i>
                         <i  data-ng-click="removeItemFromUserOrder(i.user.id, i.itemAmount)" class="fa fa-times item-minus-color item-delete cursor fa-style"></i>
                     </td>
 

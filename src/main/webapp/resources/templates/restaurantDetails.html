@@ -15,7 +15,7 @@
 
     <div class="container">
         <div class="col-md-8 col-sm-8">
-            <div class="alert alert-info freeze-alert" role="alert" ng-if="orderPlacementStatus.order.status == 'FREEZE'">This order is frozen you can not change order list</div>
+            <div class="alert alert-warning freeze-alert" role="alert" ng-if="orderPlacementStatus.order.status == 'FREEZE'">This order is frozen. You can not change order list</div>
             <input  type="text" class="pull-left form-control search-input" placeholder="Search" ng-model="searchItem">
             <div class="form-group pull-right order-select" ng-controller="orderPlacementStatus" style="margin-left: 10px">
 

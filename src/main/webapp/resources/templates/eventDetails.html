@@ -47,14 +47,13 @@
                     </div>
                     <div class="col-md-5">
                         <div class=" event-text-size participant-title">
-                            <p class="active-order-amount" >{{restaurant.activeOrderAmountByRestaurant ? 'Active orders: ' + restaurant.activeOrderAmountByRestaurant :'There is no active orders' }}</p>
-                            <p class="participant-amount" data-ng-if="restaurant.orderPlacementStatus.participantsAmount"> Participants amount: {{restaurant.orderPlacementStatus.participantsAmount}}</p>
+                            <p class="active-order-amount badge" >{{restaurant.activeOrderAmountByRestaurant ? restaurant.activeOrderAmountByRestaurant + ' active orders' :'There is no active orders' }}</p><br>
+                            <p class="participant-amount badge" data-ng-if="restaurant.orderPlacementStatus.participantsAmount"> {{restaurant.orderPlacementStatus.participantsAmount}} {{ restaurant.orderPlacementStatus.participantsAmount == 1 ? 'participant' : 'participants' }} </p>
                         </div>
 
                         <div ng-if="restaurant.orderPlacementStatus.payer != null">
                             <p ng-if="restaurant.orderPlacementStatus.payer.email != user.data.email" >
-                                Responsible for order:
-                                {{restaurant.orderPlacementStatus.payer.email}}
+                                {{restaurant.orderPlacementStatus.payer.familyName}} {{' '+restaurant.orderPlacementStatus.payer.name}} responsible for order
                             <p>
                         </div>
 
