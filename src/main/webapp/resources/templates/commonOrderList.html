@@ -45,8 +45,6 @@
         </div>
     </div>
     <div>
-        <div>
-
             <table class="table table-bordered table-responsive">
                 <tr>
                     <th>Name</th>
@@ -54,31 +52,30 @@
                     <th>Price</th>
                     <th>Cost</th>
                 </tr>
-                <tr ng-repeat="item in myOrders| orderBy:'restaurant.name'">
+                <tr ng-repeat="item in myOrders| orderBy:'restaurant.name'" class="items">
                     <td>{{item.item.name}}</td>
                     <td>
-                        {{item.itemAmount}}
-                        <change-item-amount-directive amount="item.itemAmount" item-id ="{{item.item.id}}"  order-id = "{{orderId}}"></change-item-amount-directive>
+                        <change-item-amount-directive amount="item.itemAmount" item-id="{{item.item.id}}" order-id="{{orderId}}" item-name="{{item.item.name}}"></change-item-amount-directive>
                     </td>
-                    <td>{{item.item.price|currency:" "}}&#8372</td>
+                    <td>
+                        <div style="width: 60px">
+                            <a href="#" editable-text="item.item.price" onbeforesave="updatePrice(item.item.id, $data)">{{ item.item.price || 'set price ' }}&#8372</a>
+                        </div>
+                    </td>
                     <td>
                         {{item.itemAmount * item.item.price|currency:" "}}&#8372
                     </td>
                 </tr>
                 <tr>
-                    <td>Total</td>
+                    <td><h4>Total</h4></td>
                     <td></td>
                     <td></td>
                     <td>
-                        <div class="">{{getTotal() |currency:" "}}&#8372</div>
+                        <div class=""><h4>{{getTotal() |currency:" "}}&#8372</h4></div>
                     </td>
                 </tr>
             </table>
-        </div>
     </div>
 </div>
-
-
-
 
 

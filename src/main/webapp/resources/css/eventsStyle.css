@@ -64,7 +64,6 @@ body
 }
 
 .restaurant-name {
-    color: #e3824d;
     font-family: 'VistaSlabAltRegRegular';
     font-size: 40px;
     font-weight: normal;
@@ -75,7 +74,6 @@ body
 }
 
 .restaurant-name:hover{
-    color: #e3824d;
 }
 
 .restaurant-contact {

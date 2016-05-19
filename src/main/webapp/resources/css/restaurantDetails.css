@@ -7,62 +7,62 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
-.md-text{
+.md-text {
     font-size: 25px;
 }
 
-.xs-text{
+.xs-text {
     font-size: 13px
 }
 
-.event-detail-block{
+.event-detail-block {
     height: 120px;
     width: 100%;
 }
 
-.item-number{
+.item-number {
     width: 40px;
     margin: 0 8px;
     height: 24px;
 }
 
-.restaurant-details{
-   margin-top: 30px;
+.restaurant-details {
+    margin-top: 30px;
 }
 
-.order-list-block{
+.order-list-block {
     width: 25%;
 }
 
-.pointer{
+.pointer {
     cursor: pointer;
 }
 
 .item-plus-color {
-   color:green;
+    color: green;
 }
 
 .item-minus-color {
-    color:red;
+    color: red;
 }
 
-.inline{
+.inline {
     display: inline;
 }
 
-.create-item-form{
+.create-item-form {
     margin-top: 15px;
 }
 
-.nav-justified{
+.nav-justified {
     margin-top: 10px
 }
 
-.item-minus-margin{
+.item-minus-margin {
     margin-right: 5px;
 }
 
-.item-plus-margin{
+.item-plus-margin {
     margin-right: 5px;
 }
 
@@ -81,10 +81,31 @@ input[type=number]::-webkit-outer-spin-button {
     margin-top: 19px;
 }
 
-.order-select select{
+.order-select select {
     padding: 7px;
 }
 
 .responsible-for-order {
     margin-top: 10px;
 }
+
+.popover-style {
+    position: absolute;
+    top: -58px;
+    left: 27px;
+    display: inline-block;
+    width: 120%;
+}
+
+.item-delete {
+    margin-left: 22px;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.item-remove {
+    padding-left: 5px;
+}
+
