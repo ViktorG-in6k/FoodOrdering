@@ -34,6 +34,12 @@ orderService.factory("OrderListService", function ($http, $rootScope, Restaurant
         })
     };
 
+    orderListService.updateCommonOrder = function(){
+        $http.get("api/orders/"+ $rootScope.orderId +"/list").success(function(data){
+            $rootScope.myOrders = data;
+        });
+    };
+
     orderListService.updateOrderList = function () {
         $http.get("/orders/" + $rootScope.orderId).success(function (data) {
             $rootScope.myOrders = data;
@@ -70,6 +76,18 @@ orderService.factory("OrderListService", function ($http, $rootScope, Restaurant
             method: "PUT",
             params: {status: "SPLIT_BILL", splitBillId: splitBillId}
         })
+    };
+
+    orderListService.addOneItemToUserOrder = function (itemId, orderId, userId) {
+       return $http.post("/orders/" + orderId + "/items/" + itemId + "/" + userId);
+    };
+
+    orderListService.removeOneItemFromUserOrder = function (itemId, orderId, userId) {
+      return  $http.delete("/orders/" + orderId + "/items/" + itemId + "/" + userId);
+    };
+
+    orderListService.removeItemFromUserOrder = function (orderId, itemId, userId) {
+       return $http.delete("/orders/" + orderId + "/items/" + itemId + "/all/"+userId)
     };
 
     return orderListService;

@@ -6,7 +6,7 @@ orderController.controller("orderList", function (OrderListService, $scope, $rou
     OrderListService.updateOrderList();
 });
 
-orderController.controller("commonOrderList", function ($scope, EventService, $routeParams, $rootScope, OrderListService, RestaurantService, $http) {
+orderController.controller("commonOrderList", function (ItemService, $scope, EventService, $routeParams, $rootScope, OrderListService, RestaurantService, $http) {
     $rootScope.eventId = $routeParams.id;
     $rootScope.currentRestaurant = $routeParams.restaurantId;
     $rootScope.orderId = $routeParams.orderId;
@@ -36,9 +36,11 @@ orderController.controller("commonOrderList", function ($scope, EventService, $r
         $scope.order = data;
     });
 
-    $http.get("api/orders/"+ $rootScope.orderId +"/list").success(function(data){
-        $scope.myOrders = data;
-    });
+    $scope.updatePrice = function(itemId, newPrice){
+        ItemService.updateItemPrice(itemId, newPrice);
+    };
 
-    OrderListService.CommonOrder()
+
+
+    OrderListService.updateCommonOrder()
 });
