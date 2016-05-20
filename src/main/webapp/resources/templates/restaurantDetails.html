@@ -15,12 +15,20 @@
 
     <div class="container">
         <div class="col-md-8 col-sm-8">
-            <div class="alert alert-warning freeze-alert" role="alert" ng-if="orderPlacementStatus.order.status == 'FREEZE'">This order is frozen. You can not change order list</div>
-            <input  type="text" class="pull-left form-control search-input" placeholder="Search" ng-model="searchItem">
-            <div class="form-group pull-right order-select" ng-controller="orderPlacementStatus" style="margin-left: 10px">
+            <div class="alert alert-warning freeze-alert" role="alert"
+                 ng-if="orderPlacementStatus.order.status == 'FREEZE'">This order is frozen. You can not change order
+                list
+            </div>
+            <input type="text" class="pull-left form-control search-input" placeholder="Search" ng-model="searchItem">
+            <div class="form-group pull-right order-select" ng-controller="orderPlacementStatus"
+                 style="margin-left: 10px">
 
-                <select name="repeatSelect" id="repeatSelect" ng-model="currentOrder" ng-change="changeOrder(currentOrder)">
-                    <option class="form-control" ng-repeat="order in orderPlacementStatus" value="{{order.order.id}}">{{order.payer.name +' '+ order.payer.familyName}}</option>
+                <select name="repeatSelect" id="repeatSelect" ng-model="currentOrder"
+                        ng-change="changeOrder(currentOrder)">
+                    <option class="form-control" ng-repeat="order in orderPlacementStatus" value="{{order.order.id}}">
+                        {{order.payer ? order.payer.name +' '+ order.payer.familyName: 'No one responsible'}}
+
+                    </option>
                 </select>
                 <button class="btn btn-success" ng-click="createOrder()">Create new order</button>
             </div>
@@ -29,8 +37,12 @@
                 <table class="table ">
                     <thead>
                     <tr class="head">
-                        <th><div>Name</div></th>
-                        <th><div>Price</div></th>
+                        <th>
+                            <div>Name</div>
+                        </th>
+                        <th>
+                            <div>Price</div>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -39,7 +51,7 @@
                             <div style="padding-left: 12px">{{item.name}}</div>
                         </td>
                         <td>
-                            <div  style="padding-left: 12px">{{item.price | currency:" "}} &#8372</div>
+                            <div style="padding-left: 12px">{{item.price | currency:" "}} &#8372</div>
                         </td>
 
                         <td class="order-list-block">
@@ -73,21 +85,23 @@
 
                         </td>
                     </tr>
-                    <tr ng-controller="createItem"  ng-controller="createItem" style="padding-top: 10px">
-                            <td>
-                                <input type="text*" placeholder="Name*" class="form-control" ng-model="name" id="name"
-                                       name="name"
-                                       required>
-                            </td>
-                            <td>
-                                <input placeholder="Price*" type="text" class="form-control" ng-model="price" id="price"
-                                       name="price"
-                                       required>
-                            </td>
-                            <td>
-                                <input hidden type="text" name="restaurantId"  value="{{restaurantId}}">
-                                <button type="submit" class="btn btn-success" data-ng-click="createItem(name, price)">Add item</button>
-                            </td>
+                    <tr ng-controller="createItem" ng-controller="createItem" style="padding-top: 10px">
+                        <td>
+                            <input type="text*" placeholder="Name*" class="form-control" ng-model="name" id="name"
+                                   name="name"
+                                   required>
+                        </td>
+                        <td>
+                            <input placeholder="Price*" type="text" class="form-control" ng-model="price" id="price"
+                                   name="price"
+                                   required>
+                        </td>
+                        <td>
+                            <input hidden type="text" name="restaurantId" value="{{restaurantId}}">
+                            <button type="submit" class="btn btn-success" data-ng-click="createItem(name, price)">Add
+                                item
+                            </button>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -95,85 +109,104 @@
         </div>
         <div class="col-md-3">
             <div ng-controller="orderList">
-                <div class="col-md-12" style="margin-bottom: 20px;padding: 0">
-                    <div  ng-if='orderPlacementStatus.payer.email == user.data.email'><p>
-                        <div class="alert alert-warning" role="alert"><p>You are responsible for making order</p></div>
-                        <a href="{{'#/'+ eventId}}/{{currentRestaurant}}/{{orderId}}/order" class="md-text">
-                            <p style="margin-top: -15px"> Order details</p>
+                <div class="col-md-12">
+                    <div ng-if='orderPlacementStatus.payer.email == user.data.email'>
+                        <p>
+                            <div class="alert alert-warning" role="alert">
+                        <p>You are responsible for making order</p></div>
+                    <a href="{{'#/'+ eventId}}/{{currentRestaurant}}/{{orderId}}/order" class="md-text">
+                        <p style="margin-top: -15px"> Order details</p>
+                    </a>
+                    <div ng-if="orderPlacementStatus.payer.email == user.data.email">
+                        <a ng-click="openModal()" class="cursor" >
+                            Unassign
                         </a>
-                            <div ng-if="orderPlacementStatus.payer.email == user.data.email"
-                                 class="btn btn-danger"
-                                 ng-click="removeResponsibility(orderPlacementStatus.order.id)" style="width: 100%; margin-top: -20px">
-                                Unassign                            </div>
                     </div>
-                    <div ng-if="orderPlacementStatus.payer == null">
-                        <div class="alert alert-danger" role="alert" style="padding: 12px">There are no responsible for order</div>
-                        <div ng-if="orderPlacementStatus.payer == null"
-                             class="btn btn-success "
-                             ng-click="takeResponsibility(orderPlacementStatus.order.id)" style="width: 100%;margin-top: -12px;">
-                            Take Responsibility
-                        </div>
-                    </div>
-
-                    <div class="pull-right">
-                        <div ng-if="orderPlacementStatus.payer != null" style="margin-top: 10px;">
-                            <p class="pull-right" style="padding-right: 20px">
-                                <div  ng-if="orderPlacementStatus.payer.email != user.data.email"  class="alert alert-warning" role="alert">
-                            <p>Responsible for order:
-                            {{restaurant.orderPlacementStatus.payer.email}}</p></div>
-                            <p>
-                        </div>
-                    </div>
-                    <br/>
                 </div>
-                <div>
-                    <ul class="nav nav-tabs nav-justified">
-                        <li class="pointer" role="presentation" ng-class="myItems"
-                            ng-click="myItems = 'active'; allItems = ''; updateOrderList()"><a>My
-                            items</a></li>
+                <div ng-if="orderPlacementStatus.payer == null">
+                    <div class="alert alert-danger" role="alert" style="padding: 12px">There are no responsible for
+                        order
+                    </div>
+                    <div ng-if="orderPlacementStatus.payer == null"
+                         class="btn btn-success "
+                         ng-click="takeResponsibility(orderPlacementStatus.order.id)"
+                         style="width: 100%;margin-top: -12px;">
+                        Take Responsibility
+                    </div>
+                </div>
 
-                        <li class="pointer" role="presentation" ng-class="allItems"
-                            ng-click="allItems = 'active'; myItems = ''; CommonOrder()"><a>All
-                            items</a></li>
-                    </ul>
-                    <table class="table">
-                        <tr>
-                            <th>Name</th>
-                            <th>Amount</th>
-                            <th>Price</th>
-                            <th></th>
-                        </tr>
-                        <tr ng-repeat="item in myOrders| orderBy:'restaurant.name'">
-                            <td>{{item.item.name}}</td>
-                            <td>
-                                <div>
-                                    <a class="item-minus-margin" href=""><i
-                                            ng-if="orderPlacementStatus.order.status != 'FREEZE' && orderPlacementStatus.order.status != 'SPLIT_BILL' "
-                                            ng-click="orderService.removeOneItemFromOrder(item.item.id, orderId)"
-                                            class="fa fa-minus item-plus-color" aria-hidden="true"></i></a>
-                                    <span style="">{{item.itemAmount}}</span>
-                                    <a href=""
-                                       ng-click="orderService.addOneItemToOrder(item.item.id, orderId)"
-                                       class="item-minus-margin">
-                                        <i ng-if="orderPlacementStatus.order.status != 'FREEZE' && orderPlacementStatus.order.status != 'SPLIT_BILL' "
-                                           class="fa fa-plus item-plus-color" aria-hidden="true"></i></a>
-                                </div>
-                            </td>
-                            <td>{{item.itemAmount * item.item.price|currency:" "}}&#8372</td>
-                            <td><a href=""
-                                   ng-click="orderService.removeFromOrder(orderId, item.item.id)"><i
-                                    ng-if="orderPlacementStatus.order.status != 'FREEZE' && orderPlacementStatus.order.status != 'SPLIT_BILL' "
-                                    class="fa fa-times item-minus-color"
-                                    aria-hidden="true"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>Total</b></td>
-                            <td></td>
-                            <td>{{getTotal() |currency:" "}}&#8372</td>
-                        </tr>
-                    </table>
+                <div class="pull-right">
+                    <div ng-if="orderPlacementStatus.payer != null" style="margin-top: 10px;">
+                        <p class="pull-right" style="padding-right: 20px">
+                            <div ng-if="orderPlacementStatus.payer.email != user.data.email" class="alert alert-warning"
+                                 role="alert">
+                        <p>Responsible for order:
+                            {{restaurant.orderPlacementStatus.payer.email}}</p></div>
+                    <p>
                 </div>
             </div>
+            <br/>
+        </div>
+        <div>
+            <ul class="nav nav-tabs nav-justified">
+                <li class="pointer" role="presentation" ng-class="myItems"
+                    ng-click="myItems = 'active'; allItems = ''; updateOrderList()"><a>My
+                    items</a></li>
+
+                <li class="pointer" role="presentation" ng-class="allItems"
+                    ng-click="allItems = 'active'; myItems = ''; CommonOrder()"><a>All
+                    items</a></li>
+            </ul>
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="item in myOrders| orderBy:'restaurant.name'">
+                    <td>{{item.item.name}}</td>
+                    <td>
+                        <div>
+                            <a class="item-minus-margin" href=""><i
+                                    ng-if="orderPlacementStatus.order.status != 'FREEZE' && orderPlacementStatus.order.status != 'SPLIT_BILL' "
+                                    ng-click="orderService.removeOneItemFromOrder(item.item.id, orderId)"
+                                    class="fa fa-minus item-plus-color" aria-hidden="true"></i></a>
+                            <span style="">{{item.itemAmount}}</span>
+                            <a href=""
+                               ng-click="orderService.addOneItemToOrder(item.item.id, orderId)"
+                               class="item-minus-margin">
+                                <i ng-if="orderPlacementStatus.order.status != 'FREEZE' && orderPlacementStatus.order.status != 'SPLIT_BILL' "
+                                   class="fa fa-plus item-plus-color" aria-hidden="true"></i></a>
+                        </div>
+                    </td>
+                    <td>{{item.itemAmount * item.item.price|currency:" "}}&#8372</td>
+                    <td><a href=""
+                           ng-click="orderService.removeFromOrder(orderId, item.item.id)"><i
+                            ng-if="orderPlacementStatus.order.status != 'FREEZE' && orderPlacementStatus.order.status != 'SPLIT_BILL' "
+                            class="fa fa-times item-minus-color"
+                            aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Total</b></td>
+                    <td></td>
+                    <td>{{getTotal() |currency:" "}}&#8372</td>
+                </tr>
+            </table>
         </div>
     </div>
+</div>
+</div>
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-content">
+        <div class="modal-header dialog-header-confirm">
+            <button type="button" class="close" ng-click="cancel()">×</button>
+            <h4 class="modal-title ng-binding">Please Confirm</h4></div>
+        <div class="modal-body ng-binding modal-text" ng-bind-html-unsafe="msg">Are you want to unassign from make order?</div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" ng-click="cancel()">No</button>
+            <button type="button" class="btn btn-success" ng-click="ok()">Yes</button>
+        </div>
+    </div>
+</script>

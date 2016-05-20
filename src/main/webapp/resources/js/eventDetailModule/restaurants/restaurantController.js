@@ -1,6 +1,6 @@
 var restaurantController = angular.module('restaurantController', []);
 
-restaurantController.controller("restaurantController", function ($http,OrderListService, $scope, $routeParams, $rootScope, Restaurant, ResponsibilityService) {
+restaurantController.controller("restaurantController", function ($http, OrderListService, $scope, $routeParams, $rootScope, Restaurant, ResponsibilityService, $uibModal) {
     $rootScope.currentRestaurant = $routeParams.restaurantId;
     $rootScope.eventId = $routeParams.id;
     $rootScope.orderId = $routeParams.orderId;
@@ -10,21 +10,40 @@ restaurantController.controller("restaurantController", function ($http,OrderLis
         restaurantId: $rootScope.currentRestaurant
     });
 
-    $http.get("api/orderPlacementStatus/" + $rootScope.orderId).success(function(orderPlacementStatus){
+    $http.get("api/orderPlacementStatus/" + $rootScope.orderId).success(function (orderPlacementStatus) {
         $scope.orderPlacementStatus = orderPlacementStatus;
     });
 
     $scope.takeResponsibility = function (orderId) {
         ResponsibilityService.takeResponsibility(orderId).success(function () {
-            $http.get("api/orderPlacementStatus/"+$rootScope.orderId).success(function(orderPlacementStatus){
+            $http.get("api/orderPlacementStatus/" + $rootScope.orderId).success(function (orderPlacementStatus) {
                 $scope.orderPlacementStatus = orderPlacementStatus;
             });
         })
     };
+
+    $scope.openModal = function () {
+        var modal = $uibModal.open({
+            animation: true,
+            templateUrl: 'myModalContent.html',
+            controller: function ($scope, $uibModalInstance) {
+                $scope.ok = function () {
+                    $uibModalInstance.close('ok');
+                };
+                $scope.cancel = function () {
+                    $uibModalInstance.dismiss('cancel');
+                };
+            }
+        });
+        modal.result.then(function () {
+            $scope.removeResponsibility($scope.orderId);
+        });
+    };
+
     $scope.getTotal = OrderListService.getTotal;
     $scope.removeResponsibility = function (orderId) {
         ResponsibilityService.removeResponsibility(orderId).success(function () {
-            $http.get("api/orderPlacementStatus/"+$rootScope.orderId).success(function(orderPlacementStatus){
+            $http.get("api/orderPlacementStatus/" + $rootScope.orderId).success(function (orderPlacementStatus) {
                 $scope.orderPlacementStatus = orderPlacementStatus;
             });
         })
