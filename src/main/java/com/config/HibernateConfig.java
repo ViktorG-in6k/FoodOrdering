@@ -30,7 +30,7 @@ public class HibernateConfig {
     @Autowired
     private Environment env;
     
-/*    @Bean
+    @Bean
     @Profile("dev")
     public DataSource dataSourceHeroku(
             @Value("jdbc:mysql://ivgz2rnl5rh7sphb.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/vw9i9thqd6ahzzl7") String url,
@@ -42,9 +42,10 @@ public class HibernateConfig {
         );
         source.setDriverClassName("com.mysql.jdbc.Driver");
         return source;
-    }*/
+    }
 
     @Bean
+    @Profile("production")
     public BasicDataSource dataSource() throws URISyntaxException {
         URI jdbUri = new URI(System.getenv("JAWSDB_URL"));
 
