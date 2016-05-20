@@ -42,7 +42,6 @@ public class HibernateConfig {
     }*/
 
     @Bean
-    @Profile("production")
     public DataSource restDataSource() {
         URI dbUri = null;
         try {
