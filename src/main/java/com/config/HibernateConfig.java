@@ -51,7 +51,8 @@ public class HibernateConfig {
         }
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];
-        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+        System.out.println(username);
+        String dbUrl = "jdbc:mysql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
         final DriverManagerDataSource dataSource = new DriverManagerDataSource(dbUrl, username, password);
         dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
         return dataSource;
