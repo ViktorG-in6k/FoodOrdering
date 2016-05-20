@@ -41,7 +41,6 @@ class OAuth2SecurityConfig {
         details.setUseCurrentUri(false);
         details.setAuthenticationScheme(AuthenticationScheme.query);
         details.setClientAuthenticationScheme(AuthenticationScheme.form);
-
         return details;
     }
 
