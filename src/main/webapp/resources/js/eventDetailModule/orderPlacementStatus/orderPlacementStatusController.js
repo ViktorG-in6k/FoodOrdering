@@ -8,7 +8,6 @@ controller.controller("orderPlacementStatus", function (OrderPlacementStatusServ
     };
     OrderPlacementStatusService.getOrders().success(function (data) {
         $scope.orderPlacementStatus = data;
-        console.log($scope.orderPlacementStatus)
     });
 
     $scope.createOrder = function () {
