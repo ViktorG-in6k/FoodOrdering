@@ -26,6 +26,7 @@ var app = angular.module('eventApp', [
     'ui.bootstrap',
     'orderItemAmount',
     'commonOrder',
+    'infinite-scroll',
     'xeditable'
 ]);
 
