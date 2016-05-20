@@ -23,7 +23,7 @@ public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServ
     @Override
     protected WebApplicationContext createRootApplicationContext() {
         WebApplicationContext context = super.createRootApplicationContext();
-        ((ConfigurableEnvironment) context.getEnvironment()).setActiveProfiles("dev");
+        ((ConfigurableEnvironment) context.getEnvironment()).setActiveProfiles("production");
         return context;
     }
 }
