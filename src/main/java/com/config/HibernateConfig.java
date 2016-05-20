@@ -17,8 +17,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -27,9 +25,6 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class HibernateConfig {
 
-    @Autowired
-    private Environment env;
-    
     @Bean
     @Profile("dev")
     public DataSource dataSourceHeroku(
@@ -48,12 +43,10 @@ public class HibernateConfig {
     @Profile("production")
     public BasicDataSource dataSource() throws URISyntaxException {
         URI jdbUri = new URI(System.getenv("JAWSDB_URL"));
-
         String username = jdbUri.getUserInfo().split(":")[0];
         String password = jdbUri.getUserInfo().split(":")[1];
         String port = String.valueOf(jdbUri.getPort());
         String jdbUrl = "jdbc:mysql://" + jdbUri.getHost() + ":" + port + jdbUri.getPath();
-
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setUrl(jdbUrl);
         basicDataSource.setUsername(username);

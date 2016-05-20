@@ -31,8 +31,8 @@ class OAuth2SecurityConfig {
     public OAuth2ProtectedResourceDetails googleResource() {
         final AuthorizationCodeResourceDetails details = new AuthorizationCodeResourceDetails();
         details.setId("google-oauth2-client");
-        details.setClientId(env.getProperty("google.client.id"));
-        details.setClientSecret(env.getProperty("google.client.secret"));
+        details.setClientId(System.getenv("google.client.id"));
+        details.setClientSecret(System.getenv("google.client.secret"));
         details.setAccessTokenUri(env.getProperty("google.access.token.uri"));
         details.setUserAuthorizationUri(env.getProperty("google.user.authorization.uri"));
         details.setTokenName(env.getProperty("google.token.name"));
