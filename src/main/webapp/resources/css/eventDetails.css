@@ -71,7 +71,6 @@
 .responsible-user {
     padding-right: 20px;
     margin-top: -15px;
-
 }
 
 .no-responsible {
@@ -84,9 +83,13 @@
 }
 
 .items {
-font-size: 19px;
+    font-size: 19px;
 }
 
 .fa-style {
     padding: 2px;
+}
+
+.current-user {
+    padding-top: 16px;
 }

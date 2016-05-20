@@ -24,9 +24,13 @@
         <div>
             <div class="col-md-12 restaurant-phone-block">
                 <h1 class="inline">{{restaurant.name}}</h1>
+                <h2 class="inline label label-primary">send to spit-bill</h2>
                 <h3 class="restaurant-phone"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}
                 </h3>
-                <h3 ng-if="order.status == 'FREEZE'" class="inline restaurant-phone">Order status: frozen </h3>
+
+                <div class="inline">
+                <div ng-if="order.status == 'FREEZE'" class="inline restaurant-phone"><h3 class="inline">Status:</h3>  <p class="inline label label-primary">frozen</p> </div>
+                </div>
                 <button class="order-status-btn btn btn btn-primary" style="margin-top: -22px;" ng-if="order.status == 'PENDING'"
                         ng-click="changeOrderStatusToFreeze(orderId)">freeze order
                 </button>
@@ -36,11 +40,9 @@
                         ng-click="changeOrderStatusToBill(orderId, splitBillId)">Split-bill
                 </button>
                 </form>
-                <h2 class="inline order-status-btn" ng-if="order.status == 'SPLIT_BILL'">
-                    Order send to spit-bill
-                </h2>
-
-
+                <div class="inline order-status-btn" ng-if="order.status == 'SPLIT_BILL'">
+                    <h3 class="inline">Status: </h3> <p class="inline label label-primary">send to spit-bill</p>
+                </div>
             </div>
         </div>
     </div>

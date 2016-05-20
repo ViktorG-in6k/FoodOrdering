@@ -1,42 +1,28 @@
-<style>
-    .myNavbar{
-        float: left;
-        padding: 15px 15px;
-        font-size: 18px;
-        line-height: 20px;
-        height: 50px;
-    }
-</style>
-
-<nav class="navbar navbar-default navbar-fixed-top" ng-controller="navbarCtrl">
+<nav class="navbar navbar-default  navbar-fixed-top" ng-controller="navbarCtrl">
     <div class="container-fluid">
         <div class="navbar-header">
-            <div class="myNavbar">
-                Food Ordering</div>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Food Ordering</a>
         </div>
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/app">Events</a>
-        </div>
-        <div  ng-controller="eventController" ng-if="eventId">
-            <a  class=" navbar-brand" href="app#/events/{{event.id}}">
-             /   &nbsp &nbsp{{eventName}}
-            </a>
-        </div>
-     <%--   <div ng-controller="eventController" ng-if="currentRestaurant" >
-            <a  class=" navbar-brand" href="{{'#/'+ eventId}}/{{restaurant.id}}">
-            /   &nbsp &nbsp{{restaurantName}}
-            </a>
-        </div>--%>
-        <div class="navbar-header pull-right" style=" right: 10px;">
-            <label class="navbar-brand" style="font-size: 14px;">
 
-            </label>
-            <label class="myNavbar" style="font-size: 14px;">
-                {{user.data.name}} {{' '+user.data.familyName}} ({{user.data.email}})
-            <a href="/logout"> logout</a>
-            </label>
-
+        <div class="" id="myNavbar">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/app">Events</a>
+            </div>
+            <div  ng-controller="eventController" ng-if="eventId">
+                <a  class=" navbar-brand" href="app#/events/{{event.id}}">
+                    /   &nbsp &nbsp{{eventName}}
+                </a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li> <label class="current-user"> {{user.data.name}} {{' '+user.data.familyName}} ({{user.data.email}})</label></li>
+                <li><a href="/logout"><label> logout</label></a></li>
+            </ul>
         </div>
+
     </div>
 </nav>
-
