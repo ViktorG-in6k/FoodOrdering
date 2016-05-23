@@ -25,7 +25,7 @@
         <div>
             <div class="col-md-12 restaurant-phone-block">
                 <h1 class="inline">{{restaurant.name}}</h1>
-                <h2 class="inline label label-primary">send to spit-bill</h2>
+          <!--      <h2 class="inline label label-primary">send to spit-bill</h2>-->
                 <h3 class="restaurant-phone"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}
                 </h3>
 
@@ -53,7 +53,11 @@
         </div>
     </div>
     <div>
-        <table class="table table-bordered table-responsive ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+        <table class="table table-bordered">
             <tr>
                 <th>Name</th>
                 <th>Amount</th>
@@ -68,11 +72,12 @@
                                                   item-name="{{item.item.name}}"></change-item-amount-directive>
                 </td>
                 <td>
-                    <div>
-                        <a href="#" class="inline" editable-text="item.item.price" onbeforesave="updatePrice(item.item.id, $data)">{{
+                    <div style="width: 180px">
+                        <a href="#" class="inline" editable-text="item.item.price"
+                           onbeforesave="updatePrice(item.item.id, $data)">{{
                             item.item.price || 'set price ' }}&#8372 </a>
 
-                        <p class="inline">-{{order.percentageDiscount}} %</p>
+                        <p class="inline" data-ng-if="order.percentageDiscount > 0"> - {{order.percentageDiscount}} %</p>
                     </div>
                 </td>
                 <td>
@@ -83,7 +88,16 @@
                 <td><h4>Discount %</h4></td>
                 <td></td>
                 <td></td>
-                <td><h4>{{order.percentageDiscount ? order.percentageDiscount : 0}} %</h4></td>
+                <td>
+                    <div style="width: 150px">
+                    <h4>
+                    <a href="#" class="inline" editable-text="order.percentageDiscount"
+                       onbeforesave="updatePercentageDiscount(order.id, $data)">
+                        {{order.percentageDiscount ? order.percentageDiscount : 0}} %
+                    </a>
+                    </h4>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td><h4>Discount &#8372</h4></td>
@@ -103,9 +117,13 @@
                 <td></td>
                 <td></td>
                 <td>
-                    <div class=""><h4>{{getTotal()|percentageFilter:order.percentageDiscount |currency:" "}}&#8372</h4></div>
+                    <div class=""><h4>{{getTotal()|percentageFilter:order.percentageDiscount |currency:" "}}&#8372</h4>
+                    </div>
                 </td>
             </tr>
         </table>
+        </div>
+        </div>
+        </div>
     </div>
 </div>

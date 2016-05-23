@@ -55,6 +55,7 @@
     <script src="/resources/js/eventDetailModule/app.js"></script>
     <script src="/resources/js/lib/x-editable.js"></script>
     <script src="/resources/js/eventDetailModule/orders/percentageDiscountFilter.js"></script>
+    <script src="/resources/js/eventDetailModule/orders/discountService.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/jspf/nav.jsp" flush="true"/>

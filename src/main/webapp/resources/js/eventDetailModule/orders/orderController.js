@@ -6,7 +6,8 @@ orderController.controller("orderList", function (OrderListService, $scope, $rou
     OrderListService.updateOrderList();
 });
 
-orderController.controller("commonOrderList", function (ItemService, $scope, EventService, $routeParams, $rootScope, OrderListService, RestaurantService, $http) {
+orderController.controller("commonOrderList", function (ItemService, $scope, EventService, $routeParams,
+                                                        $rootScope, OrderListService, RestaurantService, $http, DiscountService) {
     $rootScope.eventId = $routeParams.id;
     $rootScope.currentRestaurant = $routeParams.restaurantId;
     $rootScope.orderId = $routeParams.orderId;
@@ -40,7 +41,11 @@ orderController.controller("commonOrderList", function (ItemService, $scope, Eve
         ItemService.updateItemPrice(itemId, newPrice);
     };
 
-
+    $scope.updatePercentageDiscount = function(orderId, percentage){
+        DiscountService.changePercentageDiscount(orderId, percentage).success(function(){
+            OrderListService.updateCommonOrder()
+        })
+    };
 
     OrderListService.updateCommonOrder()
 });

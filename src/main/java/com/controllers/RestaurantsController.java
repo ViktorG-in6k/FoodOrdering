@@ -32,4 +32,3 @@ public class RestaurantsController {
         return restaurantService.getRestaurantDTOById(eventId, restaurantId, authentication);
     }
 }
-

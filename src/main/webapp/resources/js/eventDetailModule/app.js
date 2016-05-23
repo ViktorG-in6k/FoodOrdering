@@ -27,7 +27,8 @@ var app = angular.module('eventApp', [
     'orderItemAmount',
     'commonOrder',
     'xeditable',
-    'discountFilters'
+    'discountFilters',
+    'discountService'
 ]);
 
 app.config(['$routeProvider',
