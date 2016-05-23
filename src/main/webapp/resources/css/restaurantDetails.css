@@ -94,7 +94,7 @@ input[type=number]::-webkit-outer-spin-button {
     top: -58px;
     left: 27px;
     display: inline-block;
-    width: 120%;
+    width: 180%;
 }
 
 .item-delete {

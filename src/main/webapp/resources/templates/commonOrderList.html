@@ -68,44 +68,44 @@
                                                   item-name="{{item.item.name}}"></change-item-amount-directive>
                 </td>
                 <td>
-                    <div style="width: 60px">
-                        <a href="#" editable-text="item.item.price" onbeforesave="updatePrice(item.item.id, $data)">{{
-                            item.item.price || 'set price ' }}&#8372</a>
+                    <div>
+                        <a href="#" class="inline" editable-text="item.item.price" onbeforesave="updatePrice(item.item.id, $data)">{{
+                            item.item.price || 'set price ' }}&#8372 </a>
+
+                        <p class="inline">-{{order.percentageDiscount}} %</p>
                     </div>
                 </td>
                 <td>
-                    {{item.itemAmount * item.item.price|currency:" "}}&#8372
+                    {{item.itemAmount * item.item.price| percentageFilter:order.percentageDiscount |currency:" "}} &#8372
                 </td>
             </tr>
             <tr>
                 <td><h4>Discount %</h4></td>
                 <td></td>
                 <td></td>
-                <td><p>0</p></td>
+                <td><h4>{{order.percentageDiscount ? order.percentageDiscount : 0}} %</h4></td>
             </tr>
             <tr>
                 <td><h4>Discount &#8372</h4></td>
                 <td></td>
                 <td></td>
-                <td><p>0</p></td>
+                <td><h4>{{order.amountDiscount ? order.amountDiscount : 0}} &#8372</h4></td>
             </tr>
 
             <tr>
                 <td><h4>Shipping</h4></td>
                 <td></td>
                 <td></td>
-                <td>0 &#8372</td>
+                <td><h4>0 &#8372</h4></td>
             </tr>
             <tr>
                 <td><h3>Total</h3></td>
                 <td></td>
                 <td></td>
                 <td>
-                    <div class=""><h4>{{getTotal() |currency:" "}}&#8372</h4></div>
+                    <div class=""><h4>{{getTotal()|percentageFilter:order.percentageDiscount |currency:" "}}&#8372</h4></div>
                 </td>
             </tr>
         </table>
     </div>
 </div>
-
-
