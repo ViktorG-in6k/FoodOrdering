@@ -39,6 +39,8 @@ public interface OrderService {
     List<OrderPlacementStatus> getOrderPlacementStatusByEventIdAndRestaurantId(int eventId, int restaurantId, Authentication authentication);
 
     void updatePercentageDiscount(int orderId, double percentageDiscount);
+
+    void updateAmountDiscount(int orderId, double amount);
 }
 
 

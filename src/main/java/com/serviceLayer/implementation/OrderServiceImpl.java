@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -89,17 +90,17 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderPlacementStatus getOrderPlacementStatusByOrderId(Order order, Authentication authentication){
+    public OrderPlacementStatus getOrderPlacementStatusByOrderId(Order order, Authentication authentication) {
         Set<User> participants = new HashSet<>();
 
-            List<OrderItemDTO> orderItems = orderItemService.getOrderItemListDTOByOrderId(order.getId());
+        List<OrderItemDTO> orderItems = orderItemService.getOrderItemListDTOByOrderId(order.getId());
 
-            for (OrderItemDTO itemDTO : orderItems) {
-                participants.add(userService.getUser(itemDTO.getUser().getId()));
-            }
+        for (OrderItemDTO itemDTO : orderItems) {
+            participants.add(userService.getUser(itemDTO.getUser().getId()));
+        }
 
-            int participantsAmount = participants.size();
-            return new OrderPlacementStatus(order, participantsAmount, isMineOrder(order, authentication));
+        int participantsAmount = participants.size();
+        return new OrderPlacementStatus(order, participantsAmount, isMineOrder(order, authentication));
     }
 
 
@@ -168,7 +169,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderPlacementStatus> getOrderPlacementStatusByEventIdAndRestaurantId(int eventId, int restaurantId, Authentication authentication) {
         List<Order> orders = orderDAO.getOrdersByEventIdAndRestaurantId(eventId, restaurantId);
-        return  orders.stream().map(order -> getOrderPlacementStatus(order, authentication)).collect(Collectors.toList());
+        return orders.stream().map(order -> getOrderPlacementStatus(order, authentication)).collect(Collectors.toList());
     }
 
     @Override
@@ -177,5 +178,13 @@ public class OrderServiceImpl implements OrderService {
         order.setPercentageDiscount(new BigDecimal(percentageDiscount));
         orderDAO.updateOrder(order);
     }
+
+    @Override
+    public void updateAmountDiscount(int orderId, double amount) {
+        Order order = orderDAO.getOrderByOrderId(orderId);
+        order.setAmountDiscount(new BigDecimal(amount));
+        orderDAO.updateOrder(order);
+    }
 }
+
 

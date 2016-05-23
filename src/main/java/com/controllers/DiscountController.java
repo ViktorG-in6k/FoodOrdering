@@ -15,5 +15,12 @@ public class DiscountController {
         orderService.updatePercentageDiscount(orderId, percentage);
         return "{\"status\":\"200\"}";
     }
+
+    @RequestMapping( value = "api/orders/{orderId}/amountDiscount", method = RequestMethod.PUT)
+    public @ResponseBody String updateAmountDiscount(@PathVariable("orderId")int orderId, @RequestParam("amount") double amount){
+        orderService.updateAmountDiscount(orderId, amount);
+        return "{\"status\":\"200\"}";
+    }
 }
+
 
