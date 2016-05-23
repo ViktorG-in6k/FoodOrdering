@@ -22,22 +22,22 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12" style="padding-bottom: 20px"><h1 class="text-center">Order details</h1></div>
-        <div>
+
             <div class="col-md-12 restaurant-phone-block">
-                <h1 class="inline">{{restaurant.name}}</h1>
-          <!--      <h2 class="inline label label-primary">send to spit-bill</h2>-->
+                <h1 class="inline restaurant-common-name">{{restaurant.name}}</h1>
+
                 <h3 class="restaurant-phone"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}
                 </h3>
 
-                <div class="inline">
-                    <div ng-if="order.status == 'FREEZE'" class="inline restaurant-phone"><h3 class="inline">
-                        Status:</h3>
-                        <p class="inline label label-primary">frozen</p></div>
-                </div>
-                <button class="order-status-btn btn btn btn-primary" style="margin-top: -22px;"
+                <div class="inline order-status" ng-if="order.status == 'PENDING'">Status:<p class="inline label label-primary">Active</p></div>
+                <div class="inline order-status" ng-if="order.status == 'FREEZE'">Status:<p class="inline label label-primary">Frozen</p></div>
+                <div class="inline order-status" ng-if="order.status == 'SPLIT_BILL'">Status:<p class="inline label label-primary">Send to Split Bill</p></div>
+
+                <button class="order-status-btn btn btn btn-primary"
                         ng-if="order.status == 'PENDING'"
                         ng-click="changeOrderStatusToFreeze(orderId)">freeze order
                 </button>
+
                 <form class="inline" style="margin-top: -22px;" ng-if="order.status == 'FREEZE'">
                     <input ng-model="splitBillId" class="form-control inline" placeholder="split-bill event id"
                            type="text" style="width: 150px; margin-left: 40px" required>
@@ -45,85 +45,89 @@
                             ng-click="changeOrderStatusToBill(orderId, splitBillId)">Split-bill
                     </button>
                 </form>
-                <div class="inline order-status-btn" ng-if="order.status == 'SPLIT_BILL'">
-                    <h3 class="inline">Status: </h3>
-                    <p class="inline label label-primary">send to spit-bill</p>
-                </div>
             </div>
-        </div>
     </div>
     <div>
+
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Price</th>
+                            <th>Cost</th>
+                        </tr>
+                        <tr ng-repeat="item in myOrders| orderBy:'restaurant.name'" class="items">
+                            <td>{{item.item.name}}</td>
+                            <td>
+                                <change-item-amount-directive amount="item.itemAmount" item-id="{{item.item.id}}"
+                                                              order-id="{{orderId}}"
+                                                              item-name="{{item.item.name}}">
 
-        <table class="table table-bordered">
-            <tr>
-                <th>Name</th>
-                <th>Amount</th>
-                <th>Price</th>
-                <th>Cost</th>
-            </tr>
-            <tr ng-repeat="item in myOrders| orderBy:'restaurant.name'" class="items">
-                <td>{{item.item.name}}</td>
-                <td>
-                    <change-item-amount-directive amount="item.itemAmount" item-id="{{item.item.id}}"
-                                                  order-id="{{orderId}}"
-                                                  item-name="{{item.item.name}}"></change-item-amount-directive>
-                </td>
-                <td>
-                    <div style="width: 180px">
-                        <a href="#" class="inline" editable-text="item.item.price"
-                           onbeforesave="updatePrice(item.item.id, $data)">{{
-                            item.item.price || 'set price ' }}&#8372 </a>
+                                </change-item-amount-directive>
+                            </td>
+                            <td>
+                                <div style="width: 120px">
+                                    <a href="#" class="inline" editable-text="item.item.price"
+                                       onbeforesave="updatePrice(item.item.id, $data)">{{
+                                        item.item.price || 'set price ' }}&#8372 </a>
 
-                        <p class="inline" data-ng-if="order.percentageDiscount > 0"> - {{order.percentageDiscount}} %</p>
-                    </div>
-                </td>
-                <td>
-                    {{item.itemAmount * item.item.price| percentageFilter:order.percentageDiscount |currency:" "}} &#8372
-                </td>
-            </tr>
-            <tr>
-                <td><h4>Discount %</h4></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <div style="width: 150px">
-                    <h4>
-                    <a href="#" class="inline" editable-text="order.percentageDiscount"
-                       onbeforesave="updatePercentageDiscount(order.id, $data)">
-                        {{order.percentageDiscount ? order.percentageDiscount : 0}} %
-                    </a>
-                    </h4>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td><h4>Discount &#8372</h4></td>
-                <td></td>
-                <td></td>
-                <td><h4>{{order.amountDiscount ? order.amountDiscount : 0}} &#8372</h4></td>
-            </tr>
+                                    <p class="inline" data-ng-if="order.percentageDiscount > 0"> -
+                                        {{order.percentageDiscount}} %</p>
+                                </div>
+                            </td>
+                            <td>
+                                {{item.itemAmount * item.item.price| percentageFilter:order.percentageDiscount
+                                |currency:" "}} &#8372
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h4>Discount %</h4></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <div style="width: 100px">
+                                    <h4>
+                                        <a href="#" class="inline" editable-text="order.percentageDiscount"
+                                           onbeforesave="updatePercentageDiscount(order.id, $data)">
+                                            {{order.percentageDiscount ? order.percentageDiscount : 0}} %
+                                        </a>
+                                    </h4>
+                                </div>
+                            </td>
+                        </tr>
 
-            <tr>
-                <td><h4>Shipping</h4></td>
-                <td></td>
-                <td></td>
-                <td><h4>0 &#8372</h4></td>
-            </tr>
-            <tr>
-                <td><h3>Total</h3></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <div class=""><h4>{{getTotal()|percentageFilter:order.percentageDiscount |currency:" "}}&#8372</h4>
-                    </div>
-                </td>
-            </tr>
-        </table>
-        </div>
-        </div>
+
+  <!--                      <tr>
+                            <td><h4>Discount &#8372</h4></td>
+                            <td></td>
+                            <td></td>
+                            <td><h4>{{order.amountDiscount ? order.amountDiscount : 0}} &#8372</h4></td>
+                        </tr>
+
+                        <tr>
+                            <td><h4>Shipping</h4></td>
+                            <td></td>
+                            <td></td>
+                            <td><h4>0 &#8372</h4></td>
+                        </tr>-->
+
+                        <tr>
+                            <td><h3>Total</h3></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <div class=""><h4>{{getTotal()|percentageFilter:order.percentageDiscount |currency:"
+                                    "}}&#8372</h4>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>

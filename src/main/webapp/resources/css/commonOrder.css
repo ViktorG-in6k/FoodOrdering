@@ -18,7 +18,7 @@
 
 .restaurant-phone {
     display: inline;
-    padding-left: 100px
+    padding-left: 50px
 }
 
 .restaurant-phone-block {
@@ -30,7 +30,8 @@
 }
 
 .order-status-btn {
-    margin-left: 100px;
+    margin-left: 80px;
+    margin-top: -9px;
 }
 
 .editable-wrap .editable-controls > input, .editable-wrap .editable-controls > select, .editable-wrap .editable-controls > textarea {
@@ -47,4 +48,18 @@
 
 .fa-style {
     padding: 5px;
+}
+
+.restaurant-common-name {
+    margin-left: 14px;
+}
+
+.order-status {
+    font-size: 26px;
+    color: black;
+    margin-left: 50px;
+}
+
+.order-status p{
+    margin-left: 15px;
 }
