@@ -1,6 +1,7 @@
 var restaurantController = angular.module('restaurantController', []);
 
-restaurantController.controller("restaurantController", function ($http, OrderListService, $scope, $routeParams, $rootScope, Restaurant, ResponsibilityService, $uibModal) {
+restaurantController.controller("restaurantController", function ($http, OrderListService, $scope, $routeParams, $rootScope,
+                                                                  Restaurant, ResponsibilityService, $uibModal, ItemService) {
     $rootScope.currentRestaurant = $routeParams.restaurantId;
     $rootScope.eventId = $routeParams.id;
     $rootScope.orderId = $routeParams.orderId;
@@ -40,6 +41,8 @@ restaurantController.controller("restaurantController", function ($http, OrderLi
         });
     };
 
+    $scope.updateItemTitle = ItemService.updateItemTitle;
+
     $scope.getTotal = OrderListService.getTotal;
     $scope.removeResponsibility = function (orderId) {
         ResponsibilityService.removeResponsibility(orderId).success(function () {
@@ -50,14 +53,14 @@ restaurantController.controller("restaurantController", function ($http, OrderLi
     };
 });
 
-restaurantController.controller("restaurantMenu", function ($rootScope, Restaurant, $routeParams, $scope, Order) {
+restaurantController.controller("restaurantMenu", function ($rootScope, Restaurant, $routeParams, $scope, Order, ItemService) {
     $rootScope.eventId = $routeParams.id;
     $rootScope.currentRestaurant = $routeParams.restaurantId;
     $rootScope.restaurant = Restaurant.get({
         eventId: $rootScope.eventId,
         restaurantId: $rootScope.currentRestaurant
     });
-
+    $scope.updateItemTitle = ItemService.updateItemTitle;
     $scope.createOrder = function () {
         Order.createOrder($rootScope.eventId, $rootScope.currentRestaurant);
     }

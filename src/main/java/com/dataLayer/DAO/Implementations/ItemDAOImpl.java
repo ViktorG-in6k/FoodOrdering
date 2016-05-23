@@ -40,11 +40,9 @@ public class ItemDAOImpl implements ItemDAO {
     @Override
     public void updateName(int id, String name){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("update item set name=:name where id = :id");
-        query
-                .setString("name",name)
-                .setInteger("id",id);
-        query.executeUpdate();
+        Item item = session.get(Item.class, id);
+        item.setName(name);
+        session.update(item);
     }
 
     @Override

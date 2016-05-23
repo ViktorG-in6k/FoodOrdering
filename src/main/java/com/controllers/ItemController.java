@@ -30,6 +30,12 @@ public class ItemController {
         itemService.updateItemPrice(id, price);
         return "{\"status\":\"200\"}";
     }
+
+    @RequestMapping(value = "api/items/{itemId}/title",method = RequestMethod.PUT)
+    public @ResponseBody String changeItemTitle(@PathVariable("itemId")int id, @RequestParam("title") String title){
+        itemService.updateItemName(id, title);
+        return "{\"status\":\"200\"}";
+    }
 }
 
 

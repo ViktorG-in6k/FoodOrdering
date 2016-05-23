@@ -127,3 +127,11 @@ input[type=number]::-webkit-outer-spin-button {
 .editable-empty, .editable-empty:hover, .editable-empty:focus, a.editable-empty, a.editable-empty:hover, a.editable-empty:focus {
     color: #428bca;
 }
+
+.item-price {
+    width: 25%;
+}
+
+.padding-item-price {
+    padding-left: 12px
+}

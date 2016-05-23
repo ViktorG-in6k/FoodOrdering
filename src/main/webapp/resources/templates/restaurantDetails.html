@@ -26,8 +26,8 @@
                 <select name="repeatSelect" id="repeatSelect" ng-model="currentOrder"
                         ng-change="changeOrder(currentOrder)">
                     <option class="form-control" ng-repeat="order in orderPlacementStatus" value="{{order.order.id}}">
+                        {{'Order #' + order.order.id}}
                         {{order.payer ? order.payer.name +' '+ order.payer.familyName: 'No one responsible'}}
-
                     </option>
                 </select>
                 <button class="btn btn-success" ng-click="createOrder()">Create new order</button>
@@ -40,7 +40,7 @@
                         <th>
                             <div>Name</div>
                         </th>
-                        <th>
+                        <th class="item-price">
                             <div>Price</div>
                         </th>
                     </tr>
@@ -48,10 +48,15 @@
                     <tbody>
                     <tr ng-repeat="item in restaurant.itemList | orderBy: 'name'|filter:searchItem">
                         <td>
-                            <div style="padding-left: 12px">{{item.name}}</div>
+                            <div class="padding-item-price">
+                                <a style="color: black;" href="#" class="inline" editable-text="item.name" onbeforesave="updateItemTitle(item.id, $data)">
+                                {{item.name ? item.name : 0}}
+                            </a>
+                            </div>
                         </td>
+
                         <td>
-                            <div style="padding-left: 12px">{{item.price | currency:" "}} &#8372</div>
+                            <div class="padding-item-price">{{item.price | currency:" "}} &#8372</div>
                         </td>
 
                         <td class="order-list-block">
@@ -84,6 +89,7 @@
                             </div>
 
                         </td>
+
                     </tr>
                     <tr ng-controller="createItem" ng-controller="createItem" style="padding-top: 10px">
                         <td>

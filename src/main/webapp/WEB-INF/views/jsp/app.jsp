@@ -11,7 +11,7 @@
     <link href="/resources/css/lib/bootstrapTheme.css" rel="stylesheet">
     <link href="/resources/css/lib/font-awesome-4.6.1/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="/resources/css/commonOrder.css" rel="stylesheet">
-    <link rel="stylesheet" href="/resources/css/lib/kendoLib/kendo.common.min.css"/>
+
     <link rel="stylesheet" href="/resources/css/lib/kendoLib/kendo.rtl.css"/>
     <link rel="stylesheet" href="/resources/css/lib/kendoLib/kendo.silver.css"/>
     <link rel="stylesheet" href="/resources/css/lib/kendoLib/kengo.modile.css"/>
@@ -19,7 +19,7 @@
     <link href="/resources/css/eventsStyle.css" rel="stylesheet"/>
 
     <link href="/resources/css/restaurantDetails.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="/resources/css/lib/kendoLib/kendo.common.min.css"/>
     <script src="/resources/js/lib/jquery-2.1.4.min.js"></script>
     <script src="/resources/js/lib/angular.min.js"></script>
     <script src="/resources/js/lib/angular-route.min.js"></script>

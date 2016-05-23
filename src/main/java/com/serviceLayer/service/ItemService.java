@@ -1,6 +1,5 @@
 package com.serviceLayer.service;
 
-import com.dataLayer.entity.DTO.RequestItemDTO;
 import com.dataLayer.entity.DTO.itemDTO.ItemDTO;
 import com.dataLayer.entity.DTO.itemDTO.ItemRequest;
 import com.dataLayer.entity.base.Item;
@@ -17,6 +16,6 @@ public interface ItemService {
 
     void updateItemPrice(int id, double price);
 
-    void updateItemName(RequestItemDTO item);
+    void updateItemName(int id , String title);
 }
 

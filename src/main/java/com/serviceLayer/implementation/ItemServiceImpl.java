@@ -45,8 +45,8 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void updateItemName(RequestItemDTO item) {
-        itemDAO.updateName(item.getId(), item.getName());
+    public void updateItemName(int id, String title) {
+        itemDAO.updateName(id,title);
     }
 }
 

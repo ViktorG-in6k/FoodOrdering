@@ -15,12 +15,22 @@ itemService.factory("ItemService", function ($http, $rootScope, Restaurant) {
         })
     };
 
-    itemService.updateItemPrice = function(itemId, price){
+    itemService.updateItemPrice = function (itemId, price) {
         return $http({
             method: 'PUT',
-            url: 'api/items/'+itemId+'/price',
+            url: 'api/items/' + itemId + '/price',
             params: {
                 price: price
+            }
+        })
+    };
+
+    itemService.updateItemTitle = function (itemId, title) {
+        return $http({
+            method: 'PUT',
+            url: 'api/items/' + itemId + '/title',
+            params: {
+                title: title
             }
         })
     };
@@ -31,6 +41,8 @@ itemService.factory("ItemService", function ($http, $rootScope, Restaurant) {
             restaurantId: $rootScope.currentRestaurant
         });
     };
+
+
     return itemService;
 });
 
