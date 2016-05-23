@@ -111,7 +111,16 @@ public class OrderItemServiceImpl implements OrderItemService {
                 }
             } else commonOrders.add(orderItemDTO);
         }
-        return commonOrders;
+        return setDiscount(orderId, commonOrders);
+    }
+
+    public List<OrderItemDTO> setDiscount(int orderId, List<OrderItemDTO> orderItemDTOs) {
+        Order order = orderService.getOrderById(orderId);
+        for (OrderItemDTO orderItemDTO : orderItemDTOs){
+            orderItemDTO.setPercentageDiscount(order.getPercentageDiscount());
+            orderItemDTO.setPercentageDiscount(order.getAmountDiscount());
+        }
+        return orderItemDTOs;
     }
 
     @Override
@@ -122,7 +131,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     @Override
     public List<OrderItemDTO> getOrderItemDtoSortedByUser(int orderId, int itemId) {
         List<OrderItemDTO> orderItems = getOrderItemListDTOByOrderId(orderId);
-        return orderItems.stream().filter(orderItemDTO -> orderItemDTO.getItem().getId() == itemId ).collect(Collectors.toList());
+        return orderItems.stream().filter(orderItemDTO -> orderItemDTO.getItem().getId() == itemId).collect(Collectors.toList());
     }
 }
 
