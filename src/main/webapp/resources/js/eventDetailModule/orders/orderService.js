@@ -34,8 +34,8 @@ orderService.factory("OrderListService", function ($http, $rootScope, Restaurant
         })
     };
 
-    orderListService.updateCommonOrder = function(){
-        $http.get("api/orders/"+ $rootScope.orderId +"/list").success(function(data){
+    orderListService.updateCommonOrder = function () {
+        $http.get("api/orders/" + $rootScope.orderId + "/list").success(function (data) {
             $rootScope.myOrders = data;
         });
     };
@@ -79,16 +79,32 @@ orderService.factory("OrderListService", function ($http, $rootScope, Restaurant
     };
 
     orderListService.addOneItemToUserOrder = function (itemId, orderId, userId) {
-       return $http.post("/orders/" + orderId + "/items/" + itemId + "/" + userId);
+        return $http.post("/orders/" + orderId + "/items/" + itemId + "/" + userId);
     };
 
     orderListService.removeOneItemFromUserOrder = function (itemId, orderId, userId) {
-      return  $http.delete("/orders/" + orderId + "/items/" + itemId + "/" + userId);
+        return $http.delete("/orders/" + orderId + "/items/" + itemId + "/" + userId);
     };
 
     orderListService.removeItemFromUserOrder = function (orderId, itemId, userId) {
-       return $http.delete("/orders/" + orderId + "/items/" + itemId + "/all/"+userId)
+        return $http.delete("/orders/" + orderId + "/items/" + itemId + "/all/" + userId)
     };
+
+    orderListService.getPercentageDiscount = function (percentage, amount) {
+        if (!percentage && !amount) {
+            return 0;
+        }
+        if (amount) {
+            var percentageFromAmount = amount * 100 / orderListService.getTotal();
+        }
+        if (percentage) {
+            if (percentageFromAmount) {
+                return parseFloat(percentageFromAmount) + parseFloat(percentage);
+            } else return percentage;
+        }
+        return percentageFromAmount;
+    };
+
 
     return orderListService;
 });
