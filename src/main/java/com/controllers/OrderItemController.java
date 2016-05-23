@@ -76,11 +76,6 @@ public class OrderItemController {
         return ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId();
     }
 
-
-
-
-
-
     @RequestMapping(value = "/orders/{orderId}/items/{itemId}/{userId}", method = RequestMethod.POST)
     public @ResponseBody String addOneItemToUserOrder(@PathVariable("userId") int userId,
                                     @PathVariable("orderId") int orderId,

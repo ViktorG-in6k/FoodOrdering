@@ -9,7 +9,8 @@
                     <div class="event-list-date pull-right">
                         <p class="row">
                         <p class="text-center" style="font-size: 30px">{{event.date.dayOfMonth}}</p>
-                        <p class="text-center" style="font-size: 24px"> {{event.date.month | limitTo: 3 | lowercase | capitalize}}</p>
+                        <p class="text-center" style="font-size: 24px"> {{event.date.month | limitTo: 3 | lowercase |
+                            capitalize}}</p>
                         <p style="font-size: 22px"> {{event.date.year}}</p>
                     </div>
                 </div>
@@ -29,54 +30,81 @@
                 </h3>
 
                 <div class="inline">
-                <div ng-if="order.status == 'FREEZE'" class="inline restaurant-phone"><h3 class="inline">Status:</h3>  <p class="inline label label-primary">frozen</p> </div>
+                    <div ng-if="order.status == 'FREEZE'" class="inline restaurant-phone"><h3 class="inline">
+                        Status:</h3>
+                        <p class="inline label label-primary">frozen</p></div>
                 </div>
-                <button class="order-status-btn btn btn btn-primary" style="margin-top: -22px;" ng-if="order.status == 'PENDING'"
+                <button class="order-status-btn btn btn btn-primary" style="margin-top: -22px;"
+                        ng-if="order.status == 'PENDING'"
                         ng-click="changeOrderStatusToFreeze(orderId)">freeze order
                 </button>
                 <form class="inline" style="margin-top: -22px;" ng-if="order.status == 'FREEZE'">
-                    <input ng-model="splitBillId" class="form-control inline" placeholder="split-bill event id" type="text" style="width: 150px; margin-left: 40px" required>
-                <button class=" btn btn-primary"
-                        ng-click="changeOrderStatusToBill(orderId, splitBillId)">Split-bill
-                </button>
+                    <input ng-model="splitBillId" class="form-control inline" placeholder="split-bill event id"
+                           type="text" style="width: 150px; margin-left: 40px" required>
+                    <button class=" btn btn-primary"
+                            ng-click="changeOrderStatusToBill(orderId, splitBillId)">Split-bill
+                    </button>
                 </form>
                 <div class="inline order-status-btn" ng-if="order.status == 'SPLIT_BILL'">
-                    <h3 class="inline">Status: </h3> <p class="inline label label-primary">send to spit-bill</p>
+                    <h3 class="inline">Status: </h3>
+                    <p class="inline label label-primary">send to spit-bill</p>
                 </div>
             </div>
         </div>
     </div>
     <div>
-            <table class="table table-bordered table-responsive ">
-                <tr>
-                    <th>Name</th>
-                    <th>Amount</th>
-                    <th>Price</th>
-                    <th>Cost</th>
-                </tr>
-                <tr ng-repeat="item in myOrders| orderBy:'restaurant.name'" class="items">
-                    <td>{{item.item.name}}</td>
-                    <td>
-                        <change-item-amount-directive amount="item.itemAmount" item-id="{{item.item.id}}" order-id="{{orderId}}" item-name="{{item.item.name}}"></change-item-amount-directive>
-                    </td>
-                    <td>
-                        <div style="width: 60px">
-                            <a href="#" editable-text="item.item.price" onbeforesave="updatePrice(item.item.id, $data)">{{ item.item.price || 'set price ' }}&#8372</a>
-                        </div>
-                    </td>
-                    <td>
-                        {{item.itemAmount * item.item.price|currency:" "}}&#8372
-                    </td>
-                </tr>
-                <tr>
-                    <td><h4>Total</h4></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <div class=""><h4>{{getTotal() |currency:" "}}&#8372</h4></div>
-                    </td>
-                </tr>
-            </table>
+        <table class="table table-bordered table-responsive ">
+            <tr>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Cost</th>
+            </tr>
+            <tr ng-repeat="item in myOrders| orderBy:'restaurant.name'" class="items">
+                <td>{{item.item.name}}</td>
+                <td>
+                    <change-item-amount-directive amount="item.itemAmount" item-id="{{item.item.id}}"
+                                                  order-id="{{orderId}}"
+                                                  item-name="{{item.item.name}}"></change-item-amount-directive>
+                </td>
+                <td>
+                    <div style="width: 60px">
+                        <a href="#" editable-text="item.item.price" onbeforesave="updatePrice(item.item.id, $data)">{{
+                            item.item.price || 'set price ' }}&#8372</a>
+                    </div>
+                </td>
+                <td>
+                    {{item.itemAmount * item.item.price|currency:" "}}&#8372
+                </td>
+            </tr>
+            <tr>
+                <td><h4>Discount %</h4></td>
+                <td></td>
+                <td></td>
+                <td><p>0</p></td>
+            </tr>
+            <tr>
+                <td><h4>Discount &#8372</h4></td>
+                <td></td>
+                <td></td>
+                <td><p>0</p></td>
+            </tr>
+
+            <tr>
+                <td><h4>Shipping</h4></td>
+                <td></td>
+                <td></td>
+                <td>0 &#8372</td>
+            </tr>
+            <tr>
+                <td><h3>Total</h3></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <div class=""><h4>{{getTotal() |currency:" "}}&#8372</h4></div>
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
 

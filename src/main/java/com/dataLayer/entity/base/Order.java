@@ -1,6 +1,7 @@
 package com.dataLayer.entity.base;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 @javax.persistence.Entity(name = "order_info")
@@ -20,6 +21,11 @@ public class Order extends com.dataLayer.entity.base.Entity {
     private Status status;
     @Column(name = "bill_id")
     private Integer billId;
+    @Column
+    private BigDecimal amountDiscount;
+    @Column
+    private BigDecimal percentageDiscount;
+
 
     public Order(Restaurant restaurant, Event event, Status status) {
         this.restaurant = restaurant;
@@ -81,6 +87,22 @@ public class Order extends com.dataLayer.entity.base.Entity {
 
     public void setBillId(int billId) {
         this.billId = billId;
+    }
+
+    public BigDecimal getAmountDiscount() {
+        return amountDiscount;
+    }
+
+    public void setAmountDiscount(BigDecimal amountDiscount) {
+        this.amountDiscount = amountDiscount;
+    }
+
+    public BigDecimal getPercentageDiscount() {
+        return percentageDiscount;
+    }
+
+    public void setPercentageDiscount(BigDecimal percentageDiscount) {
+        this.percentageDiscount = percentageDiscount;
     }
 }
 
