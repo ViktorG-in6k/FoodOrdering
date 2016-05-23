@@ -32,5 +32,6 @@ public interface OrderDAO {
 
     List<Order> getOrderByEventIdAndRestaurantIdAndStatus(int eventId, int restaurantId, Status status);
 
+    void updateOrder(Order order);
 }
 

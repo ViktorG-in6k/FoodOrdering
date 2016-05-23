@@ -37,6 +37,8 @@ public interface OrderService {
     void sendOrderToSplitBill(int orderId, int splitBillId) throws IOException;
 
     List<OrderPlacementStatus> getOrderPlacementStatusByEventIdAndRestaurantId(int eventId, int restaurantId, Authentication authentication);
+
+    void updatePercentageDiscount(int orderId, double percentageDiscount);
 }
 
 

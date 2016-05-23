@@ -14,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -168,6 +169,13 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderPlacementStatus> getOrderPlacementStatusByEventIdAndRestaurantId(int eventId, int restaurantId, Authentication authentication) {
         List<Order> orders = orderDAO.getOrdersByEventIdAndRestaurantId(eventId, restaurantId);
         return  orders.stream().map(order -> getOrderPlacementStatus(order, authentication)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void updatePercentageDiscount(int orderId, double percentageDiscount) {
+        Order order = orderDAO.getOrderByOrderId(orderId);
+        order.setPercentageDiscount(new BigDecimal(percentageDiscount));
+        orderDAO.updateOrder(order);
     }
 }
 

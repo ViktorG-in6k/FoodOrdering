@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@SuppressWarnings("unchecked")
 @Repository
 @Transactional
 public class OrderDAOImpl implements OrderDAO {
@@ -141,6 +140,12 @@ public class OrderDAOImpl implements OrderDAO {
                 .setInteger("restaurantId", restaurantId)
                 .setString("status", status.toString())
                 .list();
+    }
+
+    @Override
+    public void updateOrder(Order order) {
+        Session session = sessionFactory.getCurrentSession();
+        session.update(order);
     }
 }
 
