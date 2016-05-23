@@ -11,5 +11,13 @@ discount.service("DiscountService", function ($http) {
         })
     };
 
+    discountService.changeAmountDiscount = function (orderId, amount) {
+        return $http({
+            url: "api/orders/" + orderId + "/amountDiscount",
+            method: "PUT",
+            params: {amount: amount}
+        })
+    };
+    
     return discountService;
 });
