@@ -97,7 +97,14 @@
                             {{selected.originalObject.item}}
                             </td>
                             <td></td>
-                            <td></td>
+
+                            <td>
+                                <change-item-amount-directive amount="item.itemAmount" item-id="{{item.item.id}}"
+                                                              order-id="{{orderId}}"
+                                                              item-name="{{item.item.name}}">
+
+                                </change-item-amount-directive>
+                            </td>
                         </tr>
 
                         <tr>

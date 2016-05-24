@@ -27,14 +27,12 @@
                         <i data-ng-click="removeOneItemFromUserOrder(i.user.id)" class="fa fa-minus item-minus-margin item-minus-color cursor item-remove fa-style"></i>
                         {{i.itemAmount}}
                         <i data-ng-click="addOneItemToUserOrder(i.user.id)" style="margin-left: 2px;padding:7px" class="fa fa-plus item-plus-color cursor fa-style"></i>
-
                         <i  data-ng-click="removeItemFromUserOrder(i.user.id, i.itemAmount)" class="fa fa-times item-minus-color item-delete cursor fa-style"></i>
                     </td>
                     <td></td>
                 </tr>
-
                 <tr>
-                    <td>
+                    <td ng-init ="search = '">
                     <angucomplete id="ex1"
                                   placeholder="Search user"
                                   pause="100"
@@ -43,17 +41,13 @@
                                   searchfields="fullName"
                                   titlefield="fullName"
                                   minlength="1"
-                                  inputclass="form-control form-control-small">
+                                  inputclass="form-control form-control-small"
+                                  search-str="search">
                     </angucomplete>
                     </td>
-
                     <td data-ng-show="user">
-                        <i data-ng-click="removeOneItemFromUserOrder(i.user.id)" class="fa fa-minus item-minus-margin item-minus-color cursor item-remove fa-style inline"></i>
-                        {{i.itemAmount}}
-                        <i data-ng-click="addOneItemToUserOrder(i.user.id)" style="margin-left: 2px;padding:7px" class="fa fa-plus item-plus-color cursor fa-style inline"></i>
-                        <i  data-ng-click="removeItemFromUserOrder(i.user.id, i.itemAmount)" class=" inline fa fa-times item-minus-color item-delete cursor fa-style"></i>
+                        <i data-ng-click="addOneItemToUserOrder(user.originalObject.id); user.title = null; user = null ;search = ''" style="margin-left: 2px;padding:7px" class="fa fa-plus item-plus-color cursor fa-style inline"></i>
                     </td>
-                    <td data-ng-show="user"><button class="btn ">Add</button> </td>
                 </tr>
                 </tbody>
             </table>
