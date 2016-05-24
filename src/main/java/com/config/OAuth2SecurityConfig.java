@@ -27,26 +27,6 @@ class OAuth2SecurityConfig {
     private AccessTokenRequest accessTokenRequest;
 
     @Bean
-    @Profile("production")
-    @Scope("session")
-    public OAuth2ProtectedResourceDetails googleProductionResource() {
-        final AuthorizationCodeResourceDetails details = new AuthorizationCodeResourceDetails();
-        details.setId("google-oauth2-client");
-        details.setClientId(System.getenv("google.client.id"));
-        details.setClientSecret(System.getenv("google.client.secret"));
-        details.setAccessTokenUri(env.getProperty("google.access.token.uri"));
-        details.setUserAuthorizationUri(env.getProperty("google.user.authorization.uri"));
-        details.setTokenName(env.getProperty("google.token.name"));
-        details.setScope(ImmutableList.copyOf(env.getProperty("google.auth.scope").split(",")));
-        details.setPreEstablishedRedirectUri(System.getenv("google.preestablished.redirect.url"));
-        details.setUseCurrentUri(false);
-        details.setAuthenticationScheme(AuthenticationScheme.query);
-        details.setClientAuthenticationScheme(AuthenticationScheme.form);
-        return details;
-    }
-
-    @Bean
-    @Profile("dev")
     @Scope("session")
     public OAuth2ProtectedResourceDetails googleResource() {
         final AuthorizationCodeResourceDetails details = new AuthorizationCodeResourceDetails();
@@ -65,17 +45,9 @@ class OAuth2SecurityConfig {
     }
 
     @Bean
-    @Profile("dev")
     @Scope(value = "session", proxyMode = ScopedProxyMode.INTERFACES)
     public OAuth2RestTemplate oauth2RestTemplate() {
         return new OAuth2RestTemplate(googleResource(), new DefaultOAuth2ClientContext(accessTokenRequest));
-    }
-
-    @Bean
-    @Profile("production")
-    @Scope(value = "session", proxyMode = ScopedProxyMode.INTERFACES)
-    public OAuth2RestTemplate oauth2ProductionRestTemplate() {
-        return new OAuth2RestTemplate(googleProductionResource(), new DefaultOAuth2ClientContext(accessTokenRequest));
     }
 }
 

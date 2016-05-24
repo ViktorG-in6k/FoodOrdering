@@ -8,8 +8,6 @@
                         class="fa fa-link" aria-hidden="true"></i> {{ restaurant.link}}</a>
                 <p class="xs-text"><i class="fa fa-phone" aria-hidden="true"></i> {{restaurant.phone}}</p>
             </div>
-
-
         </div>
     </div>
 
@@ -19,10 +17,10 @@
                  ng-if="orderPlacementStatus.order.status == 'FREEZE'">This order is frozen. You can not change order
                 list
             </div>
-            <input type="text" class="pull-left form-control search-input" placeholder="Search" ng-model="searchItem">
+            <input  type="text" class="pull-left form-control search-input" style="width: 220px" placeholder="Search" ng-model="searchItem">
+
             <div class="form-group pull-right order-select" ng-controller="orderPlacementStatus"
                  style="margin-left: 10px">
-
                 <select name="repeatSelect" id="repeatSelect" ng-model="currentOrder"
                         ng-change="changeOrder(currentOrder)">
                     <option class="form-control" ng-repeat="order in orderPlacementStatus" value="{{order.order.id}}">
