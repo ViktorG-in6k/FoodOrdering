@@ -4,9 +4,13 @@
         <p data-ng-click="showPopover = !showPopover" class="cursor item-amount">{{amount}}</p>
     </div>
 
-    <div class="popover show right inline popover-style" data-ng-show="showPopover">
+
+    <div class="popover show right inline popover-style" style="padding-right: 400px" data-ng-show="showPopover">
         <div class="arrow"></div>
-        <div class="panel panel-default">
+
+        <div class="panel panel-default container" style="width: 400px;padding-left: 0; padding-right: 0;">
+
+
             <div class="panel-heading">{{itemName}}<div class="pull-right" data-ng-click="showPopover = !showPopover" ><p><i  class="fa fa-times cursor"></i></p></div></div>
             <table class="table">
                 <thead>
@@ -35,24 +39,27 @@
                                   placeholder="Search user"
                                   pause="100"
                                   url="/orders/{{orderId}}/items/{{itemId}}/users/"
-                                  selectedobject="selected"
-                                  searchfields="item"
-                                  titlefield="item"
+                                  selectedobject="user"
+                                  searchfields="fullName"
+                                  titlefield="fullName"
                                   minlength="1"
                                   inputclass="form-control form-control-small">
                     </angucomplete>
                     </td>
-                    <td data-ng-show="selected">
+
+                    <td data-ng-show="user">
                         <i data-ng-click="removeOneItemFromUserOrder(i.user.id)" class="fa fa-minus item-minus-margin item-minus-color cursor item-remove fa-style inline"></i>
                         {{i.itemAmount}}
                         <i data-ng-click="addOneItemToUserOrder(i.user.id)" style="margin-left: 2px;padding:7px" class="fa fa-plus item-plus-color cursor fa-style inline"></i>
                         <i  data-ng-click="removeItemFromUserOrder(i.user.id, i.itemAmount)" class=" inline fa fa-times item-minus-color item-delete cursor fa-style"></i>
                     </td>
-                    <td><button class="btn ">Add</button> </td>
-
+                    <td data-ng-show="user"><button class="btn ">Add</button> </td>
                 </tr>
                 </tbody>
             </table>
         </div>
+
     </div>
 </div>
+
+
