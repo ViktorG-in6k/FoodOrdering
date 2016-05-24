@@ -56,7 +56,7 @@
                         </td>
 
                         <td>
-                            <a style="color: black;" href="#" class="inline" editable-text="item.price"
+                            <a style="color: black;" href="#" class="inline" editable-number="item.price" e-min="0"
                                onbeforesave="updateItemPrice(item.id, $data)">
                                 <div class="padding-item-price">{{item.price | currency:" "}} &#8372</div>
                             </a>
