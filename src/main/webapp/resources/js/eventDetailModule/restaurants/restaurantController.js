@@ -44,7 +44,8 @@ restaurantController.controller("restaurantController", function ($http, OrderLi
     $scope.updateItemTitle = ItemService.updateItemTitle;
     $scope.updateItemPrice = ItemService.updateItemPrice;
 
-    $scope.getTotal = OrderListService.getTotal;
+    $scope.getMyTotal = OrderListService.getMyTotal;
+    $scope.getCommonTotal = OrderListService.getCommonTotal;
     $scope.removeResponsibility = function (orderId) {
         ResponsibilityService.removeResponsibility(orderId).success(function () {
             $http.get("api/orderPlacementStatus/" + $rootScope.orderId).success(function (orderPlacementStatus) {

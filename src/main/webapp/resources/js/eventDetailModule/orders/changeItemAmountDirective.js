@@ -32,7 +32,7 @@ directive.directive('changeItemAmountDirective', function () {
                     updateUsersItemList();
                     $scope.amount = $scope.amount - 1;
                     if($scope.amount == 0){
-                        OrderListService.updateCommonOrder();
+                        OrderListService.getCommonOrder();
                     }
                 })
             };
@@ -43,7 +43,7 @@ directive.directive('changeItemAmountDirective', function () {
                     updateUsersItemList();
                     $scope.amount = $scope.amount - itemAmount;
                     if($scope.amount == 0){
-                        OrderListService.updateCommonOrder();
+                        OrderListService.getCommonOrder();
                     }
                 });
             }

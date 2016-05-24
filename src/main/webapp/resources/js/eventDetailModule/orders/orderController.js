@@ -3,7 +3,7 @@ var orderController = angular.module('orderController', []);
 orderController.controller("orderList", function (OrderListService, $scope, $routeParams, $rootScope) {
     $rootScope.orderId = $routeParams.orderId;
     $scope.orderService = OrderListService;
-    OrderListService.updateOrderList();
+    OrderListService.getMyOrder();
 });
 
 orderController.controller("commonOrderList", function (ItemService, $scope, EventService, $routeParams,
@@ -46,17 +46,17 @@ orderController.controller("commonOrderList", function (ItemService, $scope, Eve
 
     $scope.updatePercentageDiscount = function (orderId, percentage) {
         DiscountService.changePercentageDiscount(orderId, percentage).success(function () {
-            OrderListService.updateCommonOrder()
+            OrderListService.getCommonOrder()
         })
     };
     
     $scope.updateAmountDiscount = function (orderId, amount) {
         DiscountService.changeAmountDiscount(orderId, amount).success(function () {
-            OrderListService.updateCommonOrder()
+            OrderListService.getCommonOrder()
         })
     };
     
     $scope.getPercentageDiscount = OrderListService.getPercentageDiscount;
 
-    OrderListService.updateCommonOrder()
+    OrderListService.getCommonOrder()
 });

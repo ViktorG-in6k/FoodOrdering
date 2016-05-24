@@ -59,7 +59,7 @@
                             <th>Price</th>
                             <th>Cost</th>
                         </tr>
-                        <tr ng-repeat="item in myOrders| orderBy:'restaurant.name'" class="items">
+                        <tr ng-repeat="item in commonOrders| orderBy:'restaurant.name'" class="items">
                             <td>{{item.item.name}}</td>
                             <td>
                                 <change-item-amount-directive amount="item.itemAmount" item-id="{{item.item.id}}"

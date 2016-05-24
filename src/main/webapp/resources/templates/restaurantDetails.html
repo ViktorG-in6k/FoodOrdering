@@ -161,7 +161,7 @@
             <div>
                 <ul class="nav nav-tabs nav-justified">
                     <li class="pointer" role="presentation" ng-class="myItems"
-                        ng-click="myItems = 'active'; allItems = ''; updateOrderList()" ng-init="myItems = 'active'"><a>My
+                        ng-click="myItems = 'active'; allItems = ''; getMyOrder()" ng-init="myItems = 'active'"><a>My
                         items</a></li>
                     <li class="pointer" role="presentation" ng-class="allItems"
                         ng-click="allItems = 'active'; myItems = ''; updateCommonOrder()"><a>All
@@ -201,7 +201,7 @@
                     <tr>
                         <td><b>Total</b></td>
                         <td></td>
-                        <td>{{getTotal() |currency:" "}}&#8372</td>
+                        <td>{{getMyTotal() |currency:" "}}&#8372</td>
                     </tr>
                 </table>
 
@@ -213,7 +213,7 @@
                         <th>Price</th>
                         <th></th>
                     </tr>
-                    <tr ng-repeat="item in commonOrderList| orderBy:'restaurant.name'">
+                    <tr ng-repeat="item in commonOrders| orderBy:'restaurant.name'">
                         <td>{{item.item.name}}</td>
                         <td>
                             <div>
@@ -228,7 +228,7 @@
                     <tr>
                         <td><b>Total</b></td>
                         <td></td>
-                        <td>{{getTotal() |currency:" "}}&#8372</td>
+                        <td>{{getCommonTotal() |currency:" "}}&#8372</td>
                     </tr>
                 </table>
 
