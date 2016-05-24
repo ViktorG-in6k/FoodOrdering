@@ -1,6 +1,8 @@
 package com.controllers;
 
+import com.dataLayer.entity.DTO.itemDTO.ItemDTO;
 import com.dataLayer.entity.DTO.itemDTO.ItemRequest;
+import com.dataLayer.entity.DTO.userDTO.UserDTO;
 import com.serviceLayer.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Controller
 public class ItemController {
@@ -35,6 +38,14 @@ public class ItemController {
     public @ResponseBody String changeItemTitle(@PathVariable("itemId")int id, @RequestParam("title") String title){
         itemService.updateItemName(id, title);
         return "{\"status\":\"200\"}";
+    }
+
+    @RequestMapping(value = "/orders/{orderId}/items/{name}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Set<ItemDTO> getOrderListByCurrentUser(@PathVariable("orderId") int orderId,
+                                           @PathVariable("name") String name) {
+        return itemService.getUnusedItems(orderId, name);
     }
 }
 

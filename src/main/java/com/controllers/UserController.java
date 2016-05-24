@@ -24,7 +24,7 @@ public class UserController {
     @RequestMapping(value = "/orders/{orderId}/items/{itemId}/users/{name}", method = RequestMethod.GET)
     public
     @ResponseBody
-    Set<UserDTO> getOrderListByCurrentUser(@PathVariable("orderId") int orderId,
+    Set<UserDTO> getListOfUnusedUsers(@PathVariable("orderId") int orderId,
                                            @PathVariable("itemId") int itemId,
                                            @PathVariable("name") String name) {
         return userService.getUnusedUsersFromItemOrder(orderId, itemId, name);
