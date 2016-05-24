@@ -16,7 +16,7 @@ public interface UserService {
 
     public User getUserByEmail(String email);
 
-    Set<UserDTO> getUnusedUsersFromItemOrder(int orderId, int itemId);
+    Set<UserDTO> getUnusedUsersFromItemOrder(int orderId, int itemId, String name);
 
     public User getUserFromOauthUser(OauthProfile oauthProfile);
 }

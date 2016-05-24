@@ -48,9 +48,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Set<UserDTO> getUnusedUsersFromItemOrder(int orderId, int itemId) {
+    public Set<UserDTO> getUnusedUsersFromItemOrder(int orderId, int itemId, String name) {
         List<OrderItemDTO> orderItemDTOs = orderItemService.getOrderListByOrderIdAndItemId(orderId, itemId);
-        List<User> users = userDAO.getListOfAllUsers();
+        List<User> users = userDAO.getListOfUsersByName(name);
         Set<UserDTO> userDTOs = new HashSet<>();
         for (User user : users) {
             boolean isEqual = false;
