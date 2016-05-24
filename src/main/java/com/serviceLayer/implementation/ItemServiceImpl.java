@@ -10,6 +10,7 @@ import com.serviceLayer.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -17,6 +18,7 @@ public class ItemServiceImpl implements ItemService {
     ItemDAO itemDAO;
     @Autowired
     RestaurantService restaurantService;
+
 
     @Override
     public void save(Item item) {
@@ -43,6 +45,11 @@ public class ItemServiceImpl implements ItemService {
     public void updateItemPrice(int id, double price) {
         itemDAO.updatePrice(id,new BigDecimal(price));
     }
+
+//    @Override
+//    public List<ItemDTO> getUnusedItems(int orderId){
+//
+//    }
 
     @Override
     public void updateItemName(int id, String title) {
