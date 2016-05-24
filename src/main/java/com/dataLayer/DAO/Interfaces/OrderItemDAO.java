@@ -11,6 +11,8 @@ public interface OrderItemDAO {
 
     List<OrderItem> getOrderListByOrderIdAndUserId(int userId, int orderId);
 
+    List<OrderItem> getOrderListByOrderIdAndItemId(int itemId, int orderId);
+
     List<OrderItem> getOrderListByOrderId(int orderId);
 
     void updateAmount(OrderItem orderItem, int amount);

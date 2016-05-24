@@ -45,6 +45,16 @@ public class OrderItemDAOImpl implements OrderItemDAO {
     }
 
     @Override
+    public List<OrderItem> getOrderListByOrderIdAndItemId(int itemId, int orderId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from order_item where order_id = :orderId and item_id = :itemId");
+        return (List<OrderItem>) query
+                .setInteger("itemId", itemId)
+                .setInteger("orderId", orderId)
+                .list();
+    }
+
+    @Override
     public List<OrderItem> getOrderListByOrderId(int orderId) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from order_item where order_id = :orderId");
