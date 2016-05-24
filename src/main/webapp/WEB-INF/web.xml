@@ -23,4 +23,8 @@
 
     <description>Spring MVC web application</description>
 
+    <session-config>
+        <session-timeout>120</session-timeout>
+    </session-config>
+
 </web-app>
