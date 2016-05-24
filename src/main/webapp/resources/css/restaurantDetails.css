@@ -91,14 +91,14 @@ input[type=number]::-webkit-outer-spin-button {
 
 .popover-style {
     position: absolute;
-    top: -58px;
+    top: -99px;
     left: 27px;
     display: inline-block;
     width: 220%;
 }
 
 .item-delete {
-    margin-left: 22px;
+    margin-left: 7px;
 }
 
 .cursor {

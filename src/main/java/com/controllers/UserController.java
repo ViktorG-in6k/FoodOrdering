@@ -21,11 +21,13 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/orders/{orderId}/items/{itemId}/users/}", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/orders/{orderId}/items/{itemId}/users/{name}", method = RequestMethod.GET)
     public
     @ResponseBody
     Set<UserDTO> getOrderListByCurrentUser(@PathVariable("orderId") int orderId,
-                                           @PathVariable("itemId") int itemId) {
-        return userService.getUnusedUsersFromItemOrder(orderId, itemId);
+                                           @PathVariable("itemId") int itemId,
+                                           @PathVariable("name") String name) {
+        return userService.getUnusedUsersFromItemOrder(orderId, itemId, name);
     }
 }

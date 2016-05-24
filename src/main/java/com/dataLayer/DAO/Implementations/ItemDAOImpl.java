@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -27,6 +28,13 @@ public class ItemDAOImpl implements ItemDAO {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from item where id = :id");
         return (Item) query.setInteger("id",id).uniqueResult();
+    }
+
+    @Override
+    public List<Item> getItemsByRestaurantId(int restaurantId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from item where restaurant_id = :restaurantId");
+        return (List<Item>) query.setInteger("restaurantId",restaurantId).list();
     }
 
     @Override

@@ -18,11 +18,12 @@
                 </thead>
                 <tbody>
                 <tr data-ng-repeat="i in itemList">
-                    <td>{{i.user.name + ' '}}{{ i.user.familyName}}</td>
-                    <td>
+                    <td style="width: 50%;">{{i.user.name + ' '}}{{ i.user.familyName}}</td>
+                    <td style="width: 180%;">
                         <i data-ng-click="removeOneItemFromUserOrder(i.user.id)" class="fa fa-minus item-minus-margin item-minus-color cursor item-remove fa-style"></i>
                         {{i.itemAmount}}
                         <i data-ng-click="addOneItemToUserOrder(i.user.id)" style="margin-left: 2px;padding:7px" class="fa fa-plus item-plus-color cursor fa-style"></i>
+
                         <i  data-ng-click="removeItemFromUserOrder(i.user.id, i.itemAmount)" class="fa fa-times item-minus-color item-delete cursor fa-style"></i>
                     </td>
                     <td></td>
@@ -33,7 +34,7 @@
                     <angucomplete id="ex1"
                                   placeholder="Search user"
                                   pause="100"
-                                  url="orders/"
+                                  url="/orders/{{orderId}}/items/{{itemId}}/users/"
                                   selectedobject="selected"
                                   searchfields="item"
                                   titlefield="item"
@@ -41,7 +42,6 @@
                                   inputclass="form-control form-control-small">
                     </angucomplete>
                     </td>
-
                     <td data-ng-show="selected">
                         <i data-ng-click="removeOneItemFromUserOrder(i.user.id)" class="fa fa-minus item-minus-margin item-minus-color cursor item-remove fa-style inline"></i>
                         {{i.itemAmount}}

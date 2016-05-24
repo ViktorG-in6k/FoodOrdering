@@ -46,5 +46,13 @@ public class UserDAOImpl implements UserDAO {
         Query query = session.createQuery("from user");
         return (List<User>) query.list();
     }
+
+    @Override
+    public List<User> getListOfUsersByName(String name) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from user where name =: name or familyName =: name");
+        query.setParameter("name", "%"+name+"%");
+        return (List<User>) query.list();
+    }
 }
 
