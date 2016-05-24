@@ -25,7 +25,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class HibernateConfig {
 
-    @Bean
+  /*  @Bean
     @Profile("dev")
     public DataSource dataSource(
             @Value("jdbc:mysql://localhost:3306/food_order_db") String url,
@@ -37,22 +37,19 @@ public class HibernateConfig {
         );
         source.setDriverClassName("com.mysql.jdbc.Driver");
         return source;
-    }
+    }*/
 
     @Bean
-    @Profile("production")
-    public BasicDataSource dataSource() throws URISyntaxException {
-        URI jdbUri = new URI(System.getenv("JAWSDB_URL"));
-        String username = jdbUri.getUserInfo().split(":")[0];
-        String password = jdbUri.getUserInfo().split(":")[1];
-        String port = String.valueOf(jdbUri.getPort());
-        String jdbUrl = "jdbc:mysql://" + jdbUri.getHost() + ":" + port + jdbUri.getPath();
-        BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setUrl(jdbUrl);
-        basicDataSource.setUsername(username);
-        basicDataSource.setPassword(password);
-
-        return basicDataSource;
+    public DataSource dataSourceHeroku(
+            @Value("jdbc:mysql://ivgz2rnl5rh7sphb.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/vw9i9thqd6ahzzl7") String url,
+            @Value("a1cz5y3jut8ha1hs") String username,
+            @Value("qazautz21nqq4rrq") String password
+    ) throws SQLException {
+        DriverManagerDataSource source = new DriverManagerDataSource(
+                url, username, password
+        );
+        source.setDriverClassName("com.mysql.jdbc.Driver");
+        return source;
     }
 
     @Bean
