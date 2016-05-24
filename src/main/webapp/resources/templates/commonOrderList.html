@@ -81,29 +81,31 @@
                             </td>
                         </tr>
 
-                        <tr>
-                            <td>
+                        <tr ng-init="search = ''">
+                            <td >
                                 <angucomplete id="ex1"
-                                              placeholder="Search member"
+                                              placeholder="Search item"
                                               pause="100"
-                                              url="orders/"
+                                              url="orders/{{orderId}}/items/"
                                               selectedobject="selected"
                                               searchfields="item"
-                                              titlefield="item"
+                                              titlefield="name"
                                               minlength="1"
-                                              inputclass="form-control form-control-small">
+                                              inputclass="form-control form-control-small"
+                                              search-str="search">
                                 </angucomplete>
-
-                            {{selected.originalObject.item}}
                             </td>
                             <td></td>
-
+                            <td></td>
                             <td>
-                                <change-item-amount-directive amount="item.itemAmount" item-id="{{item.item.id}}"
-                                                              order-id="{{orderId}}"
-                                                              item-name="{{item.item.name}}">
+                                <div ng-click="addOneItemToOrder(selected.originalObject.id, orderId); selected = null;search = ''">
+                                    <button class=" btn btn-primary"
+                                            ng-if="order.status == 'PENDING'"
+                                            >Add to order
+                                    </button>
+                                </div>
 
-                                </change-item-amount-directive>
+
                             </td>
                         </tr>
 
@@ -155,7 +157,6 @@
                             </td>
                         </tr>
                     </table>
-
                 </div>
             </div>
         </div>

@@ -7,11 +7,14 @@ orderController.controller("orderList", function (OrderListService, $scope, $rou
 });
 
 orderController.controller("commonOrderList", function (ItemService, $scope, EventService, $routeParams,
-                                                        $rootScope, OrderListService, RestaurantService, $http, DiscountService) {
+                                                        $rootScope, OrderListService, RestaurantService, 
+                                                        $http, DiscountService) {
     $rootScope.eventId = $routeParams.id;
     $rootScope.currentRestaurant = $routeParams.restaurantId;
     $rootScope.orderId = $routeParams.orderId;
 
+    $scope.addOneItemToOrder = OrderListService.addOneItemToOrder;
+    
     $http.get("/events/" + $rootScope.eventId).success(function (data) {
         $scope.event = data;
     });
