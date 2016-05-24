@@ -86,10 +86,10 @@
                                 <angucomplete id="ex1"
                                               placeholder="Search member"
                                               pause="100"
-                                              url="orders/"
+                                              url="orders/{{orderId}}/items/"
                                               selectedobject="selected"
                                               searchfields="item"
-                                              titlefield="item"
+                                              titlefield="name"
                                               minlength="1"
                                               inputclass="form-control form-control-small">
                                 </angucomplete>
@@ -98,6 +98,12 @@
                             </td>
                             <td></td>
                             <td></td>
+                            <td>
+                                <button class=" btn btn-primary"
+                                        ng-if="order.status == 'PENDING'"
+                                        ng-click="addOneItemToOrder(selected.originalObject.id, orderId)">Add to order
+                                </button>
+                            </td>
                         </tr>
 
                         <tr>
