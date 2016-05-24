@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -163,7 +164,7 @@ public class OrderServiceImpl implements OrderService {
         for (OrderItemDTO orderItem : commonOrders) {
             BigDecimal priceWithDiscount = orderItem.getItem().getPrice();
             if(discount.doubleValue() > 0){
-               priceWithDiscount = priceWithDiscount.multiply(discount).divide(new BigDecimal(100));
+               priceWithDiscount = priceWithDiscount.multiply(discount).divide(new BigDecimal(100),2, RoundingMode.HALF_UP);
             }
             ProductRequestJSON productRequestJSON = new ProductRequestJSON(
                     orderItem.getItemAmount(),
@@ -182,7 +183,7 @@ public class OrderServiceImpl implements OrderService {
         BigDecimal percentageDiscountFromAmountDiscount = null;
         BigDecimal total = getTotal(commonOrders);
         if(order.getAmountDiscount() != null){
-            percentageDiscountFromAmountDiscount = order.getAmountDiscount().multiply(new BigDecimal(100)).divide(total);
+            percentageDiscountFromAmountDiscount = order.getAmountDiscount().multiply(new BigDecimal(100)).divide(total, 2, RoundingMode.HALF_UP);
         }
 
         if(order.getPercentageDiscount() != null){
