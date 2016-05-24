@@ -40,6 +40,10 @@ orderService.factory("OrderListService", function ($http, $rootScope, Restaurant
         });
     };
 
+    orderListService.getCommonOrder = function () {
+        return $http.get("api/orders/" + $rootScope.orderId + "/list")
+    };
+
     orderListService.updateOrderList = function () {
         $http.get("/orders/" + $rootScope.orderId).success(function (data) {
             $rootScope.myOrders = data;

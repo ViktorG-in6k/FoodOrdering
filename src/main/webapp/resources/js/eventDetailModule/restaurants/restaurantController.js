@@ -51,6 +51,12 @@ restaurantController.controller("restaurantController", function ($http, OrderLi
             });
         })
     };
+
+    $scope.updateCommonOrder = function(){
+        OrderListService.getCommonOrder().success(function(data){
+            $scope.commonOrderList = data;
+        });
+    }
 });
 
 restaurantController.controller("restaurantMenu", function ($rootScope, Restaurant, $routeParams, $scope, Order, ItemService) {
