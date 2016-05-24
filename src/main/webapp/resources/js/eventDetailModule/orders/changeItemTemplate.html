@@ -1,4 +1,5 @@
 <div style="position:relative"  ng-init="showPopover = false">
+
     <div class="inline">
         <p data-ng-click="showPopover = !showPopover" class="cursor item-amount">{{amount}}</p>
     </div>
@@ -12,6 +13,7 @@
                 <tr>
                     <th>Purchaser</th>
                     <th>Amount</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -23,6 +25,31 @@
                         <i data-ng-click="addOneItemToUserOrder(i.user.id)" style="margin-left: 2px;padding:7px" class="fa fa-plus item-plus-color cursor fa-style"></i>
                         <i  data-ng-click="removeItemFromUserOrder(i.user.id, i.itemAmount)" class="fa fa-times item-minus-color item-delete cursor fa-style"></i>
                     </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>
+                    <angucomplete id="ex1"
+                                  placeholder="Search user"
+                                  pause="100"
+                                  url="orders/"
+                                  selectedobject="selected"
+                                  searchfields="item"
+                                  titlefield="item"
+                                  minlength="1"
+                                  inputclass="form-control form-control-small">
+                    </angucomplete>
+                    </td>
+
+                    <td data-ng-show="selected">
+                        <i data-ng-click="removeOneItemFromUserOrder(i.user.id)" class="fa fa-minus item-minus-margin item-minus-color cursor item-remove fa-style inline"></i>
+                        {{i.itemAmount}}
+                        <i data-ng-click="addOneItemToUserOrder(i.user.id)" style="margin-left: 2px;padding:7px" class="fa fa-plus item-plus-color cursor fa-style inline"></i>
+                        <i  data-ng-click="removeItemFromUserOrder(i.user.id, i.itemAmount)" class=" inline fa fa-times item-minus-color item-delete cursor fa-style"></i>
+                    </td>
+                    <td><button class="btn ">Add</button> </td>
+
                 </tr>
                 </tbody>
             </table>

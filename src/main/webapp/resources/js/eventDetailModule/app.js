@@ -28,7 +28,8 @@ var app = angular.module('eventApp', [
     'commonOrder',
     'xeditable',
     'discountFilters',
-    'discountService'
+    'discountService',
+    "angucomplete"
 ]);
 
 app.config(['$routeProvider',

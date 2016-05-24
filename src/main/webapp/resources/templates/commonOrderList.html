@@ -80,6 +80,26 @@
                                 |currency:" "}} &#8372
                             </td>
                         </tr>
+
+                        <tr>
+                            <td>
+                                <angucomplete id="ex1"
+                                              placeholder="Search member"
+                                              pause="100"
+                                              url="orders/"
+                                              selectedobject="selected"
+                                              searchfields="item"
+                                              titlefield="item"
+                                              minlength="1"
+                                              inputclass="form-control form-control-small">
+                                </angucomplete>
+
+                            {{selected.originalObject.item}}
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
                         <tr>
                             <td><h4>Discount %</h4></td>
                             <td></td>
@@ -95,6 +115,7 @@
                                 </div>
                             </td>
                         </tr>
+
 
                         <tr>
                             <td><h4>Discount &#8372</h4></td>
@@ -133,3 +154,4 @@
         </div>
     </div>
 </div>
+

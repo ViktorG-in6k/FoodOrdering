@@ -20,6 +20,8 @@
 
     <link href="/resources/css/restaurantDetails.css" rel="stylesheet">
     <link rel="stylesheet" href="/resources/css/lib/kendoLib/kendo.common.min.css"/>
+    <link href="/resources/css/lib/angucomplete.css" rel="stylesheet">
+
     <script src="/resources/js/lib/jquery-2.1.4.min.js"></script>
     <script src="/resources/js/lib/angular.min.js"></script>
     <script src="/resources/js/lib/angular-route.min.js"></script>
@@ -31,6 +33,7 @@
 
     <script src="/resources/js/lib/kendo.js"></script>
     <script src="/resources/js/lib/angular-resource.js"></script>
+    <script src="/resources/js/lib/angucomplete.js"></script>
     <script src="/resources/js/eventDetailModule/events/eventsController.js"></script>
     <script src="/resources/js/eventDetailModule/events/eventsService.js"></script>
 

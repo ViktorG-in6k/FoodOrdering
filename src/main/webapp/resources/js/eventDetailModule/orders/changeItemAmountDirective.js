@@ -42,7 +42,9 @@ directive.directive('changeItemAmountDirective', function () {
                 OrderListService.removeItemFromUserOrder($scope.orderId, $scope.itemId, userId).success(function(){
                     updateUsersItemList();
                     $scope.amount = $scope.amount - itemAmount;
-                    OrderListService.updateCommonOrder();
+                    if($scope.amount == 0){
+                        OrderListService.updateCommonOrder();
+                    }
                 });
             }
 

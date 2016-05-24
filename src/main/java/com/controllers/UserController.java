@@ -21,7 +21,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/orders/{orderId}/items/{itemId}/users", method = RequestMethod.GET)
+    @RequestMapping(value = "/orders/{orderId}/items/{itemId}/users/}", method = RequestMethod.GET)
     public
     @ResponseBody
     Set<UserDTO> getOrderListByCurrentUser(@PathVariable("orderId") int orderId,
