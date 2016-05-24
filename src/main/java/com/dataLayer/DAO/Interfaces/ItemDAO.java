@@ -10,7 +10,7 @@ public interface ItemDAO {
 
     public Item getItemById(int id);
 
-    List<Item> getItemsByRestaurantId(int restaurantId);
+    List<Item> getItemsByRestaurantIdAndName(int restaurantId, String name);
 
     void updatePrice(int id, BigDecimal price);
 
