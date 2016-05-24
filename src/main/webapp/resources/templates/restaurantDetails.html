@@ -34,7 +34,8 @@
             </div>
             <div class="panel-group col-md-offset-1 col-sm-offset-1 col-md-11 col-sm-11" id="accordion" role="tablist"
                  aria-multiselectable="true">
-                <table class="table ">
+
+                <table class="table" >
                     <thead>
                     <tr class="head">
                         <th>
@@ -155,14 +156,13 @@
         <div>
             <ul class="nav nav-tabs nav-justified">
                 <li class="pointer" role="presentation" ng-class="myItems"
-                    ng-click="myItems = 'active'; allItems = ''; updateOrderList()"><a>My
+                    ng-click="myItems = 'active'; allItems = ''; updateOrderList()" ng-init="myItems = 'active'"><a>My
                     items</a></li>
-
                 <li class="pointer" role="presentation" ng-class="allItems"
-                    ng-click="allItems = 'active'; myItems = ''; CommonOrder()"><a>All
+                    ng-click="allItems = 'active'; myItems = ''; updateCommonOrder()"><a>All
                     items</a></li>
             </ul>
-            <table class="table">
+            <table class="table order-list-table" data-ng-show="myItems">
                 <tr>
                     <th>Name</th>
                     <th>Amount</th>
@@ -199,6 +199,35 @@
                     <td>{{getTotal() |currency:" "}}&#8372</td>
                 </tr>
             </table>
+
+
+            <table class="table order-list-table" data-ng-show="allItems">
+                <tr>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="item in commonOrderList| orderBy:'restaurant.name'">
+                    <td>{{item.item.name}}</td>
+                    <td>
+                        <div>
+
+                            <span style="">{{item.itemAmount}}</span>
+
+                        </div>
+                    </td>
+                    <td>{{item.itemAmount * item.item.price|currency:" "}}&#8372</td>
+
+                </tr>
+                <tr>
+                    <td><b>Total</b></td>
+                    <td></td>
+                    <td>{{getTotal() |currency:" "}}&#8372</td>
+                </tr>
+            </table>
+
+
         </div>
     </div>
 </div>

@@ -31,7 +31,7 @@
 
             </label>
             <label class="myNavbar" style="font-size: 14px;">
-                {{user.data.name}} ({{user.data.email}})
+                {{user.data.name}} {{user.data.familyName}} ({{user.data.email}})
                 <a href="/logout"> logout</a>
             </label>
         </div>

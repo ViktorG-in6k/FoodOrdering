@@ -15,7 +15,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 create-event-user-text">Created by {{event.user.name}}</div>
+            <div class="col-md-6 create-event-user-text">Created by  {{user.data.name}} {{user.data.familyName}} </div>
         </div>
     </div>
 </div>
@@ -117,14 +117,12 @@
                             <td></td>
                             <td><h4>0 &#8372</h4></td>
                         </tr>
-
                         <tr>
                             <td><h3>Total</h3></td>
                             <td></td>
                             <td></td>
                             <td>
-                                <div class=""><h4>{{getTotal()|percentageFilter: getPercentageDiscount(order.percentageDiscount, order.amountDiscount)|currency:"
-                                    "}}&#8372</h4>
+                                <div class=""><h4>{{getTotal()|percentageFilter: getPercentageDiscount(order.percentageDiscount, order.amountDiscount)|currency:""}}&#8372</h4>
                                 </div>
                             </td>
                         </tr>
