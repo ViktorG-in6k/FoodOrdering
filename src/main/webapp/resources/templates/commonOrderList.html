@@ -70,12 +70,9 @@
                             </td>
                             <td>
                                 <div style="width: 120px">
-                                    <a href="#" class="inline" editable-text="item.item.price"
+                                    <a href="#" class="inline" editable-number="item.item.price" e-min="0"
                                        onbeforesave="updatePrice(item.item.id, $data)">{{
                                         item.item.price || 'set price ' }}&#8372 </a>
-
-                                    <p class="inline" data-ng-if="order.percentageDiscount > 0"> -
-                                        {{order.percentageDiscount}} %</p>
                                 </div>
                             </td>
                             <td>
@@ -90,8 +87,8 @@
                             <td>
                                 <div style="width: 100px">
                                     <h4>
-                                        <a href="#" class="inline" editable-text="order.percentageDiscount"
-                                           onbeforesave="updatePercentageDiscount(order.id, $data)">
+                                        <a href="#" class="inline" editable-number="order.percentageDiscount"
+                                           onbeforesave="updatePercentageDiscount(order.id, $data)" e-min="0" e-max="100">
                                             {{order.percentageDiscount ? order.percentageDiscount : 0}} %
                                         </a>
                                     </h4>
@@ -105,8 +102,8 @@
                             <td></td>
                             <td><div style="width: 100px">
                                 <h4>
-                                <a href="#" class="inline" editable-text="order.amountDiscount"
-                                   onbeforesave="updateAmountDiscount(order.id, $data)">
+                                <a href="#" class="inline" editable-number="order.amountDiscount"
+                                   onbeforesave="updateAmountDiscount(order.id, $data)"  e-min="0">
                                     {{order.amountDiscount ? order.amountDiscount : 0}} &#8372
                                 </a>
                             </h4>

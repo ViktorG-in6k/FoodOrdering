@@ -151,19 +151,46 @@ public class OrderServiceImpl implements OrderService {
             } else commonOrders.add(orderItemDTO);
         }
 
+        BigDecimal discount = getDiscount(order, commonOrders);
+
+
         splitBillApi.login(order.getPayer().getEmail());
 
         splitBillApi.newBill(splitBillId);
         orderDAO.setSplitBillId(orderId, splitBillApi.getBillId());
 
+       // var discount = price * percentage / 100;
         for (OrderItemDTO orderItem : commonOrders) {
+            BigDecimal priceWithDiscount = orderItem.getItem().getPrice();
+            if(discount.doubleValue() > 0){
+               priceWithDiscount = priceWithDiscount.multiply(discount).divide(new BigDecimal(100));
+            }
             ProductRequestJSON productRequestJSON = new ProductRequestJSON(
                     orderItem.getItemAmount(),
                     orderItem.getItem().getName(),
-                    orderItem.getItem().getPrice()
+                    orderItem.getItem().getPrice().subtract(priceWithDiscount)
             );
             splitBillApi.newProduct(productRequestJSON);
         }
+    }
+
+
+    private BigDecimal getDiscount(Order order, List<OrderItemDTO> commonOrders) {
+        if(order.getAmountDiscount() == null && order.getPercentageDiscount() == null){
+            return new BigDecimal(0);
+        }
+        BigDecimal percentageDiscountFromAmountDiscount = null;
+        BigDecimal total = getTotal(commonOrders);
+        if(order.getAmountDiscount() != null){
+            percentageDiscountFromAmountDiscount = order.getAmountDiscount().multiply(new BigDecimal(100)).divide(total);
+        }
+
+        if(order.getPercentageDiscount() != null){
+            if(percentageDiscountFromAmountDiscount != null){
+                return percentageDiscountFromAmountDiscount.add(order.getPercentageDiscount());
+            }else return order.getPercentageDiscount();
+        } return percentageDiscountFromAmountDiscount;
+
     }
 
     @Override
@@ -185,6 +212,12 @@ public class OrderServiceImpl implements OrderService {
         order.setAmountDiscount(new BigDecimal(amount));
         orderDAO.updateOrder(order);
     }
+
+    public BigDecimal getTotal(List<OrderItemDTO> commonOrders){
+        BigDecimal total = new BigDecimal(0);
+        for(OrderItemDTO orderItem : commonOrders){
+            total = total.add(orderItem.getItem().getPrice().multiply(new BigDecimal(orderItem.getItemAmount())));
+        }
+        return total;
+    }
 }
-
-

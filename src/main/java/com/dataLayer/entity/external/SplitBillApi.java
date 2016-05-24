@@ -29,7 +29,7 @@ public class SplitBillApi {
 
     public SplitBillApi() {
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://split-bill.herokuapp.com/")
+                .baseUrl("http://split-bill.herokuapp.com:80/")
                 .addConverterFactory(JacksonConverterFactory.create())
                 .build();
 

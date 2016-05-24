@@ -42,7 +42,6 @@ itemService.factory("ItemService", function ($http, $rootScope, Restaurant) {
         });
     };
 
-
     return itemService;
 });
 
