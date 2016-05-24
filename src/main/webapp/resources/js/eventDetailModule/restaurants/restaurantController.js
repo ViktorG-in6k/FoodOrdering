@@ -42,6 +42,7 @@ restaurantController.controller("restaurantController", function ($http, OrderLi
     };
 
     $scope.updateItemTitle = ItemService.updateItemTitle;
+    $scope.updateItemPrice = ItemService.updateItemPrice;
 
     $scope.getTotal = OrderListService.getTotal;
     $scope.removeResponsibility = function (orderId) {
