@@ -6,10 +6,10 @@ var app = angular.module('eventApp', [
     "kendo.directives",
     "ngRoute",
     'ngResource',
-    
+
     'eventController',
     'eventService',
-    
+
     'restaurantController',
     'restaurantService',
 

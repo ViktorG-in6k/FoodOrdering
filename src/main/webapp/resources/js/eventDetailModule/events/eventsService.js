@@ -17,3 +17,12 @@ eventService.factory('Event', ['$resource', function ($resource) {
     return $resource('/events/:id');
 }]);
 
+eventService.factory('EventList',  function () {
+    var events = {};
+
+    var set = function (ev) {
+        events = ev;
+    };
+    return events;
+});
+
