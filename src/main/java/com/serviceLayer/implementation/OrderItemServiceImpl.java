@@ -11,6 +11,7 @@ import com.serviceLayer.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,11 +57,15 @@ public class OrderItemServiceImpl implements OrderItemService {
     @Override
     public void remoteOneItemFromOrder(int userId, int itemId, int orderId) {
         OrderItem orderInOrderList = orderItemDAO.getOrderItem(userId, itemId, orderId);
-        if (orderInOrderList.getItemAmount() - 1 != 0) {
+        if (!isLastSpecificItemInOrderList(orderInOrderList)) {
             orderItemDAO.updateAmount(orderInOrderList, orderInOrderList.getItemAmount() - 1);
         } else {
             orderItemDAO.deleteOrderItem(orderInOrderList);
         }
+    }
+
+    private boolean isLastSpecificItemInOrderList(OrderItem orderInOrderList) {
+        return orderInOrderList.getItemAmount() == 1;
     }
 
     @Override
@@ -98,6 +103,10 @@ public class OrderItemServiceImpl implements OrderItemService {
         int userId = ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId();
         OrderItem orderInOrderList = orderItemDAO.getOrderItem(userId, itemId, orderId);
         Order order = orderService.getOrderById(orderId);
+        addItemToOrder(orderId, itemId, number, userId, orderInOrderList, order);
+    }
+
+    private void addItemToOrder(int orderId, int itemId, int number, int userId, OrderItem orderInOrderList, Order order) {
         if (order != null) {
             if (orderInOrderList != null) {
                 orderItemDAO.updateAmount(orderInOrderList, number);
@@ -110,21 +119,33 @@ public class OrderItemServiceImpl implements OrderItemService {
     @Override
     public List<OrderItemDTO> getOrderCommonListById(int orderId) {
         List<OrderItemDTO> commonOrders = new ArrayList<>();
+        fillintCommonOrderByOrderId(orderId, commonOrders);
+        return setDiscount(orderId, commonOrders);
+    }
+
+    private void fillintCommonOrderByOrderId(int orderId, List<OrderItemDTO> commonOrders) {
         for (OrderItemDTO orderItemDTO : getOrderItemListDTOByOrderId(orderId)) {
             if (commonOrders.contains(orderItemDTO)) {
-                for (OrderItemDTO orderItem : commonOrders) {
-                    if (orderItem.getItem().getId() == orderItemDTO.getItem().getId()) {
-                        orderItem.setItemAmount(orderItem.getItemAmount() + orderItemDTO.getItemAmount());
-                    }
-                }
+                setItemAmmountInCommonOrder(commonOrders, orderItemDTO);
             } else commonOrders.add(orderItemDTO);
         }
-        return setDiscount(orderId, commonOrders);
+    }
+
+    private void setItemAmmountInCommonOrder(List<OrderItemDTO> commonOrders, OrderItemDTO orderItemDTO) {
+        for (OrderItemDTO orderItem : commonOrders) {
+            if (isSameOrderItems(orderItemDTO, orderItem)) {
+                orderItem.setItemAmount(orderItem.getItemAmount() + orderItemDTO.getItemAmount());
+            }
+        }
+    }
+
+    private boolean isSameOrderItems(OrderItemDTO orderItemDTO, OrderItemDTO orderItem) {
+        return orderItem.getItem().getId() == orderItemDTO.getItem().getId();
     }
 
     public List<OrderItemDTO> setDiscount(int orderId, List<OrderItemDTO> orderItemDTOs) {
         Order order = orderService.getOrderById(orderId);
-        for (OrderItemDTO orderItemDTO : orderItemDTOs){
+        for (OrderItemDTO orderItemDTO : orderItemDTOs) {
             orderItemDTO.setPercentageDiscount(order.getPercentageDiscount());
             orderItemDTO.setPercentageDiscount(order.getAmountDiscount());
         }
