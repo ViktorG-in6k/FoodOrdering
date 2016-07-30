@@ -52,10 +52,15 @@ public class UserServiceImpl implements UserService {
         List<OrderItemDTO> orderItemDTOs = orderItemService.getOrderListByOrderIdAndItemId(orderId, itemId);
         List<User> users = userDAO.getListOfUsersByName(name);
         Set<UserDTO> userDTOs = new HashSet<>();
+        fillingUserDTOSet(orderItemDTOs, users, userDTOs);
+        return userDTOs;
+    }
+
+    private void fillingUserDTOSet(List<OrderItemDTO> orderItemDTOs, List<User> users, Set<UserDTO> userDTOs) {
         for (User user : users) {
             boolean isEqual = false;
             for (OrderItemDTO orderItemDTO : orderItemDTOs) {
-                if (user.getId() == orderItemDTO.getUser().getId()) {
+                if (isSameUser(user, orderItemDTO.getUser())) {
                     isEqual = true;
                     break;
                 }
@@ -64,7 +69,10 @@ public class UserServiceImpl implements UserService {
                 userDTOs.add(new UserDTO(user));
             }
         }
-        return userDTOs;
+    }
+
+    private boolean isSameUser(User user, UserDTO orderItemDTOUser) {
+        return user.getId() == orderItemDTOUser.getId();
     }
 
     @Override
