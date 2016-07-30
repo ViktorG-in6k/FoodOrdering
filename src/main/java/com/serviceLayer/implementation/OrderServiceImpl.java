@@ -79,13 +79,12 @@ public class OrderServiceImpl implements OrderService {
         if (order != null) {
             List<OrderItemDTO> orderItems = orderItemService.getOrderItemListDTOByOrderId(order.getId());
 
-            for (OrderItemDTO itemDTO : orderItems) {
-                participants.add(userService.getUser(itemDTO.getUser().getId()));
-            }
+            fillingParticipantsList(participants, orderItems);
 
             int participantsAmount = participants.size();
             return new OrderPlacementStatus(order, participantsAmount, isMineOrder(order, authentication));
         }
+
         return null;
     }
 
@@ -95,25 +94,32 @@ public class OrderServiceImpl implements OrderService {
 
         List<OrderItemDTO> orderItems = orderItemService.getOrderItemListDTOByOrderId(order.getId());
 
-        for (OrderItemDTO itemDTO : orderItems) {
-            participants.add(userService.getUser(itemDTO.getUser().getId()));
-        }
+        fillingParticipantsList(participants, orderItems);
 
         int participantsAmount = participants.size();
         return new OrderPlacementStatus(order, participantsAmount, isMineOrder(order, authentication));
     }
 
+    private void fillingParticipantsList(Set<User> participants, List<OrderItemDTO> orderItems) {
+        for (OrderItemDTO itemDTO : orderItems) {
+            participants.add(userService.getUser(itemDTO.getUser().getId()));
+        }
+    }
 
     @Override
     public boolean isMineOrder(Order order, Authentication authentication) {
         int currentUserId = ((CurrentUserDetails) authentication.getPrincipal()).getUser().getId();
 
         for (OrderItem item : order.getOrderItems()) {
-            if (item.getUser().getId() == currentUserId) {
+            if (isSameUsers(currentUserId, item)) {
                 return true;
             }
         }
         return false;
+    }
+
+    private boolean isSameUsers(int currentUserId, OrderItem item) {
+        return item.getUser().getId() == currentUserId;
     }
 
     @Override
@@ -139,58 +145,96 @@ public class OrderServiceImpl implements OrderService {
         Order order = getOrderById(orderId);
 
         List<OrderItemDTO> orders = orderItemService.getOrderItemListDTOByOrderId(orderId);
-        List<OrderItemDTO> commonOrders = new ArrayList<>();
-
-        for (OrderItemDTO orderItemDTO : orders) {
-            if (commonOrders.contains(orderItemDTO)) {
-                for (OrderItemDTO orderItem : commonOrders) {
-                    if (orderItem.getItem().getId() == orderItemDTO.getItem().getId()) {
-                        orderItem.setItemAmount(orderItem.getItemAmount() + orderItemDTO.getItemAmount());
-                    }
-                }
-            } else commonOrders.add(orderItemDTO);
-        }
+        List<OrderItemDTO> commonOrders = fillingCommonOrders(orders);
 
         BigDecimal discount = getDiscount(order, commonOrders);
 
+        createNewBillInSplitBill(orderId, splitBillId, splitBillApi, order);
+        fillingBillOnSplitBill(splitBillApi, commonOrders, discount);
+    }
 
-        splitBillApi.login(order.getPayer().getEmail());
-
-        splitBillApi.newBill(splitBillId);
-        orderDAO.setSplitBillId(orderId, splitBillApi.getBillId());
-
-       // var discount = price * percentage / 100;
+    private void fillingBillOnSplitBill(SplitBillApi splitBillApi, List<OrderItemDTO> commonOrders, BigDecimal discount) throws IOException {
         for (OrderItemDTO orderItem : commonOrders) {
             BigDecimal priceWithDiscount = orderItem.getItem().getPrice();
-            if(discount.doubleValue() > 0){
-               priceWithDiscount = priceWithDiscount.multiply(discount).divide(new BigDecimal(100));
+            if (discount.doubleValue() > 0) {
+                priceWithDiscount = priceWithDiscount.multiply(discount).divide(new BigDecimal(100));
             }
-            ProductRequestJSON productRequestJSON = new ProductRequestJSON(
-                    orderItem.getItemAmount(),
-                    orderItem.getItem().getName(),
-                    orderItem.getItem().getPrice().subtract(priceWithDiscount)
-            );
+            ProductRequestJSON productRequestJSON = getProductRequestJSON(orderItem, priceWithDiscount);
             splitBillApi.newProduct(productRequestJSON);
         }
     }
 
+    private void createNewBillInSplitBill(int orderId, int splitBillId, SplitBillApi splitBillApi, Order order) throws IOException {
+        splitBillApi.login(order.getPayer().getEmail());
+
+        splitBillApi.newBill(splitBillId);
+        orderDAO.setSplitBillId(orderId, splitBillApi.getBillId());
+    }
+
+    private List<OrderItemDTO> fillingCommonOrders(List<OrderItemDTO> orders) {
+        List<OrderItemDTO> commonOrders = new ArrayList<>();
+
+        for (OrderItemDTO orderItemDTO : orders) {
+            if (commonOrders.contains(orderItemDTO)) {
+                setAmountOfEachItemInCommonOrders(commonOrders, orderItemDTO);
+            } else {
+                commonOrders.add(orderItemDTO);
+            }
+        }
+
+        return commonOrders;
+    }
+
+    private void setAmountOfEachItemInCommonOrders(List<OrderItemDTO> commonOrders, OrderItemDTO orderItemDTO) {
+        for (OrderItemDTO orderItem : commonOrders) {
+            if (isSameOrderItems(orderItemDTO, orderItem)) {
+                orderItem.setItemAmount(orderItem.getItemAmount() + orderItemDTO.getItemAmount());
+            }
+        }
+    }
+
+    private boolean isSameOrderItems(OrderItemDTO orderItemDTO, OrderItemDTO orderItem) {
+        return orderItem.getItem().getId() == orderItemDTO.getItem().getId();
+    }
+
+    private ProductRequestJSON getProductRequestJSON(OrderItemDTO orderItem, BigDecimal priceWithDiscount) {
+        return new ProductRequestJSON(
+                orderItem.getItemAmount(),
+                orderItem.getItem().getName(),
+                orderItem.getItem().getPrice().subtract(priceWithDiscount)
+        );
+    }
+
 
     private BigDecimal getDiscount(Order order, List<OrderItemDTO> commonOrders) {
-        if(order.getAmountDiscount() == null && order.getPercentageDiscount() == null){
+        if (isDiscountEquallNull(order)) {
             return new BigDecimal(0);
         }
-        BigDecimal percentageDiscountFromAmountDiscount = null;
+
         BigDecimal total = getTotal(commonOrders);
-        if(order.getAmountDiscount() != null){
-            percentageDiscountFromAmountDiscount = order.getAmountDiscount().multiply(new BigDecimal(100)).divide(total);
-        }
+        BigDecimal percentageDiscountFromAmountDiscount = calculateThePercentageDiscount(order, total);
 
-        if(order.getPercentageDiscount() != null){
-            if(percentageDiscountFromAmountDiscount != null){
+        if (order.getPercentageDiscount() != null) {
+            if (percentageDiscountFromAmountDiscount != null) {
                 return percentageDiscountFromAmountDiscount.add(order.getPercentageDiscount());
-            }else return order.getPercentageDiscount();
-        } return percentageDiscountFromAmountDiscount;
+            } else {
+                return order.getPercentageDiscount();
+            }
+        }
+        return percentageDiscountFromAmountDiscount;
 
+    }
+
+    private boolean isDiscountEquallNull(Order order) {
+        return order.getAmountDiscount() == null && order.getPercentageDiscount() == null;
+    }
+
+    private BigDecimal calculateThePercentageDiscount(Order order, BigDecimal total) {
+        if (order.getAmountDiscount() != null) {
+            return order.getAmountDiscount().multiply(new BigDecimal(100)).divide(total);
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -213,11 +257,12 @@ public class OrderServiceImpl implements OrderService {
         orderDAO.updateOrder(order);
     }
 
-    public BigDecimal getTotal(List<OrderItemDTO> commonOrders){
+    public BigDecimal getTotal(List<OrderItemDTO> commonOrders) {
         BigDecimal total = new BigDecimal(0);
-        for(OrderItemDTO orderItem : commonOrders){
+        for (OrderItemDTO orderItem : commonOrders) {
             total = total.add(orderItem.getItem().getPrice().multiply(new BigDecimal(orderItem.getItemAmount())));
         }
+
         return total;
     }
 }
