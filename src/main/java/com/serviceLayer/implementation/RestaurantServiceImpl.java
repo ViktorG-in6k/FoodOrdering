@@ -35,10 +35,15 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public List<RestaurantDTO> getResponseListOfAllRestaurantsByEventId(int eventId, Authentication authentication) {
         List<RestaurantDTO> restaurants = new ArrayList<>();
+        fillingRestaurantsList(eventId, authentication, restaurants);
+
+        return restaurants;
+    }
+
+    private void fillingRestaurantsList(int eventId, Authentication authentication, List<RestaurantDTO> restaurants) {
         for (Restaurant restaurant : getListOfAllRestaurant()) {
             restaurants.add(getRestaurantDTOById(eventId, restaurant.getId(), authentication));
         }
-        return restaurants;
     }
 
     @Override
@@ -67,11 +72,16 @@ public class RestaurantServiceImpl implements RestaurantService {
     private Order getOrderWhereUserMakeOrder(List<Order> orders, User user) {
         for (Order order : orders) {
             for (OrderItem orderItem : orderItemService.getOrderListByOrderId(order.getId())) {
-                if (orderItem.getUser().getId() == user.getId())
+                if (isSameUser(user, orderItem)) {
                     return orderItem.getOrder();
+                }
             }
         }
         return orders.get(0);
+    }
+
+    private boolean isSameUser(User user, OrderItem orderItem) {
+        return orderItem.getUser().getId() == user.getId();
     }
 }
 
