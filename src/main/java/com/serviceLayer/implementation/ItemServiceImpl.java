@@ -16,6 +16,7 @@ import com.serviceLayer.service.OrderService;
 import com.serviceLayer.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
@@ -55,33 +56,41 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void updateItemPrice(int id, double price) {
-        itemDAO.updatePrice(id,new BigDecimal(price));
+        itemDAO.updatePrice(id, new BigDecimal(price));
     }
 
     @Override
-    public Set<ItemDTO> getUnusedItems(int orderId, String name){
+    public Set<ItemDTO> getUnusedItems(int orderId, String name) {
         Order order = orderService.getOrderById(orderId);
         List<Item> items = itemDAO.getItemsByRestaurantIdAndName(order.getRestaurant().getId(), name);
         List<OrderItem> orderItems = orderItemService.getOrderListByOrderId(orderId);
         Set<ItemDTO> itemDTOs = new HashSet<>();
+        fillingItemsDTOs(items, orderItems, itemDTOs);
+        return itemDTOs;
+    }
+
+    private void fillingItemsDTOs(List<Item> items, List<OrderItem> orderItems, Set<ItemDTO> itemDTOs) {
         for (Item item : items) {
             boolean isEqual = false;
             for (OrderItem orderItem : orderItems) {
-                if (item.getId() == orderItem.getItem().getId()) {
+                if (isSameItems(item, orderItem)) {
                     isEqual = true;
                     break;
                 }
             }
-            if(!isEqual){
+            if (!isEqual) {
                 itemDTOs.add(new ItemDTO(item));
             }
         }
-        return itemDTOs;
+    }
+
+    private boolean isSameItems(Item item, OrderItem orderItem) {
+        return item.getId() == orderItem.getItem().getId();
     }
 
     @Override
     public void updateItemName(int id, String title) {
-        itemDAO.updateName(id,title);
+        itemDAO.updateName(id, title);
     }
 }
 
